@@ -4,12 +4,15 @@ import java.time.LocalDate;
 
 import org.springframework.stereotype.Component;
 
+import com.capg.onlineflatrental.entities.Flat;
+import com.capg.onlineflatrental.entities.Tenant;
+
 @Component
 public class FlatBookingDTO {
 
 	private int	bookingNo;
-	private FlatDTO flat;
-	private TenantDTO tenantId;
+	private Flat flat;
+	private Tenant tenantId;
 	private LocalDate bookingFromDate;
 	private LocalDate bookingToDate;
 	
@@ -17,7 +20,7 @@ public class FlatBookingDTO {
 		super();
 	}
 
-	public FlatBookingDTO(int bookingNo, FlatDTO flat, TenantDTO tenantId, LocalDate bookingFromDate, LocalDate bookingToDate) {
+	public FlatBookingDTO(int bookingNo, Flat flat, Tenant tenantId, LocalDate bookingFromDate, LocalDate bookingToDate) {
 		super();
 		this.bookingNo = bookingNo;
 		this.flat = flat;
@@ -34,19 +37,19 @@ public class FlatBookingDTO {
 		this.bookingNo = bookingNo;
 	}
 
-	public FlatDTO getFlat() {
+	public Flat getFlat() {
 		return flat;
 	}
 
-	public void setFlat(FlatDTO flat) {
+	public void setFlat(Flat flat) {
 		this.flat = flat;
 	}
 
-	public TenantDTO getTenantId() {
+	public Tenant getTenantId() {
 		return tenantId;
 	}
 
-	public void setTenantId(TenantDTO tenantId) {
+	public void setTenantId(Tenant tenantId) {
 		this.tenantId = tenantId;
 	}
 

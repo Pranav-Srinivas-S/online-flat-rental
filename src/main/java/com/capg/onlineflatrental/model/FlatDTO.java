@@ -2,19 +2,21 @@ package com.capg.onlineflatrental.model;
 
 import org.springframework.stereotype.Component;
 
+import com.capg.onlineflatrental.entities.FlatAddress;
+
 @Component
 public class FlatDTO {
 
 	private int flatId;
 	private float flatCost;
-	private FlatAddressDTO flatAddress;
+	private FlatAddress flatAddress;
 	private String flatAvailabilty;
 	
 	public FlatDTO() {
 		super();
 	}
 
-	public FlatDTO(int flatId, float flatCost, FlatAddressDTO flatAddress, String flatAvailabilty) {
+	public FlatDTO(int flatId, float flatCost, FlatAddress flatAddress, String flatAvailabilty) {
 		super();
 		this.flatId = flatId;
 		this.flatCost = flatCost;
@@ -38,11 +40,11 @@ public class FlatDTO {
 		this.flatCost = flatCost;
 	}
 
-	public FlatAddressDTO getFlatAddress() {
+	public FlatAddress getFlatAddress() {
 		return flatAddress;
 	}
 
-	public void setFlatAddress(FlatAddressDTO flatAddress) {
+	public void setFlatAddress(FlatAddress flatAddress) {
 		this.flatAddress = flatAddress;
 	}
 
