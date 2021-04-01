@@ -4,19 +4,21 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.capg.onlineflatrental.entities.Flat;
+
 @Component
 public class LandlordDTO {
 
 	private int landlordId;
 	private String landlordName;
 	private int  landlordAge;
-	private List<FlatDTO> flatList;
+	private List<Flat> flatList;
 	
 	public LandlordDTO() {
 		super();
 	}
 
-	public LandlordDTO(int landlordId, String landlordName, int landlordAge, List<FlatDTO> flatList) {
+	public LandlordDTO(int landlordId, String landlordName, int landlordAge, List<Flat> flatList) {
 		super();
 		this.landlordId = landlordId;
 		this.landlordName = landlordName;
@@ -48,11 +50,11 @@ public class LandlordDTO {
 		this.landlordAge = landlordAge;
 	}
 
-	public List<FlatDTO> getFlatList() {
+	public List<Flat> getFlatList() {
 		return flatList;
 	}
 
-	public void setFlatList(List<FlatDTO> flatList) {
+	public void setFlatList(List<Flat> flatList) {
 		this.flatList = flatList;
 	}
 
