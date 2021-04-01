@@ -4,14 +4,15 @@ import java.util.List;
 
 import com.capg.onlineflatrental.entities.Tenant;
 import com.capg.onlineflatrental.exception.TenantNotFoundException;
+import com.capg.onlineflatrental.model.TenantDTO;
 
 public interface ITenantService {
 
-	public Tenant addTenant(Tenant tenant) ;
-	public Tenant updateTenant(Tenant tenant) throws TenantNotFoundException;
-	public Tenant deleteTenant(int id) throws TenantNotFoundException;
-	public Tenant viewTenant(int id) throws TenantNotFoundException;
-	public List<Tenant> viewAllTenant();
-	public Tenant validateTenant(int tenantId);
+	public TenantDTO addTenant(Tenant tenant) ;
+	public TenantDTO updateTenant(Tenant tenant) throws TenantNotFoundException;
+	public TenantDTO deleteTenant(int id) throws TenantNotFoundException;
+	public TenantDTO viewTenant(int id) throws TenantNotFoundException;
+	public List<TenantDTO> viewAllTenant();
+	public TenantDTO validateTenant(int tenantId);
 	
 }

@@ -4,41 +4,42 @@ import java.util.List;
 
 import com.capg.onlineflatrental.entities.Tenant;
 import com.capg.onlineflatrental.exception.TenantNotFoundException;
+import com.capg.onlineflatrental.model.TenantDTO;
 
 public class TenantService implements ITenantService {
 
 	@Override
-	public Tenant addTenant(Tenant tenant) {
+	public TenantDTO addTenant(Tenant tenant) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Tenant updateTenant(Tenant tenant) throws TenantNotFoundException {
+	public TenantDTO updateTenant(Tenant tenant) throws TenantNotFoundException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Tenant deleteTenant(int id) throws TenantNotFoundException {
+	public TenantDTO deleteTenant(int id) throws TenantNotFoundException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Tenant viewTenant(int id) throws TenantNotFoundException {
+	public TenantDTO viewTenant(int id) throws TenantNotFoundException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Tenant> viewAllTenant() {
+	public List<TenantDTO> viewAllTenant() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Tenant validateTenant(int tenantId) {
+	public TenantDTO validateTenant(int tenantId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
