@@ -4,14 +4,15 @@ import java.util.List;
 
 import com.capg.onlineflatrental.entities.Flat;
 import com.capg.onlineflatrental.exception.FlatNotFoundException;
+import com.capg.onlineflatrental.model.FlatDTO;
 
 public interface IFlatService {
 
-	public Flat addFlat(Flat flat);
-	public Flat updateFlat(Flat flat) throws FlatNotFoundException;
-	public Flat deleteFlat(int id) throws FlatNotFoundException;
-	public Flat viewFlat(int id) throws FlatNotFoundException;
-	public List<Flat> viewAllFlat();
-	public List<Flat> viewAllFlatByCost(float cost,String availability);
+	public FlatDTO addFlat(Flat flat);
+	public FlatDTO updateFlat(Flat flat) throws FlatNotFoundException;
+	public FlatDTO deleteFlat(int id) throws FlatNotFoundException;
+	public FlatDTO viewFlat(int id) throws FlatNotFoundException;
+	public List<FlatDTO> viewAllFlat();
+	public List<FlatDTO> viewAllFlatByCost(float cost,String availability);
 	
 }

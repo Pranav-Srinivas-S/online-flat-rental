@@ -4,41 +4,42 @@ import java.util.List;
 
 import com.capg.onlineflatrental.entities.Flat;
 import com.capg.onlineflatrental.exception.FlatNotFoundException;
+import com.capg.onlineflatrental.model.FlatDTO;
 
 public class FlatService implements IFlatService {
 
 	@Override
-	public Flat addFlat(Flat flat) {
+	public FlatDTO addFlat(Flat flat) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Flat updateFlat(Flat flat) throws FlatNotFoundException {
+	public FlatDTO updateFlat(Flat flat) throws FlatNotFoundException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Flat deleteFlat(int id) throws FlatNotFoundException {
+	public FlatDTO deleteFlat(int id) throws FlatNotFoundException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Flat viewFlat(int id) throws FlatNotFoundException {
+	public FlatDTO viewFlat(int id) throws FlatNotFoundException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Flat> viewAllFlat() {
+	public List<FlatDTO> viewAllFlat() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Flat> viewAllFlatByCost(float cost, String availability) {
+	public List<FlatDTO> viewAllFlatByCost(float cost, String availability) {
 		// TODO Auto-generated method stub
 		return null;
 	}

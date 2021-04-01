@@ -4,35 +4,36 @@ import java.util.List;
 
 import com.capg.onlineflatrental.entities.Landlord;
 import com.capg.onlineflatrental.exception.LandlordNotFoundException;
+import com.capg.onlineflatrental.model.LandlordDTO;
 
 public class LandlordService implements ILandlordService {
 
 	@Override
-	public Landlord addLandlord(Landlord landlord) {
+	public LandlordDTO addLandlord(Landlord landlord) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Landlord updateLandlord(Landlord landlord) throws LandlordNotFoundException {
+	public LandlordDTO updateLandlord(Landlord landlord) throws LandlordNotFoundException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Landlord deleteLandlord(Landlord landlord) throws LandlordNotFoundException {
+	public LandlordDTO deleteLandlord(Landlord landlord) throws LandlordNotFoundException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Landlord viewLandlord(int id) throws LandlordNotFoundException {
+	public LandlordDTO viewLandlord(int id) throws LandlordNotFoundException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Landlord> viewAllLandlord() {
+	public List<LandlordDTO> viewAllLandlord() {
 		// TODO Auto-generated method stub
 		return null;
 	}
