@@ -14,8 +14,7 @@ import com.capg.onlineflatrental.util.FlatUtils;
 
 @Service
 public class FlatServiceImpl implements IFlatService {
-	@Autowired
-	FlatServiceImpl serviceValid;
+	
 	
 	@Autowired
 	IFlatRepository repo;
@@ -24,10 +23,10 @@ public class FlatServiceImpl implements IFlatService {
 	public FlatDTO addFlat(Flat flat) {
 		Flat flatEntity=null;
 	try {
-		if(serviceValid.validateCost(flat.getFlatCost()) && serviceValid.validateAvailability(flat.getFlatAvailabilty())
-		            && serviceValid.validatePin(flat.getFlatAddress().getPin()) && serviceValid.validateStreet(flat.getFlatAddress().getStreet())
-					&& serviceValid.validateHouseNo(flat.getFlatAddress().getHouseNo()) && serviceValid.validateCity(flat.getFlatAddress().getCity())
-					&& serviceValid.validateState(flat.getFlatAddress().getState()) && serviceValid.validateCountry(flat.getFlatAddress().getCountry()))
+		if(FlatServiceImpl.validateCost(flat.getFlatCost()) && FlatServiceImpl.validateAvailability(flat.getFlatAvailabilty())
+		            && FlatServiceImpl.validatePin(flat.getFlatAddress().getPin()) && FlatServiceImpl.validateStreet(flat.getFlatAddress().getStreet())
+					&& FlatServiceImpl.validateHouseNo(flat.getFlatAddress().getHouseNo()) && FlatServiceImpl.validateCity(flat.getFlatAddress().getCity())
+					&& FlatServiceImpl.validateState(flat.getFlatAddress().getState()) && FlatServiceImpl.validateCountry(flat.getFlatAddress().getCountry()))
 			{
 			flatEntity=repo.save(flat);
 			}
@@ -44,10 +43,10 @@ public class FlatServiceImpl implements IFlatService {
 	public FlatDTO updateFlat(Flat flat) throws FlatNotFoundException {
 		Flat flatEntity=null;
 		try {
-			if(serviceValid.validateCost(flat.getFlatCost()) && serviceValid.validateAvailability(flat.getFlatAvailabilty())
-		            && serviceValid.validatePin(flat.getFlatAddress().getPin()) && serviceValid.validateStreet(flat.getFlatAddress().getStreet())
-					&& serviceValid.validateHouseNo(flat.getFlatAddress().getHouseNo()) && serviceValid.validateCity(flat.getFlatAddress().getCity())
-					&& serviceValid.validateState(flat.getFlatAddress().getState()) && serviceValid.validateCountry(flat.getFlatAddress().getCountry()))
+			if(FlatServiceImpl.validateCost(flat.getFlatCost()) && FlatServiceImpl.validateAvailability(flat.getFlatAvailabilty())
+		            && FlatServiceImpl.validatePin(flat.getFlatAddress().getPin()) && FlatServiceImpl.validateStreet(flat.getFlatAddress().getStreet())
+					&& FlatServiceImpl.validateHouseNo(flat.getFlatAddress().getHouseNo()) && FlatServiceImpl.validateCity(flat.getFlatAddress().getCity())
+					&& FlatServiceImpl.validateState(flat.getFlatAddress().getState()) && FlatServiceImpl.validateCountry(flat.getFlatAddress().getCountry()))
 				{
 		flatEntity=repo.save(flat);
 				}
@@ -97,7 +96,7 @@ public class FlatServiceImpl implements IFlatService {
 		List<Flat>   flatEntity=null;
 		try
 		{
-			if(serviceValid.validateCost(cost) && serviceValid.validateAvailability(availability))
+			if(FlatServiceImpl.validateCost(cost) && FlatServiceImpl.validateAvailability(availability))
 			{
 		flatEntity=repo.findByCostAndAvailability(cost,availability);
 			}
@@ -110,7 +109,7 @@ public class FlatServiceImpl implements IFlatService {
 	
 	
 	
-	public boolean validateCost(float cost) throws InvalidFlatInputException
+	public static boolean validateCost(float cost) throws InvalidFlatInputException
 	{
 	boolean flag=true;
 	
@@ -123,7 +122,7 @@ public class FlatServiceImpl implements IFlatService {
 	
 	
 	
-	public boolean validateAvailability(String availability) throws InvalidFlatInputException
+	public static boolean validateAvailability(String availability) throws InvalidFlatInputException
 	{
 		boolean flag=false;
 		if(availability.equals("YES")||availability.equals("Yes")||
@@ -138,7 +137,7 @@ public class FlatServiceImpl implements IFlatService {
 	
 	
 	
-	public boolean validatePin(int pin) throws InvalidFlatInputException
+	public static boolean validatePin(int pin) throws InvalidFlatInputException
 	{
 		boolean flag=false;
 		if(pin> 0 && Long.toString(pin).length() == 6 && Long.toString(pin).matches("^[0-9]+$"))
@@ -152,7 +151,7 @@ public class FlatServiceImpl implements IFlatService {
 	
 	
 	
-	public boolean validateStreet(String street) throws InvalidFlatInputException
+	public static boolean validateStreet(String street) throws InvalidFlatInputException
 	{
 		boolean flag=false;
 		if(!(street.isBlank()))
@@ -164,7 +163,7 @@ public class FlatServiceImpl implements IFlatService {
 	
 	
 	
-	public boolean validateHouseNo(int houseNo) throws InvalidFlatInputException
+	public static boolean validateHouseNo(int houseNo) throws InvalidFlatInputException
 	{
 		boolean flag=false;
 		if(!(Long.toString(houseNo).isBlank()))
@@ -176,7 +175,7 @@ public class FlatServiceImpl implements IFlatService {
 	
 	
 	
-	public boolean validateCity(String city) throws InvalidFlatInputException
+	public static boolean validateCity(String city) throws InvalidFlatInputException
 	{
 		boolean flag=false;
 		if((!(city.isBlank())) && city.matches("^[a-zA-Z]*$"))
@@ -189,7 +188,7 @@ public class FlatServiceImpl implements IFlatService {
 	
 	
 	
-	public boolean validateState(String state) throws InvalidFlatInputException
+	public static boolean validateState(String state) throws InvalidFlatInputException
 	{
 		boolean flag=false;
 		if((!(state.isBlank())) &&state.matches("^[a-zA-Z]*$"))
@@ -202,7 +201,7 @@ public class FlatServiceImpl implements IFlatService {
 	
 	
 	
-	public boolean validateCountry(String country) throws InvalidFlatInputException
+	public static boolean validateCountry(String country) throws InvalidFlatInputException
 	{
 		boolean flag=false;
 		if((!(country.isBlank())) &&country.matches("^[a-zA-Z]*$"))
