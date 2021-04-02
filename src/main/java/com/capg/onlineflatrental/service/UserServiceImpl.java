@@ -1,11 +1,12 @@
 package com.capg.onlineflatrental.service;
 
 import java.util.List;
-
+import org.springframework.stereotype.Service;
 import com.capg.onlineflatrental.entities.User;
 import com.capg.onlineflatrental.exception.UserNotFoundException;
 import com.capg.onlineflatrental.model.UserDTO;
 
+@Service
 public class UserServiceImpl implements IUserService{
 
 	@Override
