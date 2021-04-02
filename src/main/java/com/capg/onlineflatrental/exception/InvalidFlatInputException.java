@@ -1,10 +1,9 @@
 package com.capg.onlineflatrental.exception;
 
-public class FlatNotFoundException extends Exception {
-
+public class InvalidFlatInputException extends Exception {
 	private static final long serialVersionUID = 1L;
-	public FlatNotFoundException(String message) {
+	public InvalidFlatInputException(String message) {
 		super(message);
 	}
-	
+
 }
