@@ -2,10 +2,13 @@ package com.capg.onlineflatrental.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Landlord {
@@ -15,6 +18,8 @@ public class Landlord {
 	private int landlordId;
 	private String landlordName;
 	private int  landlordAge;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "landlord")
 	private List<Flat> flatList;
 	
 	public Landlord() {

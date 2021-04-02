@@ -1,5 +1,6 @@
 package com.capg.onlineflatrental.entities;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,7 @@ public class Flat {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int flatId;
 	private float flatCost;
+	@Embedded
 	private FlatAddress flatAddress;
 	private String flatAvailabilty;
 	
