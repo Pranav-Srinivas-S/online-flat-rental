@@ -18,6 +18,7 @@ import com.capg.onlineflatrental.util.UserUtils;
 
 public class UserServiceImpl implements IUserService{
 	
+	
 	@Autowired
 	
 	static IUserRepository userRepo;
