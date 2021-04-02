@@ -13,9 +13,9 @@ import com.capg.onlineflatrental.util.TenantUtils;
 public class TenantServiceImpl implements ITenantService {
 
 	@Autowired
-	ITenantRepository tenantRepo;
+	static ITenantRepository tenantRepo;
 	
-	String tenantNotFound = "No Tenant found in given ID";
+	static String tenantNotFound = "No Tenant found in given ID";
 	
 	@Override
 	public TenantDTO addTenant(Tenant tenant) {
@@ -59,7 +59,7 @@ public class TenantServiceImpl implements ITenantService {
 		return TenantUtils.convertToTenantDtoList(tenantList);
 	}
 
-	public boolean validateTenant(Tenant tenant) throws TenantNotFoundException
+	public static boolean validateTenant(Tenant tenant) throws TenantNotFoundException
 	{
 		boolean flag = false;
 		if(tenant == null)
@@ -74,7 +74,7 @@ public class TenantServiceImpl implements ITenantService {
 		return flag;
 	}
 	
-	public boolean validateTenantId(int id) throws TenantNotFoundException
+	public static boolean validateTenantId(int id) throws TenantNotFoundException
 	{
 		boolean flag = tenantRepo.existsById(id);
 		if(flag == false)
@@ -82,7 +82,7 @@ public class TenantServiceImpl implements ITenantService {
 		return flag;
 	}
 	
-	public boolean validateTenantAge(int age) throws TenantNotFoundException
+	public static boolean validateTenantAge(int age) throws TenantNotFoundException
 	{
 		boolean flag = false;
 		if(age <= 0)
@@ -94,7 +94,7 @@ public class TenantServiceImpl implements ITenantService {
 		return flag;
 	}
 	
-	public boolean validateTenantHouseNo(int houseNo) throws TenantNotFoundException
+	public static boolean validateTenantHouseNo(int houseNo) throws TenantNotFoundException
 	{
 		boolean flag = false;
 		if(houseNo <= 0)
@@ -104,7 +104,7 @@ public class TenantServiceImpl implements ITenantService {
 		return flag;
 	}
 	
-	public boolean validateTenantStreet(String street) throws TenantNotFoundException
+	public static boolean validateTenantStreet(String street) throws TenantNotFoundException
 	{
 		boolean flag = false;
 		if(street == null)
@@ -116,7 +116,7 @@ public class TenantServiceImpl implements ITenantService {
 		return flag;
 	}
 
-	public boolean validateTenantCity(String city) throws TenantNotFoundException
+	public static boolean validateTenantCity(String city) throws TenantNotFoundException
 	{
 		boolean flag = false;
 		if(city == null)
@@ -128,7 +128,7 @@ public class TenantServiceImpl implements ITenantService {
 		return flag;
 	}
 
-	public boolean validateTenantState(String state) throws TenantNotFoundException
+	public static boolean validateTenantState(String state) throws TenantNotFoundException
 	{
 		boolean flag = false;
 		if(state == null)
@@ -140,7 +140,7 @@ public class TenantServiceImpl implements ITenantService {
 		return flag;
 	}
 
-	public boolean validateTenantCountry(String country) throws TenantNotFoundException
+	public static boolean validateTenantCountry(String country) throws TenantNotFoundException
 	{
 		boolean flag = false;
 		if(country == null)
@@ -152,7 +152,7 @@ public class TenantServiceImpl implements ITenantService {
 		return flag;
 	}
 	
-	public boolean validateTenantPin(long pin) throws TenantNotFoundException
+	public static boolean validateTenantPin(long pin) throws TenantNotFoundException
 	{
 		boolean flag = false;
 		if(pin <= 0)
