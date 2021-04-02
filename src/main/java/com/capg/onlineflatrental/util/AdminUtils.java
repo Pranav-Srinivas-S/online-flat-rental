@@ -23,7 +23,7 @@ public class AdminUtils {
 	
 	public static AdminDTO convertToAdminDto(Admin admin) {
 		AdminDTO dto = new AdminDTO();
-		dto.setAdminId(admin.getAdminId());;
+		dto.setAdminId(admin.getAdminId());
 		dto.setAdminPassword(admin.getAdminPassword());
 		return dto;
 	}

@@ -7,7 +7,7 @@ import com.capg.onlineflatrental.exception.FlatBookingNotFoundException;
 import com.capg.onlineflatrental.model.FlatBookingDTO;
 import com.capg.onlineflatrental.model.FlatDTO;
 
-public class FlatBookingService implements IFlatBookingService {
+public class FlatBookingServiceImpl implements IFlatBookingService {
 
 	@Override
 	public FlatDTO addFlatBooking(FlatBooking flat) {

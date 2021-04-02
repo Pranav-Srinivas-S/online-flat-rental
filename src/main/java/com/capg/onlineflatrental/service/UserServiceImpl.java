@@ -6,7 +6,7 @@ import com.capg.onlineflatrental.entities.User;
 import com.capg.onlineflatrental.exception.UserNotFoundException;
 import com.capg.onlineflatrental.model.UserDTO;
 
-public class UserService implements IUserService{
+public class UserServiceImpl implements IUserService{
 
 	@Override
 	public UserDTO viewUser(int id) throws UserNotFoundException {

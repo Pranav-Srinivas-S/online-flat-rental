@@ -6,7 +6,7 @@ import com.capg.onlineflatrental.entities.Flat;
 import com.capg.onlineflatrental.exception.FlatNotFoundException;
 import com.capg.onlineflatrental.model.FlatDTO;
 
-public class FlatService implements IFlatService {
+public class FlatServiceImpl implements IFlatService {
 
 	@Override
 	public FlatDTO addFlat(Flat flat) {
