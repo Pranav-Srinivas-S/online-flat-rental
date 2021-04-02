@@ -1,11 +1,12 @@
 package com.capg.onlineflatrental.service;
 
 import java.util.List;
-
+import org.springframework.stereotype.Service;
 import com.capg.onlineflatrental.entities.Landlord;
 import com.capg.onlineflatrental.exception.LandlordNotFoundException;
 import com.capg.onlineflatrental.model.LandlordDTO;
 
+@Service
 public class LandlordServiceImpl implements ILandlordService {
 
 	@Override

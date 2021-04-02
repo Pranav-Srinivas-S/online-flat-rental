@@ -1,11 +1,12 @@
 package com.capg.onlineflatrental.service;
 
 import java.util.List;
-
+import org.springframework.stereotype.Service;
 import com.capg.onlineflatrental.entities.Tenant;
 import com.capg.onlineflatrental.exception.TenantNotFoundException;
 import com.capg.onlineflatrental.model.TenantDTO;
 
+@Service
 public class TenantServiceImpl implements ITenantService {
 
 	@Override

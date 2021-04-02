@@ -2,11 +2,13 @@ package com.capg.onlineflatrental.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
 import com.capg.onlineflatrental.entities.FlatBooking;
 import com.capg.onlineflatrental.exception.FlatBookingNotFoundException;
 import com.capg.onlineflatrental.model.FlatBookingDTO;
 import com.capg.onlineflatrental.model.FlatDTO;
 
+@Service
 public class FlatBookingServiceImpl implements IFlatBookingService {
 
 	@Override

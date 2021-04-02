@@ -2,10 +2,12 @@ package com.capg.onlineflatrental.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
 import com.capg.onlineflatrental.entities.Flat;
 import com.capg.onlineflatrental.exception.FlatNotFoundException;
 import com.capg.onlineflatrental.model.FlatDTO;
 
+@Service
 public class FlatServiceImpl implements IFlatService {
 
 	@Override
