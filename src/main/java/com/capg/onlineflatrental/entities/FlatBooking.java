@@ -2,10 +2,13 @@ package com.capg.onlineflatrental.entities;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class FlatBooking {
@@ -13,8 +16,12 @@ public class FlatBooking {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int	bookingNo;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "Flat")
 	private Flat flat;
-	private Tenant tenantId;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "Tenant")
+	private Tenant tenant;
 	private LocalDate bookingFromDate;
 	private LocalDate bookingToDate;
 	
@@ -22,11 +29,11 @@ public class FlatBooking {
 		super();
 	}
 
-	public FlatBooking(int bookingNo, Flat flat, Tenant tenantId, LocalDate bookingFromDate, LocalDate bookingToDate) {
+	public FlatBooking(int bookingNo, Flat flat, Tenant tenant, LocalDate bookingFromDate, LocalDate bookingToDate) {
 		super();
 		this.bookingNo = bookingNo;
 		this.flat = flat;
-		this.tenantId = tenantId;
+		this.tenant = tenant;
 		this.bookingFromDate = bookingFromDate;
 		this.bookingToDate = bookingToDate;
 	}
@@ -47,12 +54,12 @@ public class FlatBooking {
 		this.flat = flat;
 	}
 
-	public Tenant getTenantId() {
-		return tenantId;
+	public Tenant getTenant() {
+		return tenant;
 	}
 
-	public void setTenantId(Tenant tenantId) {
-		this.tenantId = tenantId;
+	public void setTenant(Tenant tenant) {
+		this.tenant = tenant;
 	}
 
 	public LocalDate getBookingFromDate() {
@@ -73,7 +80,7 @@ public class FlatBooking {
 
 	@Override
 	public String toString() {
-		return "FlatBooking [bookingNo=" + bookingNo + ", flat=" + flat + ", tenantId=" + tenantId
+		return "FlatBooking [bookingNo=" + bookingNo + ", flat=" + flat + ", tenantId=" + tenant
 				+ ", bookingFromDate=" + bookingFromDate + ", bookingToDate=" + bookingToDate + "]";
 	}
 	

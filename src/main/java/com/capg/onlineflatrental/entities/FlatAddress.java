@@ -1,8 +1,8 @@
 package com.capg.onlineflatrental.entities;
 
-import javax.persistence.Entity;
+import javax.persistence.Embeddable;
 
-@Entity
+@Embeddable
 public class FlatAddress {
 
 	private int houseNo;

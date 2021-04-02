@@ -18,7 +18,7 @@ public class FlatBookingUtils {
 		FlatBooking flatBooking = new FlatBooking();
 		flatBooking.setBookingNo(dto.getBookingNo());
 		flatBooking.setFlat(dto.getFlat());
-		flatBooking.setTenantId(dto.getTenantId());
+		flatBooking.setTenant(dto.getTenant());
 		flatBooking.setBookingFromDate(dto.getBookingFromDate());
 		flatBooking.setBookingToDate(dto.getBookingToDate());
 		return flatBooking;
@@ -28,7 +28,7 @@ public class FlatBookingUtils {
 		FlatBookingDTO dto = new FlatBookingDTO();
 		dto.setBookingNo(flatBooking.getBookingNo());
 		dto.setFlat(flatBooking.getFlat());
-		dto.setTenantId(flatBooking.getTenantId());
+		dto.setTenant(flatBooking.getTenant());
 		dto.setBookingFromDate(flatBooking.getBookingFromDate());
 		dto.setBookingToDate(flatBooking.getBookingToDate());
 		return dto;

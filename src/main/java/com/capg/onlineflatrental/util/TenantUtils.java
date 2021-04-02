@@ -19,6 +19,7 @@ public class TenantUtils {
 		tenant.setTenantId(dto.getTenantId());
 		tenant.setTenantAge(dto.getTenantAge());
 		tenant.setTenantAddress(dto.getTenantAddress());
+		tenant.setFlatBooking(dto.getFlatBooking());
 		return tenant;
 	}		
 	
@@ -27,6 +28,7 @@ public class TenantUtils {
 		dto.setTenantId(tenant.getTenantId());
 		dto.setTenantAge(tenant.getTenantAge());
 		dto.setTenantAddress(tenant.getTenantAddress());
+		dto.setFlatBooking(tenant.getFlatBooking());
 		return dto;
 	}
 	
