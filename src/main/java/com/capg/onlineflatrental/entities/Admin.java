@@ -2,8 +2,10 @@ package com.capg.onlineflatrental.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Admin")
 public class Admin {
 	
 	@Id

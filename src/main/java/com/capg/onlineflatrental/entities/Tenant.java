@@ -7,8 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Tenant")
 public class Tenant {
 
 	@Id
@@ -17,19 +19,16 @@ public class Tenant {
 	private int tenantAge;
 	@Embedded
 	private FlatAddress tenantAddress;
-	@OneToOne(cascade = CascadeType.ALL)
-	private FlatBooking flatBooking;
 	
 	public Tenant() {
 		super();
 	}
 
-	public Tenant(int tenantId, int tenantAge, FlatAddress tenantAddress, FlatBooking flatBooking) {
+	public Tenant(int tenantId, int tenantAge, FlatAddress tenantAddress) {
 		super();
 		this.tenantId = tenantId;
 		this.tenantAge = tenantAge;
 		this.tenantAddress = tenantAddress;
-		this.flatBooking = flatBooking;
 	}
 
 	public int getTenantId() {
@@ -56,18 +55,11 @@ public class Tenant {
 		this.tenantAddress = tenantAddress;
 	}
 
-	public FlatBooking getFlatBooking() {
-		return flatBooking;
-	}
-
-	public void setFlatBooking(FlatBooking flatBooking) {
-		this.flatBooking = flatBooking;
-	}
 
 	@Override
 	public String toString() {
 		return "Tenant [tenantId=" + tenantId + ", tenantAge=" + tenantAge + ", tenantAddress=" + tenantAddress
-				+ ", flatBooking=" + flatBooking + "]";
+				+ "]";
 	}
 	
 }
