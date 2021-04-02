@@ -59,5 +59,10 @@ public class UserDTO {
 		return "User [userId=" + userId + ", userName=" + userName + ", password=" + password + ", userType=" + userType
 				+ "]";
 	}
+
+	public static UserDTO get() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
