@@ -68,7 +68,7 @@ public class TenantServiceImpl implements ITenantService {
 				&& validateTenantStreet(tenant.getTenantAddress().getStreet()) && validateTenantCity(tenant.getTenantAddress().getStreet())
 				&& validateTenantState(tenant.getTenantAddress().getState()) && validateTenantCountry(tenant.getTenantAddress().getCountry())
 				&& validateTenantPin(tenant.getTenantAddress().getPin())))
-			throw new TenantNotFoundException("Ivalid Address");
+			throw new TenantNotFoundException("Invalid Address");
 		else
 			flag = true;
 		return flag;
