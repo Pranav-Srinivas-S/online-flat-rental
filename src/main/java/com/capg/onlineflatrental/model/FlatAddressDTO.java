@@ -9,14 +9,14 @@ public class FlatAddressDTO {
 	private String street;
 	private String city;
 	private String state;
-	private int pin;
+	private long pin;
 	private String country;
 	
 	public FlatAddressDTO() {
 		super();
 	}
 
-	public FlatAddressDTO(int houseNo, String street, String city, String state, int pin, String country) {
+	public FlatAddressDTO(int houseNo, String street, String city, String state, long pin, String country) {
 		super();
 		this.houseNo = houseNo;
 		this.street = street;
@@ -58,11 +58,11 @@ public class FlatAddressDTO {
 		this.state = state;
 	}
 
-	public int getPin() {
+	public long getPin() {
 		return pin;
 	}
 
-	public void setPin(int pin) {
+	public void setPin(long pin) {
 		this.pin = pin;
 	}
 

@@ -1,7 +1,6 @@
 package com.capg.onlineflatrental.entities;
 
 import java.time.LocalDate;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "FlatBooking")
@@ -24,7 +25,9 @@ public class FlatBooking {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "tenantId", table = "Tenant")
 	private Tenant tenant;
+	@Temporal(TemporalType.DATE)
 	private LocalDate bookingFromDate;
+	@Temporal(TemporalType.DATE)
 	private LocalDate bookingToDate;
 	
 	public FlatBooking() {
