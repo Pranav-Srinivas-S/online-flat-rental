@@ -9,8 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Landlord")
 public class Landlord {
 
 	@Id
@@ -19,7 +21,7 @@ public class Landlord {
 	private String landlordName;
 	private int  landlordAge;
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "landlord")
+	@JoinColumn(name = "landlord", table = "Flat")
 	private List<Flat> flatList;
 	
 	public Landlord() {

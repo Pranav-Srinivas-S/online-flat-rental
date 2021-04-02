@@ -9,18 +9,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "FlatBooking")
 public class FlatBooking {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int	bookingNo;
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "Flat")
+	@JoinColumn(name = "flatId", table = "Flat")
 	private Flat flat;
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "Tenant")
+	@JoinColumn(name = "tenantId", table = "Tenant")
 	private Tenant tenant;
 	private LocalDate bookingFromDate;
 	private LocalDate bookingToDate;
