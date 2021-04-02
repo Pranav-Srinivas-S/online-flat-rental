@@ -6,7 +6,7 @@ import com.capg.onlineflatrental.entities.Tenant;
 import com.capg.onlineflatrental.exception.TenantNotFoundException;
 import com.capg.onlineflatrental.model.TenantDTO;
 
-public class TenantService implements ITenantService {
+public class TenantServiceImpl implements ITenantService {
 
 	@Override
 	public TenantDTO addTenant(Tenant tenant) {

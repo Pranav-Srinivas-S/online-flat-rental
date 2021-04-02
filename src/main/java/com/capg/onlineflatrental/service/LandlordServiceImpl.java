@@ -6,7 +6,7 @@ import com.capg.onlineflatrental.entities.Landlord;
 import com.capg.onlineflatrental.exception.LandlordNotFoundException;
 import com.capg.onlineflatrental.model.LandlordDTO;
 
-public class LandlordService implements ILandlordService {
+public class LandlordServiceImpl implements ILandlordService {
 
 	@Override
 	public LandlordDTO addLandlord(Landlord landlord) {
