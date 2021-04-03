@@ -80,5 +80,7 @@ public class Landlord {
 		return "Landlord [landlordId=" + landlordId + ", landlordName=" + landlordName + ", landlordAge=" + landlordAge
 				+ ", flatList=" + flatList + "]";
 	}
+
 	
-}
+	}
+	
