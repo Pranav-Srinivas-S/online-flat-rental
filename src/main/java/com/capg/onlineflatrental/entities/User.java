@@ -1,10 +1,12 @@
 package com.capg.onlineflatrental.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "User")
@@ -12,9 +14,16 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "USER_ID")
 	private int userId;
+	@Column(name = "USER_NAME", length = 30)
+	@NotBlank(message = "User Name is mandatory")
 	private String userName;
+	@Column(name = "PASSWORD", length = 20)
+	@NotBlank(message = "Password is mandatory")
 	private String password;
+	@Column(name = "USER_TYPE", length = 10)
+	@NotBlank(message = "User Type is mandatory")
 	private String userType;
 	
 	public User() {

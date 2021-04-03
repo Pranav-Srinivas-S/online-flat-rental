@@ -1,11 +1,14 @@
 package com.capg.onlineflatrental.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "Flat")
@@ -13,10 +16,16 @@ public class Flat {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "FLAT_ID")
 	private int flatId;
+	@Column(name = "FLAT_COST")
+	@NotBlank(message = "Cost is mandatory")
+	@Min(value = 1, message = "Cost cannot be 0 or negative")
 	private float flatCost;
 	@Embedded
 	private FlatAddress flatAddress;
+	@Column(name = "FLAT_AVAILABILITY")
+	@NotBlank(message = "Flat Availability is mandatory")
 	private String flatAvailabilty;
 	
 	public Flat() {
