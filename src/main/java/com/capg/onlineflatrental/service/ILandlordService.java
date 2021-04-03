@@ -8,9 +8,9 @@ import com.capg.onlineflatrental.model.LandlordDTO;
 
 public interface ILandlordService {
 
-	public LandlordDTO addLandlord(Landlord landlord);
+	public LandlordDTO addLandlord(Landlord landlord) throws LandlordNotFoundException;
 	public LandlordDTO updateLandlord(Landlord landlord) throws LandlordNotFoundException;
-	public LandlordDTO deleteLandlord(Landlord landlord) throws LandlordNotFoundException;
+	public LandlordDTO deleteLandlord(int id) throws LandlordNotFoundException;
 	public LandlordDTO viewLandlord(int id) throws LandlordNotFoundException;
 	public List<LandlordDTO> viewAllLandlord();
 	
