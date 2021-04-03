@@ -77,13 +77,26 @@ public class LandlordServiceImpl implements ILandlordService {
 		boolean flag = false;
 		if(landlord == null)
 			throw new LandlordNotFoundException("Landlord details cannot be blank");
-		else if(!(validateLandlordAge(landlord.getLandlordAge())))
-			throw new LandlordNotFoundException("Invalid Address");
+		else if(!(validateLandlordAge(landlord.getLandlordAge())&&
+				validateLandlordName(landlord.getLandlordName())))
+			throw new LandlordNotFoundException("Invalid  ");
 		else
 			flag = true;
 		return flag;
 	}
 	
+	private static boolean validateLandlordName(String landlordName) throws LandlordNotFoundException 
+	{
+		boolean flag = false;
+		if(landlordName == null)
+			throw new LandlordNotFoundException("State cannot be empty");
+		else if(!landlordName.matches("^[A-Za-z]\\w{3,30}$"))
+			throw new LandlordNotFoundException("State cannot contain Numbers or Special Characters");
+		else
+			flag = true;
+		return flag;
+	}
+
 	public static boolean validateLandlordAge(int age) throws LandlordNotFoundException
 	{
 		boolean flag = false;
