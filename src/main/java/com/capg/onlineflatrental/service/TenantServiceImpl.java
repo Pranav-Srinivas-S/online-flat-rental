@@ -19,38 +19,43 @@ public class TenantServiceImpl implements ITenantService {
 	
 	@Override
 	public TenantDTO addTenant(Tenant tenant) {
-		Tenant tenantEntity = tenantRepo.save(tenant);
+		Tenant tenantEntity;
+		if(tenant == null)
+			tenantEntity = null;
+		else
+			tenantEntity = tenantRepo.save(tenant);
 		return TenantUtils.convertToTenantDto(tenantEntity);
 	}
 
 	@Override
 	public TenantDTO updateTenant(Tenant tenant) throws TenantNotFoundException {
-		if(validateTenantId(tenant.getTenantId()) && validateTenant(tenant))
-		{
-			Tenant tenantEntity = tenantRepo.save(tenant);
-			return TenantUtils.convertToTenantDto(tenantEntity);
-		}
-		else
+		Tenant tenantEntity;
+		if(tenant == null)
+			tenantEntity = null;
+		Tenant existTenant = tenantRepo.findById(tenant.getTenantId()).orElse(null);
+		if(existTenant == null)
 			throw new TenantNotFoundException(tenantNotFound);
+		else
+			tenantEntity = tenantRepo.save(tenant);
+		return TenantUtils.convertToTenantDto(tenantEntity);
 	}
 
 	@Override
-	public void deleteTenant(int id) throws TenantNotFoundException {
-		if(validateTenantId(id))
-			tenantRepo.deleteById(id);
-		else
+	public TenantDTO deleteTenant(int id) throws TenantNotFoundException {
+		Tenant existTenant = tenantRepo.findById(id).orElse(null);
+		if(existTenant == null)
 			throw new TenantNotFoundException(tenantNotFound);
+		else
+			tenantRepo.delete(existTenant);
+		return TenantUtils.convertToTenantDto(existTenant);
 	}
 
 	@Override
 	public TenantDTO viewTenant(int id) throws TenantNotFoundException {
-		if(validateTenantId(id))
-		{
-			Tenant tenantEntity = tenantRepo.findById(id).orElse(null);
-			return TenantUtils.convertToTenantDto(tenantEntity);
-		}
-		else
+		Tenant existTenant = tenantRepo.findById(id).orElse(null);
+		if(existTenant == null)
 			throw new TenantNotFoundException(tenantNotFound);
+		return TenantUtils.convertToTenantDto(existTenant);
 	}
 
 	@Override
