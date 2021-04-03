@@ -16,7 +16,7 @@ import com.capg.onlineflatrental.util.UserUtils;
 public class UserServiceImpl implements IUserService{
 	
 	@Autowired	
-	static IUserRepository userRepo;
+	IUserRepository userRepo;
 	
 	@Override
 	public UserDTO viewUser(int id) throws UserNotFoundException {
@@ -79,13 +79,15 @@ public class UserServiceImpl implements IUserService{
 		return UserUtils.convertToUserDto(existUser);
 	}
 	
-	public static boolean validateUserId(int id) throws UserNotFoundException
+	public boolean validateUserId(int id) throws UserNotFoundException
 	{
 		boolean flag = userRepo.existsById(id);
 		if(flag == false)
 			throw new UserNotFoundException("No user Found");
 		return flag;
 	}
+	
+	
 	
 	public static boolean validatePassword(String password)
     {
@@ -176,7 +178,7 @@ public class UserServiceImpl implements IUserService{
 		return flag;
 	}
 	
-public static boolean validateUser(String username, String password) throws UserNotFoundException {
+public boolean validateUser(String username, String password) throws UserNotFoundException {
 	try {
 		Optional<User> user = userRepo.findByUserName(username);
 		if (user.isPresent()) {

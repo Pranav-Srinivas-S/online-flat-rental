@@ -9,8 +9,8 @@ import com.capg.onlineflatrental.entities.Flat;
 
 @Repository
 public interface IFlatRepository extends JpaRepository<Flat, Integer> {
-	@Query("select f from Flat f where f.cost=?1 and f.availibilty = ?2")
-	List<Flat> findByCostAndAvailability(float cost, String availability);
-
+	
+	@Query("select f from Flat f where f.flatCost = ?1 and f.flatAvailability = ?2")
+	List<Flat> findByCostAndAvailability(float flatCost, String availability);
 
 }
