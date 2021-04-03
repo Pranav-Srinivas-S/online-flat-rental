@@ -1,7 +1,6 @@
 package com.capg.onlineflatrental.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.capg.onlineflatrental.entities.FlatBooking;
@@ -19,11 +18,12 @@ public class FlatBookingServiceImpl implements IFlatBookingService {
 	public FlatBookingDTO addFlatBooking(FlatBooking  flatbooking) {
 		FlatBooking flatbookingEntity;
 		if(flatbooking == null)
-        flatbookingEntity = null;
+			flatbookingEntity = null;
 		else
 			flatbookingEntity = flatbookingRepo.save(flatbooking);
 		return FlatBookingUtils.convertToFlatBookingDto(flatbookingEntity);
 	}
+	
 	@Override
 	public FlatBookingDTO updateFlatBooking(FlatBooking flatbooking) throws FlatBookingNotFoundException {
 		FlatBooking flatbookingEntity;
@@ -37,7 +37,6 @@ public class FlatBookingServiceImpl implements IFlatBookingService {
 		return FlatBookingUtils.convertToFlatBookingDto(flatbookingEntity);
 	}
 
-
 	@Override
 	public FlatBookingDTO deleteFlatBooking(int id) throws FlatBookingNotFoundException {
 		FlatBooking existFlatBooking= flatbookingRepo.findById(id).orElse(null);
@@ -50,7 +49,7 @@ public class FlatBookingServiceImpl implements IFlatBookingService {
 
 	@Override
 	public  FlatBookingDTO viewFlatBooking(int id) throws FlatBookingNotFoundException {
-		 FlatBooking existFlatBooking = flatbookingRepo.findById(id).orElse(null);
+		FlatBooking existFlatBooking = flatbookingRepo.findById(id).orElse(null);
 		if(existFlatBooking == null)
 			throw new FlatBookingNotFoundException("No FlatBooking found in given ID");
 		return  FlatBookingUtils.convertToFlatBookingDto(existFlatBooking);
@@ -61,6 +60,5 @@ public class FlatBookingServiceImpl implements IFlatBookingService {
 		List<FlatBooking> flatbookingList =  flatbookingRepo.findAll();
 		return FlatBookingUtils.convertToFlatBookingDtoList(flatbookingList);
 	}
-
 
 }
