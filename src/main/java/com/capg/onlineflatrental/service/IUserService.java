@@ -1,9 +1,7 @@
 package com.capg.onlineflatrental.service;
 
 import java.util.List;
-
 import com.capg.onlineflatrental.entities.User;
-import com.capg.onlineflatrental.exception.TenantNotFoundException;
 import com.capg.onlineflatrental.exception.UserNotFoundException;
 import com.capg.onlineflatrental.model.UserDTO;
 

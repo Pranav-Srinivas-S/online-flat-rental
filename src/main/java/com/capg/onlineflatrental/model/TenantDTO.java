@@ -2,7 +2,6 @@ package com.capg.onlineflatrental.model;
 
 import org.springframework.stereotype.Component;
 import com.capg.onlineflatrental.entities.FlatAddress;
-import com.capg.onlineflatrental.entities.FlatBooking;
 
 @Component
 public class TenantDTO {

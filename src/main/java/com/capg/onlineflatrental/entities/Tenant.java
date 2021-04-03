@@ -9,8 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
-import org.checkerframework.checker.units.qual.min;
-
 @Entity
 @Table(name = "Tenant")
 public class Tenant {
