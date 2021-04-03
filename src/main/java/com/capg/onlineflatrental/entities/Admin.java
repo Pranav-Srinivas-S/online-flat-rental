@@ -7,7 +7,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "Admin")
+//@Table(name = "Admin")
 public class Admin {
 	
 	@Id

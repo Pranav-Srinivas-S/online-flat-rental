@@ -1,8 +1,12 @@
 package com.capg.onlineflatrental.service;
 
 import java.util.List;
+
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.capg.onlineflatrental.entities.Tenant;
 import com.capg.onlineflatrental.exception.TenantNotFoundException;
 import com.capg.onlineflatrental.model.TenantDTO;
@@ -10,10 +14,11 @@ import com.capg.onlineflatrental.repository.ITenantRepository;
 import com.capg.onlineflatrental.util.TenantUtils;
 
 @Service
+@Transactional
 public class TenantServiceImpl implements ITenantService {
 
 	@Autowired
-	static ITenantRepository tenantRepo;
+	ITenantRepository tenantRepo;
 	
 	static String tenantNotFound = "No Tenant found in given ID";
 	
@@ -79,7 +84,7 @@ public class TenantServiceImpl implements ITenantService {
 		return flag;
 	}
 	
-	public static boolean validateTenantId(int id) throws TenantNotFoundException
+	public boolean validateTenantId(int id) throws TenantNotFoundException
 	{
 		boolean flag = tenantRepo.existsById(id);
 		if(flag == false)
@@ -138,7 +143,7 @@ public class TenantServiceImpl implements ITenantService {
 		boolean flag = false;
 		if(state == null)
 			throw new TenantNotFoundException("State cannot be empty");
-		else if(!state.matches("^[a-zA-Z]+$"))
+		else if(!state.matches("^[a-zA-Z a-zA-Z]+$"))
 			throw new TenantNotFoundException("State cannot contain Numbers or Special Characters");
 		else
 			flag = true;

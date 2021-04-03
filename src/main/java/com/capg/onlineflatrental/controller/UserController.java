@@ -59,8 +59,8 @@ package com.capg.onlineflatrental.controller;
 			}
 			return userResponse;
 		}
-		@PutMapping("/update-password")
-		public ResponseEntity<Object> updatePassword(@RequestBody User user, String newpass)
+		@PutMapping("/update-password/{newpass}")
+		public ResponseEntity<Object> updatePassword(@RequestBody User user, @PathVariable String newpass)
 		{
 			UserDTO userDTO = null;
 			ResponseEntity<Object> userResponse = null;
@@ -80,12 +80,12 @@ package com.capg.onlineflatrental.controller;
 		}
 		
 		@DeleteMapping("/delete-user/{id}")
-		public ResponseEntity<Object> deleteTenant(@PathVariable int id)
+		public ResponseEntity<Object> deleteUser(@PathVariable int id)
 		{
 			UserDTO tenantDTO = null;
 			ResponseEntity<Object> userResponse = null;
 			try {
-				if(UserServiceImpl.validateUserId(id))
+				if(userService.validateUserId(id))
 				{
 					tenantDTO = userService.removeUser(id);
 					userResponse = new ResponseEntity<Object>(tenantDTO, HttpStatus.ACCEPTED);
@@ -104,7 +104,7 @@ package com.capg.onlineflatrental.controller;
 			UserDTO userDTO = null;
 			ResponseEntity<Object> userResponse = null;
 			try {
-				if(UserServiceImpl.validateUserId(id))
+				if(userService.validateUserId(id))
 				{
 					userDTO = userService.viewUser(id);
 					userResponse = new ResponseEntity<Object>(userDTO, HttpStatus.ACCEPTED);
@@ -119,7 +119,7 @@ package com.capg.onlineflatrental.controller;
 		}
 		
 		@GetMapping("/view-all-user")
-		public List<UserDTO> getAllTenants()
+		public List<UserDTO> getAllUsers()
 		{
 			return userService.viewAllUser();
 		}
