@@ -89,9 +89,9 @@ public class LandlordServiceImpl implements ILandlordService {
 	{
 		boolean flag = false;
 		if(landlordName == null)
-			throw new LandlordNotFoundException("State cannot be empty");
+			throw new LandlordNotFoundException("Landlord name cannot be empty");
 		else if(!landlordName.matches("^[A-Za-z]\\w{3,30}$"))
-			throw new LandlordNotFoundException("State cannot contain Numbers or Special Characters");
+			throw new LandlordNotFoundException("Landlord name cannot contain Numbers or Special Characters");
 		else
 			flag = true;
 		return flag;
