@@ -10,7 +10,7 @@ public interface ITenantService {
 
 	public TenantDTO addTenant(Tenant tenant) ;
 	public TenantDTO updateTenant(Tenant tenant) throws TenantNotFoundException;
-	public void deleteTenant(int id) throws TenantNotFoundException;
+	public TenantDTO deleteTenant(int id) throws TenantNotFoundException;
 	public TenantDTO viewTenant(int id) throws TenantNotFoundException;
 	public List<TenantDTO> viewAllTenant();
 	
