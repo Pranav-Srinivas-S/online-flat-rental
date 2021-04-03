@@ -137,7 +137,7 @@ public class FlatServiceImpl implements IFlatService {
 	
 	
 	
-	public static boolean validatePin(int pin) throws InvalidFlatInputException
+	public static boolean validatePin(long pin) throws InvalidFlatInputException
 	{
 		boolean flag=false;
 		if(pin> 0 && Long.toString(pin).length() == 6 && Long.toString(pin).matches("^[0-9]+$"))
