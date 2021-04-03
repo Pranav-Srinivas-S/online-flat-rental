@@ -1,7 +1,9 @@
 package com.capg.onlineflatrental.entities;
 
 import java.time.LocalDate;
+
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "FlatBooking")
@@ -18,6 +21,7 @@ public class FlatBooking {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "BOOKING_NUMBER")
 	private int	bookingNo;
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "flatId", table = "Flat")
@@ -26,8 +30,12 @@ public class FlatBooking {
 	@JoinColumn(name = "tenantId", table = "Tenant")
 	private Tenant tenant;
 	@Temporal(TemporalType.DATE)
+	@Column(name = "BOOKING_FROM_DATE")
+	@NotBlank(message = "Booking From Date is mandatory")
 	private LocalDate bookingFromDate;
 	@Temporal(TemporalType.DATE)
+	@Column(name = "BOOKING_TO_DATE", nullable = false)
+	@NotBlank(message = "Booking To Date is mandatory")
 	private LocalDate bookingToDate;
 	
 	public FlatBooking() {

@@ -1,15 +1,22 @@
 package com.capg.onlineflatrental.entities;
 
 import javax.persistence.Embeddable;
+import javax.validation.constraints.NotNull;
 
 @Embeddable
 public class FlatAddress {
 
+	@NotNull(message = "House Number is mandatory")
 	private int houseNo;
+	@NotNull(message = "Street is mandatory")
 	private String street;
+	@NotNull(message = "City is mandatory")
 	private String city;
+	@NotNull(message = "State is mandatory")
 	private String state;
+	@NotNull(message = "Pin is mandatory")
 	private long pin;
+	@NotNull(message = "Country is mandatory")
 	private String country;
 	
 	public FlatAddress() {

@@ -3,6 +3,7 @@ package com.capg.onlineflatrental.entities;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "Landlord")
@@ -17,8 +19,13 @@ public class Landlord {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "LANLORD_ID")
 	private int landlordId;
+	@Column(name = "LANDLORD_NAME", length = 30)
+	@NotBlank(message = "Landlord Name is mandatory")
 	private String landlordName;
+	@Column(name = "LANDLORD_AGE")
+	@NotBlank(message = "Landlord Age is mandatory")
 	private int  landlordAge;
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "landlord", table = "Flat")

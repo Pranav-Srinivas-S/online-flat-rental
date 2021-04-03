@@ -1,15 +1,20 @@
 package com.capg.onlineflatrental.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "Admin")
 public class Admin {
 	
 	@Id
+	@Column(name = "ADMIN_ID", nullable = false)
 	private int adminId;
+	@Column(name = "ADMIN_PASSWORD", length = 20)
+	@NotBlank(message = "Admin Password cannot be blank")
 	private String adminPassword;
 	
 	public Admin() {
