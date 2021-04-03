@@ -96,5 +96,6 @@ public class FlatBooking {
 		return "FlatBooking [bookingNo=" + bookingNo + ", flat=" + flat + ", tenantId=" + tenant
 				+ ", bookingFromDate=" + bookingFromDate + ", bookingToDate=" + bookingToDate + "]";
 	}
+
 	
 }
