@@ -14,6 +14,6 @@ public interface IUserService {
 	public UserDTO addUser(User user);
 	public UserDTO updateUser(User user)  throws UserNotFoundException;
 	public UserDTO updatePassword(User user,String newpass) throws UserNotFoundException;
-	public void removeUser(int id) throws UserNotFoundException;
+	public UserDTO removeUser(int id) throws UserNotFoundException;
 	
 }
