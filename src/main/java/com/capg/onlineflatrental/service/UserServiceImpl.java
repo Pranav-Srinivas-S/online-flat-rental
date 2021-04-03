@@ -90,7 +90,7 @@ public class UserServiceImpl implements IUserService{
 	public static boolean validatePassword(String password)
     {
 		 if (!((password.length() >= 8)
-	              && (password.length() <= 20))) {
+	              && (password.length() <= 10))) {
 	            return false;
 	        }
 		 if (password.contains(" ")) {
@@ -157,7 +157,7 @@ public class UserServiceImpl implements IUserService{
 	
 	public static boolean validUsername(String userName)
     {  
-        String regex = "^[A-Za-z]\\w{3,30}$";
+        String regex = "^[A-Za-z]\\w{3,20}$";
         Pattern p = Pattern.compile(regex);
         if (userName == null) {
             return false;
@@ -165,6 +165,16 @@ public class UserServiceImpl implements IUserService{
         Matcher m = p.matcher(userName);
         return m.matches();
     }	
+	
+
+	public static boolean validateUser(User user) throws UserNotFoundException {
+		boolean flag = false;
+		if(user == null)
+			throw new UserNotFoundException("User details cannot be blank");
+		else
+			flag = true;
+		return flag;
+	}
 	
 public static boolean validateUser(String username, String password) throws UserNotFoundException {
 	try {
@@ -183,4 +193,3 @@ public static boolean validateUser(String username, String password) throws User
 	}
 }
 }
-
