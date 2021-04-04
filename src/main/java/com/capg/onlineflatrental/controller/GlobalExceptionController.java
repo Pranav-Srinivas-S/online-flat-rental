@@ -4,14 +4,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import com.capg.onlineflatrental.exception.CommonException;
-
 
 @ControllerAdvice
 public class GlobalExceptionController {
 
-	@ExceptionHandler(CommonException.class)
-	public ResponseEntity<String> exceptionHandler(CommonException exception)
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<String> exceptionHandler(Exception exception)
 	{
 		String errorMessage = exception.getMessage();
 		return new ResponseEntity<String>(errorMessage, HttpStatus.NOT_FOUND);
