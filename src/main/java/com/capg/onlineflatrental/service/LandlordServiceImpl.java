@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.capg.onlineflatrental.entities.Landlord;
 import com.capg.onlineflatrental.exception.LandlordNotFoundException;
+import com.capg.onlineflatrental.exception.TenantNotFoundException;
 import com.capg.onlineflatrental.model.LandlordDTO;
 import com.capg.onlineflatrental.repository.ILandlordRepository;
 import com.capg.onlineflatrental.util.LandlordUtils;
@@ -78,9 +79,10 @@ public class LandlordServiceImpl implements ILandlordService {
 		boolean flag = false;
 		if(landlord == null)
 			throw new LandlordNotFoundException("Landlord details cannot be blank");
-		else if(!(validateLandlordAge(landlord.getLandlordAge())&&
-				validateLandlordName(landlord.getLandlordName())))
-			throw new LandlordNotFoundException("Invalid data");
+		else if(!(validateLandlordAge(landlord.getLandlordAge())))
+			throw new LandlordNotFoundException("Invalid Age");
+		else if(!(validateLandlordName(landlord.getLandlordName())))
+			throw new LandlordNotFoundException("Invalid Name");
 		else
 			flag = true;
 		return flag;
@@ -121,5 +123,78 @@ public class LandlordServiceImpl implements ILandlordService {
 			flag = true;
 		return flag;
 	}
+	public static boolean validateLandlordHouseNo(int houseNo) throws LandlordNotFoundException
+	{
+		boolean flag = false;
+		if(houseNo <= 0)
+			throw new LandlordNotFoundException("House Number cannot be 0 or negative");
+		else
+			flag = true;
+		return flag;
+	}
+	
+	public static boolean validateLandlordStreet(String street) throws LandlordNotFoundException
+	{
+		boolean flag = false;
+		if(street == null)
+			throw new LandlordNotFoundException("Street cannot be empty");
+		else if(!street.matches("^[a-zA-Z]+$"))
+			throw new LandlordNotFoundException("Street cannot contain Numbers or Special Characters");
+		else
+			flag = true;
+		return flag;
+	}
+
+	public static boolean validateLandlordCity(String city) throws LandlordNotFoundException
+	{
+		boolean flag = false;
+		if(city == null)
+			throw new LandlordNotFoundException("city cannot be empty");
+		else if(!city.matches("^[a-zA-Z]+$"))
+			throw new LandlordNotFoundException("City cannot contain Numbers or Special Characters");
+		else
+			flag = true;
+		return flag;
+	}
+
+	public static boolean validateLandlordState(String state) throws LandlordNotFoundException
+	{
+		boolean flag = false;
+		if(state == null)
+			throw new LandlordNotFoundException("State cannot be empty");
+		else if(!state.matches("^[a-zA-Z a-zA-Z]+$"))
+			throw new LandlordNotFoundException("State cannot contain Numbers or Special Characters");
+		else
+			flag = true;
+		return flag;
+	}
+
+	public static boolean validateLandlordCountry(String country) throws LandlordNotFoundException
+	{
+		boolean flag = false;
+		if(country == null)
+			throw new LandlordNotFoundException("Country cannot be empty");
+		else if(!country.matches("^[a-zA-Z]+$"))
+			throw new LandlordNotFoundException("Country cannot contain Numbers or Special Characters");
+		else
+			flag = true;
+		return flag;
+	}
+	
+	public static boolean validateLandlordPin(long pin) throws LandlordNotFoundException
+	{
+		boolean flag = false;
+		if(pin <= 0)
+			throw new LandlordNotFoundException("PinCode cannot be 0 or negative");
+		else if(Long.toString(pin).length() != 6)
+			throw new LandlordNotFoundException("PinCode should be length 6");
+		else if(!Long.toString(pin).matches("^[0-9]+$"))
+			throw new LandlordNotFoundException("PinCode cannot contain any Characters");
+		else
+			flag = true;
+		return flag;
+	}
+	
+
 
 }
