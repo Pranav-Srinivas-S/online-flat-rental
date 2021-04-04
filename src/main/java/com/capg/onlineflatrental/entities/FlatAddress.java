@@ -14,7 +14,7 @@ public class FlatAddress {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int addressId;
 	@Column(name = "HOUSE_NO")
-	@NotNull(message = "House Number is mandatory")
+	//@NotNull(message = "House Number is mandatory")
 	private int houseNo;
 	@Column(name = "STREET", length = 20)
 	@NotNull(message = "Street is mandatory")
@@ -26,7 +26,7 @@ public class FlatAddress {
 	@NotNull(message = "State is mandatory")
 	private String state;
 	@Column(name = "PIN")
-	@NotNull(message = "Pin is mandatory")
+	//@NotNull(message = "Pin is mandatory")
 	private long pin;
 	@Column(name = "COUNTRY", length = 20)
 	@NotNull(message = "Country is mandatory")
