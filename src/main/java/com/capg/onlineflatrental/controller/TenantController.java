@@ -36,7 +36,7 @@ public class TenantController {
 			tenantResponse = new ResponseEntity<Object>(tenantDTO, HttpStatus.ACCEPTED);
 		}
 		else
-			throw new TenantNotFoundException("No Tenant available in given ID");
+			throw new TenantNotFoundException("Invalid Tenant Details");
 		return tenantResponse;
 	}
 	
