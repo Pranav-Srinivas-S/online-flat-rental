@@ -3,7 +3,6 @@ package com.capg.onlineflatrental.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 @Entity

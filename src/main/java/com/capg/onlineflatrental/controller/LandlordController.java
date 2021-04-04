@@ -69,7 +69,7 @@ public class LandlordController {
 		LandlordDTO landlordDTO = null;
 		ResponseEntity<Object> landlordResponse = null;
 		try {
-			if(LandlordServiceImpl.validateLandlordId(id))
+			if(landlordService.validateLandlordId(id))
 			{
 				landlordDTO = landlordService.deleteLandlord(id);
 				landlordResponse = new ResponseEntity<Object>(landlordDTO, HttpStatus.ACCEPTED);
@@ -88,7 +88,7 @@ public class LandlordController {
 		LandlordDTO landlordDTO = null;
 		ResponseEntity<Object> landlordResponse = null;
 		try {
-			if(LandlordServiceImpl.validateLandlordId(id))
+			if(landlordService.validateLandlordId(id))
 			{
 				landlordDTO = landlordService.viewLandlord(id);
 				landlordResponse = new ResponseEntity<Object>(landlordDTO, HttpStatus.ACCEPTED);

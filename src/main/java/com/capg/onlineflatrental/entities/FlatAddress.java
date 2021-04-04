@@ -1,21 +1,34 @@
 package com.capg.onlineflatrental.entities;
 
-import javax.persistence.Embeddable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
-@Embeddable
+@Entity
 public class FlatAddress {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int addressId;
+	@Column(name = "HOUSE_NO")
 	@NotNull(message = "House Number is mandatory")
 	private int houseNo;
+	@Column(name = "STREET", length = 20)
 	@NotNull(message = "Street is mandatory")
 	private String street;
+	@Column(name = "CITY", length = 20)
 	@NotNull(message = "City is mandatory")
 	private String city;
+	@Column(name = "STATE", length = 20)
 	@NotNull(message = "State is mandatory")
 	private String state;
+	@Column(name = "PIN")
 	@NotNull(message = "Pin is mandatory")
 	private long pin;
+	@Column(name = "COUNTRY", length = 20)
 	@NotNull(message = "Country is mandatory")
 	private String country;
 	
