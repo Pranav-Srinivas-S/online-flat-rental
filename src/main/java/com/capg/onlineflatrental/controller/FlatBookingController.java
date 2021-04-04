@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,8 +38,9 @@ public class FlatBookingController {
 			throw new FlatBookingNotFoundException("No FlatBooking available in given ID");
 		return flatbookingResponse;
 	}
-@PutMapping("/update-flatbooking")
-public ResponseEntity<Object> updateFlatBooking(@RequestBody FlatBooking flatbooking) throws FlatBookingNotFoundException
+	
+	@PutMapping("/update-flatbooking")
+	public ResponseEntity<Object> updateFlatBooking(@RequestBody FlatBooking flatbooking) throws FlatBookingNotFoundException
 {
 	FlatBookingDTO flatbookingDTO = null;
 	ResponseEntity<Object> flatbookingResponse = null;
@@ -53,8 +53,9 @@ public ResponseEntity<Object> updateFlatBooking(@RequestBody FlatBooking flatboo
 			throw new FlatBookingNotFoundException("No FlatBooking available in given ID");
 		return flatbookingResponse;
 	}
-@DeleteMapping("/delete-flatbooking/{id}")
-public ResponseEntity<Object> deleteFlatBooking(@PathVariable int id) throws FlatBookingNotFoundException
+	
+	@DeleteMapping("/delete-flatbooking/{id}")
+	public ResponseEntity<Object> deleteFlatBooking(@PathVariable int id) throws FlatBookingNotFoundException
 {
 	FlatBookingDTO flatbookingDTO = null;
 	ResponseEntity<Object> flatbookingResponse = null;
@@ -68,8 +69,8 @@ public ResponseEntity<Object> deleteFlatBooking(@PathVariable int id) throws Fla
 		return flatbookingResponse;
 	}
 
-@GetMapping("/view-flatbooking/{id}")
-public ResponseEntity<Object> getFlatBookingById(@PathVariable int id) throws FlatBookingNotFoundException
+	@GetMapping("/view-flatbooking/{id}")
+	public ResponseEntity<Object> getFlatBookingById(@PathVariable int id) throws FlatBookingNotFoundException
 {
 	FlatBookingDTO flatbookingDTO = null;
 	ResponseEntity<Object> flatbookingResponse = null;
@@ -83,15 +84,16 @@ public ResponseEntity<Object> getFlatBookingById(@PathVariable int id) throws Fl
 		return flatbookingResponse;
 	}
 
-@GetMapping("/view-all-flatbookings")
-public List<FlatBookingDTO> getAllFlatBooking()
+	@GetMapping("/view-all-flatbookings")
+	public List<FlatBookingDTO> getAllFlatBooking()
 {
 	return flatbookingService.viewAllFlatBooking();
 }
 
-@ExceptionHandler({FlatBookingNotFoundException.class})
-public ResponseEntity<String> handleException()
-{
-	return new ResponseEntity<String>("FlatBooking Not Found ", HttpStatus.NOT_FOUND);
-}
+//	@ExceptionHandler({FlatBookingNotFoundException.class})
+//	public ResponseEntity<String> handleException()
+//{
+//	return new ResponseEntity<String>("FlatBooking Not Found ", HttpStatus.NOT_FOUND);
+//}
+	
 }
