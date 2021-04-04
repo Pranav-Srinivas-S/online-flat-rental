@@ -171,35 +171,4 @@ public class TenantServiceImpl implements ITenantService {
 		return flag;
 	}
 	
-	
-	
-//	public boolean validateTenant(Tenant tenant) throws TenantNotFoundException
-//	{
-//		boolean flag = false;
-//		if(tenant.getTenantAge() > 0)
-//			flag = true;
-//		else
-//			throw new TenantNotFoundException("Age cannot be 0 or negative");
-//		if(tenant.getTenantAddress().getHouseNo() > 0)
-//			flag = true;
-//		else
-//			throw new TenantNotFoundException("House Number cannot be 0 or negative");
-//		if(tenant.getTenantAddress().getStreet().matches("^[a-zA-Z]+$") 
-//				&& tenant.getTenantAddress().getCity().matches("^[a-zA-Z]+$")
-//				&& tenant.getTenantAddress().getState().matches("^[a-zA-Z]+$")
-//				&& tenant.getTenantAddress().getCountry().matches("^[a-zA-Z]+$"))
-//			flag = true;
-//		else
-//			throw new TenantNotFoundException("Address should not contain Numbers or Special Characters");
-//		if(tenant.getTenantAddress().getPin() > 0 
-//				&& Long.toString(tenant.getTenantAddress().getPin()).length() == 6
-//				&& Long.toString(tenant.getTenantAddress().getPin()).matches("^[0-9]+$"))
-//			flag = true;
-//		else
-//			throw new TenantNotFoundException("Pincode cannot be 0 or negative, length should be 6 and should not contain any Characters");
-//		return flag;
-//	}
-
-	
-	
 }

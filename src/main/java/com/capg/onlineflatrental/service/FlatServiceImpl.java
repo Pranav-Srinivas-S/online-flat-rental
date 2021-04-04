@@ -15,7 +15,6 @@ import com.capg.onlineflatrental.util.FlatUtils;
 @Service
 public class FlatServiceImpl implements IFlatService {
 	
-	
 	@Autowired
 	IFlatRepository flatRepo;
 
@@ -29,8 +28,6 @@ public class FlatServiceImpl implements IFlatService {
 		return FlatUtils.convertToFlatDto(flatEntity);
 	}
 	
-	
-
 	@Override
 	public FlatDTO updateFlat(Flat flat) throws FlatNotFoundException {
 		Flat flatEntity;
@@ -44,8 +41,6 @@ public class FlatServiceImpl implements IFlatService {
 		return FlatUtils.convertToFlatDto(flatEntity);
 	}
 	
-	
-
 	@Override
 	public FlatDTO deleteFlat(int id) throws FlatNotFoundException {
 	
@@ -56,8 +51,6 @@ public class FlatServiceImpl implements IFlatService {
 			flatRepo.delete(existFlat);
 		return FlatUtils.convertToFlatDto(existFlat);
 	}
-	
-	
 
 	@Override
 	public FlatDTO viewFlat(int id) throws FlatNotFoundException {
@@ -74,15 +67,12 @@ public class FlatServiceImpl implements IFlatService {
 		List<Flat> flatList = flatRepo.findAll();
 		return FlatUtils.convertToFlatDtoList(flatList);
 	}
-	
-	
 
 	@Override
 	public List<FlatDTO> viewAllFlatByCost(float cost, String availability) {
 		List<Flat>   flatList=flatRepo.findByCostAndAvailability(cost,availability);
 		return FlatUtils.convertToFlatDtoList(flatList);
 	}
-	
 	
 	public static boolean validateFlat(Flat flat) throws InvalidFlatInputException
 	{
@@ -103,8 +93,6 @@ public class FlatServiceImpl implements IFlatService {
 		return flag;
 	}
 	
-	
-	
 	public static boolean validateFlatCost(float cost) throws InvalidFlatInputException
 	{
 	boolean flag=true;
@@ -116,35 +104,30 @@ public class FlatServiceImpl implements IFlatService {
 	return flag;
 	}
 	
-	
-	
 	public static boolean validateFlatAvailability(String availability) throws InvalidFlatInputException
 	{
 		boolean flag=false;
-		if(availability.equals("YES")||availability.equals("Yes")||
-				availability.equals("NO")||availability.equals("No"))
+		if(availability.equals("YES")||availability.equals("Yes") ||
+				availability.equals("NO")||availability.equals("No") ||
+				availability.equals("no")||availability.equals("n") || availability.equals("N") ||
+				availability.equals("yes")||availability.equals("y") || availability.equals("Y"))
 				{
 					 flag =true;
 				}
 				else
-					throw new InvalidFlatInputException("Availabilty can only be [YES|NO|Yes|No]");
+					throw new InvalidFlatInputException("Availabilty can only be [YES | NO | Yes | No | Y | N | y | n]");
 		return flag;
 	}
-	
-	
-	
 	
 	public static boolean validateFlatHouseNo(int houseNo) throws InvalidFlatInputException
 	{
 		boolean flag=false;
-		if(!(Long.toString(houseNo).isBlank()) && houseNo <= 0)
+		if(!(Long.toString(houseNo).isBlank()) && houseNo > 0)
 			flag=true;
 		else
 			throw new InvalidFlatInputException("HouseNo name cannot be empty or 0 or a negative number");
 		return flag;
 	}
-	
-	
 	
 	public static boolean validateFlatStreet(String street) throws InvalidFlatInputException
 	{
@@ -156,10 +139,6 @@ public class FlatServiceImpl implements IFlatService {
 		return flag;
 	}
 	
-	
-	
-	
-
 	public static boolean validateFlatCity(String city) throws InvalidFlatInputException
 	{
 		boolean flag=false;
@@ -171,9 +150,6 @@ public class FlatServiceImpl implements IFlatService {
 			flag=true;
 		return flag;
 	}
-	
-	
-	
 	
 	public static boolean validateFlatState(String state) throws InvalidFlatInputException
 	{
@@ -187,9 +163,6 @@ public class FlatServiceImpl implements IFlatService {
 		return flag;
 	}
 	
-	
-	
-	
 	public static boolean validateFlatCountry(String country) throws InvalidFlatInputException
 	{
 		boolean flag=false;
@@ -201,8 +174,6 @@ public class FlatServiceImpl implements IFlatService {
 			flag=true;
 		return flag;
 	}
-	
-	
 	
 	public static boolean validateFlatPin(long pin) throws InvalidFlatInputException
 	{
@@ -217,7 +188,8 @@ public class FlatServiceImpl implements IFlatService {
 		flag = true;
 	return flag;
 	}
-	}
+
+}
 	
 	
 	
