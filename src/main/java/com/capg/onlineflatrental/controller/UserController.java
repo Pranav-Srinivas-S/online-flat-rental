@@ -36,7 +36,7 @@ package com.capg.onlineflatrental.controller;
 				userResponse = new ResponseEntity<Object>(userDTO, HttpStatus.ACCEPTED);
 			}
 			else
-				userResponse = new ResponseEntity<Object>("User Insertion Failed", HttpStatus.BAD_REQUEST);
+				throw new UserNotFoundException("Invalid User Details");
 			return userResponse;
 		
 		}

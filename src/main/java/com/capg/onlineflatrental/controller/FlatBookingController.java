@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.capg.onlineflatrental.entities.FlatBooking;
 import com.capg.onlineflatrental.exception.FlatBookingNotFoundException;
 import com.capg.onlineflatrental.model.FlatBookingDTO;
