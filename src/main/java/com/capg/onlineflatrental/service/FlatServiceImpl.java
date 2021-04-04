@@ -95,7 +95,7 @@ public class FlatServiceImpl implements IFlatService {
 	
 	public static boolean validateFlatCost(float cost) throws InvalidFlatInputException
 	{
-	boolean flag=true;
+	boolean flag=false;
 	
 	if(cost>=0)
 		flag=true;
@@ -107,6 +107,9 @@ public class FlatServiceImpl implements IFlatService {
 	public static boolean validateFlatAvailability(String availability) throws InvalidFlatInputException
 	{
 		boolean flag=false;
+		
+		if((availability.isBlank()))
+			throw new InvalidFlatInputException("Availability cannot be empty");
 		if(availability.equals("YES")||availability.equals("Yes") ||
 				availability.equals("NO")||availability.equals("No") ||
 				availability.equals("no")||availability.equals("n") || availability.equals("N") ||
