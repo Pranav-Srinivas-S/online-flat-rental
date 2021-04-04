@@ -1,11 +1,11 @@
 package com.capg.onlineflatrental.exception;
 
-public class LandlordNotFoundException extends Exception {
-
-	public LandlordNotFoundException(String landlordNotFound) {
-		// TODO Auto-generated constructor stub
-	}
+public class LandlordNotFoundException extends Exception{
 
 	private static final long serialVersionUID = 1L;
 	
+	public LandlordNotFoundException(String message)
+	{
+		super(message);
+	}
 }
