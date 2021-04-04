@@ -8,20 +8,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-//@Table(name = "Tenant")
+@Table(name = "Tenant")
 public class Tenant {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int tenantId;
 	@Column(name = "TENANT_AGE")
-	@NotBlank(message = "Tenant Age is mandatory")
+	//@NotBlank(message = "Tenant Age is mandatory")
 	private int tenantAge;
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="addressId")
+	//@JoinColumn(name="addressId")
 	private FlatAddress tenantAddress;
 	
 	public Tenant() {

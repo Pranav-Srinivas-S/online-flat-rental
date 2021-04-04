@@ -1,6 +1,6 @@
 package com.capg.onlineflatrental.exception;
 
-public class LandlordNotFoundException extends Exception{
+public class LandlordNotFoundException extends CommonException{
 
 	private static final long serialVersionUID = 1L;
 	

@@ -1,9 +1,11 @@
 package com.capg.onlineflatrental.exception;
 
-public class FlatNotFoundException extends CommonException {
-
+public class CommonException extends Exception {
+	
 	private static final long serialVersionUID = 1L;
-	public FlatNotFoundException(String message) {
+
+	public CommonException(String message)
+	{
 		super(message);
 	}
 	
