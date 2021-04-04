@@ -82,13 +82,13 @@ package com.capg.onlineflatrental.controller;
 		@DeleteMapping("/delete-user/{id}")
 		public ResponseEntity<Object> deleteUser(@PathVariable int id)
 		{
-			UserDTO tenantDTO = null;
+			UserDTO userDTO = null;
 			ResponseEntity<Object> userResponse = null;
 			try {
 				if(userService.validateUserId(id))
 				{
-					tenantDTO = userService.removeUser(id);
-					userResponse = new ResponseEntity<Object>(tenantDTO, HttpStatus.ACCEPTED);
+					userDTO = userService.removeUser(id);
+					userResponse = new ResponseEntity<Object>(userDTO, HttpStatus.ACCEPTED);
 				}
 				else
 					userResponse = new ResponseEntity<Object>("User Deletion Failed", HttpStatus.BAD_REQUEST);
