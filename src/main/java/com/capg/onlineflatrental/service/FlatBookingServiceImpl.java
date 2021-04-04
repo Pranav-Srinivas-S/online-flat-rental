@@ -61,4 +61,19 @@ public class FlatBookingServiceImpl implements IFlatBookingService {
 		return FlatBookingUtils.convertToFlatBookingDtoList(flatbookingList);
 	}
 
+	public static boolean validateFlatBooking(FlatBooking flatbooking) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public static boolean validateFlatBoooking(FlatBooking flatbooking) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public static boolean validateFlatBookingId(int id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
