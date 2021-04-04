@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "Landlord")
+//@Table(name = "Landlord")
 public class Landlord {
 
 	@Id
@@ -28,7 +28,7 @@ public class Landlord {
 	@NotBlank(message = "Landlord Age is mandatory")
 	private int  landlordAge;
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "landlord", table = "Flat")
+	@JoinColumn(name = "landlord")
 	private List<Flat> flatList;
 	
 	public Landlord() {

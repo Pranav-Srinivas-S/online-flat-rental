@@ -11,22 +11,22 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "Flat")
+//@Table(name = "Flat")
 public class Flat {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "FLAT_ID")
 	private int flatId;
-	@Column(name = "FLAT_COST")
+	//@Column(name = "FLAT_COST")
 	@NotBlank(message = "Cost is mandatory")
 	@Min(value = 1, message = "Cost cannot be 0 or negative")
 	private float flatCost;
 	@Embedded
 	private FlatAddress flatAddress;
-	@Column(name = "FLAT_AVAILABILITY")
+	//@Column(name = "FLAT_AVAILABILITY")
 	@NotBlank(message = "Flat Availability is mandatory")
-	private String flatAvailabilty;
+	private String flatAvailability;
 	
 	public Flat() {
 		super();
@@ -37,7 +37,7 @@ public class Flat {
 		this.flatId = flatId;
 		this.flatCost = flatCost;
 		this.flatAddress = flatAddress;
-		this.flatAvailabilty = flatAvailabilty;
+		this.flatAvailability = flatAvailabilty;
 	}
 
 	public int getFlatId() {
@@ -65,17 +65,17 @@ public class Flat {
 	}
 
 	public String getFlatAvailabilty() {
-		return flatAvailabilty;
+		return flatAvailability;
 	}
 
 	public void setFlatAvailabilty(String flatAvailabilty) {
-		this.flatAvailabilty = flatAvailabilty;
+		this.flatAvailability = flatAvailabilty;
 	}
 
 	@Override
 	public String toString() {
 		return "Flat [flatId=" + flatId + ", flatCost=" + flatCost + ", flatAddress=" + flatAddress
-				+ ", flatAvailabilty=" + flatAvailabilty + "]";
+				+ ", flatAvailabilty=" + flatAvailability + "]";
 	}
 	
 }

@@ -71,7 +71,7 @@ public class TenantController {
 		TenantDTO tenantDTO = null;
 		ResponseEntity<Object> tenantResponse = null;
 		try {
-			if(TenantServiceImpl.validateTenantId(id))
+			if(tenantService.validateTenantId(id))
 			{
 				tenantDTO = tenantService.deleteTenant(id);
 				tenantResponse = new ResponseEntity<Object>(tenantDTO, HttpStatus.ACCEPTED);
@@ -91,7 +91,7 @@ public class TenantController {
 		TenantDTO tenantDTO = null;
 		ResponseEntity<Object> tenantResponse = null;
 		try {
-			if(TenantServiceImpl.validateTenantId(id))
+			if(tenantService.validateTenantId(id))
 			{
 				tenantDTO = tenantService.viewTenant(id);
 				tenantResponse = new ResponseEntity<Object>(tenantDTO, HttpStatus.ACCEPTED);

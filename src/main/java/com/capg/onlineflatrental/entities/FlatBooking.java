@@ -1,7 +1,6 @@
 package com.capg.onlineflatrental.entities;
 
-import java.time.LocalDate;
-
+import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +15,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "FlatBooking")
+//@Table(name = "FlatBooking")
 public class FlatBooking {
 
 	@Id
@@ -24,25 +23,25 @@ public class FlatBooking {
 	@Column(name = "BOOKING_NUMBER")
 	private int	bookingNo;
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "flatId", table = "Flat")
+	@JoinColumn(name = "flatId")
 	private Flat flat;
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "tenantId", table = "Tenant")
+	@JoinColumn(name = "tenantId")
 	private Tenant tenant;
 	@Temporal(TemporalType.DATE)
 	@Column(name = "BOOKING_FROM_DATE")
 	@NotBlank(message = "Booking From Date is mandatory")
-	private LocalDate bookingFromDate;
+	private Date bookingFromDate;
 	@Temporal(TemporalType.DATE)
 	@Column(name = "BOOKING_TO_DATE", nullable = false)
 	@NotBlank(message = "Booking To Date is mandatory")
-	private LocalDate bookingToDate;
+	private Date bookingToDate;
 	
 	public FlatBooking() {
 		super();
 	}
 
-	public FlatBooking(int bookingNo, Flat flat, Tenant tenant, LocalDate bookingFromDate, LocalDate bookingToDate) {
+	public FlatBooking(int bookingNo, Flat flat, Tenant tenant, Date bookingFromDate, Date bookingToDate) {
 		super();
 		this.bookingNo = bookingNo;
 		this.flat = flat;
@@ -75,19 +74,19 @@ public class FlatBooking {
 		this.tenant = tenant;
 	}
 
-	public LocalDate getBookingFromDate() {
+	public Date getBookingFromDate() {
 		return bookingFromDate;
 	}
 
-	public void setBookingFromDate(LocalDate bookingFromDate) {
+	public void setBookingFromDate(Date bookingFromDate) {
 		this.bookingFromDate = bookingFromDate;
 	}
 
-	public LocalDate getBookingToDate() {
+	public Date getBookingToDate() {
 		return bookingToDate;
 	}
 
-	public void setBookingToDate(LocalDate bookingToDate) {
+	public void setBookingToDate(Date bookingToDate) {
 		this.bookingToDate = bookingToDate;
 	}
 
@@ -96,5 +95,6 @@ public class FlatBooking {
 		return "FlatBooking [bookingNo=" + bookingNo + ", flat=" + flat + ", tenantId=" + tenant
 				+ ", bookingFromDate=" + bookingFromDate + ", bookingToDate=" + bookingToDate + "]";
 	}
+
 	
 }
