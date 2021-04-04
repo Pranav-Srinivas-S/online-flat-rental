@@ -1,10 +1,9 @@
 package com.capg.onlineflatrental.service;
 import java.util.List;
-import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import com.capg.onlineflatrental.entities.User;
 import com.capg.onlineflatrental.exception.UserNotFoundException;
@@ -77,6 +76,16 @@ public class UserServiceImpl implements IUserService{
 		else
 			userRepo.delete(existUser);
 		return UserUtils.convertToUserDto(existUser);
+	}
+	
+	@Override
+	public HttpStatus validateUser(String userId, String password) throws UserNotFoundException {
+		User user = userRepo.findByUserName(userId);
+		if (user.getPassword().equals(password))
+			return HttpStatus.ACCEPTED;
+		else {
+			throw new UserNotFoundException("Invalid Password");
+		}
 	}
 	
 	public boolean validateUserId(int id) throws UserNotFoundException
@@ -178,20 +187,5 @@ public class UserServiceImpl implements IUserService{
 		return flag;
 	}
 	
-public boolean validateUser(String username, String password) throws UserNotFoundException {
-	try {
-		Optional<User> user = userRepo.findByUserName(username);
-		if (user.isPresent()) {
-			if (username.equals(user.get().getUserName()) && (password.equals(user.get().getPassword()) )) {
-				return true;
-			} else {
-				throw new EntityNotFoundException("Password does not match for " + username);
-			}
-		} else {
-			throw new EntityNotFoundException("User is not there with username :" + username);
-		}
-	} catch (Exception e) {
-		throw new EntityNotFoundException(e.getMessage());
-	}
-}
+
 }

@@ -1,5 +1,6 @@
 package com.capg.onlineflatrental.controller;
 	import java.util.List;
+	import java.util.Optional;
 	import org.springframework.beans.factory.annotation.Autowired;
 	import org.springframework.http.HttpStatus;
 	import org.springframework.http.ResponseEntity;
@@ -41,80 +42,72 @@ package com.capg.onlineflatrental.controller;
 		}
 		
 		@PutMapping("/update-user")
-		public ResponseEntity<Object> updateUser(@RequestBody User user)
+		public ResponseEntity<Object> updateUser(@RequestBody User user) throws UserNotFoundException
 		{
 			UserDTO userDTO = null;
 			ResponseEntity<Object> userResponse = null;
-			try {
 				if(UserServiceImpl.validateUser(user))
 				{
 					userDTO = userService.updateUser(user);
 					userResponse = new ResponseEntity<Object>(userDTO, HttpStatus.ACCEPTED);
 				}
 				else
-					userResponse = new ResponseEntity<Object>("User Updation Failed", HttpStatus.BAD_REQUEST);
-			} catch (UserNotFoundException e) {
-				
-				e.printStackTrace();
+					throw new UserNotFoundException("No User available in given ID");
+				return userResponse;
 			}
-			return userResponse;
-		}
+		
 		@PutMapping("/update-password/{newpass}")
-		public ResponseEntity<Object> updatePassword(@RequestBody User user, @PathVariable String newpass)
+		public ResponseEntity<Object> updatePassword(@RequestBody User user, @PathVariable String newpass) throws UserNotFoundException
 		{
 			UserDTO userDTO = null;
 			ResponseEntity<Object> userResponse = null;
-			try {
 				if(UserServiceImpl.validateUser(user))
 				{
 					userDTO = userService.updatePassword(user, newpass);
 					userResponse = new ResponseEntity<Object>(userDTO, HttpStatus.ACCEPTED);
 				}
 				else
-					userResponse = new ResponseEntity<Object>("User Updation Failed", HttpStatus.BAD_REQUEST);
-			} catch (UserNotFoundException e) {
-				
-				e.printStackTrace();
+					throw new UserNotFoundException("No User available in given ID");
+				return userResponse;
 			}
-			return userResponse;
+	
+		
+		@PostMapping("/validate/{username}/{password}")
+		HttpStatus validateUser(@PathVariable String username, @PathVariable String password) throws UserNotFoundException {
+			if( username==null)
+				throw new UserNotFoundException("No user Found");
+			return userService.validateUser(username, password);
 		}
 		
-		@DeleteMapping("/delete-user/{id}")
-		public ResponseEntity<Object> deleteUser(@PathVariable int id)
+		@DeleteMapping("/remove-user/{id}")
+		public ResponseEntity<Object> removeUser(@PathVariable int id) throws UserNotFoundException
 		{
 			UserDTO userDTO = null;
 			ResponseEntity<Object> userResponse = null;
-			try {
-				if(userService.validateUserId(id))
-				{
-					userDTO = userService.removeUser(id);
-					userResponse = new ResponseEntity<Object>(userDTO, HttpStatus.ACCEPTED);
-				}
-				else
-					userResponse = new ResponseEntity<Object>("User Deletion Failed", HttpStatus.BAD_REQUEST);
-			} catch (UserNotFoundException e) {
-				
-				e.printStackTrace();
+			Optional<UserDTO> optional = Optional.of(userService.removeUser(id));
+			if(optional.isPresent())
+			{
+				userDTO = optional.get();
+				userResponse = new ResponseEntity<Object>(userDTO, HttpStatus.ACCEPTED);
 			}
+			else
+				throw new UserNotFoundException("No User available in given ID");
 			return userResponse;
 		}
+
 		@GetMapping("/view-user/{id}")
-		public ResponseEntity<Object> getUserById(@PathVariable int id)
+		public ResponseEntity<Object> getUserById(@PathVariable int id) throws UserNotFoundException
 		{
 			UserDTO userDTO = null;
 			ResponseEntity<Object> userResponse = null;
-			try {
-				if(userService.validateUserId(id))
-				{
-					userDTO = userService.viewUser(id);
-					userResponse = new ResponseEntity<Object>(userDTO, HttpStatus.ACCEPTED);
-				}
-				else
-					userResponse = new ResponseEntity<Object>("No User available in given ID", HttpStatus.BAD_REQUEST);
-			} catch (UserNotFoundException e) {
-			
-				e.printStackTrace();
+			Optional<UserDTO> optional = Optional.of(userService.viewUser(id));
+			if(optional.isPresent())
+			{
+				userDTO = optional.get();
+				userResponse = new ResponseEntity<Object>(userDTO, HttpStatus.ACCEPTED);
 			}
+			else
+				throw new UserNotFoundException("No User available in given ID");
 			return userResponse;
 		}
 		
