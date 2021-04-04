@@ -1,12 +1,8 @@
 package com.capg.onlineflatrental.service;
 
 import java.util.List;
-
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.capg.onlineflatrental.entities.Tenant;
 import com.capg.onlineflatrental.exception.TenantNotFoundException;
 import com.capg.onlineflatrental.model.TenantDTO;
@@ -14,7 +10,6 @@ import com.capg.onlineflatrental.repository.ITenantRepository;
 import com.capg.onlineflatrental.util.TenantUtils;
 
 @Service
-@Transactional
 public class TenantServiceImpl implements ITenantService {
 
 	@Autowired

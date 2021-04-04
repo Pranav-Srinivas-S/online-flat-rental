@@ -7,6 +7,6 @@ import com.capg.onlineflatrental.entities.Landlord;
 @Repository
 public interface ILandlordRepository extends JpaRepository<Landlord, Integer> {
 
-	
+
 	
 }

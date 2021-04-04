@@ -1,11 +1,13 @@
 package com.capg.onlineflatrental.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -18,7 +20,8 @@ public class Tenant {
 	@Column(name = "TENANT_AGE")
 	@NotBlank(message = "Tenant Age is mandatory")
 	private int tenantAge;
-	@Embedded
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="addressId")
 	private FlatAddress tenantAddress;
 	
 	public Tenant() {
