@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.capg.onlineflatrental.entities.Tenant;
+import com.capg.onlineflatrental.exception.CommonException;
 import com.capg.onlineflatrental.exception.TenantNotFoundException;
 import com.capg.onlineflatrental.model.TenantDTO;
 import com.capg.onlineflatrental.service.TenantServiceImpl;
@@ -46,11 +47,11 @@ public class TenantController {
 	}
 	
 	@PutMapping("/update-tenant")
-	public ResponseEntity<Object> updateTenant(@RequestBody Tenant tenant)
+	public ResponseEntity<Object> updateTenant(@RequestBody Tenant tenant) throws TenantNotFoundException
 	{
 		TenantDTO tenantDTO = null;
 		ResponseEntity<Object> tenantResponse = null;
-		try {
+	
 			if(TenantServiceImpl.validateTenant(tenant))
 			{
 				tenantDTO = tenantService.updateTenant(tenant);
@@ -58,10 +59,7 @@ public class TenantController {
 			}
 			else
 				tenantResponse = new ResponseEntity<Object>("Tenant Updation Failed", HttpStatus.BAD_REQUEST);
-		} catch (TenantNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		return tenantResponse;
 	}
 	
