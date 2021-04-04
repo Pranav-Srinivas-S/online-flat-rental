@@ -20,7 +20,7 @@ public class Flat {
 	@Column(name = "FLAT_ID")
 	private int flatId;
 	//@Column(name = "FLAT_COST")
-	@NotBlank(message = "Cost is mandatory")
+	//@NotBlank(message = "Cost is mandatory")
 	@Min(value = 1, message = "Cost cannot be 0 or negative")
 	private float flatCost;
 	@OneToOne(cascade = CascadeType.ALL)

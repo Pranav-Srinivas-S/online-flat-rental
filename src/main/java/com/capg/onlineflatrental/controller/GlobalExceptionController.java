@@ -4,16 +4,25 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
 import com.capg.onlineflatrental.exception.CommonException;
+
 
 @ControllerAdvice
 public class GlobalExceptionController {
 
 	@ExceptionHandler(CommonException.class)
-	public ResponseEntity<String> exceptionHandler(Exception exception)
+	public ResponseEntity<String> exceptionHandler(CommonException exception)
 	{
 		String errorMessage = exception.getMessage();
 		return new ResponseEntity<String>(errorMessage, HttpStatus.NOT_FOUND);
 	}
+	
+//	@ExceptionHandler(value=ConstraintViolationException.class)
+//	public ResponseEntity<Object> exceptionConstraintViolationException(ConstraintViolationException exception)
+//	{
+//		StringBuilder msg = new StringBuilder();
+//		exception.getConstraintViolations().forEach(i->msg.append(i.getConstraintDescriptor().getMessageTemplate()));
+//		return new ResponseEntity<>(msg.toString(),HttpStatus.NOT_ACCEPTABLE);
+//	}
+	
 }
