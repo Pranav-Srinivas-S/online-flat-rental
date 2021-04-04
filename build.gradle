@@ -21,6 +21,8 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+	// https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator
+implementation group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.1.5.Final'
     
     // https://mvnrepository.com/artifact/io.springfox/springfox-swagger2
 implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
