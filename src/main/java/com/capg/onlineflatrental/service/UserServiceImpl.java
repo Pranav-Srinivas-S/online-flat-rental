@@ -21,7 +21,9 @@ public class UserServiceImpl implements IUserService{
 	public UserDTO viewUser(int id) throws UserNotFoundException {
 		User existUser = userRepo.findById(id).orElse(null);
 		if(existUser == null)
-			throw new UserNotFoundException("No user Found");
+			throw new UserNotFoundException("No user found with that Id\r\n"
+					+ "\r\n"
+					+ "Enter valid UserId");
 		return UserUtils.convertToUserDto(existUser);
 	}
 	
@@ -72,7 +74,9 @@ public class UserServiceImpl implements IUserService{
 	public UserDTO removeUser(int id) throws UserNotFoundException {
 		User existUser = userRepo.findById(id).orElse(null);
 		if(existUser == null)
-			throw new UserNotFoundException("No user found");
+			throw new UserNotFoundException("No user found with that Id\r\n"
+					+ "\r\n"
+					+ "Enter valid UserId");
 		else
 			userRepo.delete(existUser);
 		return UserUtils.convertToUserDto(existUser);
@@ -92,7 +96,9 @@ public class UserServiceImpl implements IUserService{
 	{
 		boolean flag = userRepo.existsById(id);
 		if(flag == false)
-			throw new UserNotFoundException("No user Found");
+			throw new UserNotFoundException("No user found with that Id\r\n"
+					+ "\r\n"
+					+ "Enter valid UserId");
 		return flag;
 	}
 	
@@ -101,7 +107,7 @@ public class UserServiceImpl implements IUserService{
 	public static boolean validatePassword(String password)
     {
 		 if (!((password.length() >= 8)
-	              && (password.length() <= 10))) {
+	              && (password.length() <= 15))) {
 	            return false;
 	        }
 		 if (password.contains(" ")) {
@@ -166,7 +172,7 @@ public class UserServiceImpl implements IUserService{
 		 return true;
     }
 	
-	public static boolean validUsername(String userName)
+	public static boolean validateUsername(String userName)
     {  
         String regex = "^[A-Za-z]\\w{3,20}$";
         Pattern p = Pattern.compile(regex);
@@ -182,6 +188,50 @@ public class UserServiceImpl implements IUserService{
 		boolean flag = false;
 		if(user == null)
 			throw new UserNotFoundException("User details cannot be blank");
+		else if(!(validatePassword(user.getPassword()) && validateUsername(user.getUserName())))
+			throw new UserNotFoundException("Format For UserName or Password is Wrong\r\n"
+					+ "\r\n"
+					+ "Please Enter Again\r\n"
+					+ "____________________________________________________________\r\n"
+					+ "\r\n"
+					+ "Valid Format for UserName:\r\n"
+					+ "\r\n"
+					+ "The username consists of 6 to 30 characters inclusive.\r\n"
+					+ "The username can only contain alphanumeric characters and underscores (_). \r\n"
+					+ "The first character of the username must be an alphabetic character, i.e., either lowercase character\r\n"
+					+ "[a – z] or uppercase character [A – Z].\r\n"
+					+ "____________________________________________________________\r\n"
+					+ "\r\n"
+					+ "Valid Format for Password:\r\n"
+					+ "\r\n"
+					+ "Password should not contain any space.\r\n"
+					+ "Password should contain at least one digit(0-9).\r\n"
+					+ "Password length should be between 8 to 15 characters.\r\n"
+					+ "Password should contain at least one lowercase letter(a-z).\r\n"
+					+ "Password should contain at least one uppercase letter(A-Z).\r\n"
+					+ "Password should contain at least one special character ( @, #, %, &, !, $, etc….)");
+		else
+			flag = true;
+		return flag;
+	}
+	public static boolean validateUser1(User user) throws UserNotFoundException {
+		boolean flag = false;
+		if(user == null)
+			throw new UserNotFoundException("User details cannot be blank");
+		else if(!(validatePassword(user.getPassword()) && validateUsername(user.getUserName())))
+			throw new UserNotFoundException(" Either \"Format for New Password is Wrong\" or \"you entered Wrong user id or old Password\"\r\n"
+					+ "\r\n"
+					+ "_______________________________________________________________________________________________________________________\r\n"
+					+ "\r\n"
+					+ "Valid Format for NewPassword:\r\n"
+					+ "\r\n"
+					+ "Password should not contain any space.\r\n"
+					+ "Password should contain at least one digit(0-9).\r\n"
+					+ "Password length should be between 8 to 15 characters.\r\n"
+					+ "Password should contain at least one lowercase letter(a-z).\r\n"
+					+ "Password should contain at least one uppercase letter(A-Z).\r\n"
+					+ "Password should contain at least one special character ( @, #, %, &, !, $, etc….)\r\n"
+					+ "");
 		else
 			flag = true;
 		return flag;

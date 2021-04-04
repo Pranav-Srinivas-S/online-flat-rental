@@ -22,7 +22,7 @@ public class User {
 	@Column(name = "PASSWORD", length = 20)
 	@NotBlank(message = "Password is mandatory")
 	private String password;
-	@Column(name = "USER_TYPE", length = 10)
+	@Column(name = "USER_TYPE", length = 15)
 	@NotBlank(message = "User Type is mandatory")
 	private String userType;
 	
