@@ -1,9 +1,9 @@
 package com.capg.onlineflatrental.service;
+
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import com.capg.onlineflatrental.entities.User;
 import com.capg.onlineflatrental.exception.UserNotFoundException;
@@ -82,14 +82,16 @@ public class UserServiceImpl implements IUserService{
 		return UserUtils.convertToUserDto(existUser);
 	}
 	
-	@Override
-	public HttpStatus validateUser(String userId, String password) throws UserNotFoundException {
-		User user = userRepo.findByUserName(userId);
-		if (user.getPassword().equals(password))
-			return HttpStatus.ACCEPTED;
-		else {
-			throw new UserNotFoundException("Invalid Password");
-		}
+	public boolean validateUser(String userName, String password) throws UserNotFoundException {
+		boolean flag = false;
+		User user = userRepo.findByUserName(userName);
+		if(user == null)
+			throw new UserNotFoundException("Invalid User Name");
+		if (user.getPassword().equals(password) && user != null)
+			flag = true;
+		else 
+			throw new UserNotFoundException("Password does not Match");
+		return flag;
 	}
 	
 	public boolean validateUserId(int id) throws UserNotFoundException
@@ -172,6 +174,7 @@ public class UserServiceImpl implements IUserService{
 		 return true;
     }
 	
+	
 	public static boolean validateUsername(String userName)
     {  
         String regex = "^[A-Za-z]\\w{3,20}$";
@@ -181,6 +184,7 @@ public class UserServiceImpl implements IUserService{
         }
         Matcher m = p.matcher(userName);
         return m.matches();
+        
     }	
 	
 
@@ -188,10 +192,10 @@ public class UserServiceImpl implements IUserService{
 		boolean flag = false;
 		if(user == null)
 			throw new UserNotFoundException("User details cannot be blank");
-		else if(!(validatePassword(user.getPassword()) && validateUsername(user.getUserName())))
-			throw new UserNotFoundException("Format For UserName or Password is Wrong\r\n"
+		else if(!validateUsername(user.getUserName()))
+			throw new UserNotFoundException("Format For UserName is Wrong\r\n"
 					+ "\r\n"
-					+ "Please Enter Again\r\n"
+					+ "Please Enter Again :\r\n"
 					+ "____________________________________________________________\r\n"
 					+ "\r\n"
 					+ "Valid Format for UserName:\r\n"
@@ -200,9 +204,14 @@ public class UserServiceImpl implements IUserService{
 					+ "The username can only contain alphanumeric characters and underscores (_). \r\n"
 					+ "The first character of the username must be an alphabetic character, i.e., either lowercase character\r\n"
 					+ "[a – z] or uppercase character [A – Z].\r\n"
+					+ "____________________________________________________________\r\n");
+		else if(!validatePassword(user.getPassword()))
+			throw new UserNotFoundException("Format for Password is Wrong\r\n"
+					+ "\r\n"
+					+"Please Enter Password Again :\r\n"
 					+ "____________________________________________________________\r\n"
 					+ "\r\n"
-					+ "Valid Format for Password:\r\n"
+					+"Valid Format for Password :\r\n"
 					+ "\r\n"
 					+ "Password should not contain any space.\r\n"
 					+ "Password should contain at least one digit(0-9).\r\n"
@@ -210,11 +219,31 @@ public class UserServiceImpl implements IUserService{
 					+ "Password should contain at least one lowercase letter(a-z).\r\n"
 					+ "Password should contain at least one uppercase letter(A-Z).\r\n"
 					+ "Password should contain at least one special character ( @, #, %, &, !, $, etc….)");
+		else if(!validateUserType(user.getUserType()))
+			throw new UserNotFoundException("Invalid User Type"); 
 		else
 			flag = true;
 		return flag;
 	}
-	public static boolean validateUser1(User user) throws UserNotFoundException {
+	
+	public static boolean validateUserType(String userType) throws UserNotFoundException
+	{
+		boolean flag = false;
+		
+		if(userType == null)
+			throw new UserNotFoundException("User Type cannot be blank");
+		else if (!userType.matches("^[A-Za-z]\\w{3,10}+$"))
+			throw new UserNotFoundException("User Type cannot contain numbers or special characters");
+		else if (!(userType.equals("tenant") || userType.equals("landlord") || userType.equals("admin")
+				|| userType.equals("Tenant") || userType.equals("Landlord") || userType.equals("Admin")
+				|| userType.equals("TENANT") || userType.equals("LANDLORD") || userType.equals("ADMIN")))
+			throw new UserNotFoundException("User Type can only be Admin or Tenant or Landlord");
+		else
+			flag = true;
+		return flag;
+	}
+	
+	public static boolean validateUserPassword(User user) throws UserNotFoundException {
 		boolean flag = false;
 		if(user == null)
 			throw new UserNotFoundException("User details cannot be blank");
@@ -236,6 +265,5 @@ public class UserServiceImpl implements IUserService{
 			flag = true;
 		return flag;
 	}
-	
 
 }

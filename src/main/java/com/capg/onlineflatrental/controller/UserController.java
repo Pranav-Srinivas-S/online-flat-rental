@@ -1,22 +1,25 @@
 package com.capg.onlineflatrental.controller;
-	import java.util.List;
-	import java.util.Optional;
-	import org.springframework.beans.factory.annotation.Autowired;
-	import org.springframework.http.HttpStatus;
-	import org.springframework.http.ResponseEntity;
-	import org.springframework.web.bind.annotation.DeleteMapping;
-	import org.springframework.web.bind.annotation.ExceptionHandler;
-	import org.springframework.web.bind.annotation.GetMapping;
-	import org.springframework.web.bind.annotation.PathVariable;
-	import org.springframework.web.bind.annotation.PostMapping;
-	import org.springframework.web.bind.annotation.PutMapping;
-	import org.springframework.web.bind.annotation.RequestBody;
-	import org.springframework.web.bind.annotation.RequestMapping;
-	import org.springframework.web.bind.annotation.RestController;
-	import com.capg.onlineflatrental.entities.User;
-	import com.capg.onlineflatrental.exception.UserNotFoundException;
-	import com.capg.onlineflatrental.model.UserDTO;
-	import com.capg.onlineflatrental.service.UserServiceImpl;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.capg.onlineflatrental.entities.User;
+import com.capg.onlineflatrental.exception.UserNotFoundException;
+import com.capg.onlineflatrental.model.UserDTO;
+import com.capg.onlineflatrental.service.UserServiceImpl;
 	
 	@RestController
 	@RequestMapping("/api/user")
@@ -46,7 +49,7 @@ package com.capg.onlineflatrental.controller;
 		{
 			UserDTO userDTO = null;
 			ResponseEntity<Object> userResponse = null;
-				if(UserServiceImpl.validateUser(user))
+				if(UserServiceImpl.validateUser(user) && userService.validateUserId(user.getUserId()))
 				{
 					userDTO = userService.updateUser(user);
 					userResponse = new ResponseEntity<Object>(userDTO, HttpStatus.ACCEPTED);
@@ -61,7 +64,7 @@ package com.capg.onlineflatrental.controller;
 		{
 			UserDTO userDTO = null;
 			ResponseEntity<Object> userResponse = null;
-				if(UserServiceImpl.validateUser1(user))
+				if(UserServiceImpl.validateUserPassword(user))
 				{
 					userDTO = userService.updatePassword(user, newpass);
 					userResponse = new ResponseEntity<Object>(userDTO, HttpStatus.ACCEPTED);
@@ -69,14 +72,18 @@ package com.capg.onlineflatrental.controller;
 				else
 					throw new UserNotFoundException("No User available in given ID");
 				return userResponse;
-			}
-	
+		}	
 		
-		@PostMapping("/validate/{username}/{password}")
-		HttpStatus validateUser(@PathVariable String username, @PathVariable String password) throws UserNotFoundException {
-			if( username==null)
+		@PatchMapping("/validate-user/{userName}/{password}")
+		public ResponseEntity<String> validateUser(@PathVariable String userName, @PathVariable String password) throws UserNotFoundException {
+			ResponseEntity<String> userResponse = new ResponseEntity<String>("User Name and Password Does Not Match", HttpStatus.ACCEPTED);
+			if( userName==null)
 				throw new UserNotFoundException("No user Found");
-			return userService.validateUser(username, password);
+			else if(!userService.validateUser(userName, password))
+				throw new UserNotFoundException("User name and Password Does not match");
+			else
+				userResponse = new ResponseEntity<String>("User Name and Password Match!", HttpStatus.ACCEPTED);
+			return userResponse;
 		}
 		
 		@DeleteMapping("/remove-user/{id}")
