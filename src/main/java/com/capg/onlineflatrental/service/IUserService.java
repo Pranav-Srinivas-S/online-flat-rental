@@ -1,9 +1,10 @@
 package com.capg.onlineflatrental.service;
+
 import java.util.List;
-import org.springframework.http.HttpStatus;
 import com.capg.onlineflatrental.entities.User;
 import com.capg.onlineflatrental.exception.UserNotFoundException;
 import com.capg.onlineflatrental.model.UserDTO;
+
 public interface IUserService {
 
 	public  UserDTO viewUser(int id) throws UserNotFoundException;
@@ -12,5 +13,5 @@ public interface IUserService {
 	public UserDTO updateUser(User user)  throws UserNotFoundException;
 	public UserDTO updatePassword(User user,String newpass) throws UserNotFoundException;
 	public UserDTO removeUser(int id) throws UserNotFoundException;
-	HttpStatus validateUser(String username, String password) throws UserNotFoundException;
+	
 }
