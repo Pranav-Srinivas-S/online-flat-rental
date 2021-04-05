@@ -47,7 +47,7 @@ public class AdminController {
 	{
 		AdminDTO adminDTO = null;
 		ResponseEntity<Object> adminResponse = null;
-		if(AdminServiceImpl.validateAdmin(admin))
+		if(AdminServiceImpl.validateAdmin(admin) && AdminServiceImpl.validateId(admin.getAdminId()))
 			{
 			adminDTO = adminService.updateAdmin(admin);
 			adminResponse = new ResponseEntity<Object>(adminDTO, HttpStatus.ACCEPTED);
@@ -57,7 +57,7 @@ public class AdminController {
 		return adminResponse;
 	}
 	
-	@DeleteMapping("/delete-admin/{id}")
+	@DeleteMapping("/delete-admin/{adminId}")
 	public ResponseEntity<Object> deleteAdmin(@PathVariable int adminId) throws AdminNotFoundException
 	{
 		AdminDTO adminDTO = null;
@@ -73,7 +73,7 @@ public class AdminController {
 		return adminResponse;
 	}
 	
-	@GetMapping("/view-admin/{id}")
+	@GetMapping("/view-admin/{adminid}")
 	public ResponseEntity<Object> getAdminById(@PathVariable int adminId) throws AdminNotFoundException
 	{
 		AdminDTO adminDTO = null;

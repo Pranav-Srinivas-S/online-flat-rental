@@ -1,21 +1,23 @@
 package com.capg.onlineflatrental.model;
 
 import org.springframework.stereotype.Component;
+import com.capg.onlineflatrental.entities.User;
 
 @Component
 public class LoginDTO {
 
 	private int loginId;
-	private String loginPassword;
-	
+	private User user;
+
 	public LoginDTO() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public LoginDTO(int loginId, String loginPassword) {
+	public LoginDTO(int loginId, User user) {
 		super();
 		this.loginId = loginId;
-		this.loginPassword = loginPassword;
+		this.user = user;
 	}
 
 	public int getLoginId() {
@@ -26,18 +28,17 @@ public class LoginDTO {
 		this.loginId = loginId;
 	}
 
-	public String getLoginPassword() {
-		return loginPassword;
+	public User getUser() {
+		return user;
 	}
 
-	public void setLoginPassword(String loginPassword) {
-		this.loginPassword = loginPassword;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	
 
 	@Override
 	public String toString() {
-		return "LoginDTO [loginId=" + loginId + ", loginPassword=" + loginPassword + "]";
+		return "LoginDTO [loginId=" + loginId + ", user=" + user + "]";
 	}
-
+	
 }

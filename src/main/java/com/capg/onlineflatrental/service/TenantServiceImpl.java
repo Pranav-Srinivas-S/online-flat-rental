@@ -18,10 +18,12 @@ public class TenantServiceImpl implements ITenantService {
 	static String tenantNotFound = "No Tenant found in given ID";
 	
 	@Override
-	public TenantDTO addTenant(Tenant tenant) {
+	public TenantDTO addTenant(Tenant tenant) throws TenantNotFoundException {
 		Tenant tenantEntity;
 		if(tenant == null)
 			tenantEntity = null;
+		else if(!validateTenant(tenant))
+			throw new TenantNotFoundException(tenantNotFound);
 		else
 			tenantEntity = tenantRepo.save(tenant);
 		return TenantUtils.convertToTenantDto(tenantEntity);
@@ -38,6 +40,7 @@ public class TenantServiceImpl implements ITenantService {
 		else
 			tenantEntity = tenantRepo.save(tenant);
 		return TenantUtils.convertToTenantDto(tenantEntity);
+		
 	}
 
 	@Override

@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.capg.onlineflatrental.entities.Tenant;
 import com.capg.onlineflatrental.exception.TenantNotFoundException;
 import com.capg.onlineflatrental.model.TenantDTO;
+import com.capg.onlineflatrental.service.ITenantService;
 import com.capg.onlineflatrental.service.TenantServiceImpl;
 
 @RestController
@@ -24,7 +26,10 @@ import com.capg.onlineflatrental.service.TenantServiceImpl;
 public class TenantController {
 
 	@Autowired
-	TenantServiceImpl tenantService;
+	ITenantService tenantService;
+	
+	@Autowired
+	TenantServiceImpl service;
 	
 	@PostMapping("/add-tenant")
 	public ResponseEntity<Object> addTenant(@RequestBody Tenant tenant) throws TenantNotFoundException
@@ -46,7 +51,7 @@ public class TenantController {
 	{
 		TenantDTO tenantDTO = null;
 		ResponseEntity<Object> tenantResponse = null;
-		if(TenantServiceImpl.validateTenant(tenant))
+		if(TenantServiceImpl.validateTenant(tenant) && service.validateTenantId(tenant.getTenantId()))
 		{
 			tenantDTO = tenantService.updateTenant(tenant);
 			tenantResponse = new ResponseEntity<Object>(tenantDTO, HttpStatus.ACCEPTED);

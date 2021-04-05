@@ -1,12 +1,11 @@
 package com.capg.onlineflatrental.service;
 
-import com.capg.onlineflatrental.entities.Login;
-import com.capg.onlineflatrental.model.LoginDTO;
-import com.capg.onlineflatrental.model.UserDTO;
+import com.capg.onlineflatrental.entities.User;
+import com.capg.onlineflatrental.exception.LoginNotFoundException;
+import com.capg.onlineflatrental.exception.UserNotFoundException;
 
 public interface ILoginService {
 	
-	public LoginDTO validateLogin(int id,String password);
-	public UserDTO addLogin(Login login);
+	public boolean Login(User user) throws LoginNotFoundException, UserNotFoundException;
 
 }
