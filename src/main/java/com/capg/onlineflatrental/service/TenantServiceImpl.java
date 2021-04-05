@@ -73,7 +73,7 @@ public class TenantServiceImpl implements ITenantService {
 		if(tenant == null)
 			throw new TenantNotFoundException("Tenant details cannot be blank");
 		else if(!(validateTenantAge(tenant.getTenantAge()) && validateTenantHouseNo(tenant.getTenantAddress().getHouseNo())
-				&& validateTenantStreet(tenant.getTenantAddress().getStreet()) && validateTenantCity(tenant.getTenantAddress().getStreet())
+				&& validateTenantStreet(tenant.getTenantAddress().getStreet()) && validateTenantCity(tenant.getTenantAddress().getCity())
 				&& validateTenantState(tenant.getTenantAddress().getState()) && validateTenantCountry(tenant.getTenantAddress().getCountry())
 				&& validateTenantPin(tenant.getTenantAddress().getPin())))
 			throw new TenantNotFoundException("Invalid Address");
@@ -98,7 +98,7 @@ public class TenantServiceImpl implements ITenantService {
 		else if(age < 18)
 			throw new TenantNotFoundException("Minor Age is not allowed");
 		else
-			flag = true;
+				flag = true; 
 		return flag;
 	}
 	
@@ -120,13 +120,14 @@ public class TenantServiceImpl implements ITenantService {
 		else if(!street.matches("^[a-zA-Z]+$"))
 			throw new TenantNotFoundException("Street cannot contain Numbers or Special Characters");
 		else
-			flag = true;
+				flag = true;
 		return flag;
 	}
 
 	public static boolean validateTenantCity(String city) throws TenantNotFoundException
 	{
 		boolean flag = false;
+		System.out.println(city);
 		if(city == null)
 			throw new TenantNotFoundException("city cannot be empty");
 		else if(!city.matches("^[a-zA-Z]+$"))
@@ -141,7 +142,7 @@ public class TenantServiceImpl implements ITenantService {
 		boolean flag = false;
 		if(state == null)
 			throw new TenantNotFoundException("State cannot be empty");
-		else if(!state.matches("^[a-zA-Z a-zA-Z]+$"))
+		else if(!state.matches("^[a-zA-Z ]+$"))
 			throw new TenantNotFoundException("State cannot contain Numbers or Special Characters");
 		else
 			flag = true;

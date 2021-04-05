@@ -1,12 +1,9 @@
 package com.capg.onlineflatrental.service;
 
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.capg.onlineflatrental.entities.User;
-import com.capg.onlineflatrental.exception.TenantNotFoundException;
 import com.capg.onlineflatrental.exception.UserNotFoundException;
 import com.capg.onlineflatrental.model.UserDTO;
 import com.capg.onlineflatrental.repository.IUserRepository;
