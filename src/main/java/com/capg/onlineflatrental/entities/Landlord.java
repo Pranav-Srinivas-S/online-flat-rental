@@ -25,7 +25,6 @@ public class Landlord {
 	@NotBlank(message = "Landlord Name is mandatory")
 	private String landlordName;
 	@Column(name = "LANDLORD_AGE")
-	//@NotBlank(message = "Landlord Age is mandatory")
 	private int  landlordAge;
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "landlord")

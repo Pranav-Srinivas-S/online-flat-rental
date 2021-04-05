@@ -22,7 +22,7 @@ import com.capg.onlineflatrental.model.UserDTO;
 import com.capg.onlineflatrental.service.UserServiceImpl;
 	
 	@RestController
-	@RequestMapping("/api/user")
+	@RequestMapping("/api/ofr/user")
 	public class UserController {
 
 		@Autowired

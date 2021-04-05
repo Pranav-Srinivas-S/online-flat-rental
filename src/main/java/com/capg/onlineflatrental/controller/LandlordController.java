@@ -21,7 +21,7 @@ import com.capg.onlineflatrental.model.LandlordDTO;
 import com.capg.onlineflatrental.service.LandlordServiceImpl;
 
 @RestController
-@RequestMapping("/api/landlord")
+@RequestMapping("/api/ofr/landlord")
 public class LandlordController {
 
 	@Autowired
@@ -47,7 +47,7 @@ public class LandlordController {
 	{
 		LandlordDTO landlordDTO = null;
 		ResponseEntity<Object> landlordResponse = null;
-		if(LandlordServiceImpl.validateLandlord(landlord))
+		if(LandlordServiceImpl.validateLandlord(landlord) && landlordService.validateLandlordId(landlord.getLandlordId()))
 			{
 				landlordDTO = landlordService.updateLandlord(landlord);
 				landlordResponse = new ResponseEntity<Object>(landlordDTO, HttpStatus.ACCEPTED);

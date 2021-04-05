@@ -20,7 +20,7 @@ import com.capg.onlineflatrental.model.FlatDTO;
 import com.capg.onlineflatrental.service.FlatServiceImpl;
 
 @RestController
-@RequestMapping("/api/flat")
+@RequestMapping("/api/ofr/flat")
 public class FlatController {
 
 	@Autowired

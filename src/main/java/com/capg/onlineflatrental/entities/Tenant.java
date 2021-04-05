@@ -17,10 +17,8 @@ public class Tenant {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int tenantId;
 	@Column(name = "TENANT_AGE")
-	//@NotBlank(message = "Tenant Age is mandatory")
 	private int tenantAge;
 	@OneToOne(cascade = CascadeType.ALL)
-	//@JoinColumn(name="addressId")
 	private FlatAddress tenantAddress;
 	
 	public Tenant() {
