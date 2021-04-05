@@ -96,18 +96,23 @@ public class FlatController {
 	}
 	
 	@GetMapping("/view-flat-by-cost/{cost},{availability}")
-	public ResponseEntity<Object> getFlatByCost(@PathVariable float cost, @PathVariable String availability) throws FlatNotFoundException
+	public ResponseEntity<Object> getFlatByCost(@PathVariable float cost, @PathVariable String availability) throws FlatNotFoundException, InvalidFlatInputException
 	{
 		List<FlatDTO> flatDTO = null;
 		ResponseEntity<Object> flatResponse = null;
 		Optional<List<FlatDTO>> optional = Optional.of(flatService.viewAllFlatByCost(cost,availability));
-		if(optional.isPresent())
+		if(FlatServiceImpl.validateFlatCost(cost) && FlatServiceImpl.validateFlatAvailability(availability))
+		{
+			if(optional.isPresent())
 		{
 			flatDTO = optional.get();
 			flatResponse = new ResponseEntity<Object>(flatDTO, HttpStatus.ACCEPTED);
 		}
-		else
+		    else
 			throw new FlatNotFoundException("No flat available for given cost");
+		}
+		else
+			throw new InvalidFlatInputException(" Invalid input for cost/availability");
 		return flatResponse;
 	}
 }
