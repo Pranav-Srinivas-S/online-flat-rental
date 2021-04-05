@@ -49,7 +49,7 @@ import com.capg.onlineflatrental.service.UserServiceImpl;
 		{
 			UserDTO userDTO = null;
 			ResponseEntity<Object> userResponse = null;
-				if(UserServiceImpl.validateUser(user) && userService.validateUserId(user.getUserId()))
+				if(userService.validateUserWithName(user.getUserId(), user.getUserName(), user.getPassword()) && userService.validateUserId(user.getUserId()) && UserServiceImpl.validateUserType(user.getUserType()))
 				{
 					userDTO = userService.updateUser(user);
 					userResponse = new ResponseEntity<Object>(userDTO, HttpStatus.ACCEPTED);
@@ -64,7 +64,7 @@ import com.capg.onlineflatrental.service.UserServiceImpl;
 		{
 			UserDTO userDTO = null;
 			ResponseEntity<Object> userResponse = null;
-				if(UserServiceImpl.validateUserPassword(user) && UserServiceImpl.validatePassword(newpass))
+				if(userService.validateUser(user.getUserId(), user.getUserName(), user.getPassword()) && UserServiceImpl.validatePassword(newpass) && UserServiceImpl.validateUserType(user.getUserType()))
 				{
 					userDTO = userService.updatePassword(user, newpass);
 					userResponse = new ResponseEntity<Object>(userDTO, HttpStatus.ACCEPTED);
@@ -124,6 +124,4 @@ import com.capg.onlineflatrental.service.UserServiceImpl;
 			return userService.viewAllUser();
 		}
 		
-		
-		
-	}
+}

@@ -174,16 +174,25 @@ public class UserServiceImpl implements IUserService{
 		 return true;
     }
 	
-	public static boolean validateUsername(String userName)
+	public static boolean validateUsername(String userName) throws UserNotFoundException
     {  
-        String regex = "[a-zA-Z]{3,30}$";
-        Pattern p = Pattern.compile(regex);
-        if (userName == null) {
-            return false;
-        }
-        Matcher m = p.matcher(userName);
-        return m.matches();
-        
+		boolean flag = false;
+		if(userName == null)
+			throw new UserNotFoundException("User Name cannot be empty");
+		else if(!userName.matches("^[a-zA-Z]+$"))
+			throw new UserNotFoundException("Format For UserName is Wrong\r\n"
+					+ "\r\n"
+					+ "Please Enter Again :\r\n"
+					+ "____________________________________________________________\r\n"
+					+ "\r\n"
+					+ "Valid Format for UserName:\r\n"
+					+ "\r\n"
+					+ "The first character of the username must be an alphabetic character, i.e., either lowercase character\r\n"
+					+ "[a – z] or uppercase character [A – Z].\r\n"
+					+ "____________________________________________________________\r\n");
+		else
+			flag = true;
+		return flag;
     }	
 		
 	public static boolean validateUser(User user) throws UserNotFoundException {
@@ -228,7 +237,7 @@ public class UserServiceImpl implements IUserService{
 		
 		if(userType == null)
 			throw new UserNotFoundException("User Type cannot be blank");
-		else if (!userType.matches("^[A-Za-z]\\w{3,10}+$"))
+		else if (!userType.matches("^[A-Za-z]+$"))
 			throw new UserNotFoundException("User Type cannot contain numbers or special characters");
 		else if (!(userType.equals("tenant") || userType.equals("landlord") || userType.equals("admin")
 				|| userType.equals("Tenant") || userType.equals("Landlord") || userType.equals("Admin")
@@ -259,6 +268,22 @@ public class UserServiceImpl implements IUserService{
 					+ "");
 		else
 			flag = true;
+		return flag;
+	}
+	
+	public boolean validateUserWithName(int id, String userName, String password) throws UserNotFoundException {
+		boolean flag = false;
+		User user = userRepo.findById(id).orElse(null);
+		if(!validateUserId(id))
+			throw new UserNotFoundException("No User available in given ID");
+		else if(user == null)
+			throw new UserNotFoundException("Invalid User Name");
+		else if (!validateUsername(userName))
+			throw new UserNotFoundException("Invalid User Name");
+		else if (user.getPassword().equals(password) && user != null)
+			flag = true;
+		else 
+			throw new UserNotFoundException("Password does not Match");
 		return flag;
 	}
 
