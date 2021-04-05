@@ -28,7 +28,7 @@ public class FlatController {
 	FlatServiceImpl flatService;
 	
 	@PostMapping("/add-flat")
-	public ResponseEntity<Object> addTenant(@RequestBody Flat flat) throws InvalidFlatInputException
+	public ResponseEntity<Object> addFlat(@RequestBody Flat flat) throws InvalidFlatInputException
 	{
 		FlatDTO flatDTO = null;
 		ResponseEntity<Object> flatResponse = null;
@@ -43,7 +43,7 @@ public class FlatController {
 	}
 	
 	@PutMapping("/update-flat")
-	public ResponseEntity<Object> updateFlat(@RequestBody Flat flat) throws InvalidFlatInputException, FlatNotFoundException
+	public ResponseEntity<Object> updateFlat(@RequestBody Flat flat) throws  FlatNotFoundException, InvalidFlatInputException
 	{
 		FlatDTO flatDTO = null;
 		ResponseEntity<Object> flatResponse = null;
@@ -53,7 +53,7 @@ public class FlatController {
 			flatResponse = new ResponseEntity<Object>(flatDTO, HttpStatus.ACCEPTED);
 		}
 		else
-			throw new InvalidFlatInputException("Invalid inputs for updating flat details");
+			throw new FlatNotFoundException("No Flat available in given ID");
 		return flatResponse;
 	}
 	
@@ -69,11 +69,11 @@ public class FlatController {
 			flatResponse = new ResponseEntity<Object>(flatDTO, HttpStatus.ACCEPTED);
 		}
 		else
-			throw new FlatNotFoundException("No Tenant available in given ID");
+			throw new FlatNotFoundException("No Flat available in given ID");
 		return flatResponse;
 	}
 	
-	@GetMapping("/view-tenant/{id}")
+	@GetMapping("/view-flat/{id}")
 	public ResponseEntity<Object> getFlatById(@PathVariable int id) throws FlatNotFoundException
 	{
 		FlatDTO flatDTO = null;
@@ -95,8 +95,8 @@ public class FlatController {
 		return flatService.viewAllFlat();
 	}
 	
-	@GetMapping("/view-flat-by-cost-availability/{cost},{availability}")
-	public ResponseEntity<Object> getFlatByCostAndAvailability(@PathVariable float cost, @PathVariable String availability) throws InvalidFlatInputException
+	@GetMapping("/view-flat-by-cost/{cost},{availability}")
+	public ResponseEntity<Object> getFlatByCost(@PathVariable float cost, @PathVariable String availability) throws FlatNotFoundException
 	{
 		List<FlatDTO> flatDTO = null;
 		ResponseEntity<Object> flatResponse = null;
@@ -107,7 +107,7 @@ public class FlatController {
 			flatResponse = new ResponseEntity<Object>(flatDTO, HttpStatus.ACCEPTED);
 		}
 		else
-			throw new InvalidFlatInputException("Invalid input for cost and availability");
+			throw new FlatNotFoundException("No flat available for given cost");
 		return flatResponse;
 	}
 }
