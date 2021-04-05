@@ -1,7 +1,6 @@
 package com.capg.onlineflatrental.entities;
 
 import java.time.LocalDate;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "FlatBooking")
@@ -28,17 +26,15 @@ public class FlatBooking {
 	@JoinColumn(name = "tenantId")
 	private Tenant tenant;
 	@Column(name = "BOOKING_FROM_DATE")
-	@NotBlank(message = "Booking From Date is mandatory")
 	private LocalDate bookingFromDate;
-	@Column(name = "BOOKING_TO_DATE", nullable = false)
-	@NotBlank(message = "Booking To Date is mandatory")
+	@Column(name = "BOOKING_TO_DATE")
 	private LocalDate bookingToDate;
 	
 	public FlatBooking() {
 		super();
 	}
 
-	public FlatBooking(int bookingNo, Flat flat, Tenant tenant, @NotBlank(message = "Booking From Date is mandatory") @NotBlank(message = "Booking From Date is mandatory") @NotBlank(message = "Booking From Date is mandatory") @NotBlank(message = "Booking From Date is mandatory") @NotBlank(message = "Booking From Date is mandatory") LocalDate bookingFromDate, @NotBlank(message = "Booking To Date is mandatory") @NotBlank(message = "Booking To Date is mandatory") @NotBlank(message = "Booking To Date is mandatory") @NotBlank(message = "Booking To Date is mandatory") @NotBlank(message = "Booking To Date is mandatory") LocalDate bookingToDate) {
+	public FlatBooking(int bookingNo, Flat flat, Tenant tenant, LocalDate bookingFromDate, LocalDate bookingToDate) {
 		super();
 		this.bookingNo = bookingNo;
 		this.flat = flat;
@@ -71,19 +67,19 @@ public class FlatBooking {
 		this.tenant = tenant;
 	}
 
-	public @NotBlank(message = "Booking From Date is mandatory") LocalDate getBookingFromDate() {
+	public LocalDate getBookingFromDate() {
 		return bookingFromDate;
 	}
 
-	public void setBookingFromDate(@NotBlank(message = "Booking From Date is mandatory") LocalDate bookingFromDate) {
+	public void setBookingFromDate(LocalDate bookingFromDate) {
 		this.bookingFromDate = bookingFromDate;
 	}
 
-	public @NotBlank(message = "Booking To Date is mandatory") LocalDate getBookingToDate() {
+	public LocalDate getBookingToDate() {
 		return bookingToDate;
 	}
 
-	public void setBookingToDate(@NotBlank(message = "Booking To Date is mandatory") @NotBlank(message = "Booking To Date is mandatory") @NotBlank(message = "Booking To Date is mandatory") @NotBlank(message = "Booking To Date is mandatory") @NotBlank(message = "Booking To Date is mandatory") LocalDate bookingToDate) {
+	public void setBookingToDate(LocalDate bookingToDate) {
 		this.bookingToDate = bookingToDate;
 	}
 
@@ -92,6 +88,5 @@ public class FlatBooking {
 		return "FlatBooking [bookingNo=" + bookingNo + ", flat=" + flat + ", tenantId=" + tenant
 				+ ", bookingFromDate=" + bookingFromDate + ", bookingToDate=" + bookingToDate + "]";
 	}
-
 	
 }

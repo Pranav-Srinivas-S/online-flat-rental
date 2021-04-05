@@ -117,7 +117,7 @@ public class TenantServiceImpl implements ITenantService {
 		boolean flag = false;
 		if(street == null)
 			throw new TenantNotFoundException("Street cannot be empty");
-		else if(!street.matches("^[a-zA-Z]+$"))
+		else if(!street.matches("^[a-zA-Z0-9 ]+$"))
 			throw new TenantNotFoundException("Street cannot contain Numbers or Special Characters");
 		else
 				flag = true;
@@ -130,7 +130,7 @@ public class TenantServiceImpl implements ITenantService {
 		System.out.println(city);
 		if(city == null)
 			throw new TenantNotFoundException("city cannot be empty");
-		else if(!city.matches("^[a-zA-Z]+$"))
+		else if(!city.matches("^[a-zA-Z ]+$"))
 			throw new TenantNotFoundException("City cannot contain Numbers or Special Characters");
 		else
 			flag = true;
@@ -154,7 +154,7 @@ public class TenantServiceImpl implements ITenantService {
 		boolean flag = false;
 		if(country == null)
 			throw new TenantNotFoundException("Country cannot be empty");
-		else if(!country.matches("^[a-zA-Z]+$"))
+		else if(!country.matches("^[a-zA-Z ]+$"))
 			throw new TenantNotFoundException("Country cannot contain Numbers or Special Characters");
 		else
 			flag = true;

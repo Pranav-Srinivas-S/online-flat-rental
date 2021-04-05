@@ -17,7 +17,7 @@ import com.capg.onlineflatrental.util.FlatBookingUtils;
 @Service
 public class FlatBookingServiceImpl implements IFlatBookingService {
 	@Autowired
-	static IFlatBookingRepository flatbookingRepo;
+	IFlatBookingRepository flatbookingRepo;
 
 	@Override
 	public FlatBookingDTO addFlatBooking(FlatBooking  flatbooking) {
@@ -83,16 +83,25 @@ public class FlatBookingServiceImpl implements IFlatBookingService {
 		return flag;
 			
 	}
-	public static boolean validateBookingFromDate(FlatBooking flatbooking) {
-		boolean flag = true;
-		if (flatbooking.getBookingFromDate() == null || flatbooking.getBookingFromDate().isAfter(LocalDate.now()))
-			flag = false;
+	public static boolean validateBookingFromDate(FlatBooking flatbooking) throws FlatBookingNotFoundException {
+		boolean flag = false;
+		if (flatbooking.getBookingFromDate() == null )
+			throw new FlatBookingNotFoundException("Booking_From_Date cannot be empty");
+		else if(flatbooking.getBookingFromDate().isAfter(LocalDate.now()))
+				throw new FlatBookingNotFoundException("Booking_From_Date cannot be after Current_System_Date");	
+		else
+			flag = true;
 		return flag;
 	}
-	public static boolean validateBookingToDate(FlatBooking flatbooking) {
-		boolean flag = true;
-		if (flatbooking.getBookingToDate() == null || flatbooking.getBookingToDate().isAfter(flatbooking.getBookingFromDate()))
-			flag = false;
+	
+	public static boolean validateBookingToDate(FlatBooking flatbooking) throws FlatBookingNotFoundException {
+		boolean flag = false;
+		if (flatbooking.getBookingToDate() == null )
+			throw new FlatBookingNotFoundException("Booking_To_Date cannot be empty");
+		else if(flatbooking.getBookingToDate().isBefore(flatbooking.getBookingFromDate()))
+				throw new FlatBookingNotFoundException("Booking_To_Date cannot be before Booking_From_Date");	
+		else
+			flag = true;
 		return flag;
 	}
 
