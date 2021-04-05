@@ -1,10 +1,15 @@
 package com.capg.onlineflatrental.service;
 
+import java.time.LocalDate;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.capg.onlineflatrental.entities.FlatBooking;
 import com.capg.onlineflatrental.exception.FlatBookingNotFoundException;
+import com.capg.onlineflatrental.exception.InvalidFlatInputException;
+import com.capg.onlineflatrental.exception.TenantNotFoundException;
 import com.capg.onlineflatrental.model.FlatBookingDTO;
 import com.capg.onlineflatrental.repository.IFlatBookingRepository;
 import com.capg.onlineflatrental.util.FlatBookingUtils;
@@ -61,19 +66,43 @@ public class FlatBookingServiceImpl implements IFlatBookingService {
 		return FlatBookingUtils.convertToFlatBookingDtoList(flatbookingList);
 	}
 
-	public static boolean validateFlatBooking(FlatBooking flatbooking) {
-		// TODO Auto-generated method stub
-		return false;
+	public static boolean validateFlatBooking(FlatBooking flatBooking) throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		boolean flag = false;
+		if (flatBooking==null)
+			throw new FlatBookingNotFoundException("Flat Booking details cannot be blank");
+		else if (!(validateBookingFromDate(flatBooking)))
+			throw new FlatBookingNotFoundException("Flat Booking From Date cannot be empty or after current date");
+		else if (!(validateBookingToDate(flatBooking)))
+			throw new FlatBookingNotFoundException("Flat Booking To Date cannot be empty or before Flat Booking From Date");
+		else if (!TenantServiceImpl.validateTenant(flatBooking.getTenant()))
+			throw new FlatBookingNotFoundException("Invalid Tenant Details");
+		else if (!FlatServiceImpl.validateFlat(flatBooking.getFlat()))
+			throw new FlatBookingNotFoundException("Invalid Flat Details");
+		else
+			flag = true;
+		return flag;
+			
+	}
+	public static boolean validateBookingFromDate(FlatBooking flatbooking) {
+		boolean flag = true;
+		if (flatbooking.getBookingFromDate() == null || flatbooking.getBookingFromDate().isAfter(LocalDate.now()))
+			flag = false;
+		return flag;
+	}
+	public static boolean validateBookingToDate(FlatBooking flatbooking) {
+		boolean flag = true;
+		if (flatbooking.getBookingToDate() == null || flatbooking.getBookingToDate().isAfter(flatbooking.getBookingFromDate()))
+			flag = false;
+		return flag;
 	}
 
-	public static boolean validateFlatBoooking(FlatBooking flatbooking) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public static boolean validateFlatBookingId(int id) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean validateFlatBookingId(int id) throws FlatBookingNotFoundException
+	{
+		boolean flag = flatbookingRepo.existsById(id);
+		String flatbookingNotFound ="flatbooking id not found";
+		if(flag == false)
+			throw new FlatBookingNotFoundException(flatbookingNotFound);
+		return flag;
 	}
 
 }
