@@ -61,7 +61,7 @@ package com.capg.onlineflatrental.controller;
 		{
 			UserDTO userDTO = null;
 			ResponseEntity<Object> userResponse = null;
-				if(UserServiceImpl.validateUser(user))
+				if(UserServiceImpl.validateUser1(user))
 				{
 					userDTO = userService.updatePassword(user, newpass);
 					userResponse = new ResponseEntity<Object>(userDTO, HttpStatus.ACCEPTED);
@@ -117,10 +117,6 @@ package com.capg.onlineflatrental.controller;
 			return userService.viewAllUser();
 		}
 		
-		@ExceptionHandler({UserNotFoundException.class})
-		public ResponseEntity<String> handleException()
-		{
-			return new ResponseEntity<String>("User Not Found ", HttpStatus.NOT_FOUND);
-		}
+		
 		
 	}
