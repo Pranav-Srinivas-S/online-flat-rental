@@ -8,9 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
-//@Table(name = "Login")
+@Table(name = "Login")
 public class Login {
 
 	@Id
@@ -24,7 +25,6 @@ public class Login {
 
 	public Login() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Login(int loginId, User user) {

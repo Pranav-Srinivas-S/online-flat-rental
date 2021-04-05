@@ -19,13 +19,14 @@ import com.capg.onlineflatrental.entities.Admin;
 import com.capg.onlineflatrental.exception.AdminNotFoundException;
 import com.capg.onlineflatrental.model.AdminDTO;
 import com.capg.onlineflatrental.service.AdminServiceImpl;
+import com.capg.onlineflatrental.service.IAdminService;
 
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("/api/ofr/admin")
 public class AdminController {
 
 	@Autowired
-	AdminServiceImpl adminService;
+	IAdminService adminService;
 	
 	@PostMapping("/add-admin")
 	public ResponseEntity<Object> addAdmin(@RequestBody Admin admin) throws AdminNotFoundException

@@ -20,8 +20,9 @@ import com.capg.onlineflatrental.model.FlatBookingDTO;
 import com.capg.onlineflatrental.service.FlatBookingServiceImpl;
 
 @RestController
-@RequestMapping("/api/flatbooking")
+@RequestMapping("/api/ofr/flatbooking")
 public class FlatBookingController {
+	
 	@Autowired
 	FlatBookingServiceImpl flatBookingService;
 	

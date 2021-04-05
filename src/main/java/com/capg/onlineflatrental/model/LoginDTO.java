@@ -11,7 +11,6 @@ public class LoginDTO {
 
 	public LoginDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public LoginDTO(int loginId, User user) {

@@ -14,7 +14,7 @@ import com.capg.onlineflatrental.exception.UserNotFoundException;
 import com.capg.onlineflatrental.service.ILoginService;
 
 @RestController
-@RequestMapping("/api/login")
+@RequestMapping("/api/ofr/login")
 public class LoginController {
 	
 	public static final String id = null;
