@@ -2,6 +2,8 @@ package com.capg.onlineflatrental.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
@@ -10,6 +12,7 @@ import javax.validation.constraints.NotBlank;
 public class Admin {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ADMIN_ID", nullable = false)
 	private int adminId;
 	@Column(name = "ADMIN_PASSWORD", length = 20)

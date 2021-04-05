@@ -44,7 +44,7 @@ public class AdminServiceImpl implements IAdminService{
 
 	@Override
 	public AdminDTO deleteAdmin(int id) throws AdminNotFoundException {
-		Admin existAdmin =adminRepo.findById(id).orElse(null);
+		Admin existAdmin = adminRepo.findById(id).orElse(null);
 		if(existAdmin == null)
 			throw new AdminNotFoundException(adminNotFound);
 		else
@@ -71,8 +71,7 @@ public class AdminServiceImpl implements IAdminService{
 		boolean flag= false;
 		if(admin == null)
 			throw new AdminNotFoundException("Admin details cannot be blank");
-		else if (!(validateId(admin.getAdminId()) 
-				&& validatePassword(admin.getAdminPassword()) ))
+		else if (!validatePassword(admin.getAdminPassword()))
 			throw new AdminNotFoundException("Invalid details");
 		else 
 			flag = true;
@@ -100,9 +99,19 @@ public class AdminServiceImpl implements IAdminService{
 				&& adminPassword.matches(".*[0-9].*") 
 				&& adminPassword.length() >= 8))
 		{
-			throw new AdminNotFoundException("Invalid Password");
-				
-			
+			throw new AdminNotFoundException("Format for Password is Wrong\r\n"
+					+ "\r\n"
+					+"Please Enter Password Again :\r\n"
+					+ "____________________________________________________________\r\n"
+					+ "\r\n"
+					+"Valid Format for Password :\r\n"
+					+ "\r\n"
+					+ "Password should not contain any space.\r\n"
+					+ "Password should contain at least one digit(0-9).\r\n"
+					+ "Password length should be between 8 to 15 characters.\r\n"
+					+ "Password should contain at least one lowercase letter(a-z).\r\n"
+					+ "Password should contain at least one uppercase letter(A-Z).\r\n"
+					+ "Password should contain at least one special character ( @, #, %, &, !, $, etc….)");	
 		}
 		else
 			flag=true;

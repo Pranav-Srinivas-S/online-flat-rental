@@ -1,17 +1,14 @@
 package com.capg.onlineflatrental.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.capg.onlineflatrental.entities.Flat;
 import com.capg.onlineflatrental.exception.FlatNotFoundException;
 import com.capg.onlineflatrental.exception.InvalidFlatInputException;
 import com.capg.onlineflatrental.model.FlatDTO;
 import com.capg.onlineflatrental.repository.IFlatRepository;
 import com.capg.onlineflatrental.util.FlatUtils;
-
 
 @Service
 public class FlatServiceImpl implements IFlatService {

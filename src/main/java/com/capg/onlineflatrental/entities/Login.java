@@ -1,30 +1,36 @@
 package com.capg.onlineflatrental.entities;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 //@Table(name = "Login")
 public class Login {
-	
+
 	@Id
-	@Column(name = "LOGIN_ID", nullable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "LOGIN_ID")
 	private int loginId;
 	
-	@Column(name = "LOGIN_PASSWORD", length = 20)
-	@NotBlank(message = "Login Password cannot be blank")
-	
-	private String loginPassword;
-	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "userId")
+	private User user;
+
 	public Login() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public Login(int loginId, String loginPassword) {
+	public Login(int loginId, User user) {
 		super();
 		this.loginId = loginId;
-		this.loginPassword = loginPassword;
+		this.user = user;
 	}
 
 	public int getLoginId() {
@@ -35,17 +41,17 @@ public class Login {
 		this.loginId = loginId;
 	}
 
-	public String getLoginPassword() {
-		return loginPassword;
+	public User getUser() {
+		return user;
 	}
 
-	public void setLoginPassword(String loginPassword) {
-		this.loginPassword = loginPassword;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override
 	public String toString() {
-		return "Login [lohinId=" + loginId + ", loginPassword=" + loginPassword + "]";
+		return "Login [loginId=" + loginId + ", user=" + user + "]";
 	}
 	
 }
