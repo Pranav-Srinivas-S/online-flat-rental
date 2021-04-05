@@ -1,6 +1,6 @@
 package com.capg.onlineflatrental.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 import org.springframework.stereotype.Component;
 import com.capg.onlineflatrental.entities.Flat;
 import com.capg.onlineflatrental.entities.Tenant;
@@ -11,14 +11,14 @@ public class FlatBookingDTO {
 	private int	bookingNo;
 	private Flat flat;
 	private Tenant tenant;
-	private Date bookingFromDate;
-	private Date bookingToDate;
+	private LocalDate bookingFromDate;
+	private LocalDate bookingToDate;
 	
 	public FlatBookingDTO() {
 		super();
 	}
 
-	public FlatBookingDTO(int bookingNo, Flat flat, Tenant tenant, Date bookingFromDate, Date bookingToDate) {
+	public FlatBookingDTO(int bookingNo, Flat flat, Tenant tenant, LocalDate bookingFromDate, LocalDate bookingToDate) {
 		super();
 		this.bookingNo = bookingNo;
 		this.flat = flat;
@@ -51,19 +51,19 @@ public class FlatBookingDTO {
 		this.tenant = tenant;
 	}
 
-	public Date getBookingFromDate() {
+	public LocalDate getBookingFromDate() {
 		return bookingFromDate;
 	}
 
-	public void setBookingFromDate(Date bookingFromDate) {
+	public void setBookingFromDate(LocalDate bookingFromDate) {
 		this.bookingFromDate = bookingFromDate;
 	}
 
-	public Date getBookingToDate() {
+	public LocalDate getBookingToDate() {
 		return bookingToDate;
 	}
 
-	public void setBookingToDate(Date bookingToDate) {
+	public void setBookingToDate(LocalDate bookingToDate) {
 		this.bookingToDate = bookingToDate;
 	}
 
