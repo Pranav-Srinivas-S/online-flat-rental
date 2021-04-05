@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.capg.onlineflatrental.entities.Admin;
 import com.capg.onlineflatrental.exception.AdminNotFoundException;
+import com.capg.onlineflatrental.exception.TenantNotFoundException;
 import com.capg.onlineflatrental.model.AdminDTO;
 import com.capg.onlineflatrental.repository.IAdminRepository;
 import com.capg.onlineflatrental.util.AdminUtils;
@@ -24,6 +25,8 @@ public class AdminServiceImpl implements IAdminService{
 		Admin adminEntity;
 		if(admin == null)
 			adminEntity = null;
+		else if(!validateAdmin(admin))
+			throw new AdminNotFoundException("Invalid Admin");
 		else
 			adminEntity = adminRepo.save(admin);
 		return AdminUtils.convertToAdminDto(adminEntity);
