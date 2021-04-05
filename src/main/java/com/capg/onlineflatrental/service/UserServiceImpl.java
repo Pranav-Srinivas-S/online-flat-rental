@@ -188,20 +188,6 @@ public class UserServiceImpl implements IUserService{
         
     }	
 		
-//		 {  
-//		        String regex = "^[A-Za-z]\\w{3,20}$";
-//		        Pattern p = Pattern.compile(regex);
-//		        if (userName == null) {
-//		            return false;
-//		        }
-//		        Matcher m = p.matcher(userName);
-//		        return m.matches();
-//		        
-//		    }	
-	
-    
-	
-
 	public static boolean validateUser(User user) throws UserNotFoundException {
 		boolean flag = false;
 		if(user == null)
