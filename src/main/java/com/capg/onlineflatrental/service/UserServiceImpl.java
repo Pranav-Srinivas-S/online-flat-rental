@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.capg.onlineflatrental.entities.User;
+import com.capg.onlineflatrental.exception.TenantNotFoundException;
 import com.capg.onlineflatrental.exception.UserNotFoundException;
 import com.capg.onlineflatrental.model.UserDTO;
 import com.capg.onlineflatrental.repository.IUserRepository;
@@ -82,10 +83,12 @@ public class UserServiceImpl implements IUserService{
 		return UserUtils.convertToUserDto(existUser);
 	}
 	
-	public boolean validateUser(String userName, String password) throws UserNotFoundException {
+	public boolean validateUser(int id, String userName, String password) throws UserNotFoundException {
 		boolean flag = false;
-		User user = userRepo.findByUserName(userName);
-		if(user == null)
+		User user = userRepo.findByIdAndName(id, userName);
+		if(!validateUserId(id))
+			throw new UserNotFoundException("No User available in given ID");
+		else if(user == null)
 			throw new UserNotFoundException("Invalid User Name");
 		if (user.getPassword().equals(password) && user != null)
 			flag = true;
@@ -175,16 +178,38 @@ public class UserServiceImpl implements IUserService{
     }
 	
 	
-	public static boolean validateUsername(String userName)
+	public static boolean validateUsername(String userName) throws UserNotFoundException
     {  
-        String regex = "^[A-Za-z]\\w{3,20}$";
-        Pattern p = Pattern.compile(regex);
-        if (userName == null) {
-            return false;
-        }
-        Matcher m = p.matcher(userName);
-        return m.matches();
-        
+		boolean flag = false;
+		if(userName == null)
+			throw new UserNotFoundException("User Name cannot be empty");
+		else if(!(userName.matches("^[a-zA-Z]+$")) && userName.length()<2 && userName.length()>=30)
+			throw new UserNotFoundException("Format For UserName is Wrong\r\n"
+					+ "\r\n"
+					+ "Please Enter Again :\r\n"
+					+ "____________________________________________________________\r\n"
+					+ "\r\n"
+					+ "Valid Format for UserName:\r\n"
+					+ "\r\n"
+					+ "The username consists of 3 to 30 characters inclusive.\r\n"
+					+ "The first character of the username must be an alphabetic character, i.e., either lowercase character\r\n"
+					+ "[a – z] or uppercase character [A – Z].\r\n"
+					+ "____________________________________________________________\r\n");
+		else
+			flag = true;
+		return flag;
+		
+//		 {  
+//		        String regex = "^[A-Za-z]\\w{3,20}$";
+//		        Pattern p = Pattern.compile(regex);
+//		        if (userName == null) {
+//		            return false;
+//		        }
+//		        Matcher m = p.matcher(userName);
+//		        return m.matches();
+//		        
+//		    }	
+		
     }	
 	
 
