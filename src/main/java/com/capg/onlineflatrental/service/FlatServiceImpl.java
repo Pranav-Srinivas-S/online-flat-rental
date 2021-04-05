@@ -93,6 +93,14 @@ public class FlatServiceImpl implements IFlatService {
 		return flag;
 	}
 	
+	public boolean validateFlatId(int id) throws FlatNotFoundException
+	{
+		boolean flag = flatRepo.existsById(id);
+		if(flag == false)
+			throw new FlatNotFoundException("No FLat available in given ID");
+		return flag;
+	}
+	
 	public static boolean validateFlatCost(float cost) throws InvalidFlatInputException
 	{
 	boolean flag=false;
