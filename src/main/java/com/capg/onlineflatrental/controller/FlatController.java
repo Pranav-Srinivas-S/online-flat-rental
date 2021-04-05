@@ -1,6 +1,5 @@
 package com.capg.onlineflatrental.controller;
 
-
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +46,7 @@ public class FlatController {
 	{
 		FlatDTO flatDTO = null;
 		ResponseEntity<Object> flatResponse = null;
-		if(FlatServiceImpl.validateFlat(flat))
+		if(FlatServiceImpl.validateFlat(flat) && flatService.validateFlatId(flat.getFlatId()))
 		{
 			flatDTO = flatService.updateFlat(flat);
 			flatResponse = new ResponseEntity<Object>(flatDTO, HttpStatus.ACCEPTED);
@@ -115,4 +114,11 @@ public class FlatController {
 			throw new InvalidFlatInputException(" Invalid input for cost/availability");
 		return flatResponse;
 	}
+	
+//	@ExceptionHandler({InvalidFlatInputException.class})
+//	public ResponseEntity<String> handleException()
+//	{
+//		return new ResponseEntity<String>("Invalid Flat Details", HttpStatus.NOT_FOUND);
+//	}
+	
 }
