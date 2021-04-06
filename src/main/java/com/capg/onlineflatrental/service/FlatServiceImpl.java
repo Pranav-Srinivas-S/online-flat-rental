@@ -91,7 +91,7 @@ public class FlatServiceImpl implements IFlatService {
 		return flag;
 	}
 	
-	public boolean validateFlatId(int id) throws FlatNotFoundException
+	public  boolean validateFlatId(int id) throws FlatNotFoundException
 	{
 		boolean flag = flatRepo.existsById(id);
 		if(flag == false)

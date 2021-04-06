@@ -17,6 +17,7 @@ import com.capg.onlineflatrental.entities.Flat;
 import com.capg.onlineflatrental.exception.FlatNotFoundException;
 import com.capg.onlineflatrental.exception.InvalidFlatInputException;
 import com.capg.onlineflatrental.model.FlatDTO;
+import com.capg.onlineflatrental.service.IFlatService;
 import com.capg.onlineflatrental.service.FlatServiceImpl;
 
 @RestController
@@ -24,7 +25,7 @@ import com.capg.onlineflatrental.service.FlatServiceImpl;
 public class FlatController {
 
 	@Autowired
-	FlatServiceImpl flatService;
+	IFlatService flatService;
 	
 	@PostMapping("/add-flat")
 	public ResponseEntity<Object> addFlat(@RequestBody Flat flat) throws InvalidFlatInputException
@@ -46,7 +47,7 @@ public class FlatController {
 	{
 		FlatDTO flatDTO = null;
 		ResponseEntity<Object> flatResponse = null;
-		if(FlatServiceImpl.validateFlat(flat) && flatService.validateFlatId(flat.getFlatId()))
+		if(FlatServiceImpl.validateFlat(flat))
 		{
 			flatDTO = flatService.updateFlat(flat);
 			flatResponse = new ResponseEntity<Object>(flatDTO, HttpStatus.ACCEPTED);
