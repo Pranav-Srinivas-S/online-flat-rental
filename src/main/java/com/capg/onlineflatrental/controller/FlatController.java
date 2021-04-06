@@ -2,6 +2,7 @@ package com.capg.onlineflatrental.controller;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,18 +14,20 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.capg.onlineflatrental.entities.Flat;
 import com.capg.onlineflatrental.exception.FlatNotFoundException;
 import com.capg.onlineflatrental.exception.InvalidFlatInputException;
 import com.capg.onlineflatrental.model.FlatDTO;
 import com.capg.onlineflatrental.service.FlatServiceImpl;
+import com.capg.onlineflatrental.service.IFlatService;
 
 @RestController
 @RequestMapping("/api/ofr/flat")
 public class FlatController {
 
 	@Autowired
-	FlatServiceImpl flatService;
+	IFlatService flatService;
 	
 	@PostMapping("/add-flat")
 	public ResponseEntity<Object> addFlat(@RequestBody Flat flat) throws InvalidFlatInputException
@@ -46,7 +49,7 @@ public class FlatController {
 	{
 		FlatDTO flatDTO = null;
 		ResponseEntity<Object> flatResponse = null;
-		if(FlatServiceImpl.validateFlat(flat) && flatService.validateFlatId(flat.getFlatId()))
+		if(FlatServiceImpl.validateFlat(flat))
 		{
 			flatDTO = flatService.updateFlat(flat);
 			flatResponse = new ResponseEntity<Object>(flatDTO, HttpStatus.ACCEPTED);

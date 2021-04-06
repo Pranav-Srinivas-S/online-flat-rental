@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.capg.onlineflatrental.entities.Landlord;
 import com.capg.onlineflatrental.exception.InvalidFlatInputException;
 import com.capg.onlineflatrental.exception.LandlordNotFoundException;
 import com.capg.onlineflatrental.model.LandlordDTO;
+import com.capg.onlineflatrental.service.ILandlordService;
 import com.capg.onlineflatrental.service.LandlordServiceImpl;
 
 @RestController
@@ -25,7 +27,7 @@ import com.capg.onlineflatrental.service.LandlordServiceImpl;
 public class LandlordController {
 
 	@Autowired
-	LandlordServiceImpl landlordService;
+	ILandlordService landlordService;
 	
 	@PostMapping("/add-landlord")
 	public ResponseEntity<Object> addLandlord(@RequestBody Landlord landlord) throws LandlordNotFoundException, InvalidFlatInputException
@@ -47,7 +49,7 @@ public class LandlordController {
 	{
 		LandlordDTO landlordDTO = null;
 		ResponseEntity<Object> landlordResponse = null;
-		if(LandlordServiceImpl.validateLandlord(landlord) && landlordService.validateLandlordId(landlord.getLandlordId()))
+		if(LandlordServiceImpl.validateLandlord(landlord))
 			{
 				landlordDTO = landlordService.updateLandlord(landlord);
 				landlordResponse = new ResponseEntity<Object>(landlordDTO, HttpStatus.ACCEPTED);

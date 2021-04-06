@@ -32,7 +32,6 @@ public class TenantServiceImpl implements ITenantService {
 	@Override
 	public TenantDTO updateTenant(Tenant tenant) throws TenantNotFoundException {
 		Tenant tenantEntity;
-		//validateTenantId(tenant.getTenantId());
 		if(tenant == null)
 			tenantEntity = null;
 		Tenant existTenant = tenantRepo.findById(tenant.getTenantId()).orElse(null);
@@ -81,14 +80,6 @@ public class TenantServiceImpl implements ITenantService {
 			throw new TenantNotFoundException("Invalid Address");
 		else
 			flag = true;
-		return flag;
-	}
-	
-	public boolean validateTenantId(int id) throws TenantNotFoundException
-	{
-		boolean flag = tenantRepo.existsById(id);
-		if(flag == false)
-			throw new TenantNotFoundException(tenantNotFound);
 		return flag;
 	}
 	

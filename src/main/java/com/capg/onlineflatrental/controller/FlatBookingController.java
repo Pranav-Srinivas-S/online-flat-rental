@@ -1,6 +1,7 @@
 package com.capg.onlineflatrental.controller;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,19 +13,21 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.capg.onlineflatrental.entities.FlatBooking;
 import com.capg.onlineflatrental.exception.FlatBookingNotFoundException;
 import com.capg.onlineflatrental.exception.InvalidFlatInputException;
 import com.capg.onlineflatrental.exception.TenantNotFoundException;
 import com.capg.onlineflatrental.model.FlatBookingDTO;
 import com.capg.onlineflatrental.service.FlatBookingServiceImpl;
+import com.capg.onlineflatrental.service.IFlatBookingService;
 
 @RestController
 @RequestMapping("/api/ofr/flatbooking")
 public class FlatBookingController {
 	
 	@Autowired
-	FlatBookingServiceImpl flatBookingService;
+	IFlatBookingService flatBookingService;
 	
 	@PostMapping("/add-flatbooking")
 	public ResponseEntity<Object> addFlatBooking(@RequestBody  FlatBooking flatBooking) throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException
@@ -46,7 +49,7 @@ public class FlatBookingController {
 {
 	FlatBookingDTO flatBookingDTO = null;
 	ResponseEntity<Object> flatBookingResponse = null;
-		if(FlatBookingServiceImpl.validateFlatBooking(flatBooking)&& flatBookingService.validateFlatBookingId(flatBooking.getBookingNo()))
+		if(FlatBookingServiceImpl.validateFlatBooking(flatBooking))
 		{
 			flatBookingDTO = flatBookingService.updateFlatBooking(flatBooking);
 			flatBookingResponse = new ResponseEntity<Object>(flatBookingDTO, HttpStatus.ACCEPTED);
@@ -59,31 +62,16 @@ public class FlatBookingController {
 	@DeleteMapping("/delete-flatbooking/{id}")
 	public ResponseEntity<Object> deleteFlatBooking(@PathVariable int id) throws FlatBookingNotFoundException
 {
-	FlatBookingDTO flatBookingDTO = null;
-	ResponseEntity<Object> flatBookingResponse = null;
-		if(flatBookingService.validateFlatBookingId(id))
-		{
-			flatBookingDTO = flatBookingService.deleteFlatBooking(id);
-			flatBookingResponse = new ResponseEntity<Object>(flatBookingDTO, HttpStatus.ACCEPTED);
-		}
-		else
-			throw new FlatBookingNotFoundException("No FlatBooking available in given ID");
-		return flatBookingResponse;
+		FlatBookingDTO flatBookingDTO = flatBookingService.deleteFlatBooking(id);
+		return new ResponseEntity<Object>(flatBookingDTO, HttpStatus.ACCEPTED);
 	}
 
 	@GetMapping("/view-flatbooking/{id}")
 	public ResponseEntity<Object> getFlatBookingById(@PathVariable int id) throws FlatBookingNotFoundException
 {
-	FlatBookingDTO flatBookingDTO = null;
-	ResponseEntity<Object> flatBookingResponse = null;
-		if(flatBookingService.validateFlatBookingId(id))
-		{
-			flatBookingDTO = flatBookingService.viewFlatBooking(id);
-			flatBookingResponse = new ResponseEntity<Object>(flatBookingDTO, HttpStatus.ACCEPTED);
-		}
-		else
-			throw new FlatBookingNotFoundException("No FlatBooking available in given ID");
-		return flatBookingResponse;
+		FlatBookingDTO flatBookingDTO = null;
+		flatBookingDTO = flatBookingService.viewFlatBooking(id);
+		return new ResponseEntity<Object>(flatBookingDTO, HttpStatus.ACCEPTED);
 	}
 
 	@GetMapping("/view-all-flatbookings")

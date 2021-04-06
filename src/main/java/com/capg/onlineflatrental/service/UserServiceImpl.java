@@ -49,6 +49,8 @@ public class UserServiceImpl implements IUserService{
 		User existUser = userRepo.findById(user.getUserId()).orElse(null);
 		if(existUser == null)
 			throw new UserNotFoundException("No user found");
+		else if(!validateUserWithName(user.getUserId(), user.getUserName(), user.getPassword()))
+			throw new UserNotFoundException("User Details Dont Match");
 		else
 			userEntity = userRepo.save(user);
 		return UserUtils.convertToUserDto(userEntity);
@@ -61,7 +63,23 @@ public class UserServiceImpl implements IUserService{
 			userEntity = null;
 		User existUser = userRepo.findById(user.getUserId()).orElse(null);
 		if(existUser == null)
-			throw new UserNotFoundException("No user found");
+			throw new UserNotFoundException("No user found with given ID");
+		else if(!checkUser(user.getUserId(), user.getUserName(), user.getPassword()))
+			throw new UserNotFoundException("User Details Dont Match");
+		else if(!validatePassword(newpass))
+			throw new UserNotFoundException("Format for Password is Wrong\r\n"
+					+ "\r\n"
+					+"Please Enter Password Again :\r\n"
+					+ "____________________________________________________________\r\n"
+					+ "\r\n"
+					+"Valid Format for Password :\r\n"
+					+ "\r\n"
+					+ "Password should not contain any space.\r\n"
+					+ "Password should contain at least one digit(0-9).\r\n"
+					+ "Password length should be between 8 to 15 characters.\r\n"
+					+ "Password should contain at least one lowercase letter(a-z).\r\n"
+					+ "Password should contain at least one uppercase letter(A-Z).\r\n"
+					+ "Password should contain at least one special character ( @, #, %, &, !, $, etc….)");
 		else {
 			user.setPassword(newpass);
 		userEntity = userRepo.save(user);}
@@ -80,7 +98,8 @@ public class UserServiceImpl implements IUserService{
 		return UserUtils.convertToUserDto(existUser);
 	}
 	
-	public boolean validateUser(int id, String userName, String password) throws UserNotFoundException {
+	@Override
+	public boolean checkUser(int id, String userName, String password) throws UserNotFoundException {
 		boolean flag = false;
 		User user = userRepo.findByIdAndName(id, userName);
 		if(!validateUserId(id))
@@ -285,6 +304,7 @@ public class UserServiceImpl implements IUserService{
 		else 
 			throw new UserNotFoundException("Password does not Match");
 		return flag;
+		
 	}
 
 }
