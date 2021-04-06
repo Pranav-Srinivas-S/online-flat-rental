@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.capg.onlineflatrental.entities.User;
 import com.capg.onlineflatrental.exception.UserNotFoundException;
 import com.capg.onlineflatrental.model.UserDTO;
+import com.capg.onlineflatrental.service.IUserService;
 import com.capg.onlineflatrental.service.UserServiceImpl;
 	
 	@RestController
@@ -26,7 +27,7 @@ import com.capg.onlineflatrental.service.UserServiceImpl;
 	public class UserController {
 
 		@Autowired
-		UserServiceImpl userService;
+		IUserService userService;
 		
 		@PostMapping("/add-user")
 		public ResponseEntity<Object> addUser(@RequestBody User user) throws UserNotFoundException 
@@ -49,13 +50,11 @@ import com.capg.onlineflatrental.service.UserServiceImpl;
 		{
 			UserDTO userDTO = null;
 			ResponseEntity<Object> userResponse = null;
-				if(userService.validateUserWithName(user.getUserId(), user.getUserName(), user.getPassword()) && userService.validateUserId(user.getUserId()) && UserServiceImpl.validateUserType(user.getUserType()))
+				if(UserServiceImpl.validateUserType(user.getUserType()))
 				{
 					userDTO = userService.updateUser(user);
 					userResponse = new ResponseEntity<Object>(userDTO, HttpStatus.ACCEPTED);
 				}
-				else
-					throw new UserNotFoundException("No User available in given ID");
 				return userResponse;
 			}
 		
@@ -64,7 +63,7 @@ import com.capg.onlineflatrental.service.UserServiceImpl;
 		{
 			UserDTO userDTO = null;
 			ResponseEntity<Object> userResponse = null;
-				if(userService.validateUser(user.getUserId(), user.getUserName(), user.getPassword()) && UserServiceImpl.validatePassword(newpass) && UserServiceImpl.validateUserType(user.getUserType()))
+				if(UserServiceImpl.validateUserType(user.getUserType()))
 				{
 					userDTO = userService.updatePassword(user, newpass);
 					userResponse = new ResponseEntity<Object>(userDTO, HttpStatus.ACCEPTED);
@@ -79,7 +78,7 @@ import com.capg.onlineflatrental.service.UserServiceImpl;
 			ResponseEntity<String> userResponse = new ResponseEntity<String>("User Name and Password Does Not Match", HttpStatus.ACCEPTED);
 			if( userName==null)
 				throw new UserNotFoundException("No user Found");
-			else if(!userService.validateUser(id, userName, password))
+			else if(!userService.checkUser(id, userName, password))
 				throw new UserNotFoundException("User name and Password Does not match");
 			else
 				userResponse = new ResponseEntity<String>("User Name and Password Match!", HttpStatus.ACCEPTED);

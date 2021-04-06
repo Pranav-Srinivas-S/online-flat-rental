@@ -1,8 +1,6 @@
 package com.capg.onlineflatrental.controller;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.capg.onlineflatrental.entities.Tenant;
 import com.capg.onlineflatrental.exception.TenantNotFoundException;
 import com.capg.onlineflatrental.model.TenantDTO;
@@ -61,33 +58,15 @@ public class TenantController {
 	@DeleteMapping("/delete-tenant/{id}")
 	public ResponseEntity<Object> deleteTenant(@PathVariable int id) throws TenantNotFoundException
 	{
-		TenantDTO tenantDTO = null;
-		ResponseEntity<Object> tenantResponse = null;
-		Optional<TenantDTO> optional = Optional.of(tenantService.deleteTenant(id));
-		if(optional.isPresent())
-		{
-			tenantDTO = optional.get();
-			tenantResponse = new ResponseEntity<Object>(tenantDTO, HttpStatus.ACCEPTED);
-		}
-		else
-			throw new TenantNotFoundException("No Tenant available in given ID");
-		return tenantResponse;
+		TenantDTO tenantDTO = tenantService.deleteTenant(id);
+		return new ResponseEntity<Object>(tenantDTO, HttpStatus.ACCEPTED);
 	}
 	
 	@GetMapping("/view-tenant/{id}")
 	public ResponseEntity<Object> getTenantById(@PathVariable int id) throws TenantNotFoundException
 	{
-		TenantDTO tenantDTO = null;
-		ResponseEntity<Object> tenantResponse = null;
-		Optional<TenantDTO> optional = Optional.of(tenantService.viewTenant(id));
-		if(optional.isPresent())
-		{
-			tenantDTO = optional.get();
-			tenantResponse = new ResponseEntity<Object>(tenantDTO, HttpStatus.ACCEPTED);
-		}
-		else
-			throw new TenantNotFoundException("No Tenant available in given ID");
-		return tenantResponse;
+		TenantDTO tenantDTO = tenantService.viewTenant(id);
+		return new ResponseEntity<Object>(tenantDTO, HttpStatus.ACCEPTED);
 	}
 	
 	@GetMapping("/view-all-tenants")
