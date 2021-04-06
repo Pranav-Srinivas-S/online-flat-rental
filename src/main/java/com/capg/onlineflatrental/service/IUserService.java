@@ -9,10 +9,10 @@ public interface IUserService {
 
 	public  UserDTO viewUser(int id) throws UserNotFoundException;
 	public List<UserDTO> viewAllUser();
-	public UserDTO addUser(User user);
+	public UserDTO addUser(User user) throws UserNotFoundException;
 	public UserDTO updateUser(User user)  throws UserNotFoundException;
 	public UserDTO updatePassword(User user,String newpass) throws UserNotFoundException;
 	public UserDTO removeUser(int id) throws UserNotFoundException;
-	public boolean checkUser(int id, String userName, String password) throws UserNotFoundException;
+	boolean checkUser(String userName, String password) throws UserNotFoundException;
 	
 }
