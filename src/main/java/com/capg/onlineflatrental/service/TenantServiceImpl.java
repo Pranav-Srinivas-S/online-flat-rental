@@ -135,7 +135,7 @@ public class TenantServiceImpl implements ITenantService {
 	{
 		boolean flag = false;
 		if(city == null)
-			throw new TenantNotFoundException("city cannot be empty");
+			throw new TenantNotFoundException("City cannot be empty");
 		else if(!city.matches("^[a-zA-Z ]+$"))
 			throw new TenantNotFoundException("City cannot contain Numbers or Special Characters");
 		else
