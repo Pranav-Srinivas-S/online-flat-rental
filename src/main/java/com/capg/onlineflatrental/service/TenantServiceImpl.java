@@ -37,6 +37,8 @@ public class TenantServiceImpl implements ITenantService {
 		Tenant existTenant = tenantRepo.findById(tenant.getTenantId()).orElse(null);
 		if(existTenant == null)
 			throw new TenantNotFoundException(tenantNotFound);
+		else if(!validateTenant(tenant))
+			throw new TenantNotFoundException(tenantNotFound);
 		else
 			tenantEntity = tenantRepo.save(tenant);
 		return TenantUtils.convertToTenantDto(tenantEntity);

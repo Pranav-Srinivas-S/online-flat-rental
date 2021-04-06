@@ -17,6 +17,7 @@ public class TenantUtils {
 	public static Tenant convertToTenant(TenantDTO dto) {
 		Tenant tenant = new Tenant();
 		tenant.setTenantId(dto.getTenantId());
+		tenant.setTenantName(dto.getTenantName());
 		tenant.setTenantAge(dto.getTenantAge());
 		tenant.setTenantAddress(dto.getTenantAddress());
 		return tenant;
@@ -25,6 +26,7 @@ public class TenantUtils {
 	public static TenantDTO convertToTenantDto(Tenant tenant) {
 		TenantDTO dto = new TenantDTO();
 		dto.setTenantId(tenant.getTenantId());
+		dto.setTenantName(tenant.getTenantName());
 		dto.setTenantAge(tenant.getTenantAge());
 		dto.setTenantAddress(tenant.getTenantAddress());
 		return dto;
