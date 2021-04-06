@@ -73,12 +73,12 @@ import com.capg.onlineflatrental.service.UserServiceImpl;
 				return userResponse;
 		}	
 		
-		@PatchMapping("/validate-user/{id}/{userName}/{password}")
-		public ResponseEntity<String> validateUser(@PathVariable int id, @PathVariable String userName, @PathVariable String password) throws UserNotFoundException {
+		@PatchMapping("/validate-user/{userName}/{password}")
+		public ResponseEntity<String> validateUser(@PathVariable String userName, @PathVariable String password) throws UserNotFoundException {
 			ResponseEntity<String> userResponse = new ResponseEntity<String>("User Name and Password Does Not Match", HttpStatus.ACCEPTED);
 			if( userName==null)
 				throw new UserNotFoundException("No user Found");
-			else if(!userService.checkUser(id, userName, password))
+			else if(!userService.checkUser(userName, password))
 				throw new UserNotFoundException("User name and Password Does not match");
 			else
 				userResponse = new ResponseEntity<String>("User Name and Password Match!", HttpStatus.ACCEPTED);

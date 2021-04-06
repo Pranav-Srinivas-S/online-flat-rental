@@ -32,10 +32,12 @@ public class UserServiceImpl implements IUserService{
 	}
 	
 	@Override
-	public UserDTO addUser(User user) {
-		User userEntity;
-		if(user == null)
-			userEntity = null;
+	public UserDTO addUser(User user) throws UserNotFoundException {
+		User userEntity = null;
+		User existUser = null;
+		existUser = userRepo.findByUserName(user.getUserName());
+		if(existUser != null)
+			throw new UserNotFoundException("User Name already exists, Try anouther name");
 		else
 			userEntity = userRepo.save(user);
 		return UserUtils.convertToUserDto(userEntity);
@@ -99,14 +101,12 @@ public class UserServiceImpl implements IUserService{
 	}
 	
 	@Override
-	public boolean checkUser(int id, String userName, String password) throws UserNotFoundException {
+	public boolean checkUser(String userName, String password) throws UserNotFoundException {
 		boolean flag = false;
-		User user = userRepo.findByIdAndName(id, userName);
-		if(!validateUserId(id))
-			throw new UserNotFoundException("No User available in given ID");
-		else if(user == null)
+		User user = userRepo.findByUserName(userName);
+		if(user == null)
 			throw new UserNotFoundException("Invalid User Name");
-		if (user.getPassword().equals(password) && user != null)
+		else if (user.getPassword().equals(password))
 			flag = true;
 		else 
 			throw new UserNotFoundException("Password does not Match");
@@ -305,6 +305,20 @@ public class UserServiceImpl implements IUserService{
 			throw new UserNotFoundException("Password does not Match");
 		return flag;
 		
+	}
+	
+	public boolean checkUser(int id, String userName, String password) throws UserNotFoundException {
+		boolean flag = false;
+		User user = userRepo.findByIdAndName(id, userName);
+		if(!validateUserId(id))
+			throw new UserNotFoundException("No User available in given ID");
+		else if(user == null)
+			throw new UserNotFoundException("Invalid User Name");
+		if (user.getPassword().equals(password) && user != null)
+			flag = true;
+		else 
+			throw new UserNotFoundException("Password does not Match");
+		return flag;
 	}
 
 }
