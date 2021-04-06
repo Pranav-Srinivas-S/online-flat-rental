@@ -2,6 +2,7 @@ package com.capg.onlineflatrental.controller;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.capg.onlineflatrental.entities.Tenant;
 import com.capg.onlineflatrental.exception.TenantNotFoundException;
 import com.capg.onlineflatrental.model.TenantDTO;
+import com.capg.onlineflatrental.service.ITenantService;
 import com.capg.onlineflatrental.service.TenantServiceImpl;
 
 @RestController
@@ -23,7 +26,7 @@ import com.capg.onlineflatrental.service.TenantServiceImpl;
 public class TenantController {
 
 	@Autowired
-	TenantServiceImpl tenantService;
+	ITenantService tenantService;
 	
 	@PostMapping("/add-tenant")
 	public ResponseEntity<Object> addTenant(@RequestBody Tenant tenant) throws TenantNotFoundException
@@ -45,7 +48,7 @@ public class TenantController {
 	{
 		TenantDTO tenantDTO = null;
 		ResponseEntity<Object> tenantResponse = null;
-		if(TenantServiceImpl.validateTenant(tenant) && tenantService.validateTenantId(tenant.getTenantId()))
+		if(TenantServiceImpl.validateTenant(tenant))
 		{
 			tenantDTO = tenantService.updateTenant(tenant);
 			tenantResponse = new ResponseEntity<Object>(tenantDTO, HttpStatus.ACCEPTED);

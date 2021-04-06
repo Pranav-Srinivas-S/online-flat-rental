@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class FlatAddressDTO {
 
+	private int id;
 	private int houseNo;
 	private String street;
 	private String city;
@@ -76,7 +77,7 @@ public class FlatAddressDTO {
 
 	@Override
 	public String toString() {
-		return "FlatAddress [houseNo=" + houseNo + ", street=" + street + ", city=" + city + ", state=" + state
+		return "FlatAddress [addressId=" + id + ", houseNo=" + houseNo + ", street=" + street + ", city=" + city + ", state=" + state
 				+ ", pin=" + pin + ", country=" + country + "]";
 	}
 	

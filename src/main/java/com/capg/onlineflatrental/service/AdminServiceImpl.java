@@ -1,18 +1,13 @@
 package com.capg.onlineflatrental.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.capg.onlineflatrental.entities.Admin;
 import com.capg.onlineflatrental.exception.AdminNotFoundException;
-import com.capg.onlineflatrental.exception.TenantNotFoundException;
 import com.capg.onlineflatrental.model.AdminDTO;
 import com.capg.onlineflatrental.repository.IAdminRepository;
 import com.capg.onlineflatrental.util.AdminUtils;
-
-
 
 @Service
 public class AdminServiceImpl implements IAdminService{

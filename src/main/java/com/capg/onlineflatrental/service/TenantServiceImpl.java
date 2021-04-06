@@ -32,6 +32,7 @@ public class TenantServiceImpl implements ITenantService {
 	@Override
 	public TenantDTO updateTenant(Tenant tenant) throws TenantNotFoundException {
 		Tenant tenantEntity;
+		//validateTenantId(tenant.getTenantId());
 		if(tenant == null)
 			tenantEntity = null;
 		Tenant existTenant = tenantRepo.findById(tenant.getTenantId()).orElse(null);
@@ -72,7 +73,8 @@ public class TenantServiceImpl implements ITenantService {
 		boolean flag = false;
 		if(tenant == null)
 			throw new TenantNotFoundException("Tenant details cannot be blank");
-		else if(!(validateTenantAge(tenant.getTenantAge()) && validateTenantHouseNo(tenant.getTenantAddress().getHouseNo())
+		else if(!(validateTenantAge(tenant.getTenantAge()) && validateTenantName(tenant.getTenantName()) 
+				&& validateTenantHouseNo(tenant.getTenantAddress().getHouseNo())
 				&& validateTenantStreet(tenant.getTenantAddress().getStreet()) && validateTenantCity(tenant.getTenantAddress().getCity())
 				&& validateTenantState(tenant.getTenantAddress().getState()) && validateTenantCountry(tenant.getTenantAddress().getCountry())
 				&& validateTenantPin(tenant.getTenantAddress().getPin())))
@@ -90,6 +92,20 @@ public class TenantServiceImpl implements ITenantService {
 		return flag;
 	}
 	
+	public static boolean validateTenantName(String tenantName) throws TenantNotFoundException 
+	{
+		boolean flag = false;
+		if(tenantName == null)
+			throw new TenantNotFoundException("Tenant name cannot be empty");
+		else if(!tenantName.matches("^[a-zA-Z ]+$"))
+			throw new TenantNotFoundException("Tenant Name cannot contain Numbers or Special Characters");
+		else if(tenantName.length()<3 || tenantName.length()>30)
+			throw new TenantNotFoundException("Tenant Name length should be in range 3 to 30");
+		else
+			flag = true;
+		return flag;
+	}
+	
 	public static boolean validateTenantAge(int age) throws TenantNotFoundException
 	{
 		boolean flag = false;
@@ -98,7 +114,7 @@ public class TenantServiceImpl implements ITenantService {
 		else if(age < 18)
 			throw new TenantNotFoundException("Minor Age is not allowed");
 		else
-				flag = true; 
+			flag = true; 
 		return flag;
 	}
 	
@@ -120,14 +136,13 @@ public class TenantServiceImpl implements ITenantService {
 		else if(!street.matches("^[a-zA-Z0-9 ]+$"))
 			throw new TenantNotFoundException("Street cannot contain Numbers or Special Characters");
 		else
-				flag = true;
+			flag = true;
 		return flag;
 	}
 
 	public static boolean validateTenantCity(String city) throws TenantNotFoundException
 	{
 		boolean flag = false;
-		System.out.println(city);
 		if(city == null)
 			throw new TenantNotFoundException("city cannot be empty");
 		else if(!city.matches("^[a-zA-Z ]+$"))

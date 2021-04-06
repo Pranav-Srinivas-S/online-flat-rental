@@ -12,7 +12,7 @@ public class FlatAddress {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int addressId;
+	private int id;
 	@Column(name = "HOUSE_NO")
 	private int houseNo;
 	@Column(name = "STREET", length = 20)
@@ -94,7 +94,7 @@ public class FlatAddress {
 
 	@Override
 	public String toString() {
-		return "FlatAddress [houseNo=" + houseNo + ", street=" + street + ", city=" + city + ", state=" + state
+		return "FlatAddress [addressId=" + id + ", houseNo=" + houseNo + ", street=" + street + ", city=" + city + ", state=" + state
 				+ ", pin=" + pin + ", country=" + country + "]";
 	}
 	
