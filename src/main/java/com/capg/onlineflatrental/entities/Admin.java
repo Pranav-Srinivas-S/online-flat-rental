@@ -14,7 +14,7 @@ public class Admin {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "ADMIN_ID", nullable = false)
+	@Column(name = "ADMIN_ID")
 	private int adminId;
 	@Column(name = "ADMIN_PASSWORD", length = 20)
 	@NotBlank(message = "Admin Password cannot be blank")

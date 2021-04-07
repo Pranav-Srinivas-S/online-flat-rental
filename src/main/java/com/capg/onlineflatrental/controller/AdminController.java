@@ -74,9 +74,9 @@ public class AdminController {
 		return adminResponse;
 	}
 	
-	@GetMapping("/view-admin/{adminid}")
+	@GetMapping("/view-admin/{adminId}")
 	public ResponseEntity<Object> getAdminById(@PathVariable int adminId) throws AdminNotFoundException
-	{
+	{		
 		AdminDTO adminDTO = null;
 		ResponseEntity<Object> adminResponse = null;
 		Optional<AdminDTO> optional = Optional.of(adminService.viewAdmin(adminId));

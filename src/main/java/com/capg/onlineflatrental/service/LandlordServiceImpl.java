@@ -111,8 +111,10 @@ public class LandlordServiceImpl implements ILandlordService {
 		boolean flag = false;
 		if(landlordName == null)
 			throw new LandlordNotFoundException("Landlord name cannot be empty");
-		else if(!landlordName.matches("^[A-Za-z ]\\w{3,30}$"))
-			throw new LandlordNotFoundException("Landlord name cannot contain Numbers or Special Characters and length should be 3 to 30");
+		else if(!landlordName.matches("^[A-Za-z ]+$"))
+			throw new LandlordNotFoundException("Landlord name cannot contain Numbers or Special Characters");
+		else if(landlordName.length()<3 || landlordName.length()>30)
+			throw new LandlordNotFoundException("Landlord name length should be in range 3 to 30");
 		else
 			flag = true;
 		return flag;
