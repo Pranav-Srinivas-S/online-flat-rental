@@ -1,5 +1,7 @@
 package com.capg.onlineflatrental.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,24 +15,37 @@ import com.capg.onlineflatrental.exception.LoginNotFoundException;
 import com.capg.onlineflatrental.exception.UserNotFoundException;
 import com.capg.onlineflatrental.service.ILoginService;
 
+/*
+ * Author 1 : PRNANAV SRINIVAS S
+ * Author 2 : RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH
+ * Version : 1.0
+ * Date : 06-04-2921
+ * Description : This is Login Controller
+*/
+
 @RestController
 @RequestMapping("/api/ofr/login")
 public class LoginController {
 	
+	final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+
 	public static final String id = null;
 
-		@Autowired
-		private ILoginService loginService;
-		
-		@PatchMapping("/validate-login")
-		public ResponseEntity<String> validateLogin(@RequestBody User user) throws LoginNotFoundException, UserNotFoundException
-		{
-			ResponseEntity<String> loginResponse = new ResponseEntity<String>("User Id and Password Does Not Match", HttpStatus.ACCEPTED);
-			if(!loginService.Login(user))
-				throw new LoginNotFoundException("Login id  and Password Does not match");
-			else
-				loginResponse = new ResponseEntity<String>("Login Successful!", HttpStatus.ACCEPTED);
-			return loginResponse;
-		}
-		
+	@Autowired
+	private ILoginService loginService;
+
+	@PatchMapping("/validate-login")
+	public ResponseEntity<String> validateLogin(@RequestBody User user)
+			throws LoginNotFoundException, UserNotFoundException {
+		LOGGER.info("validate-login URL is opened");
+		LOGGER.info("validateLogin() is initiated");
+		ResponseEntity<String> loginResponse = new ResponseEntity<String>("User Id and Password Does Not Match", HttpStatus.ACCEPTED);
+		if (!loginService.Login(user))
+			throw new LoginNotFoundException("Login id  and Password Does not match");
+		else
+			loginResponse = new ResponseEntity<String>("Login Successful!", HttpStatus.ACCEPTED);
+		LOGGER.info("validateLogin() has executed");
+		return loginResponse;
+	}
+
 }

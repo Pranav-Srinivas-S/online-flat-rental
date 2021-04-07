@@ -7,6 +7,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.capg.onlineflatrental.exception.CommonException;
 
+/*
+ * Author : PRANAV SRINIVAS S
+ * Version : 1.0
+ * Date : 04-04-2921
+ * Description : This is Global Exception Controller
+*/
+
 @ControllerAdvice
 public class GlobalExceptionController {
 
@@ -16,13 +23,5 @@ public class GlobalExceptionController {
 		String errorMessage = exception.getMessage();
 		return new ResponseEntity<String>(errorMessage, HttpStatus.NOT_FOUND);
 	}
-	
-//	@ExceptionHandler(value=ConstraintViolationException.class)
-//	public ResponseEntity<Object> exceptionConstraintViolationException(ConstraintViolationException exception)
-//	{
-//		StringBuilder msg = new StringBuilder();
-//		exception.getConstraintViolations().forEach(i->msg.append(i.getConstraintDescriptor().getMessageTemplate()));
-//		return new ResponseEntity<>(msg.toString(),HttpStatus.NOT_ACCEPTABLE);
-//	}
 	
 }

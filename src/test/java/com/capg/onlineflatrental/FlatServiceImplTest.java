@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.capg.onlineflatrental.entities.Flat;
 import com.capg.onlineflatrental.entities.FlatAddress;
 import com.capg.onlineflatrental.exception.FlatNotFoundException;
+import com.capg.onlineflatrental.exception.InvalidFlatInputException;
 import com.capg.onlineflatrental.model.FlatDTO;
 import com.capg.onlineflatrental.service.IFlatService;
 
@@ -18,7 +19,7 @@ class FlatServiceImplTest {
 	IFlatService service;
 
 	@Test
-	void testAddFlat() throws FlatNotFoundException {
+	void testAddFlat() throws FlatNotFoundException, InvalidFlatInputException {
 		FlatAddress address = new FlatAddress(10, "Street", "City", "State", 876534, "India");
 		Flat flat = new Flat(26, 1200, address, "Yes");
 		FlatDTO dto = (service.addFlat(flat));
@@ -26,7 +27,7 @@ class FlatServiceImplTest {
 	}
 
 	@Test
-	void testUpdateFlat() throws FlatNotFoundException {
+	void testUpdateFlat() throws FlatNotFoundException, InvalidFlatInputException {
 		FlatAddress address = new FlatAddress(10, "Street", "City", "Tamil Nadu", 876534, "India");
 		Flat flat = new Flat(26, 1200, address, "Yes");
 		FlatDTO dto = (service.addFlat(flat));
