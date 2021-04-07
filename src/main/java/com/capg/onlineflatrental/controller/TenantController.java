@@ -23,7 +23,7 @@ import com.capg.onlineflatrental.service.TenantServiceImpl;
 public class TenantController {
 
 	@Autowired
-	ITenantService tenantService;
+	private ITenantService tenantService;
 	
 	@PostMapping("/add-tenant")
 	public ResponseEntity<Object> addTenant(@RequestBody Tenant tenant) throws TenantNotFoundException

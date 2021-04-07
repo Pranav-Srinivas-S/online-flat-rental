@@ -20,7 +20,7 @@ public class LoginController {
 	public static final String id = null;
 
 		@Autowired
-		ILoginService loginService;
+		private ILoginService loginService;
 		
 		@PatchMapping("/validate-login")
 		public ResponseEntity<String> validateLogin(@RequestBody User user) throws LoginNotFoundException, UserNotFoundException

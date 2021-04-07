@@ -494,3 +494,66 @@ Identify and stop the process that's listening on port 9191 or configure this ap
 07-04-2021 10:27:04 - INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 07-04-2021 10:27:04 - INFO  com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
 07-04-2021 10:27:04 - INFO  com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
+07-04-2021 11:48:25 - INFO  com.capg.onlineflatrental.OnlineFlatRentalApplication : Starting OnlineFlatRentalApplication on PRANAVs_Swift with PID 7920 (D:\Softwares\S T S\Capg - SpringWorkSpace\online-flat-rental\bin\main started by prana in D:\Softwares\S T S\Capg - SpringWorkSpace\online-flat-rental)
+07-04-2021 11:48:25 - INFO  com.capg.onlineflatrental.OnlineFlatRentalApplication : No active profile set, falling back to default profiles: default
+07-04-2021 11:48:26 - INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+07-04-2021 11:48:26 - INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 61ms. Found 7 JPA repository interfaces.
+07-04-2021 11:48:26 - INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 9191 (http)
+07-04-2021 11:48:26 - INFO  org.apache.catalina.core.StandardService : Starting service [Tomcat]
+07-04-2021 11:48:26 - INFO  org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.43]
+07-04-2021 11:48:27 - INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+07-04-2021 11:48:27 - INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1320 ms
+07-04-2021 11:48:27 - INFO  org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [name: default]
+07-04-2021 11:48:27 - INFO  org.hibernate.Version : HHH000412: Hibernate ORM core version 5.4.28.Final
+07-04-2021 11:48:27 - INFO  org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+07-04-2021 11:48:27 - INFO  com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+07-04-2021 11:48:27 - INFO  com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+07-04-2021 11:48:27 - INFO  org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+07-04-2021 11:48:28 - INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+07-04-2021 11:48:28 - INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+07-04-2021 11:48:29 - WARN  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+07-04-2021 11:48:29 - INFO  springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+07-04-2021 11:48:29 - INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor : Initializing ExecutorService 'applicationTaskExecutor'
+07-04-2021 11:48:29 - INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 9191 (http) with context path ''
+07-04-2021 11:48:29 - INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper : Context refreshed
+07-04-2021 11:48:29 - INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+07-04-2021 11:48:29 - INFO  springfox.documentation.spring.web.scanners.ApiListingReferenceScanner : Scanning for api listing references
+07-04-2021 11:48:30 - INFO  com.capg.onlineflatrental.OnlineFlatRentalApplication : Started OnlineFlatRentalApplication in 4.779 seconds (JVM running for 5.476)
+07-04-2021 13:13:17 - INFO  org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+07-04-2021 13:13:17 - INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor : Shutting down ExecutorService 'applicationTaskExecutor'
+07-04-2021 13:13:17 - INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+07-04-2021 13:13:17 - INFO  com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
+07-04-2021 13:13:17 - INFO  com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
+07-04-2021 13:13:22 - INFO  com.capg.onlineflatrental.OnlineFlatRentalApplication : Starting OnlineFlatRentalApplication on PRANAVs_Swift with PID 15316 (D:\Softwares\S T S\Capg - SpringWorkSpace\online-flat-rental\bin\main started by prana in D:\Softwares\S T S\Capg - SpringWorkSpace\online-flat-rental)
+07-04-2021 13:13:22 - INFO  com.capg.onlineflatrental.OnlineFlatRentalApplication : No active profile set, falling back to default profiles: default
+07-04-2021 13:13:23 - INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+07-04-2021 13:13:23 - INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 58ms. Found 7 JPA repository interfaces.
+07-04-2021 13:13:23 - INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat initialized with port(s): 9191 (http)
+07-04-2021 13:13:23 - INFO  org.apache.catalina.core.StandardService : Starting service [Tomcat]
+07-04-2021 13:13:23 - INFO  org.apache.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/9.0.43]
+07-04-2021 13:13:23 - INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+07-04-2021 13:13:23 - INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1191 ms
+07-04-2021 13:13:23 - INFO  org.hibernate.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [name: default]
+07-04-2021 13:13:23 - INFO  org.hibernate.Version : HHH000412: Hibernate ORM core version 5.4.28.Final
+07-04-2021 13:13:24 - INFO  org.hibernate.annotations.common.Version : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+07-04-2021 13:13:24 - INFO  com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+07-04-2021 13:13:24 - INFO  com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+07-04-2021 13:13:24 - INFO  org.hibernate.dialect.Dialect : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+07-04-2021 13:13:25 - INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+07-04-2021 13:13:25 - INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+07-04-2021 13:13:25 - WARN  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+07-04-2021 13:13:26 - INFO  springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+07-04-2021 13:13:26 - INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor : Initializing ExecutorService 'applicationTaskExecutor'
+07-04-2021 13:13:26 - INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer : Tomcat started on port(s): 9191 (http) with context path ''
+07-04-2021 13:13:26 - INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper : Context refreshed
+07-04-2021 13:13:26 - INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+07-04-2021 13:13:26 - INFO  springfox.documentation.spring.web.scanners.ApiListingReferenceScanner : Scanning for api listing references
+07-04-2021 13:13:26 - INFO  com.capg.onlineflatrental.OnlineFlatRentalApplication : Started OnlineFlatRentalApplication in 4.401 seconds (JVM running for 5.097)
+07-04-2021 13:13:31 - INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+07-04-2021 13:13:31 - INFO  org.springframework.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
+07-04-2021 13:13:31 - INFO  org.springframework.web.servlet.DispatcherServlet : Completed initialization in 7 ms
+07-04-2021 13:29:07 - INFO  org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+07-04-2021 13:29:07 - INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor : Shutting down ExecutorService 'applicationTaskExecutor'
+07-04-2021 13:29:07 - INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+07-04-2021 13:29:07 - INFO  com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
+07-04-2021 13:29:07 - INFO  com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.

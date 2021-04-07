@@ -27,7 +27,7 @@ import com.capg.onlineflatrental.service.LandlordServiceImpl;
 public class LandlordController {
 
 	@Autowired
-	ILandlordService landlordService;
+	private ILandlordService landlordService;
 	
 	@PostMapping("/add-landlord")
 	public ResponseEntity<Object> addLandlord(@RequestBody Landlord landlord) throws LandlordNotFoundException, InvalidFlatInputException

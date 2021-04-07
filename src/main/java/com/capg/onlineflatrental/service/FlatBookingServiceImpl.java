@@ -17,7 +17,7 @@ import com.capg.onlineflatrental.util.FlatBookingUtils;
 @Service
 public class FlatBookingServiceImpl implements IFlatBookingService {
 	@Autowired
-	IFlatBookingRepository flatbookingRepo;
+	private IFlatBookingRepository flatbookingRepo;
 
 	@Override
 	public FlatBookingDTO addFlatBooking(FlatBooking  flatbooking) {

@@ -25,7 +25,7 @@ import com.capg.onlineflatrental.service.UserServiceImpl;
 	public class UserController {
 
 		@Autowired
-		IUserService userService;
+		private IUserService userService;
 		
 		@PostMapping("/add-user")
 		public ResponseEntity<Object> addUser(@RequestBody User user) throws UserNotFoundException 

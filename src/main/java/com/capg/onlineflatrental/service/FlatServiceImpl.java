@@ -14,7 +14,7 @@ import com.capg.onlineflatrental.util.FlatUtils;
 public class FlatServiceImpl implements IFlatService {
 	
 	@Autowired
-	IFlatRepository flatRepo;
+	private IFlatRepository flatRepo;
 
 	@Override
 	public FlatDTO addFlat(Flat flat) {

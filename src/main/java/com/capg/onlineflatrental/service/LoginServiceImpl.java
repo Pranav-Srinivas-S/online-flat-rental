@@ -6,13 +6,9 @@ import org.springframework.stereotype.Service;
 import com.capg.onlineflatrental.entities.User;
 import com.capg.onlineflatrental.exception.LoginNotFoundException;
 import com.capg.onlineflatrental.exception.UserNotFoundException;
-import com.capg.onlineflatrental.repository.ILoginRepository;
 
 @Service
 public class LoginServiceImpl implements ILoginService {
-
-	@Autowired
-	ILoginRepository loginRepo;
 	
 	@Autowired
 	UserServiceImpl userService;

@@ -27,7 +27,7 @@ import com.capg.onlineflatrental.service.IFlatService;
 public class FlatController {
 
 	@Autowired
-	IFlatService flatService;
+	private IFlatService flatService;
 	
 	@PostMapping("/add-flat")
 	public ResponseEntity<Object> addFlat(@RequestBody Flat flat) throws InvalidFlatInputException
