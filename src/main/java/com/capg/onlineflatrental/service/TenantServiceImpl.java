@@ -268,9 +268,9 @@ public class TenantServiceImpl implements ITenantService {
 			throw new TenantNotFoundException("PinCode cannot be 0 or negative");
 		} else if (Long.toString(pin).length() != 6) {
 			LOGGER.error("PinCode should be length 6");
-			throw new TenantNotFoundException("PinCode cannot contain any Characters");
+			throw new TenantNotFoundException("PinCode should be length 6");
 		} else if (!Long.toString(pin).matches("^[0-9]+$")) {
-			LOGGER.error("PinCode should be length 6");
+			LOGGER.error("PinCode cannot contain any Characters");
 			throw new TenantNotFoundException("PinCode cannot contain any Characters");
 		} else {
 			flag = true;
