@@ -25,11 +25,11 @@ class UserServiceImplTest {
 		//System.out.println("Before All Executed");
 	}
 	
-//	@Test
-//	void testAddUser01() throws UserNotFoundException {
-//		User user = new User(1, "Manasa", "Manu@1999", "Tenant");
-//		assertNotNull(service.addUser(user));
-//	}
+	@Test
+	void testAddUser01() throws UserNotFoundException {
+		User user = new User(1, "Sathya", "Sai@2000", "Admin");
+		assertNotNull(service.addUser(user));
+	}
 	
 	@Test
 	void testAddUser02() throws UserNotFoundException {
@@ -62,8 +62,8 @@ class UserServiceImplTest {
 						+ "\r\n"
 						+ "The first character of the username must be an alphabetic character, i.e., either lowercase character\r\n"
 						+ "[a – z] or uppercase character [A – Z].\r\n"
-						+ "User Name length should be in range 3 to 40.\\r\\n"
-						+ "____________________________________________________________\r\n", exception.getMessage());
+						+ "User Name length should be in range 3 to 40."
+						+ "\r\n", exception.getMessage());
 			}
 	}
 		@Test
@@ -84,8 +84,8 @@ class UserServiceImplTest {
 						+ "\r\n"
 						+ "The first character of the username must be an alphabetic character, i.e., either lowercase character\r\n"
 						+ "[a – z] or uppercase character [A – Z].\r\n"
-						+ "User Name length should be in range 3 to 40.\\r\\n"
-						+ "____________________________________________________________\r\n", exception.getMessage());
+						+ "User Name length should be in range 3 to 40."
+						+ "\r\n", exception.getMessage());
 			}
 	}
 		@Test
@@ -106,8 +106,8 @@ class UserServiceImplTest {
 						+ "\r\n"
 						+ "The first character of the username must be an alphabetic character, i.e., either lowercase character\r\n"
 						+ "[a – z] or uppercase character [A – Z].\r\n"
-						+ "User Name length should be in range 3 to 40.\\r\\n"
-						+ "____________________________________________________________\r\n", exception.getMessage());
+						+ "User Name length should be in range 3 to 40."
+						+ "\r\n", exception.getMessage());
 			}
 	}
 
@@ -457,6 +457,45 @@ void testAddUser10() throws UserNotFoundException {
 	}
 	
 	@Test
+	void testCheckUser01() throws UserNotFoundException{
+		assertEquals(true,service.checkUser("Manu","Sai@200000"));
+	}
+	
+	@Test
+	void testCheckUser02() throws UserNotFoundException{
+		
+
+		try
+		{
+			service.checkUser("Manu", "Sai@2000");
+		}
+		
+		catch(UserNotFoundException exception)
+		{
+			assertEquals("Password does not Match", exception.getMessage());
+		}
+		
+	}
+	
+
+	@Test
+	void testCheckUser03() throws UserNotFoundException{
+		
+
+		try
+		{
+			service.checkUser("Man", "Sai@2000");
+		}
+		
+		catch(UserNotFoundException exception)
+		{
+			assertEquals("Invalid User Name", exception.getMessage());
+		}
+		
+	}
+	
+	
+	@Test
 	void testViewUser() throws UserNotFoundException {
 		assertEquals("SaiBharath", service.viewUser(50).getUserName());
 	}
@@ -511,11 +550,13 @@ void testAddUser10() throws UserNotFoundException {
 	void testRemoveuser01() throws UserNotFoundException {
 		try
 		{
-			service.removeUser(71);
+			service.removeUser(78);
 		}
 		catch(UserNotFoundException exception)
 		{
-			assertEquals("", exception.getMessage());
+			assertEquals("No user found with that Id\r\n"
+					+ "\r\n"
+					+ "Enter valid UserId", exception.getMessage());
 		}
 		}
 
