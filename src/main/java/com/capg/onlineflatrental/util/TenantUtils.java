@@ -2,7 +2,6 @@ package com.capg.onlineflatrental.util;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.capg.onlineflatrental.entities.Tenant;
 import com.capg.onlineflatrental.model.TenantDTO;
 
