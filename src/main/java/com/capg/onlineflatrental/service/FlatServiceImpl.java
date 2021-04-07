@@ -78,7 +78,7 @@ public class FlatServiceImpl implements IFlatService {
 		if(flat == null)
 			throw new InvalidFlatInputException("Flat details cannot be blank");
 		else if(!(validateFlatHouseNo(flat.getFlatAddress().getHouseNo())
-				&& validateFlatStreet(flat.getFlatAddress().getStreet()) && validateFlatCity(flat.getFlatAddress().getStreet())
+				&& validateFlatStreet(flat.getFlatAddress().getStreet()) && validateFlatCity(flat.getFlatAddress().getCity())
 				&& validateFlatState(flat.getFlatAddress().getState()) && validateFlatCountry(flat.getFlatAddress().getCountry())
 				&& validateFlatPin(flat.getFlatAddress().getPin())))
 			throw new InvalidFlatInputException("Invalid Flat Address");
@@ -103,7 +103,7 @@ public class FlatServiceImpl implements IFlatService {
 	{
 	boolean flag=false;
 	
-	if(cost>=0)
+	if(cost>0)
 		flag=true;
 	else 
 		throw new InvalidFlatInputException("Cost cannot be 0 or a negative number");
@@ -153,7 +153,7 @@ public class FlatServiceImpl implements IFlatService {
 		boolean flag=false;
 		if((city.isBlank()))
 			throw new InvalidFlatInputException("City name cannot be empty");
-		else if(!city.matches("^[a-zA-Z]+$"))
+		else if(!city.matches("^[a-zA-Z ]+$"))
 			throw new InvalidFlatInputException("City cannot contain Numbers or Special Characters");
 		else
 			flag=true;
@@ -165,7 +165,7 @@ public class FlatServiceImpl implements IFlatService {
 		boolean flag=false;
 		if((state.isBlank()))
 			throw new InvalidFlatInputException("State name cannot be empty");
-		else if(!state.matches("^[a-zA-Z]+$"))
+		else if(!state.matches("^[a-zA-Z ]+$"))
 			throw new InvalidFlatInputException("State cannot contain Numbers or Special Characters");
 		else
 			flag=true;
@@ -177,7 +177,7 @@ public class FlatServiceImpl implements IFlatService {
 		boolean flag=false;
 		if(((country.isBlank())))
 			throw new InvalidFlatInputException("Country name cannot be empty");
-		else if(!country.matches("^[a-zA-Z]+$"))
+		else if(!country.matches("^[a-zA-Z ]+$"))
 			throw new InvalidFlatInputException("Country cannot contain Numbers or Special Characters");
 		else
 			flag=true;
