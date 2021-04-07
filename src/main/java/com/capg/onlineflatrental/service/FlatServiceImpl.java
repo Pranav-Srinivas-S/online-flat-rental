@@ -93,12 +93,12 @@ public class FlatServiceImpl implements IFlatService {
 	
 	public static boolean validateFlatCost(float cost) throws InvalidFlatInputException
 	{
-	boolean flag=false;
-	if(cost > 0)
-		flag=true;
-	else 
-		throw new InvalidFlatInputException("Cost cannot be 0 or a negative number");
-	return flag;
+		boolean flag=false;
+		if(cost > 0)
+			flag=true;
+		else 
+			throw new InvalidFlatInputException("Cost cannot be 0 or a negative number");
+		return flag;
 	}
 	
 	public static boolean validateFlatAvailability(String availability) throws InvalidFlatInputException
