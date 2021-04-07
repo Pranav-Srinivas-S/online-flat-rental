@@ -13,7 +13,7 @@ import com.capg.onlineflatrental.util.TenantUtils;
 public class TenantServiceImpl implements ITenantService {
 
 	@Autowired
-	ITenantRepository tenantRepo;
+	private ITenantRepository tenantRepo;
 	
 	static String tenantNotFound = "No Tenant found in given ID";
 	

@@ -27,7 +27,7 @@ import com.capg.onlineflatrental.service.IFlatBookingService;
 public class FlatBookingController {
 	
 	@Autowired
-	IFlatBookingService flatBookingService;
+	private IFlatBookingService flatBookingService;
 	
 	@PostMapping("/add-flatbooking")
 	public ResponseEntity<Object> addFlatBooking(@RequestBody  FlatBooking flatBooking) throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException

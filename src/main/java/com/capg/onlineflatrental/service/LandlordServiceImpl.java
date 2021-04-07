@@ -15,8 +15,9 @@ import com.capg.onlineflatrental.util.LandlordUtils;
 
 @Service
 public class LandlordServiceImpl implements ILandlordService {
+	
 	@Autowired
-	ILandlordRepository landlordRepo;
+	private ILandlordRepository landlordRepo;
 	
 	static String landlordNotFound = "No Landlord found in given ID";
 	

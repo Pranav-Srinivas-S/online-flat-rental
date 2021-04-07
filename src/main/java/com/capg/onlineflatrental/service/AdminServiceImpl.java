@@ -14,7 +14,7 @@ public class AdminServiceImpl implements IAdminService{
 	static String adminNotFound = "No Admin found in given ID";
 
 	@Autowired
-	public IAdminRepository adminRepo;
+	private IAdminRepository adminRepo;
 	@Override
 	public AdminDTO addAdmin(Admin admin) throws AdminNotFoundException {
 		Admin adminEntity;

@@ -26,7 +26,7 @@ import com.capg.onlineflatrental.service.IAdminService;
 public class AdminController {
 
 	@Autowired
-	IAdminService adminService;
+	private IAdminService adminService;
 	
 	@PostMapping("/add-admin")
 	public ResponseEntity<Object> addAdmin(@RequestBody Admin admin) throws AdminNotFoundException

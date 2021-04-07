@@ -12,7 +12,7 @@ import com.capg.onlineflatrental.util.UserUtils;
 public class UserServiceImpl implements IUserService{
 	
 	@Autowired	
-	IUserRepository userRepo;
+	private IUserRepository userRepo;
 	
 	@Override
 	public UserDTO viewUser(int id) throws UserNotFoundException {
