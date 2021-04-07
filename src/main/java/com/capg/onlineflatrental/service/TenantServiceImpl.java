@@ -16,7 +16,8 @@ import com.capg.onlineflatrental.util.TenantUtils;
  * Author : PRNANAV SRINIVAS S
  * Version : 1.0
  * Date : 03-04-2021
- * Description : This is Tenant Service Layer
+ * Description : This is Tenant Service Layer that provides services to Add New User, Update Existing User, Delete Existing User,
+ *  			 View Existing User and View All Existing Users
 */
 
 @Service

@@ -26,13 +26,13 @@ class AdminServiceImplTest {
 
 	@Test
 	void testAddAdmin01() throws AdminNotFoundException {
-		Admin admin = new Admin(1, "Sai@2000");
+		Admin admin = new Admin(90, "Sai@2000");
 		assertNotNull(service.addAdmin(admin));
 	}
 
 	@Test
 	void testAddAdmin02() throws AdminNotFoundException {
-		admin = new Admin(1, null);
+		admin = new Admin(90, null);
 		try {
 			service.addAdmin(admin);
 		} catch (AdminNotFoundException exception) {
@@ -42,7 +42,7 @@ class AdminServiceImplTest {
 
 	@Test
 	void testAddAdmin03() throws AdminNotFoundException {
-		admin = new Admin(1, " ");
+		admin = new Admin(90, " ");
 		try {
 			service.addAdmin(admin);
 		} catch (AdminNotFoundException exception) {
@@ -61,7 +61,7 @@ class AdminServiceImplTest {
 
 	@Test
 	void testAddAdmin04() throws AdminNotFoundException {
-		admin = new Admin(1, "Sathya ");
+		admin = new Admin(90, "Sathya ");
 		try {
 			service.addAdmin(admin);
 		} catch (AdminNotFoundException exception) {
@@ -80,7 +80,7 @@ class AdminServiceImplTest {
 
 	@Test
 	void testAddAdmin05() throws AdminNotFoundException {
-		admin = new Admin(1, "sr");
+		admin = new Admin(90, "sr");
 		try {
 			service.addAdmin(admin);
 		} catch (AdminNotFoundException exception) {
@@ -99,7 +99,7 @@ class AdminServiceImplTest {
 
 	@Test
 	void testAddAdmin06() throws AdminNotFoundException {
-		admin = new Admin(1, "SAI");
+		admin = new Admin(90, "SAI");
 		try {
 			service.addAdmin(admin);
 		} catch (AdminNotFoundException exception) {
@@ -118,7 +118,7 @@ class AdminServiceImplTest {
 
 	@Test
 	void testAddAdmin07() throws AdminNotFoundException {
-		admin = new Admin(1, "sai");
+		admin = new Admin(90, "sai");
 		try {
 			service.addAdmin(admin);
 		} catch (AdminNotFoundException exception) {
@@ -137,7 +137,7 @@ class AdminServiceImplTest {
 
 	@Test
 	void testAddAdmin08() throws AdminNotFoundException {
-		admin = new Admin(1, "Sai2000");
+		admin = new Admin(90, "Sai2000");
 		try {
 			service.addAdmin(admin);
 		} catch (AdminNotFoundException exception) {
@@ -329,4 +329,4 @@ void testDeleteAdmin01() throws AdminNotFoundException {
 		assertEquals("No Admin found in given ID", exception.getMessage());
 	}
 	}
-}
+}//

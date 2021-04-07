@@ -344,15 +344,15 @@ class UserServiceImplTest {
 	}
 
 	@Test
-	void testCheckUser01() throws UserNotFoundException {
-		assertEquals(true, service.checkUser("Manu", "Sai@200000"));
+	void testValidateUser01() throws UserNotFoundException {
+		assertEquals(true, service.validateUser("Manu", "Sai@200000"));
 	}
 
 	@Test
-	void testCheckUser02() throws UserNotFoundException {
+	void testValidateUser02() throws UserNotFoundException {
 
 		try {
-			service.checkUser("Manu", "Sai@2000");
+			service.validateUser("Manu", "Sai@2000");
 		}
 
 		catch (UserNotFoundException exception) {
@@ -362,10 +362,10 @@ class UserServiceImplTest {
 	}
 
 	@Test
-	void testCheckUser03() throws UserNotFoundException {
+	void testValidateUser03() throws UserNotFoundException {
 
 		try {
-			service.checkUser("Man", "Sai@2000");
+			service.validateUser("Man", "Sai@2000");
 		}
 
 		catch (UserNotFoundException exception) {
@@ -411,31 +411,4 @@ class UserServiceImplTest {
 		}
 	}
 
-	@Test
-	void testRemoveuser01() throws UserNotFoundException {
-		try {
-			service.removeUser(78);
-		} catch (UserNotFoundException exception) {
-			assertEquals("No user found with that Id\r\n" + "\r\n" + "Enter valid UserId", exception.getMessage());
-		}
-	}
-
-	@Test
-	void testRemoveuser02() throws UserNotFoundException {
-		try {
-			service.removeUser(1);
-		} catch (UserNotFoundException exception) {
-			assertEquals("No user found with that Id\r\n" + "\r\n" + "Enter valid UserId", exception.getMessage());
-		}
-	}
-
-	@Test
-	void testRemoveuser03() throws UserNotFoundException {
-		try {
-			service.removeUser(100);
-		} catch (UserNotFoundException exception) {
-			assertEquals("No user found with that Id\r\n" + "\r\n" + "Enter valid UserId", exception.getMessage());
-		}
-	}
-
-}//
+}
