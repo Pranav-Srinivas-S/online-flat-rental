@@ -15,7 +15,7 @@ import com.capg.onlineflatrental.util.AdminUtils;
 /*
  * Author : NITHISHA K A
  * Version : 1.0
- * Date : 03-04-2921
+ * Date : 03-04-2021
  * Description : This is Admin Service Layer
 */
 
@@ -108,7 +108,7 @@ public class AdminServiceImpl implements IAdminService {
 
 	/*
 	 * Description : This method Shows all existing Admins 
-	 * Object Return Value : AdminDTO Object 
+	 * Object Return Value : List<AdminDTO> Object 
 	 */
 	@Override
 	public List<AdminDTO> viewAllAdmin() {

@@ -19,7 +19,7 @@ import com.capg.onlineflatrental.util.FlatBookingUtils;
 /*
  * Author : SHAIK ABDUL BASHEER 
  * Version : 1.0
- * Date : 03-04-2921
+ * Date : 03-04-2021
  * Description : This is Flat Booking Controller
 */
 
@@ -112,7 +112,7 @@ public class FlatBookingServiceImpl implements IFlatBookingService {
 
 	/*
 	 * Description : This method Views all existing Flat Bookings 
-	 * Return Value : FlatBookingDTO Object
+	 * Return Value : List<FlatBookingDTO> Object
 	 */
 	@Override
 	public List<FlatBookingDTO> viewAllFlatBooking() {
