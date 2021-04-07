@@ -15,4 +15,5 @@ public interface IUserService {
 	public UserDTO removeUser(int id) throws UserNotFoundException;
 	public boolean checkUser(String userName, String password) throws UserNotFoundException;
 	
+
 }
