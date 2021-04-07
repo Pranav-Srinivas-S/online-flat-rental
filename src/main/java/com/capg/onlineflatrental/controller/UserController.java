@@ -122,4 +122,6 @@ import com.capg.onlineflatrental.service.UserServiceImpl;
 		{
 			return userService.viewAllUser();
 		}	
+		
+//
 }
