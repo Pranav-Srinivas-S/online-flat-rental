@@ -121,6 +121,5 @@ import com.capg.onlineflatrental.service.UserServiceImpl;
 		public List<UserDTO> getAllUsers()
 		{
 			return userService.viewAllUser();
-		}
-		
+		}	
 }

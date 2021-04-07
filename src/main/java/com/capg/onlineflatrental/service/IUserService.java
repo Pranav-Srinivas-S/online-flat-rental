@@ -16,5 +16,4 @@ public interface IUserService {
 	public boolean checkUser(String userName, String password) throws UserNotFoundException;
 	
 	
-	
 }

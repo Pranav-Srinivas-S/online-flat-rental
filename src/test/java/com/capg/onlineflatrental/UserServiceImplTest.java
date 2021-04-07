@@ -24,12 +24,12 @@ class UserServiceImplTest {
 	public static void init() {
 		//System.out.println("Before All Executed");
 	}
-	
-	@Test
-	void testAddUser01() throws UserNotFoundException {
-		User user = new User(1, "Sathya", "Sai@2000", "Admin");
-		assertNotNull(service.addUser(user));
-	}
+//	
+//	@Test
+//	void testAddUser01() throws UserNotFoundException {
+//		User user = new User(1, "Sathyaa", "Sai@2000", "Admin");
+//		assertNotNull(service.addUser(user));
+//	}
 	
 	@Test
 	void testAddUser02() throws UserNotFoundException {
@@ -113,7 +113,7 @@ class UserServiceImplTest {
 
 		@Test
 		void testAddUser06() throws UserNotFoundException {
-			 user = new User(1, "Man", null, "Admin");
+			 user = new User(1, "Sathyaa", null, "Admin");
 			try
 			{
 				service.addUser(user);
@@ -136,7 +136,7 @@ class UserServiceImplTest {
 		
 		@Test
 		void testAddUser07() throws UserNotFoundException {
-			 user = new User(1, "Man", "r", "Admin");
+			 user = new User(1, "Sathyaa", "r", "Admin");
 			try
 			{
 				service.addUser(user);
@@ -159,7 +159,7 @@ class UserServiceImplTest {
 			
 			@Test
 			void testAddUser08() throws UserNotFoundException {
-				 user = new User(1, "Man", "Saibharath", "Admin");
+				 user = new User(1, "Sathyaa", "Saibharath", "Admin");
 				try
 				{
 					service.addUser(user);
@@ -182,7 +182,7 @@ class UserServiceImplTest {
 		
 @Test
 void testAddUser09() throws UserNotFoundException {
-	 user = new User(1, "Man", "Sai", "Admin");
+	 user = new User(1, "Sathyaa", "Sai2", "Admin");
 	try
 	{
 		service.addUser(user);
@@ -204,7 +204,7 @@ void testAddUser09() throws UserNotFoundException {
 }
 @Test
 void testAddUser10() throws UserNotFoundException {
-	 user = new User(1, "Man", "SAI@2000", "Admin");
+	 user = new User(1, "Sathyaa", "SAI@2000", "Admin");
 	try
 	{
 		service.addUser(user);
@@ -226,7 +226,7 @@ void testAddUser10() throws UserNotFoundException {
 }
 	@Test
 	void testAddUser11() throws UserNotFoundException {
-		 user = new User(1, "Man", "sai@2000", "Admin");
+		 user = new User(1, "Sathyaa", "sai@2000", "Admin");
 		try
 		{
 			service.addUser(user);
@@ -248,7 +248,7 @@ void testAddUser10() throws UserNotFoundException {
 	}
 	@Test
 	void testAddUser12() throws UserNotFoundException {
-		 user = new User(1, "Man", "Sai2000", "Admin");
+		 user = new User(1, "Sathyaa", "Sai2000", "Admin");
 		try
 		{
 			service.addUser(user);
@@ -271,7 +271,7 @@ void testAddUser10() throws UserNotFoundException {
 	
 	@Test
 	void testAddUser13() throws UserNotFoundException {
-		 user = new User(1, "Man", "Sai@2000", null);
+		 user = new User(1, "Sathyaa", "Sai@2000", null);
 		try
 		{
 			service.addUser(user);
@@ -284,7 +284,7 @@ void testAddUser10() throws UserNotFoundException {
 	
 	@Test
 	void testAddUser14() throws UserNotFoundException {
-		 user = new User(1, "Man", "Sai@2000", "user");
+		 user = new User(1, "Sathyaa", "Sai@2000", "user");
 		try
 		{
 			service.addUser(user);
@@ -295,7 +295,7 @@ void testAddUser10() throws UserNotFoundException {
 }
 		@Test
 		void testAddUser15() throws UserNotFoundException {
-			 user = new User(1, "Man", "Sai@2000", "@@@");
+			 user = new User(1, "Sathyaa", "Sai@2000", "@@@");
 			try
 			{
 				service.addUser(user);
@@ -309,14 +309,14 @@ void testAddUser10() throws UserNotFoundException {
 	@Test
 	void testUpdateUser01() throws UserNotFoundException {
 		
-		user = new User(71, "Manasaaaaa", "Manu@1999", "landlord");
+		user = new User(50, "SaiBharath", "Sai@20000", "landlord");
 		assertNotNull(service.updateUser(user));
 	}
 	
 	@Test
 	void testUpdateUser02() throws UserNotFoundException {
 		
-		user = new User(710, "Manasa", "Manu@1999", "Admin");
+		user = new User(510, "SaiBharath", "Sai@20000", "landlord");
 		try
 		{
 			service.updateUser(user);
@@ -330,7 +330,7 @@ void testAddUser10() throws UserNotFoundException {
 	@Test
 	void testUpdateUser03() throws UserNotFoundException {
 		
-		user = new User(50, "Manasaaaaaa", "Sai@2000", "Admin");
+		user = new User(50, "SaigggBharath", "Sai@20000", "landlord");
 		try
 		{
 			service.updateUser(user);
@@ -361,7 +361,7 @@ void testAddUser10() throws UserNotFoundException {
 	@Test
 	void testUpdateUser05() throws UserNotFoundException {
 		
-		user = new User(50, "SaiBharath", "Sai@20000", "@@");
+		user = new User(50, "SaiBharath", "Sai@20000", "@#$");
 		
 		try
 		{
@@ -379,7 +379,7 @@ void testAddUser10() throws UserNotFoundException {
 	@Test
 	void testUpdatePassword01() throws UserNotFoundException {
 		
-		user = new User(500, "SaiBharath", "Sai@2000", "landlord");
+		user = new User(5000, "SaiBharath", "Sai@20000", "landlord");
 		
 		try
 		{
@@ -395,7 +395,7 @@ void testAddUser10() throws UserNotFoundException {
 	@Test
 	void testUpdatePassword02() throws UserNotFoundException {
 		
-		user = new User(50, "Sai_Bharath", "Sai@20000", "landlord");
+		user = new User(50, "SailklkBharath", "Sai@20000", "landlord");
 		
 		try
 		{
@@ -411,7 +411,7 @@ void testAddUser10() throws UserNotFoundException {
 	@Test
 	void testUpdatePassword03() throws UserNotFoundException {
 		
-		user = new User(50, "SaiBharath", "Sai@20003", "Admin");
+		user = new User(50, "SaiBharath", "Sai@20000333", "landlord");
 		
 		try
 		{
@@ -424,26 +424,11 @@ void testAddUser10() throws UserNotFoundException {
 		}
 	}
 	
+	
 	@Test
 	void testUpdatePassword04() throws UserNotFoundException {
 		
-		user = new User(50, "Sai_Bharath", "Sai@20000", "Admin");
-		
-		try
-		{
-			service.updatePassword(user, "Sai@200000");
-		}
-		
-		catch(UserNotFoundException exception)
-		{
-			assertEquals("Invalid User Name", exception.getMessage());
-		}
-	}
-	
-	@Test
-	void testUpdatePassword05() throws UserNotFoundException {
-		
-		user = new User(50, "SaiBharath", "Sai@20000", "lanlord");
+		user = new User(50, "SaiBharath", "Sai@20000", "Admin");
 		
 		try
 		{

@@ -63,6 +63,5 @@ public class UserDTO {
 	public static UserDTO get() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-	
+	}	
 }

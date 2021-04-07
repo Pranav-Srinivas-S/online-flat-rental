@@ -32,5 +32,4 @@ public class LoginController {
 				loginResponse = new ResponseEntity<String>("Login Successful!", HttpStatus.ACCEPTED);
 			return loginResponse;
 		}
-		
 }
