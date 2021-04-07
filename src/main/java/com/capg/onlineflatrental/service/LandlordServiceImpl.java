@@ -23,17 +23,19 @@ public class LandlordServiceImpl implements ILandlordService {
 	
 
 	@Override
-	public LandlordDTO addLandlord(Landlord landlord) throws LandlordNotFoundException {
+	public LandlordDTO addLandlord(Landlord landlord) throws LandlordNotFoundException, InvalidFlatInputException {
 		Landlord landlordEntity;
 		if(landlord == null)
 			landlordEntity = null;
+		else if(!validateLandlord(landlord))
+			throw new LandlordNotFoundException("No Tenant available in given ID");
 		else
 			landlordEntity = landlordRepo.save(landlord);
 		return LandlordUtils.convertToLandlordDto(landlordEntity);
 	}
 
 	@Override
-	public LandlordDTO updateLandlord(Landlord landlord) throws LandlordNotFoundException {
+	public LandlordDTO updateLandlord(Landlord landlord) throws LandlordNotFoundException, InvalidFlatInputException {
 		
 		Landlord landlordEntity;
 		if(landlord == null)
@@ -41,6 +43,8 @@ public class LandlordServiceImpl implements ILandlordService {
 	    Landlord existLandlord = landlordRepo.findById(landlord.getLandlordId()).orElse(null);
 		if(existLandlord == null)
 			throw new LandlordNotFoundException(landlordNotFound);
+		else if(!validateLandlord(landlord))
+			throw new LandlordNotFoundException("No Tenant available in given ID");
 		else
 			landlordEntity = landlordRepo.save(landlord);
 		return LandlordUtils.convertToLandlordDto(landlordEntity);
