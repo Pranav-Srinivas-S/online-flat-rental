@@ -2,6 +2,8 @@ package com.capg.onlineflatrental.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,71 +21,75 @@ import com.capg.onlineflatrental.exception.FlatBookingNotFoundException;
 import com.capg.onlineflatrental.exception.InvalidFlatInputException;
 import com.capg.onlineflatrental.exception.TenantNotFoundException;
 import com.capg.onlineflatrental.model.FlatBookingDTO;
-import com.capg.onlineflatrental.service.FlatBookingServiceImpl;
 import com.capg.onlineflatrental.service.IFlatBookingService;
+
+/*
+ * Author : SHAIK ABDUL BASHEER 
+ * Version : 1.0
+ * Date : 05-04-2021
+ * Description : This is Flat Booking Controller
+*/
 
 @RestController
 @RequestMapping("/api/ofr/flatbooking")
 public class FlatBookingController {
-	
+
+	final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+
 	@Autowired
 	private IFlatBookingService flatBookingService;
-	
-	@PostMapping("/add-flatbooking")
-	public ResponseEntity<Object> addFlatBooking(@RequestBody  FlatBooking flatBooking) throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException
-	{
+
+	@PostMapping("/add-flatBooking")
+	public ResponseEntity<Object> addFlatBooking(@RequestBody FlatBooking flatBooking)
+			throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		LOGGER.info("add-flatBooking URL is opened");
+		LOGGER.info("addFlatBooking() is initiated");
 		FlatBookingDTO flatBookingDTO = null;
 		ResponseEntity<Object> flatBookingResponse = null;
-		if(FlatBookingServiceImpl.validateFlatBooking(flatBooking))
-		{
-			flatBookingDTO = flatBookingService.addFlatBooking(flatBooking);
-			flatBookingResponse = new ResponseEntity<Object>(flatBookingDTO, HttpStatus.ACCEPTED);
-		}
-		else
-			throw new FlatBookingNotFoundException("No FlatBooking available in given ID");
+		flatBookingDTO = flatBookingService.addFlatBooking(flatBooking);
+		flatBookingResponse = new ResponseEntity<Object>(flatBookingDTO, HttpStatus.ACCEPTED);
+		LOGGER.info("addFlatBooking() has executed");
 		return flatBookingResponse;
 	}
-	
-	@PutMapping("/update-flatbooking")
-	public ResponseEntity<Object> updateFlatBooking(@RequestBody FlatBooking flatBooking) throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException
-{
-	FlatBookingDTO flatBookingDTO = null;
-	ResponseEntity<Object> flatBookingResponse = null;
-		if(FlatBookingServiceImpl.validateFlatBooking(flatBooking))
-		{
-			flatBookingDTO = flatBookingService.updateFlatBooking(flatBooking);
-			flatBookingResponse = new ResponseEntity<Object>(flatBookingDTO, HttpStatus.ACCEPTED);
-		}
-		else
-			throw new FlatBookingNotFoundException("No FlatBooking available in given ID");
+
+	@PutMapping("/update-flatBooking")
+	public ResponseEntity<Object> updateFlatBooking(@RequestBody FlatBooking flatBooking)
+			throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		LOGGER.info("update-flatBooking URL is opened");
+		LOGGER.info("updateFlatBooking() is initiated");
+		FlatBookingDTO flatBookingDTO = null;
+		ResponseEntity<Object> flatBookingResponse = null;
+		flatBookingDTO = flatBookingService.updateFlatBooking(flatBooking);
+		flatBookingResponse = new ResponseEntity<Object>(flatBookingDTO, HttpStatus.ACCEPTED);
+		LOGGER.info("updateFlatBooking() has executed");
 		return flatBookingResponse;
 	}
-	
-	@DeleteMapping("/delete-flatbooking/{id}")
-	public ResponseEntity<Object> deleteFlatBooking(@PathVariable int id) throws FlatBookingNotFoundException
-{
+
+	@DeleteMapping("/delete-flatBooking/{id}")
+	public ResponseEntity<Object> deleteFlatBooking(@PathVariable int id) throws FlatBookingNotFoundException {
+		LOGGER.info("delete-flatBooking URL is opened");
+		LOGGER.info("deleteFlatBooking() is initiated");
 		FlatBookingDTO flatBookingDTO = flatBookingService.deleteFlatBooking(id);
+		LOGGER.info("deleteFlatBooking() has executed");
 		return new ResponseEntity<Object>(flatBookingDTO, HttpStatus.ACCEPTED);
 	}
 
-	@GetMapping("/view-flatbooking/{id}")
-	public ResponseEntity<Object> getFlatBookingById(@PathVariable int id) throws FlatBookingNotFoundException
-{
+	@GetMapping("/view-flatBooking/{id}")
+	public ResponseEntity<Object> getFlatBookingById(@PathVariable int id) throws FlatBookingNotFoundException {
+		LOGGER.info("view-flatBooking URL is opened");
+		LOGGER.info("getFlatBookingById() is initiated");
 		FlatBookingDTO flatBookingDTO = null;
 		flatBookingDTO = flatBookingService.viewFlatBooking(id);
+		LOGGER.info("getFlatBookingById() has executed");
 		return new ResponseEntity<Object>(flatBookingDTO, HttpStatus.ACCEPTED);
 	}
 
-	@GetMapping("/view-all-flatbookings")
-	public List<FlatBookingDTO> getAllFlatBooking()
-{
-	return flatBookingService.viewAllFlatBooking();
-}
+	@GetMapping("/view-all-flatBookings")
+	public List<FlatBookingDTO> getAllFlatBooking() {
+		LOGGER.info("view-all-flatBooking URL is opened");
+		LOGGER.info("getAllFlatBooking() is initiated");
+		LOGGER.info("getAllFlatBooking() has executed");
+		return flatBookingService.viewAllFlatBooking();
+	}
 
-//	@ExceptionHandler({FlatBookingNotFoundException.class})
-//	public ResponseEntity<String> handleException()
-//{
-//	return new ResponseEntity<String>("FlatBooking Not Found ", HttpStatus.NOT_FOUND);
-//}
-	
 }

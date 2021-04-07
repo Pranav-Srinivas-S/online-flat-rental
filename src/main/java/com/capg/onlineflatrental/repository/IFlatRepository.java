@@ -7,6 +7,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import com.capg.onlineflatrental.entities.Flat;
 
+/*
+ * Author : AJITHKUMAR A 
+ * Version : 1.0
+ * Date : 03-04-2021
+ * Description : This is Flat Repository
+*/
+
 @Repository
 public interface IFlatRepository extends JpaRepository<Flat, Integer> {
 	
