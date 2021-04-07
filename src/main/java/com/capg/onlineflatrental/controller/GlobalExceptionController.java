@@ -10,7 +10,7 @@ import com.capg.onlineflatrental.exception.CommonException;
 /*
  * Author : PRANAV SRINIVAS S
  * Version : 1.0
- * Date : 04-04-2921
+ * Date : 04-04-2021
  * Description : This is Global Exception Controller
 */
 

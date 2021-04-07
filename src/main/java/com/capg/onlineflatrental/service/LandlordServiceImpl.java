@@ -2,6 +2,8 @@ package com.capg.onlineflatrental.service;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,128 +15,189 @@ import com.capg.onlineflatrental.model.LandlordDTO;
 import com.capg.onlineflatrental.repository.ILandlordRepository;
 import com.capg.onlineflatrental.util.LandlordUtils;
 
+/*
+ * Author : NITHISHA K A
+ * Version : 1.0
+ * Date : 03-04-2021
+ * Description : This is Landlord Service Layer
+*/
+
 @Service
 public class LandlordServiceImpl implements ILandlordService {
-	
+
+	final static Logger LOGGER = LoggerFactory.getLogger(LandlordServiceImpl.class);
+
 	@Autowired
 	private ILandlordRepository landlordRepo;
-	
-	static String landlordNotFound = "No Landlord found in given ID";
-	
 
+	static String landlordNotFound = "No Landlord found in given ID";
+
+	/*
+	 * Description : This method Adds new Landlord
+	 * Input Param : Landlord Object 
+	 * Return Value : LandlordDTO Object 
+	 * Exception : LandlordNotFoundException, InvalidFlatInputException
+	 */
 	@Override
 	public LandlordDTO addLandlord(Landlord landlord) throws LandlordNotFoundException, InvalidFlatInputException {
+		LOGGER.info("addLandlord() service is initiated");
 		Landlord landlordEntity;
-		if(landlord == null)
+		if (landlord == null)
 			landlordEntity = null;
-		else if(!validateLandlord(landlord))
+		else if (!validateLandlord(landlord))
 			throw new LandlordNotFoundException("No Tenant available in given ID");
 		else
 			landlordEntity = landlordRepo.save(landlord);
+		LOGGER.info("addLandlord() service has executed");
 		return LandlordUtils.convertToLandlordDto(landlordEntity);
 	}
 
+	/*
+	 * Description : This method Updates existing Landlord
+	 * Input Param : Landlord Object 
+	 * Return Value : LandlordDTO Object 
+	 * Exception : LandlordNotFoundException, InvalidFlatInputException
+	 */
 	@Override
 	public LandlordDTO updateLandlord(Landlord landlord) throws LandlordNotFoundException, InvalidFlatInputException {
-		
+		LOGGER.info("updateLandlord() service is initiated");
 		Landlord landlordEntity;
-		if(landlord == null)
+		if (landlord == null)
 			landlordEntity = null;
-	    Landlord existLandlord = landlordRepo.findById(landlord.getLandlordId()).orElse(null);
-		if(existLandlord == null)
+		Landlord existLandlord = landlordRepo.findById(landlord.getLandlordId()).orElse(null);
+		if (existLandlord == null)
 			throw new LandlordNotFoundException(landlordNotFound);
-		else if(!validateLandlord(landlord))
+		else if (!validateLandlord(landlord))
 			throw new LandlordNotFoundException("No Tenant available in given ID");
 		else
 			landlordEntity = landlordRepo.save(landlord);
+		LOGGER.info("updateLandlord() service has executed");
 		return LandlordUtils.convertToLandlordDto(landlordEntity);
 	}
 
+	/*
+	 * Description : This method Deletes existing Landlord
+	 * Input Param : int
+	 * Return Value : LandlordDTO Object 
+	 * Exception : LandlordNotFoundException
+	 */
 	@Override
 	public LandlordDTO deleteLandlord(int id) throws LandlordNotFoundException {
-		Landlord existLandlord =landlordRepo.findById(id).orElse(null);
-		if(existLandlord == null)
+		LOGGER.info("deleteLandlord() service is initiated");
+		Landlord existLandlord = landlordRepo.findById(id).orElse(null);
+		if (existLandlord == null)
 			throw new LandlordNotFoundException(landlordNotFound);
 		else
 			landlordRepo.delete(existLandlord);
+		LOGGER.info("deleteLandlord() service has executed");
 		return LandlordUtils.convertToLandlordDto(existLandlord);
 	}
+
+	/*
+	 * Description : This method Shows existing Landlord
+	 * Input Param : int
+	 * Return Value : LandlordDTO Object 
+	 * Exception : LandlordNotFoundException
+	 */
 	@Override
 	public LandlordDTO viewLandlord(int id) throws LandlordNotFoundException {
+		LOGGER.info("viewLandlord() service is initiated");
 		Landlord existLandlord = landlordRepo.findById(id).orElse(null);
-		if(existLandlord == null)
+		if (existLandlord == null)
 			throw new LandlordNotFoundException(landlordNotFound);
+		LOGGER.info("viewLandlord() service has executed");
 		return LandlordUtils.convertToLandlordDto(existLandlord);
 	}
 
+	/*
+	 * Description : This method Shows all Landlords
+	 * Return Value : List<LandlordDTO> Object 
+	 */
 	@Override
 	public List<LandlordDTO> viewAllLandlord() {
-		List<Landlord> LandlordList=landlordRepo.findAll();
+		LOGGER.info("viewAllLandlord() service is initiated");
+		List<Landlord> LandlordList = landlordRepo.findAll();
+		LOGGER.info("viewAllLandlord() service has executed");
 		return LandlordUtils.convertToLandlordDtoList(LandlordList);
-		
+
 	}
-	public boolean validateLandlordId(int id) throws LandlordNotFoundException
-	{
-		boolean flag = landlordRepo.existsById(id);
-		if(flag == false)
-			throw new LandlordNotFoundException(landlordNotFound);
-		return flag;
-	}
-	
-	public static boolean validateLandlord(Landlord landlord) throws LandlordNotFoundException, InvalidFlatInputException
-	{
+
+	public static boolean validateLandlord(Landlord landlord)
+			throws LandlordNotFoundException, InvalidFlatInputException {
+		LOGGER.info("validateLandlord() is initiated");
 		boolean flag = false;
-		if(landlord == null)
+		if (landlord == null) {
+			LOGGER.error("Landlord details cannot be blank");
 			throw new LandlordNotFoundException("Landlord details cannot be blank");
-		else if(!(validateLandlordAge(landlord.getLandlordAge())))
+		} else if (!(validateLandlordAge(landlord.getLandlordAge()))) {
+			LOGGER.error("Invalid Age");
 			throw new LandlordNotFoundException("Invalid Age");
-		else if(!(validateLandlordName(landlord.getLandlordName())))
+		} else if (!(validateLandlordName(landlord.getLandlordName()))) {
+			LOGGER.error("Invalid Name");
 			throw new LandlordNotFoundException("Invalid Name");
-		else if(!validateLandlordFlat(landlord.getFlatList()))
+		} else if (!validateLandlordFlat(landlord.getFlatList())) {
+			LOGGER.error("Invalid flat Details");
 			throw new LandlordNotFoundException("Invalid flat Details");
-		else
+		} else {
 			flag = true;
-		return flag;
-	}
-	
-	public static boolean validateLandlordFlat(List<Flat> flatList) throws LandlordNotFoundException, InvalidFlatInputException
-	{
-		boolean flag = false;
-		for (Flat flat : flatList)
-		{
-			if(!FlatServiceImpl.validateFlat(flat))
-				throw new LandlordNotFoundException("Invalid Flat Details");
-			else
-				flag = true;
+			LOGGER.info("Validation Successful");
 		}
+		LOGGER.info("validateLandlord() has executed");
 		return flag;
 	}
-	
 
-	public static boolean validateLandlordName(String landlordName) throws LandlordNotFoundException 
-	{
+	public static boolean validateLandlordFlat(List<Flat> flatList)
+			throws LandlordNotFoundException, InvalidFlatInputException {
+		LOGGER.info("validateLandlordFlat() is initiated");
 		boolean flag = false;
-		if(landlordName == null)
+		for (Flat flat : flatList) {
+			if (!FlatServiceImpl.validateFlat(flat)) {
+				LOGGER.error("Invalid Flat Details");
+				throw new LandlordNotFoundException("Invalid Flat Details");
+			} else {
+				flag = true;
+				LOGGER.info("Validation Successful");
+			}
+		}
+		LOGGER.info("validateLandlordFlat() has executed");
+		return flag;
+	}
+
+	public static boolean validateLandlordName(String landlordName) throws LandlordNotFoundException {
+		LOGGER.info("validateLandlordName() is initiated");
+		boolean flag = false;
+		if (landlordName == null) {
+			LOGGER.error("Landlord name cannot be empty");
 			throw new LandlordNotFoundException("Landlord name cannot be empty");
-		else if(!landlordName.matches("^[A-Za-z ]+$"))
+		} else if (!landlordName.matches("^[A-Za-z ]+$")) {
+			LOGGER.error("Landlord name cannot contain Numbers or Special Characters");
 			throw new LandlordNotFoundException("Landlord name cannot contain Numbers or Special Characters");
-		else if(landlordName.length()<3 || landlordName.length()>30)
+		} else if (landlordName.length() < 3 || landlordName.length() > 30) {
+			LOGGER.error("Landlord name length should be in range 3 to 30");
 			throw new LandlordNotFoundException("Landlord name length should be in range 3 to 30");
-		else
+		} else {
 			flag = true;
+			LOGGER.info("Validation Successful");
+		}
+		LOGGER.info("validateLandlordName() has executed");
 		return flag;
 	}
 
-	public static boolean validateLandlordAge(int age) throws LandlordNotFoundException
-	{
+	public static boolean validateLandlordAge(int age) throws LandlordNotFoundException {
+		LOGGER.info("validateLandlordAge() is initiated");
 		boolean flag = false;
-		if(age <= 0)
+		if (age <= 0) {
+			LOGGER.error("Age cannot be 0 or negative");
 			throw new LandlordNotFoundException("Age cannot be 0 or negative");
-		else if(age < 18)
+		} else if (age < 18) {
+			LOGGER.error("Minor Age is not allowed");
 			throw new LandlordNotFoundException("Minor Age is not allowed");
-		else
+		} else {
 			flag = true;
+			LOGGER.info("Validation Successful");
+		}
+		LOGGER.info("validateLandlordAge() has executed");
 		return flag;
 	}
-	
+
 }

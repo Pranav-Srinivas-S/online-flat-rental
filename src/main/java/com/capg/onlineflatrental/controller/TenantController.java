@@ -24,7 +24,7 @@ import com.capg.onlineflatrental.service.ITenantService;
 /*
  * Author : PRNANAV SRINIVAS S
  * Version : 1.0
- * Date : 04-04-2921
+ * Date : 04-04-2021
  * Description : This is Tenant Controller
 */
 

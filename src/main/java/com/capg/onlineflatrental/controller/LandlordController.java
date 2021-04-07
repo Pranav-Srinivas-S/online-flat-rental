@@ -26,7 +26,7 @@ import com.capg.onlineflatrental.service.ILandlordService;
 /*
  * Author : NITHISHA K A
  * Version : 1.0
- * Date : 04-04-2921
+ * Date : 04-04-2021
  * Description : This is Landlord Controller
 */
 

@@ -25,7 +25,7 @@ import com.capg.onlineflatrental.service.IAdminService;
 /*
  * Author : NITHISHA K A
  * Version : 1.0
- * Date : 06-04-2921
+ * Date : 06-04-2021
  * Description : This is Admin Controller
 */
 

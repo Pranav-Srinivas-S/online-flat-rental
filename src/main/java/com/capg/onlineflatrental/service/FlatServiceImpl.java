@@ -15,14 +15,14 @@ import com.capg.onlineflatrental.util.FlatUtils;
 /*
  * Author : AJITHKUMAR A 
  * Version : 1.0
- * Date : 03-04-2921
+ * Date : 03-04-2021
  * Description : This is Flat Service Layer
 */
 
 @Service
 public class FlatServiceImpl implements IFlatService {
 
-	final static Logger LOGGER = LoggerFactory.getLogger(FlatBookingServiceImpl.class);
+	final static Logger LOGGER = LoggerFactory.getLogger(FlatServiceImpl.class);
 
 	@Autowired
 	private IFlatRepository flatRepo;
@@ -106,7 +106,7 @@ public class FlatServiceImpl implements IFlatService {
 
 	/*
 	 * Description : This method Shows all existing Flats
-	 * Return Value : FlatDTO Object 
+	 * Return Value : List<FlatDTO> Object 
 	 */
 	@Override
 	public List<FlatDTO> viewAllFlat() {
