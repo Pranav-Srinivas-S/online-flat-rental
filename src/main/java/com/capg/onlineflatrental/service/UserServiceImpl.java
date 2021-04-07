@@ -1,5 +1,4 @@
 package com.capg.onlineflatrental.service;
-
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +37,8 @@ public class UserServiceImpl implements IUserService{
 		existUser = userRepo.findByUserName(user.getUserName());
 		if(existUser != null)
 			throw new UserNotFoundException("User Name already exists, Try anouther name");
+		else if(!validateUser(user))
+			throw new UserNotFoundException("Invalid User Details");
 		else
 			userEntity = userRepo.save(user);
 		return UserUtils.convertToUserDto(userEntity);
@@ -51,7 +52,9 @@ public class UserServiceImpl implements IUserService{
 		User existUser = userRepo.findById(user.getUserId()).orElse(null);
 		if(existUser == null)
 			throw new UserNotFoundException("No user found");
-		else if(!validateUserWithName(user.getUserId(), user.getUserName(), user.getPassword()))
+		else if(!updateUser(user.getUserId(), user.getUserName(), user.getPassword()))
+			throw new UserNotFoundException("User Details Dont Match");
+		else if(!validateUserType(user.getUserType()))
 			throw new UserNotFoundException("User Details Dont Match");
 		else
 			userEntity = userRepo.save(user);
@@ -66,22 +69,12 @@ public class UserServiceImpl implements IUserService{
 		User existUser = userRepo.findById(user.getUserId()).orElse(null);
 		if(existUser == null)
 			throw new UserNotFoundException("No user found with given ID");
-		else if(!checkUser(user.getUserId(), user.getUserName(), user.getPassword()))
+		else if(!updatePassword(user.getUserId(), user.getUserName(), user.getPassword(),user.getUserType()))
 			throw new UserNotFoundException("User Details Dont Match");
 		else if(!validatePassword(newpass))
-			throw new UserNotFoundException("Format for Password is Wrong\r\n"
-					+ "\r\n"
-					+"Please Enter Password Again :\r\n"
-					+ "____________________________________________________________\r\n"
-					+ "\r\n"
-					+"Valid Format for Password :\r\n"
-					+ "\r\n"
-					+ "Password should not contain any space.\r\n"
-					+ "Password should contain at least one digit(0-9).\r\n"
-					+ "Password length should be between 8 to 15 characters.\r\n"
-					+ "Password should contain at least one lowercase letter(a-z).\r\n"
-					+ "Password should contain at least one uppercase letter(A-Z).\r\n"
-					+ "Password should contain at least one special character ( @, #, %, &, !, $, etc….)");
+			throw new UserNotFoundException(passwordformat);
+		else if(!validateUserType(user.getUserType()))
+			throw new UserNotFoundException("Invalid User Details");
 		else {
 			user.setPassword(newpass);
 		userEntity = userRepo.save(user);}
@@ -123,132 +116,31 @@ public class UserServiceImpl implements IUserService{
 		return flag;
 	}
 	
-	
-	
-	public static boolean validatePassword(String password)
-    {
-		 if (!((password.length() >= 8)
-	              && (password.length() <= 15))) {
-	            return false;
-	        }
-		 if (password.contains(" ")) {
-	            return false;
-	        }
-	        if (true) {
-	            int count = 0;
-	            for (int i = 0; i <= 9; i++) {
-	                String str1 = Integer.toString(i);
-	                if (password.contains(str1)) {
-	                    count = 1;
-	                }
-	            }
-	            if (count == 0) {
-	                return false;
-	            }
-	            if (!(password.contains("@") || password.contains("#")
-	                    || password.contains("!") || password.contains("~")
-	                    || password.contains("$") || password.contains("%")
-	                    || password.contains("^") || password.contains("&")
-	                    || password.contains("*") || password.contains("(")
-	                    || password.contains(")") || password.contains("-")
-	                    || password.contains("+") || password.contains("/")
-	                    || password.contains(":") || password.contains(".")
-	                    || password.contains(", ") || password.contains("<")
-	                    || password.contains(">") || password.contains("?")
-	                    || password.contains("|"))) {
-	                  return false;
-	              }
-	            if (true) {
-	                int count1 = 0;
-	      
-	                for (int i = 65; i <= 90; i++) {
-	      
-	                    char c = (char)i;
-	      
-	                    String str1 = Character.toString(c);
-	                    if (password.contains(str1)) {
-	                        count1 = 1;
-	                    }
-	                }
-	                if (count1 == 0) {
-	                    return false;
-	                }
-	            }
-	            if (true) {
-	                int count1 = 0;
-	      
-	                for (int i = 90; i <= 122; i++) {
-	                    char c = (char)i;
-	                    String str1 = Character.toString(c);
-	      
-	                    if (password.contains(str1)) {
-	                        count1 = 1;
-	                    }
-	                }
-	                if (count1 == 0) {
-	                    return false;
-	                }
-	            }
-	        }
-		 return true;
-    }
-	
 	public static boolean validateUsername(String userName) throws UserNotFoundException
     {  
 		boolean flag = false;
 		if(userName == null)
 			throw new UserNotFoundException("User Name cannot be empty");
 		else if(!userName.matches("^[a-zA-Z]+$"))
-			throw new UserNotFoundException("Format For UserName is Wrong\r\n"
-					+ "\r\n"
-					+ "Please Enter Again :\r\n"
-					+ "____________________________________________________________\r\n"
-					+ "\r\n"
-					+ "Valid Format for UserName:\r\n"
-					+ "\r\n"
-					+ "The first character of the username must be an alphabetic character, i.e., either lowercase character\r\n"
-					+ "[a – z] or uppercase character [A – Z].\r\n"
-					+ "____________________________________________________________\r\n");
+			throw new UserNotFoundException(usernameformat);
+		else if(userName.length()<3 || userName.length()>40)
+			throw new UserNotFoundException(usernameformat);
 		else
 			flag = true;
 		return flag;
     }	
-		
-	public static boolean validateUser(User user) throws UserNotFoundException {
+	
+	public static boolean validatePassword(String Password) throws UserNotFoundException
+    {  
 		boolean flag = false;
-		if(user == null)
-			throw new UserNotFoundException("User details cannot be blank");
-		else if(!validateUsername(user.getUserName()))
-			throw new UserNotFoundException("Format For UserName is Wrong\r\n"
-					+ "\r\n"
-					+ "Please Enter Again :\r\n"
-					+ "____________________________________________________________\r\n"
-					+ "\r\n"
-					+ "Valid Format for UserName:\r\n"
-					+ "\r\n"
-					+ "The first character of the username must be an alphabetic character, i.e., either lowercase character\r\n"
-					+ "[a – z] or uppercase character [A – Z].\r\n"
-					+ "____________________________________________________________\r\n");
-		else if(!validatePassword(user.getPassword()))
-			throw new UserNotFoundException("Format for Password is Wrong\r\n"
-					+ "\r\n"
-					+"Please Enter Password Again :\r\n"
-					+ "____________________________________________________________\r\n"
-					+ "\r\n"
-					+"Valid Format for Password :\r\n"
-					+ "\r\n"
-					+ "Password should not contain any space.\r\n"
-					+ "Password should contain at least one digit(0-9).\r\n"
-					+ "Password length should be between 8 to 15 characters.\r\n"
-					+ "Password should contain at least one lowercase letter(a-z).\r\n"
-					+ "Password should contain at least one uppercase letter(A-Z).\r\n"
-					+ "Password should contain at least one special character ( @, #, %, &, !, $, etc….)");
-		else if(!validateUserType(user.getUserType()))
-			throw new UserNotFoundException("Invalid User Type"); 
+		if(Password == null)
+			throw new UserNotFoundException(passwordformat);
+		else if(!Password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$"))
+			throw new UserNotFoundException(passwordformat);
 		else
 			flag = true;
 		return flag;
-	}
+    }
 	
 	public static boolean validateUserType(String userType) throws UserNotFoundException
 	{
@@ -266,59 +158,88 @@ public class UserServiceImpl implements IUserService{
 			flag = true;
 		return flag;
 	}
-	
-	public static boolean validateUserPassword(User user) throws UserNotFoundException {
+		
+	public static boolean validateUser(User user) throws UserNotFoundException {
 		boolean flag = false;
 		if(user == null)
 			throw new UserNotFoundException("User details cannot be blank");
-		else if(!(validatePassword(user.getPassword()) && validateUsername(user.getUserName())))
-			throw new UserNotFoundException(" Either \"Format for New Password is Wrong\" or \"you entered Wrong user id or old Password\"\r\n"
-					+ "\r\n"
-					+ "_______________________________________________________________________________________________________________________\r\n"
-					+ "\r\n"
-					+ "Valid Format for NewPassword:\r\n"
-					+ "\r\n"
-					+ "Password should not contain any space.\r\n"
-					+ "Password should contain at least one digit(0-9).\r\n"
-					+ "Password length should be between 8 to 15 characters.\r\n"
-					+ "Password should contain at least one lowercase letter(a-z).\r\n"
-					+ "Password should contain at least one uppercase letter(A-Z).\r\n"
-					+ "Password should contain at least one special character ( @, #, %, &, !, $, etc….)\r\n"
-					+ "");
+		else if(!validateUsername(user.getUserName()))
+			throw new UserNotFoundException(usernameformat);
+		else if(!validatePassword(user.getPassword()))
+			throw new UserNotFoundException(passwordformat);
+		else if(!validateUserType(user.getUserType()))
+			throw new UserNotFoundException("Invalid User Type"); 
 		else
 			flag = true;
 		return flag;
 	}
 	
-	public boolean validateUserWithName(int id, String userName, String password) throws UserNotFoundException {
+	public boolean updateUser(int id, String userName, String password) throws UserNotFoundException {
 		boolean flag = false;
 		User user = userRepo.findById(id).orElse(null);
 		if(!validateUserId(id))
 			throw new UserNotFoundException("No User available in given ID");
 		else if(user == null)
 			throw new UserNotFoundException("Invalid User Name");
-		else if (!validateUsername(userName))
-			throw new UserNotFoundException("Invalid User Name");
+		else if  (!user.getUserName().equals(userName) && user != null)
+		throw new UserNotFoundException("Invalid User Name");
 		else if (user.getPassword().equals(password) && user != null)
 			flag = true;
 		else 
 			throw new UserNotFoundException("Password does not Match");
-		return flag;
-		
+		return flag;		
 	}
 	
-	public boolean checkUser(int id, String userName, String password) throws UserNotFoundException {
+	public boolean updatePassword(int id, String userName, String password,String UserType) throws UserNotFoundException {
 		boolean flag = false;
 		User user = userRepo.findByIdAndName(id, userName);
 		if(!validateUserId(id))
 			throw new UserNotFoundException("No User available in given ID");
 		else if(user == null)
 			throw new UserNotFoundException("Invalid User Name");
-		if (user.getPassword().equals(password) && user != null)
+		else if (!user.getUserType().equals(UserType) && user != null)
+			throw new UserNotFoundException("Invalid User Type");
+		else if (user.getPassword().equals(password) && user != null)
 			flag = true;
 		else 
 			throw new UserNotFoundException("Password does not Match");
 		return flag;
 	}
+	static String passwordformat ="Format for password is Wrong\r\n"
+			+ "\r\n"
+			+ "Please Enter Password Again\r\n"
+			+ "\r\n"
+			+ "Password cannot be empty\\r\\n"
+			+ "Password must contain at least one digit [0-9].\r\n"
+			+ "Password must contain at least one lowercase Latin character [a-z].\r\n"
+			+ "Password must contain at least one uppercase Latin character [A-Z].\r\n"
+			+ "Password must contain at least one special character like ! @ # & ( ).\r\n"
+			+ "Password must contain a length of at least 8 characters and a maximum of 20 characters."
+			+ ""  ;
+	static String usernameformat ="Format For UserName is Wrong\r\n"
+			+ "\r\n"
+			+ "Please Enter Again :\r\n"
+			+ "____________________________________________________________\r\n"
+			+ "\r\n"
+			+ "Valid Format for UserName:\r\n"
+			+ "\r\n"
+			+ "The first character of the username must be an alphabetic character, i.e., either lowercase character\r\n"
+			+ "[a – z] or uppercase character [A – Z].\r\n"
+			+ "User Name length should be in range 3 to 40.\\r\\n"
+			+ "____________________________________________________________\r\n";
 
+
+public boolean checkUser(int id, String userName, String password) throws UserNotFoundException {
+	boolean flag = false;
+	User user = userRepo.findByIdAndName(id, userName);
+	if(!validateUserId(id))
+		throw new UserNotFoundException("No User available in given ID");
+	else if(user == null)
+		throw new UserNotFoundException("Invalid User Name");
+	if (user.getPassword().equals(password) && user != null)
+		flag = true;
+	else 
+		throw new UserNotFoundException("Password does not Match");
+	return flag;
+}
 }

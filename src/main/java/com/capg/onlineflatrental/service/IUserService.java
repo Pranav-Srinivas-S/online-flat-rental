@@ -13,6 +13,8 @@ public interface IUserService {
 	public UserDTO updateUser(User user)  throws UserNotFoundException;
 	public UserDTO updatePassword(User user,String newpass) throws UserNotFoundException;
 	public UserDTO removeUser(int id) throws UserNotFoundException;
-	boolean checkUser(String userName, String password) throws UserNotFoundException;
+	public boolean checkUser(String userName, String password) throws UserNotFoundException;
+	
+	
 	
 }
