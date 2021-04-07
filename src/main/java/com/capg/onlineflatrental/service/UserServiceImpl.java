@@ -69,12 +69,8 @@ public class UserServiceImpl implements IUserService{
 		User existUser = userRepo.findById(user.getUserId()).orElse(null);
 		if(existUser == null)
 			throw new UserNotFoundException("No user found with given ID");
-		else if(!updatePassword(user.getUserId(), user.getUserName(), user.getPassword(),user.getUserType()))
-			throw new UserNotFoundException("User Details Dont Match");
-		else if(!validatePassword(newpass))
-			throw new UserNotFoundException(passwordformat);
-		else if(!validateUserType(user.getUserType()))
-			throw new UserNotFoundException("Invalid User Details");
+		else if(!(updatePassword(user.getUserId(), user.getUserName(), user.getPassword(),user.getUserType()) && validatePassword(newpass)) && validateUserType(user.getUserType()))
+			throw new UserNotFoundException("User Details Don't Match");
 		else {
 			user.setPassword(newpass);
 		userEntity = userRepo.save(user);}
@@ -163,12 +159,8 @@ public class UserServiceImpl implements IUserService{
 		boolean flag = false;
 		if(user == null)
 			throw new UserNotFoundException("User details cannot be blank");
-		else if(!validateUsername(user.getUserName()))
-			throw new UserNotFoundException(usernameformat);
-		else if(!validatePassword(user.getPassword()))
-			throw new UserNotFoundException(passwordformat);
-		else if(!validateUserType(user.getUserType()))
-			throw new UserNotFoundException("Invalid User Type"); 
+		else if(!(validateUsername(user.getUserName()) && validatePassword(user.getPassword()) && validateUserType(user.getUserType())))
+			throw new UserNotFoundException("Invalid User Details"); 
 		else
 			flag = true;
 		return flag;
@@ -225,8 +217,8 @@ public class UserServiceImpl implements IUserService{
 			+ "\r\n"
 			+ "The first character of the username must be an alphabetic character, i.e., either lowercase character\r\n"
 			+ "[a – z] or uppercase character [A – Z].\r\n"
-			+ "User Name length should be in range 3 to 40.\\r\\n"
-			+ "____________________________________________________________\r\n";
+			+ "User Name length should be in range 3 to 40."
+			+ "\r\n";
 
 
 public boolean checkUser(int id, String userName, String password) throws UserNotFoundException {

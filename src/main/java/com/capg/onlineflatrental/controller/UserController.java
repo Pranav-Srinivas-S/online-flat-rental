@@ -2,7 +2,6 @@ package com.capg.onlineflatrental.controller;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.capg.onlineflatrental.entities.User;
 import com.capg.onlineflatrental.exception.UserNotFoundException;
 import com.capg.onlineflatrental.model.UserDTO;
@@ -121,6 +119,6 @@ import com.capg.onlineflatrental.service.UserServiceImpl;
 		public List<UserDTO> getAllUsers()
 		{
 			return userService.viewAllUser();
-		}
+		}	
 		
 }
