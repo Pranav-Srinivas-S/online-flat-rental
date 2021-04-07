@@ -5,9 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import com.capg.onlineflatrental.entities.Flat;
@@ -20,6 +24,8 @@ import com.capg.onlineflatrental.service.ILandlordService;
 @SpringBootTest
 class LandlordServiceImplTest {
 
+	final static Logger LOGGER = LoggerFactory.getLogger(LandlordServiceImplTest.class);
+	
 	@Autowired
 	ILandlordService service;
 
@@ -29,7 +35,7 @@ class LandlordServiceImplTest {
 
 	@BeforeAll
 	public static void init() {
-
+		LOGGER.info("Landlord Testing Initiated");
 	}
 
 	@Test
@@ -309,7 +315,7 @@ class LandlordServiceImplTest {
 
 	@Test
 	void testViewLandlord23() throws LandlordNotFoundException {
-		assertEquals("Name", service.viewLandlord(50).getLandlordName());
+		assertEquals("Name", service.viewLandlord(1).getLandlordName());
 	}
 
 	@Test
@@ -333,6 +339,11 @@ class LandlordServiceImplTest {
 		} catch (AssertionFailedError exception) {
 			assertNotNull(service.viewAllLandlord());
 		}
+	}
+	
+	@AfterAll
+	public static void end() {
+		LOGGER.info("LandlordO Testing Terminated");
 	}
 
 }

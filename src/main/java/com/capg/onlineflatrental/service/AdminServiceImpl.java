@@ -123,11 +123,12 @@ public class AdminServiceImpl implements IAdminService {
 		boolean flag = false;
 		if (admin == null) {
 			LOGGER.error("Admin details cannot be blank");
-			throw new AdminNotFoundException("Admin details cannot be blank");
-		} else if (AdminServiceImpl.validateId(admin.getAdminId())) {
-			LOGGER.error("No Admin available in given ID");
-			throw new AdminNotFoundException("No Admin available in given ID");
-		} else if (!validatePassword(admin.getAdminPassword())) {
+			throw new AdminNotFoundException("Admin details cannot be blank");}
+//		} else if (AdminServiceImpl.validateId(admin.getAdminId())) {
+//			LOGGER.error("No Admin available in given ID");
+//			throw new AdminNotFoundException("No Admin available in given ID");
+//		} 
+		else if (!validatePassword(admin.getAdminPassword())) {
 			LOGGER.error("Invalid details");
 			throw new AdminNotFoundException("Invalid details");
 		} else {
