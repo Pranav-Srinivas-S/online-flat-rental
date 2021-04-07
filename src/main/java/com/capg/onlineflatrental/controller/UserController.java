@@ -137,5 +137,4 @@ public class UserController {
 		LOGGER.info("getAllUsers() is initiated");
 		return userService.viewAllUser();
 	}
-
-}
+}//

@@ -15,7 +15,7 @@ import com.capg.onlineflatrental.util.UserUtils;
  * Version : 1.0
  * Date : 03-04-2021
  * Description : It is a user service class that provides the services to view user,view all users, validate user,add a user,
- *          	 remove a user, update the user, and update the password
+ *          	 remove a user, update the user, and update the password.
 */
 
 @Service

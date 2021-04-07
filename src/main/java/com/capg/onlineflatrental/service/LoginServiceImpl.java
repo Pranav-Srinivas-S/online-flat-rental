@@ -12,7 +12,7 @@ import com.capg.onlineflatrental.exception.UserNotFoundException;
  * Author : RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH 
  * Version : 1.0
  * Date : 03-04-2021
- * Description : It is a login service class that provides the services to validate login details
+ * Description : It is a login service class that provides the services to validate login details.
 */
 
 @Service
@@ -24,7 +24,7 @@ public class LoginServiceImpl implements ILoginService {
 	UserServiceImpl userService;
 	
 	/*
-	 * Method:                          	Login
+	 * Method:                          	Login.
      *Description:                      	To check the user name and password is matching or not.
          *@param id:                  		id for validating login.
 	     *@param username:                  user name for validating login.
