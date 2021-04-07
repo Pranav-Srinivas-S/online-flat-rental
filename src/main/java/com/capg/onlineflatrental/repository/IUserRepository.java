@@ -11,5 +11,6 @@ public interface IUserRepository extends JpaRepository<User, Integer>{
 	User findByUserName(String username);
 	
 	@Query("select u from User u where u.userId = ?1 and u.userName = ?2")
-	User findByIdAndName(int id, String userName);	
+	User findByIdAndName(int id, String userName);
+	
 }

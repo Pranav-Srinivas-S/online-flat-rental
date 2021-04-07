@@ -31,4 +31,5 @@ public class UserUtils {
 		dto.setUserType(user.getUserType());
 		return dto;
 	}
+	
 }

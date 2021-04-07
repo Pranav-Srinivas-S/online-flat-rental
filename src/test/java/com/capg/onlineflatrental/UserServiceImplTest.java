@@ -575,21 +575,3 @@ void testRemoveuser03() throws UserNotFoundException {
 
 }
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
