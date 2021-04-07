@@ -11,8 +11,9 @@ public interface IUserService {
 	public List<UserDTO> viewAllUser();
 	public UserDTO addUser(User user) throws UserNotFoundException;
 	public UserDTO updateUser(User user)  throws UserNotFoundException;
+	public boolean validateUser(String userName, String password) throws UserNotFoundException;
 	public UserDTO updatePassword(User user,String newpass) throws UserNotFoundException;
 	public UserDTO removeUser(int id) throws UserNotFoundException;
-	public boolean checkUser(String userName, String password) throws UserNotFoundException;
+	
 
 }

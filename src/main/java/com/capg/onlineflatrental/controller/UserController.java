@@ -27,8 +27,8 @@ import com.capg.onlineflatrental.service.UserServiceImpl;
 /*
  * Author : RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH
  * Version : 1.0
- * Date : 04-04-2921
- * Description : This is User Controller
+ * Date : 04-04-2021
+ * Description : This is User Controller.
 */
 
 @RestController
@@ -40,6 +40,7 @@ public class UserController {
 	@Autowired
 	private IUserService userService;
 
+
 	@PostMapping("/add-user")
 	public ResponseEntity<Object> addUser(@RequestBody User user) throws UserNotFoundException {
 		LOGGER.info("add-user URL is opened");
@@ -50,7 +51,6 @@ public class UserController {
 		userResponse = new ResponseEntity<Object>(userDTO, HttpStatus.ACCEPTED);
 		LOGGER.info("addUser() has executed");
 		return userResponse;
-
 	}
 
 	@PutMapping("/update-user")
@@ -90,7 +90,7 @@ public class UserController {
 				HttpStatus.ACCEPTED);
 		if (userName == null)
 			throw new UserNotFoundException("No user Found");
-		else if (!userService.checkUser(userName, password))
+		else if (!userService.validateUser(userName, password))
 			throw new UserNotFoundException("User name and Password Does not match");
 		else
 			userResponse = new ResponseEntity<String>("User Name and Password Match!", HttpStatus.ACCEPTED);
