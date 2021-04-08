@@ -1,7 +1,6 @@
 package com.capg.onlineflatrental.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +20,6 @@ import com.capg.onlineflatrental.entities.Flat;
 import com.capg.onlineflatrental.exception.FlatNotFoundException;
 import com.capg.onlineflatrental.exception.InvalidFlatInputException;
 import com.capg.onlineflatrental.model.FlatDTO;
-import com.capg.onlineflatrental.service.FlatServiceImpl;
 import com.capg.onlineflatrental.service.IFlatService;
 
 /*
@@ -35,7 +33,7 @@ import com.capg.onlineflatrental.service.IFlatService;
 @RequestMapping("/api/ofr/flat")
 public class FlatController {
 
-	final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+	static final Logger LOGGER = LoggerFactory.getLogger(FlatController.class);
 
 	@Autowired
 	private IFlatService flatService;
@@ -47,7 +45,7 @@ public class FlatController {
 		FlatDTO flatDTO = null;
 		ResponseEntity<Object> flatResponse = null;
 		flatDTO = flatService.addFlat(flat);
-		flatResponse = new ResponseEntity<Object>(flatDTO, HttpStatus.ACCEPTED);
+		flatResponse = new ResponseEntity<>(flatDTO, HttpStatus.ACCEPTED);
 		LOGGER.info("addFlat() has executed");
 		return flatResponse;
 	}
@@ -60,7 +58,7 @@ public class FlatController {
 		FlatDTO flatDTO = null;
 		ResponseEntity<Object> flatResponse = null;
 		flatDTO = flatService.updateFlat(flat);
-		flatResponse = new ResponseEntity<Object>(flatDTO, HttpStatus.ACCEPTED);
+		flatResponse = new ResponseEntity<>(flatDTO, HttpStatus.ACCEPTED);
 		LOGGER.info("updateFlat() has executed");
 		return flatResponse;
 	}
@@ -71,12 +69,8 @@ public class FlatController {
 		LOGGER.info("deleteFlat() is initiated");
 		FlatDTO flatDTO = null;
 		ResponseEntity<Object> flatResponse = null;
-		Optional<FlatDTO> optional = Optional.of(flatService.deleteFlat(id));
-		if (optional.isPresent()) {
-			flatDTO = optional.get();
-			flatResponse = new ResponseEntity<Object>(flatDTO, HttpStatus.ACCEPTED);
-		} else
-			throw new FlatNotFoundException("No Flat available in given ID");
+		flatDTO = flatService.deleteFlat(id);
+		flatResponse = new ResponseEntity<>(flatDTO, HttpStatus.ACCEPTED);
 		LOGGER.info("deleteFlat() has executed");
 		return flatResponse;
 	}
@@ -87,12 +81,8 @@ public class FlatController {
 		LOGGER.info("getFlatById() is initiated");
 		FlatDTO flatDTO = null;
 		ResponseEntity<Object> flatResponse = null;
-		Optional<FlatDTO> optional = Optional.of(flatService.viewFlat(id));
-		if (optional.isPresent()) {
-			flatDTO = optional.get();
-			flatResponse = new ResponseEntity<Object>(flatDTO, HttpStatus.ACCEPTED);
-		} else
-			throw new FlatNotFoundException("No flat available in given ID");
+		flatDTO = flatService.viewFlat(id);
+		flatResponse = new ResponseEntity<>(flatDTO, HttpStatus.ACCEPTED);
 		LOGGER.info("getFlatById() has executed");
 		return flatResponse;
 	}
@@ -112,15 +102,8 @@ public class FlatController {
 		LOGGER.info("getFlatsByCost() is initiated");
 		List<FlatDTO> flatDTO = null;
 		ResponseEntity<Object> flatResponse = null;
-		Optional<List<FlatDTO>> optional = Optional.of(flatService.viewAllFlatByCost(cost, availability));
-		if (FlatServiceImpl.validateFlatCost(cost) && FlatServiceImpl.validateFlatAvailability(availability)) {
-			if (optional.isPresent()) {
-				flatDTO = optional.get();
-				flatResponse = new ResponseEntity<Object>(flatDTO, HttpStatus.ACCEPTED);
-			} else
-				throw new FlatNotFoundException("No flat available for given cost");
-		} else
-			throw new InvalidFlatInputException(" Invalid input for cost/availability");
+		flatDTO = flatService.viewAllFlatByCost(cost, availability);
+		flatResponse = new ResponseEntity<>(flatDTO, HttpStatus.ACCEPTED);
 		LOGGER.info("getFlatsByCost() has executed");
 		return flatResponse;
 	}

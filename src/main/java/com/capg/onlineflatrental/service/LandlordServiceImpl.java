@@ -25,12 +25,14 @@ import com.capg.onlineflatrental.util.LandlordUtils;
 @Service
 public class LandlordServiceImpl implements ILandlordService {
 
-	final static Logger LOGGER = LoggerFactory.getLogger(LandlordServiceImpl.class);
+	static final Logger LOGGER = LoggerFactory.getLogger(LandlordServiceImpl.class);
 
 	@Autowired
 	private ILandlordRepository landlordRepo;
 
 	static String landlordNotFound = "No Landlord found in given ID";
+	
+	static String validationSuccessful = "Validation Successful";
 
 	/*
 	 * Description : This method Adds new Landlord
@@ -42,12 +44,8 @@ public class LandlordServiceImpl implements ILandlordService {
 	public LandlordDTO addLandlord(Landlord landlord) throws LandlordNotFoundException, InvalidFlatInputException {
 		LOGGER.info("addLandlord() service is initiated");
 		Landlord landlordEntity;
-		if (landlord == null)
-			landlordEntity = null;
-		else if (!validateLandlord(landlord))
-			throw new LandlordNotFoundException("No Tenant available in given ID");
-		else
-			landlordEntity = landlordRepo.save(landlord);
+		validateLandlord(landlord);
+		landlordEntity = landlordRepo.save(landlord);
 		LOGGER.info("addLandlord() service has executed");
 		return LandlordUtils.convertToLandlordDto(landlordEntity);
 	}
@@ -62,15 +60,14 @@ public class LandlordServiceImpl implements ILandlordService {
 	public LandlordDTO updateLandlord(Landlord landlord) throws LandlordNotFoundException, InvalidFlatInputException {
 		LOGGER.info("updateLandlord() service is initiated");
 		Landlord landlordEntity;
-		if (landlord == null)
-			landlordEntity = null;
 		Landlord existLandlord = landlordRepo.findById(landlord.getLandlordId()).orElse(null);
 		if (existLandlord == null)
 			throw new LandlordNotFoundException(landlordNotFound);
-		else if (!validateLandlord(landlord))
-			throw new LandlordNotFoundException("No Tenant available in given ID");
 		else
+		{
+			validateLandlord(landlord);
 			landlordEntity = landlordRepo.save(landlord);
+		}
 		LOGGER.info("updateLandlord() service has executed");
 		return LandlordUtils.convertToLandlordDto(landlordEntity);
 	}
@@ -116,9 +113,9 @@ public class LandlordServiceImpl implements ILandlordService {
 	@Override
 	public List<LandlordDTO> viewAllLandlord() {
 		LOGGER.info("viewAllLandlord() service is initiated");
-		List<Landlord> LandlordList = landlordRepo.findAll();
+		List<Landlord> landlordList = landlordRepo.findAll();
 		LOGGER.info("viewAllLandlord() service has executed");
-		return LandlordUtils.convertToLandlordDtoList(LandlordList);
+		return LandlordUtils.convertToLandlordDtoList(landlordList);
 
 	}
 
@@ -129,18 +126,13 @@ public class LandlordServiceImpl implements ILandlordService {
 		if (landlord == null) {
 			LOGGER.error("Landlord details cannot be blank");
 			throw new LandlordNotFoundException("Landlord details cannot be blank");
-		} else if (!(validateLandlordAge(landlord.getLandlordAge()))) {
-			LOGGER.error("Invalid Age");
-			throw new LandlordNotFoundException("Invalid Age");
-		} else if (!(validateLandlordName(landlord.getLandlordName()))) {
-			LOGGER.error("Invalid Name");
-			throw new LandlordNotFoundException("Invalid Name");
-		} else if (!validateLandlordFlat(landlord.getFlatList())) {
-			LOGGER.error("Invalid flat Details");
-			throw new LandlordNotFoundException("Invalid flat Details");
-		} else {
+		}
+		else {
+			validateLandlordAge(landlord.getLandlordAge());
+			validateLandlordName(landlord.getLandlordName());
+			validateLandlordFlat(landlord.getFlatList());
 			flag = true;
-			LOGGER.info("Validation Successful");
+			LOGGER.info(validationSuccessful);
 		}
 		LOGGER.info("validateLandlord() has executed");
 		return flag;
@@ -156,7 +148,7 @@ public class LandlordServiceImpl implements ILandlordService {
 				throw new LandlordNotFoundException("Invalid Flat Details");
 			} else {
 				flag = true;
-				LOGGER.info("Validation Successful");
+				LOGGER.info(validationSuccessful);
 			}
 		}
 		LOGGER.info("validateLandlordFlat() has executed");
@@ -177,7 +169,7 @@ public class LandlordServiceImpl implements ILandlordService {
 			throw new LandlordNotFoundException("Landlord name length should be in range 3 to 30");
 		} else {
 			flag = true;
-			LOGGER.info("Validation Successful");
+			LOGGER.info(validationSuccessful);
 		}
 		LOGGER.info("validateLandlordName() has executed");
 		return flag;
@@ -194,7 +186,7 @@ public class LandlordServiceImpl implements ILandlordService {
 			throw new LandlordNotFoundException("Minor Age is not allowed");
 		} else {
 			flag = true;
-			LOGGER.info("Validation Successful");
+			LOGGER.info(validationSuccessful);
 		}
 		LOGGER.info("validateLandlordAge() has executed");
 		return flag;

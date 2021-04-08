@@ -7,8 +7,12 @@ import com.capg.onlineflatrental.model.FlatBookingDTO;
 
 public class FlatBookingUtils {
 
+	private FlatBookingUtils() {
+		
+	}
+	
 	public static List<FlatBookingDTO> convertToFlatBookingDtoList(List<FlatBooking> list){
-		List<FlatBookingDTO> dtolist = new ArrayList<FlatBookingDTO>();
+		List<FlatBookingDTO> dtolist = new ArrayList<>();
 		for(FlatBooking flatBooking : list) 
 			dtolist.add(convertToFlatBookingDto(flatBooking));
 		return dtolist;

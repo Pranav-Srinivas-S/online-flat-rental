@@ -11,7 +11,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 public class OnlineFlatRentalApplication {
 
-	final static Logger LOGGER = LoggerFactory.getLogger(OnlineFlatRentalApplication.class);
+	static final Logger LOGGER = LoggerFactory.getLogger(OnlineFlatRentalApplication.class);
 	
 	public static void main(String[] args) {
 		

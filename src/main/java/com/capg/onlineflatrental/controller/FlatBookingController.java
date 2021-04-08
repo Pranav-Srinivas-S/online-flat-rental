@@ -34,7 +34,7 @@ import com.capg.onlineflatrental.service.IFlatBookingService;
 @RequestMapping("/api/ofr/flatbooking")
 public class FlatBookingController {
 
-	final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+	static final Logger LOGGER = LoggerFactory.getLogger(FlatBooking.class);
 
 	@Autowired
 	private IFlatBookingService flatBookingService;
@@ -47,7 +47,7 @@ public class FlatBookingController {
 		FlatBookingDTO flatBookingDTO = null;
 		ResponseEntity<Object> flatBookingResponse = null;
 		flatBookingDTO = flatBookingService.addFlatBooking(flatBooking);
-		flatBookingResponse = new ResponseEntity<Object>(flatBookingDTO, HttpStatus.ACCEPTED);
+		flatBookingResponse = new ResponseEntity<>(flatBookingDTO, HttpStatus.ACCEPTED);
 		LOGGER.info("addFlatBooking() has executed");
 		return flatBookingResponse;
 	}
@@ -60,7 +60,7 @@ public class FlatBookingController {
 		FlatBookingDTO flatBookingDTO = null;
 		ResponseEntity<Object> flatBookingResponse = null;
 		flatBookingDTO = flatBookingService.updateFlatBooking(flatBooking);
-		flatBookingResponse = new ResponseEntity<Object>(flatBookingDTO, HttpStatus.ACCEPTED);
+		flatBookingResponse = new ResponseEntity<>(flatBookingDTO, HttpStatus.ACCEPTED);
 		LOGGER.info("updateFlatBooking() has executed");
 		return flatBookingResponse;
 	}
@@ -71,7 +71,7 @@ public class FlatBookingController {
 		LOGGER.info("deleteFlatBooking() is initiated");
 		FlatBookingDTO flatBookingDTO = flatBookingService.deleteFlatBooking(id);
 		LOGGER.info("deleteFlatBooking() has executed");
-		return new ResponseEntity<Object>(flatBookingDTO, HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(flatBookingDTO, HttpStatus.ACCEPTED);
 	}
 
 	@GetMapping("/view-flatBooking/{id}")
@@ -81,7 +81,7 @@ public class FlatBookingController {
 		FlatBookingDTO flatBookingDTO = null;
 		flatBookingDTO = flatBookingService.viewFlatBooking(id);
 		LOGGER.info("getFlatBookingById() has executed");
-		return new ResponseEntity<Object>(flatBookingDTO, HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(flatBookingDTO, HttpStatus.ACCEPTED);
 	}
 
 	@GetMapping("/view-all-flatBookings")
@@ -93,4 +93,3 @@ public class FlatBookingController {
 	}
 
 }
-//

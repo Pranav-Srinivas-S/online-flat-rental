@@ -21,34 +21,21 @@ import com.capg.onlineflatrental.exception.TenantNotFoundException;
 import com.capg.onlineflatrental.model.TenantDTO;
 import com.capg.onlineflatrental.service.ITenantService;
 
-/*************************************************************************************
+/*
  * Author : PRNANAV SRINIVAS S
  * Version : 1.0
  * Date : 04-04-2021
  * Description : This is Tenant Controller
-*************************************************************************************/
+*/
 
 @RestController
 @RequestMapping("/api/ofr/tenant")
 public class TenantController {
 
-	final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+	static final Logger LOGGER = LoggerFactory.getLogger(TenantController.class);
 
 	@Autowired
 	private ITenantService tenantService;
-	
-
-	/************************************************************************************
-	 * Method: addtenant 
-	 * Description: It is used to add tenant into tenant_details table
-	 * @param tenant: tenant's reference variable.
-	 * @returns tenant It returns tenant with details
-	 * @PostMapping: It is used to handle the HTTP POST requests matched with given URI expression.
-	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
-	 * Created By- PRNANAV SRINIVAS S
-     *Created Date -  04-04-2021 
-	 * 
-	 ************************************************************************************/
 
 	@PostMapping("/add-tenant")
 	public ResponseEntity<Object> addTenant(@RequestBody Tenant tenant) throws TenantNotFoundException {
@@ -56,20 +43,8 @@ public class TenantController {
 		LOGGER.info("addTenant() is initiated");
 		TenantDTO tenantDTO = tenantService.addTenant(tenant);
 		LOGGER.info("addTenant() has executed");
-		return new ResponseEntity<Object>(tenantDTO, HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(tenantDTO, HttpStatus.ACCEPTED);
 	}
-	
-	/************************************************************************************
-	 * Method: updatetenant 
-	 * Description: It is used to update tenant into tenant_details table
-	 * @param tenant: tenant's reference variable.
-	 * @returns tenant It returns tenant with details
-	 * @PutMapping: It is used to handle the HTTP PUT requests matched with given URI expression.
-	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
-	 * *Created By- PRNANAV SRINIVAS S
-     *Created Date -  04-04-2021 
-	 * 
-	 ************************************************************************************/
 
 	@PutMapping("/update-tenant")
 	public ResponseEntity<Object> updateTenant(@RequestBody Tenant tenant) throws TenantNotFoundException {
@@ -77,19 +52,8 @@ public class TenantController {
 		LOGGER.info("updateTenant() is initiated");
 		TenantDTO tenantDTO = tenantService.updateTenant(tenant);
 		LOGGER.info("updateTenant() has executed");
-		return new ResponseEntity<Object>(tenantDTO, HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(tenantDTO, HttpStatus.ACCEPTED);
 	}
-	/************************************************************************************
-	 * Method: deletetenant
-	 * Description: It is used to remove tenant into tenant_details table
-	 * @param id: tenant's reference variable.
-	 * @returns tenant It returns tenant with details
-	 * @DeleteMapping: It is used to handle the HTTP DELETE requests matched with given URI expression.
-	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
-	 * Created By- PRNANAV SRINIVAS S
-     *Created Date -  04-04-2021 
-	 * 
-	 ************************************************************************************/
 
 	@DeleteMapping("/delete-tenant/{id}")
 	public ResponseEntity<Object> deleteTenant(@PathVariable int id) throws TenantNotFoundException {
@@ -97,20 +61,8 @@ public class TenantController {
 		LOGGER.info("deleteTenant() is initiated");
 		TenantDTO tenantDTO = tenantService.deleteTenant(id);
 		LOGGER.info("deleteTenant() has executed");
-		return new ResponseEntity<Object>(tenantDTO, HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(tenantDTO, HttpStatus.ACCEPTED);
 	}
-	
-	/************************************************************************************
-	 * Method: viewtenant
-	 * Description: It is used to view tenant into tenant_details table
-	 * @param tenant: tenant's reference variable.
-	 * @returns tenant It returns tenant with details
-	 * @GetMapping: It is used to handle the HTTP GET requests matched with given URI expression.
-	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
-	 * Created By- PRNANAV SRINIVAS S
-     *Created Date -  04-04-2021 
-	 * 
-	 ************************************************************************************/
 
 	@GetMapping("/view-tenant/{id}")
 	public ResponseEntity<Object> getTenantById(@PathVariable int id) throws TenantNotFoundException {
@@ -118,20 +70,9 @@ public class TenantController {
 		LOGGER.info("getTenantById() is initiated");
 		TenantDTO tenantDTO = tenantService.viewTenant(id);
 		LOGGER.info("getTenantById() has executed");
-		return new ResponseEntity<Object>(tenantDTO, HttpStatus.ACCEPTED);
+		return new ResponseEntity<>(tenantDTO, HttpStatus.ACCEPTED);
 	}
 
-	/************************************************************************************
-	 * Method: viewAlltenants
-	 * Description: It is used to view all tenant details present tenant_details table
-	 * @param tenant: tenant's reference variable.
-	 * @returns tenant It returns tenant with details
-	 * @GetMapping: It is used to handle the HTTP GET requests matched with given URI expression.
-	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
-	 * Created By- PRNANAV SRINIVAS S
-     *Created Date -  04-04-2021 
-	 * 
-	 ************************************************************************************/
 	@GetMapping("/view-all-tenants")
 	public List<TenantDTO> getAllTenants() {
 		LOGGER.info("view-all-tenants URL is opened");
@@ -141,4 +82,3 @@ public class TenantController {
 	}
 
 }
-//

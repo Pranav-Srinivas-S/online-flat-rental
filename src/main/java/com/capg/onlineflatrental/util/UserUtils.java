@@ -7,8 +7,12 @@ import com.capg.onlineflatrental.model.UserDTO;
 
 public class UserUtils {
 
+	private UserUtils() {
+		
+	}
+	
 	public static List<UserDTO> convertToUserDtoList(List<User> list){
-		List<UserDTO> dtolist = new ArrayList<UserDTO>();
+		List<UserDTO> dtolist = new ArrayList<>();
 		for(User user : list) 
 			dtolist.add(convertToUserDto(user));
 		return dtolist;
