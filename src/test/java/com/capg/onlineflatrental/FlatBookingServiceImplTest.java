@@ -659,14 +659,14 @@ public class FlatBookingServiceImplTest {
 	}
 	
 	@Test
-	void testUpdateFlatBooking18() throws FlatBookingNotFoundException {
+	void testUpdateFlatBooking18() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
 		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
 		flat = new Flat(1, 1000f, flatAddress, "yes");
 		tenant = new Tenant(1, "89654223", 40, flatAddress);
 		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
 		try
 		{
-			service.updateTenant(tenant);
+			service.updateFlatBooking(flatbooking);
 		}
 		catch(FlatBookingNotFoundException exception)
 		{
@@ -691,14 +691,14 @@ public class FlatBookingServiceImplTest {
 	}
 	
 	@Test
-	void testUpdateFlatBooking20() throws FlatBookingNotFoundException {
+	void testUpdateFlatBooking20() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
 		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
 		flat = new Flat(1, 1000f, flatAddress, "yes");
 		tenant = new Tenant(1, "89654223", 40, flatAddress);
 		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
 		try
 		{
-			service.updateFlatBooking(FlatBooking);
+			service.updateFlatBooking(flatbooking);
 		}
 		catch(FlatBookingNotFoundException exception)
 		{
