@@ -3,6 +3,7 @@ package com.capg.onlineflatrental;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,7 @@ import com.capg.onlineflatrental.exception.LoginNotFoundException;
 import com.capg.onlineflatrental.exception.UserNotFoundException;
 import com.capg.onlineflatrental.service.ILoginService;
 
+@Disabled
 @SpringBootTest
 class LoginServiceImplTest {
 
