@@ -45,7 +45,7 @@ public class FlatServiceImpl implements IFlatService {
 			flatEntity = flatRepo.save(flat);
 		LOGGER.info("addFlat() service has executed");
 		return FlatUtils.convertToFlatDto(flatEntity);
-	}
+	} 
 
 	/*
 	 * Description : This method Updates existing Flat
