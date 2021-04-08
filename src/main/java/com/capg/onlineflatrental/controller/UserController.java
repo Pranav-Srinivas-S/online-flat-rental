@@ -22,12 +22,12 @@ import com.capg.onlineflatrental.model.UserDTO;
 import com.capg.onlineflatrental.service.IUserService;
 import com.capg.onlineflatrental.service.UserServiceImpl;
 
-/*
+/************************************************************************************
  * Author : RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH
  * Version : 1.0
  * Date : 04-04-2021
  * Description : This is User Controller.
-*/
+*************************************************************************************/
 
 @RestController
 @RequestMapping("/api/ofr/user")
@@ -38,7 +38,17 @@ public class UserController {
 	@Autowired
 	private IUserService userService;
 
-
+	/************************************************************************************
+	 * Method: addUser 
+	 * Description: It is used to add user into user_details table
+	 * @param user: User's reference variable.
+	 * @returns User It returns user with details
+	 * @PostMapping: It is used to handle the HTTP POST requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By-  RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH 
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
 	@PostMapping("/add-user")
 	public ResponseEntity<Object> addUser(@RequestBody User user) throws UserNotFoundException {
 		LOGGER.info("add-user URL is opened");
@@ -50,7 +60,17 @@ public class UserController {
 		LOGGER.info("addUser() has executed");
 		return userResponse;
 	}
-
+	/************************************************************************************
+	 * Method: upadateUser 
+	 * Description: It is used to update user into user_details table
+	 * @param user: User's reference variable.
+	 * @returns User It returns user with details
+	 * @PutMapping: It is used to handle the HTTP PUT requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * *Created By-  RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH 
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
 	@PutMapping("/update-user")
 	public ResponseEntity<Object> updateUser(@RequestBody User user) throws UserNotFoundException {
 		LOGGER.info("update-user URL is opened");
@@ -62,7 +82,17 @@ public class UserController {
 		LOGGER.info("updateUser() has executed");
 		return userResponse;
 	}
-
+	/************************************************************************************
+	 * Method: upadatePassword 
+	 * Description: It is used to update password into user_details table
+	 * @param user: User's reference variable.
+	 * @returns User It returns user with details
+	 * @PutMapping: It is used to handle the HTTP PUT requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By-  RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH 
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
 	@PutMapping("/update-password/{newpass}")
 	public ResponseEntity<Object> updatePassword(@RequestBody User user, @PathVariable String newpass)
 			throws UserNotFoundException {
@@ -78,7 +108,18 @@ public class UserController {
 		LOGGER.info("updatePassword() has executed");
 		return userResponse;
 	}
-
+	/************************************************************************************
+	 * Method: validateUser
+	 * Description: It is used to check user details matching or not.
+	 * @param username: User's reference variable.
+	 * @param password: User's reference variable.
+	 * @returns User It returns user with details
+	 * @PatchMapping: It is used to handle the HTTP Patch requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By-  RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH 
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
 	@PatchMapping("/validate-user/{userName}/{password}")
 	public ResponseEntity<String> validateUser(@PathVariable String userName, @PathVariable String password)
 			throws UserNotFoundException {
@@ -95,7 +136,17 @@ public class UserController {
 		LOGGER.info("validateUser() has executed");
 		return userResponse;
 	}
-
+	/************************************************************************************
+	 * Method: removeUser
+	 * Description: It is used to remove user into user_details table
+	 * @param id: User's reference variable.
+	 * @returns User It returns user with details
+	 * @DeleteMapping: It is used to handle the HTTP DELETE requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By-  RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH 
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
 	@DeleteMapping("/remove-user/{id}")
 	public ResponseEntity<Object> removeUser(@PathVariable int id) throws UserNotFoundException {
 		LOGGER.info("remove-user URL is opened");
@@ -111,6 +162,17 @@ public class UserController {
 		LOGGER.info("removeUser() has executed");
 		return userResponse;
 	}
+	/************************************************************************************
+	 * Method: viewUser
+	 * Description: It is used to view user into user_details table
+	 * @param user: User's reference variable.
+	 * @returns User It returns user with details
+	 * @GetMapping: It is used to handle the HTTP GET requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By-  RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH 
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
 
 	@GetMapping("/view-user/{id}")
 	public ResponseEntity<Object> getUserById(@PathVariable int id) throws UserNotFoundException {
@@ -127,6 +189,17 @@ public class UserController {
 		LOGGER.info("getUserById() has executed");
 		return userResponse;
 	}
+	/************************************************************************************
+	 * Method: viewAllUsers
+	 * Description: It is used to view all user details present user_details table
+	 * @param user: User's reference variable.
+	 * @returns User It returns user with details
+	 * @GetMapping: It is used to handle the HTTP GET requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By-  RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH 
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
 
 	@GetMapping("/view-all-users")
 	public List<UserDTO> getAllUsers() {
