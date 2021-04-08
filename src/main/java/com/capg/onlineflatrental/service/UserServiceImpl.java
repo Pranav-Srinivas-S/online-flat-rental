@@ -31,6 +31,7 @@ public class UserServiceImpl implements IUserService{
 			+ "Enter valid UserId";
 	String invalidUserName = "Invalid User Name";
 	String passNotMatch = "Password does not Match";
+	static String done= "Validation Successful";
 	
 	/*
 	 * Method:                          	viewUser
@@ -198,100 +199,144 @@ public class UserServiceImpl implements IUserService{
 	
 	public boolean validateUserId(int id) throws UserNotFoundException
 	{
+		LOGGER.info("validateUserId() service is initiated");
 		boolean flag = false;
-		if(userRepo.existsById(id) == flag)
-			throw new UserNotFoundException(noUserWithId);
+		if(userRepo.existsById(id) == flag) {
+			LOGGER.error(noUserWithId);
+			throw new UserNotFoundException(noUserWithId);}
 		else
+			LOGGER.info(done);
 			flag = true;
 		return flag;
 	}
 	
 	public static boolean validateUsername(String userName) throws UserNotFoundException
     {  
+		LOGGER.info("validateUsername() service is initiated");
 		boolean flag = false;
-		if(userName == null)
+		if(userName == null) {
+		LOGGER.error("User Name cannot be empty");
 			throw new UserNotFoundException("User Name cannot be empty");
-		else if(!userName.matches("^[a-zA-Z]+$"))
+			}
+		else if(!userName.matches("^[a-zA-Z]+$")) {
+			LOGGER.error(usernameformat);
 			throw new UserNotFoundException(usernameformat);
-		else if(userName.length()<3 || userName.length()>40)
+			}
+		else if(userName.length()<3 || userName.length()>40) {
+			LOGGER.error(usernameformat);
 			throw new UserNotFoundException(usernameformat);
+		}
 		else
+			LOGGER.info(done);
 			flag = true;
 		return flag;
     }	
 	
 	public static boolean validatePassword(String password) throws UserNotFoundException
     {  
+		LOGGER.info("validatePassword() service is initiated");
 		boolean flag = false;
-		if(password == null)
+		if(password == null) {
+			LOGGER.error(passformat);
 			throw new UserNotFoundException(passformat);
-		else if(!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$"))
+		}
+		else if(!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$")) {
+			LOGGER.error(passformat);
 			throw new UserNotFoundException(passformat);
+		}
 		else
+			LOGGER.info(done);
 			flag = true;
 		return flag;
     }
 	
 	public static boolean validateUserType(String userType) throws UserNotFoundException
 	{
+		LOGGER.info("validateUserType() service is initiated");
 		boolean flag = false;
-		
-		if(userType == null)
+		if(userType == null) {
+			LOGGER.error("User Type cannot be blank");
 			throw new UserNotFoundException("User Type cannot be blank");
-		else if (!userType.matches("^[A-Za-z]+$"))
+			}
+		else if (!userType.matches("^[A-Za-z]+$")) {
+			LOGGER.error("User Type cannot contain numbers or special characters");
 			throw new UserNotFoundException("User Type cannot contain numbers or special characters");
+			}
 		else if (!(userType.equals("tenant") || userType.equals("landlord") || userType.equals("admin")
 				|| userType.equals("Tenant") || userType.equals("Landlord") || userType.equals("Admin")
-				|| userType.equals("TENANT") || userType.equals("LANDLORD") || userType.equals("ADMIN")))
+				|| userType.equals("TENANT") || userType.equals("LANDLORD") || userType.equals("ADMIN"))) {
+			LOGGER.error("User Type can only be Admin or Tenant or Landlord");
 			throw new UserNotFoundException("User Type can only be Admin or Tenant or Landlord");
+		}
 		else
+			LOGGER.info(done);
 			flag = true;
 		return flag;
 	}
 		
 	public static boolean validateaddUser(User user) throws UserNotFoundException {
+		LOGGER.info("validateaddUser() service is initiated");
 		boolean flag = false;
-		if(user == null)
+		if(user == null) {
+			LOGGER.error("User details cannot be blank");
 			throw new UserNotFoundException("User details cannot be blank");
+		}
 		else
-		{
+			LOGGER.info(done);
 			validateUsername(user.getUserName());
 			validatePassword(user.getPassword());
 			validateUserType(user.getUserType());
 			flag = true;
-		}
 		return flag;
 	}
 	
 	public boolean updateUser(int id, String userName, String password) throws UserNotFoundException {
+		LOGGER.info("updateUser() service is initiated");
 		boolean flag = false;
 		User user = userRepo.findById(id).orElse(null);
-		if(!validateUserId(id))
+		if(!validateUserId(id)) {
+			LOGGER.error(noUserWithId);
 			throw new UserNotFoundException(noUserWithId);
-		else if(user == null)
+		}
+		else if(user == null) {
+			LOGGER.info(invalidUserName);
 			throw new UserNotFoundException(invalidUserName);
-		else if  (!user.getUserName().equals(userName))
+		}
+		else if  (!user.getUserName().equals(userName)) {
+			LOGGER.info(invalidUserName);
 			throw new UserNotFoundException(invalidUserName);
+			}
 		else if (user.getPassword().equals(password))
 			flag = true;
-		else 
+		else {
+			LOGGER.info(passNotMatch);
 			throw new UserNotFoundException(passNotMatch);
+		}
 		return flag;		
 	}
 	
 	public boolean updatePassword(int id, String userName, String password,String UserType) throws UserNotFoundException {
+		LOGGER.info("updatePassword() service is initiated");
 		boolean flag = false;
 		User user = userRepo.findByIdAndName(id, userName);
-		if(!validateUserId(id))
+		if(!validateUserId(id)) {
+			LOGGER.error(noUserWithId);
 			throw new UserNotFoundException(noUserWithId);
-		else if(user == null)
+		}
+		else if(user == null) {
+			LOGGER.error(invalidUserName);
 			throw new UserNotFoundException(invalidUserName);
-		else if (!user.getUserType().equals(UserType))
+		}
+		else if (!user.getUserType().equals(UserType)) {
+			LOGGER.error("Invalid User Type");
 			throw new UserNotFoundException("Invalid User Type");
+		}
 		else if (user.getPassword().equals(password))
 			flag = true;
-		else 
+		else {
+			LOGGER.error(passNotMatch);
 			throw new UserNotFoundException(passNotMatch);
+		}
 		return flag;
 	}
 	static String passformat ="Format for password is Wrong\r\n"
@@ -321,14 +366,20 @@ public class UserServiceImpl implements IUserService{
 public boolean checkUser(int id, String userName, String password) throws UserNotFoundException {
 	boolean flag = false;
 	User user = userRepo.findByIdAndName(id, userName);
-	if(!validateUserId(id))
+	if(!validateUserId(id)) {
+		LOGGER.error(noUserWithId);
 		throw new UserNotFoundException(noUserWithId);
-	else if(user == null)
+		}
+	else if(user == null) {
+		LOGGER.error(invalidUserName);
 		throw new UserNotFoundException(invalidUserName);
+	}
 	if (user.getPassword().equals(password))
 		flag = true;
-	else 
+	else {
+		LOGGER.error(passNotMatch);
 		throw new UserNotFoundException(passNotMatch);
+	}
 	return flag;
 }
 }

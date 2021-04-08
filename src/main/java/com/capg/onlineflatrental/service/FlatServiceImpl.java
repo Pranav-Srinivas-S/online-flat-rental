@@ -50,7 +50,7 @@ public class FlatServiceImpl implements IFlatService {
 		}
 		LOGGER.info("addFlat() service has executed");
 		return FlatUtils.convertToFlatDto(flatEntity);
-	}
+	} 
 
 	/*
 	 * Description : This method Updates existing Flat
@@ -121,10 +121,18 @@ public class FlatServiceImpl implements IFlatService {
 	}
 
 	@Override
-	public List<FlatDTO> viewAllFlatByCost(float cost, String availability) {
+	public List<FlatDTO> viewAllFlatByCost(float cost, String availability) throws InvalidFlatInputException,FlatNotFoundException {
 		LOGGER.info("viewAllFlatByCost() service is initiated");
-		List<Flat> flatList = flatRepo.findByCostAndAvailability(cost, availability);
+		List<Flat> flatList=null;
+		if((validateFlatCost(cost)))
+		{
+		flatList = flatRepo.findByCostAndAvailability(cost, availability);
 		LOGGER.info("viewAllFlatByCost() service has executed");
+		}
+		if(flatList==null)
+		{
+			throw new FlatNotFoundException(" No flat available for given cost");
+		}
 		return FlatUtils.convertToFlatDtoList(flatList);
 	}
 
@@ -193,8 +201,8 @@ public class FlatServiceImpl implements IFlatService {
 			flag = true;
 			LOGGER.info(validationSuccessful);
 		} else {
-			LOGGER.error("HouseNo name cannot be empty or 0 or a negative number");
-			throw new InvalidFlatInputException("HouseNo name cannot be empty or 0 or a negative number");
+			LOGGER.error("HouseNo  cannot be empty or 0 or a negative number");
+			throw new InvalidFlatInputException("HouseNo cannot be empty or 0 or a negative number");
 		}
 		LOGGER.info("validateFlatHouseNo() has executed");
 		return flag;
@@ -287,5 +295,5 @@ public class FlatServiceImpl implements IFlatService {
 		LOGGER.info("validateFlatPin() has executed");
 		return flag;
 	}
-
+ 
 }

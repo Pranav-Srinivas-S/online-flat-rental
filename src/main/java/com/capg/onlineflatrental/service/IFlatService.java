@@ -14,6 +14,6 @@ public interface IFlatService {
 	public FlatDTO deleteFlat(int id) throws FlatNotFoundException;
 	public FlatDTO viewFlat(int id) throws FlatNotFoundException;
 	public List<FlatDTO> viewAllFlat();
-	public List<FlatDTO> viewAllFlatByCost(float cost,String availability);
+	public List<FlatDTO> viewAllFlatByCost(float cost,String availability) throws InvalidFlatInputException, FlatNotFoundException;
 	
 }
