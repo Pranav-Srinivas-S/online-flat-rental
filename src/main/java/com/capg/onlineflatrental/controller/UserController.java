@@ -61,7 +61,7 @@ public class UserController {
 		return userResponse;
 	}
 	/************************************************************************************
-	 * Method: upadateUser 
+	 * Method: updateUser 
 	 * Description: It is used to update user into user_details table
 	 * @param user: User's reference variable.
 	 * @returns User It returns user with details
@@ -83,7 +83,7 @@ public class UserController {
 		return userResponse;
 	}
 	/************************************************************************************
-	 * Method: upadatePassword 
+	 * Method: updatePassword 
 	 * Description: It is used to update password into user_details table
 	 * @param user: User's reference variable.
 	 * @returns User It returns user with details
