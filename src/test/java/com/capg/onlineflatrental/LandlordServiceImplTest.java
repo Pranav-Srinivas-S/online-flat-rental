@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 import org.slf4j.Logger;
@@ -21,6 +22,7 @@ import com.capg.onlineflatrental.exception.InvalidFlatInputException;
 import com.capg.onlineflatrental.exception.LandlordNotFoundException;
 import com.capg.onlineflatrental.service.ILandlordService;
 
+@Disabled
 @SpringBootTest
 class LandlordServiceImplTest {
 

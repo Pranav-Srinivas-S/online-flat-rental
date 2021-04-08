@@ -42,10 +42,11 @@ public class TenantServiceImpl implements ITenantService {
 		Tenant tenantEntity;
 		if (tenant == null)
 			tenantEntity = null;
-		else if (!validateTenant(tenant))
-			throw new TenantNotFoundException(tenantNotFound);
 		else
+		{
+			validateTenant(tenant);
 			tenantEntity = tenantRepo.save(tenant);
+		}
 		LOGGER.info("addTenant() service has executed");
 		return TenantUtils.convertToTenantDto(tenantEntity);
 	}
@@ -60,15 +61,14 @@ public class TenantServiceImpl implements ITenantService {
 	public TenantDTO updateTenant(Tenant tenant) throws TenantNotFoundException {
 		LOGGER.info("updateTenant() service is initiated");
 		Tenant tenantEntity;
-		if (tenant == null)
-			tenantEntity = null;
 		Tenant existTenant = tenantRepo.findById(tenant.getTenantId()).orElse(null);
 		if (existTenant == null)
 			throw new TenantNotFoundException(tenantNotFound);
-		else if (!validateTenant(tenant))
-			throw new TenantNotFoundException(tenantNotFound);
 		else
+		{
+			validateTenant(tenant);
 			tenantEntity = tenantRepo.save(tenant);
+		}
 		LOGGER.info("updateTenant() service has executed");
 		return TenantUtils.convertToTenantDto(tenantEntity);
 	}
@@ -125,16 +125,15 @@ public class TenantServiceImpl implements ITenantService {
 		if (tenant == null) {
 			LOGGER.error("Tenant details cannot be blank");
 			throw new TenantNotFoundException("Tenant details cannot be blank");
-		} else if (!(validateTenantAge(tenant.getTenantAge()) && validateTenantName(tenant.getTenantName())
-				&& validateTenantHouseNo(tenant.getTenantAddress().getHouseNo())
-				&& validateTenantStreet(tenant.getTenantAddress().getStreet())
-				&& validateTenantCity(tenant.getTenantAddress().getCity())
-				&& validateTenantState(tenant.getTenantAddress().getState())
-				&& validateTenantCountry(tenant.getTenantAddress().getCountry())
-				&& validateTenantPin(tenant.getTenantAddress().getPin()))) {
-			LOGGER.error("Invalid Address");
-			throw new TenantNotFoundException("Invalid Address");
 		} else {
+			validateTenantAge(tenant.getTenantAge());
+			validateTenantName(tenant.getTenantName());
+			validateTenantHouseNo(tenant.getTenantAddress().getHouseNo());
+			validateTenantStreet(tenant.getTenantAddress().getStreet());
+			validateTenantCity(tenant.getTenantAddress().getCity());
+			validateTenantState(tenant.getTenantAddress().getState());
+			validateTenantCountry(tenant.getTenantAddress().getCountry());
+			validateTenantPin(tenant.getTenantAddress().getPin());
 			LOGGER.info("Validation Successful");
 			flag = true;
 		}

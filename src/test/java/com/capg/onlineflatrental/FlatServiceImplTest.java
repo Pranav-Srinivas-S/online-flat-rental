@@ -1,6 +1,8 @@
 package com.capg.onlineflatrental;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,6 +14,7 @@ import com.capg.onlineflatrental.exception.InvalidFlatInputException;
 import com.capg.onlineflatrental.model.FlatDTO;
 import com.capg.onlineflatrental.service.IFlatService;
 
+@Disabled
 @SpringBootTest
 class FlatServiceImplTest {
 

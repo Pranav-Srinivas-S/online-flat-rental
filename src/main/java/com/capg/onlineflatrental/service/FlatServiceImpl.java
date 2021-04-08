@@ -22,7 +22,11 @@ import com.capg.onlineflatrental.util.FlatUtils;
 @Service
 public class FlatServiceImpl implements IFlatService {
 
-	final static Logger LOGGER = LoggerFactory.getLogger(FlatServiceImpl.class);
+	static final Logger LOGGER = LoggerFactory.getLogger(FlatServiceImpl.class);
+	
+	String flatIdNotAvailable = "Flat with given id was not found";
+	static String validationSuccessful = "Validation Successful";
+	static String alphabetsSpace = "^[a-zA-Z ]+$";
 
 	@Autowired
 	private IFlatRepository flatRepo;
@@ -39,10 +43,11 @@ public class FlatServiceImpl implements IFlatService {
 		Flat flatEntity;
 		if (flat == null)
 			flatEntity = null;
-		else if (!validateFlat(flat))
-			throw new InvalidFlatInputException("Invalid inputs for adding flat details");
 		else
+		{
+			validateFlat(flat);
 			flatEntity = flatRepo.save(flat);
+		}
 		LOGGER.info("addFlat() service has executed");
 		return FlatUtils.convertToFlatDto(flatEntity);
 	}
@@ -57,15 +62,14 @@ public class FlatServiceImpl implements IFlatService {
 	public FlatDTO updateFlat(Flat flat) throws FlatNotFoundException, InvalidFlatInputException {
 		LOGGER.info("updateFlat() service is initiated");
 		Flat flatEntity;
-		if (flat == null)
-			flatEntity = null;
 		Flat existFlat = flatRepo.findById(flat.getFlatId()).orElse(null);
 		if (existFlat == null)
-			throw new FlatNotFoundException("Flat with given id was not found");
-		else if (!validateFlat(flat))
-			throw new InvalidFlatInputException("Invalid inputs for adding flat details");
+			throw new FlatNotFoundException(flatIdNotAvailable);
 		else
+		{
+			validateFlat(flat);
 			flatEntity = flatRepo.save(flat);
+		}
 		LOGGER.info("updateFlat() service has executed");
 		return FlatUtils.convertToFlatDto(flatEntity);
 	}
@@ -81,7 +85,7 @@ public class FlatServiceImpl implements IFlatService {
 		LOGGER.info("deleteFlat() service is initiated");
 		Flat existFlat = flatRepo.findById(id).orElse(null);
 		if (existFlat == null)
-			throw new FlatNotFoundException("Flat with given id was not found");
+			throw new FlatNotFoundException(flatIdNotAvailable);
 		else
 			flatRepo.delete(existFlat);
 		LOGGER.info("deleteFlat() service has executed");
@@ -99,7 +103,7 @@ public class FlatServiceImpl implements IFlatService {
 		LOGGER.info("viewFlat() service is initiated");
 		Flat existFlat = flatRepo.findById(id).orElse(null);
 		if (existFlat == null)
-			throw new FlatNotFoundException("Flat with given id was not found");
+			throw new FlatNotFoundException(flatIdNotAvailable);
 		LOGGER.info("viewFlat() service has executed");
 		return FlatUtils.convertToFlatDto(existFlat);
 	}
@@ -130,23 +134,18 @@ public class FlatServiceImpl implements IFlatService {
 		if (flat == null) {
 			LOGGER.error("Flat details cannot be blank");
 			throw new InvalidFlatInputException("Flat details cannot be blank");
-		} else if (!(validateFlatHouseNo(flat.getFlatAddress().getHouseNo())
-				&& validateFlatStreet(flat.getFlatAddress().getStreet())
-				&& validateFlatCity(flat.getFlatAddress().getCity())
-				&& validateFlatState(flat.getFlatAddress().getState())
-				&& validateFlatCountry(flat.getFlatAddress().getCountry())
-				&& validateFlatPin(flat.getFlatAddress().getPin()))) {
-			LOGGER.error("Invalid Flat Address");
-			throw new InvalidFlatInputException("Invalid Flat Address");
-		} else if (!(validateFlatCost(flat.getFlatCost()))) {
-			LOGGER.error("Invalid Cost");
-			throw new InvalidFlatInputException("Invalid Cost");
-		} else if (!(validateFlatAvailability(flat.getFlatAvailabilty()))) {
-			LOGGER.error("Invalid Availability");
-			throw new InvalidFlatInputException("Invalid Availability");
-		} else {
+		}
+		else {
+			validateFlatHouseNo(flat.getFlatAddress().getHouseNo());
+			validateFlatStreet(flat.getFlatAddress().getStreet());
+			validateFlatCity(flat.getFlatAddress().getCity());
+			validateFlatState(flat.getFlatAddress().getState());
+			validateFlatCountry(flat.getFlatAddress().getCountry());
+			validateFlatPin(flat.getFlatAddress().getPin());
+			validateFlatCost(flat.getFlatCost());
+			validateFlatAvailability(flat.getFlatAvailabilty());
 			flag = true;
-			LOGGER.info("Validation Successful");
+			LOGGER.info(validationSuccessful);
 		}
 		LOGGER.info("validateCost() has executed");
 		return flag;
@@ -157,7 +156,7 @@ public class FlatServiceImpl implements IFlatService {
 		boolean flag = false;
 		if (cost > 0) {
 			flag = true;
-			LOGGER.info("Validation Successful");
+			LOGGER.info(validationSuccessful);
 		} else {
 			LOGGER.error("Cost cannot be 0 or a negative number");
 			throw new InvalidFlatInputException("Cost cannot be 0 or a negative number");
@@ -177,7 +176,7 @@ public class FlatServiceImpl implements IFlatService {
 				|| availability.equals("Y")) {
 			{
 				flag = true;
-				LOGGER.info("Validation Successful");
+				LOGGER.info(validationSuccessful);
 			}
 		} else {
 			LOGGER.error("Availabilty can only be [YES | NO | Yes | No | Y | N | y | n]");
@@ -192,7 +191,7 @@ public class FlatServiceImpl implements IFlatService {
 		boolean flag = false;
 		if (!(Long.toString(houseNo).isEmpty()) && houseNo > 0) {
 			flag = true;
-			LOGGER.info("Validation Successful");
+			LOGGER.info(validationSuccessful);
 		} else {
 			LOGGER.error("HouseNo name cannot be empty or 0 or a negative number");
 			throw new InvalidFlatInputException("HouseNo name cannot be empty or 0 or a negative number");
@@ -212,7 +211,7 @@ public class FlatServiceImpl implements IFlatService {
 			throw new InvalidFlatInputException("Street cannot contain Special Characters");
 		} else {
 			flag = true;
-			LOGGER.info("Validation Successful");
+			LOGGER.info(validationSuccessful);
 		}
 		LOGGER.info("validateFlatStreet() has executed");
 		return flag;
@@ -224,12 +223,12 @@ public class FlatServiceImpl implements IFlatService {
 		if ((city.isEmpty())) {
 			LOGGER.error("City name cannot be empty");
 			throw new InvalidFlatInputException("City name cannot be empty");
-		} else if (!city.matches("^[a-zA-Z ]+$")) {
+		} else if (!city.matches(alphabetsSpace)) {
 			LOGGER.error("City cannot contain Numbers or Special Characters");
 			throw new InvalidFlatInputException("City cannot contain Numbers or Special Characters");
 		} else {
 			flag = true;
-			LOGGER.info("Validation Successful");
+			LOGGER.info(validationSuccessful);
 		}
 		LOGGER.info("validateFlatCity() has executed");
 		return flag;
@@ -241,12 +240,12 @@ public class FlatServiceImpl implements IFlatService {
 		if ((state.isEmpty())) {
 			LOGGER.error("State name cannot be empty");
 			throw new InvalidFlatInputException("State name cannot be empty");
-		} else if (!state.matches("^[a-zA-Z ]+$")) {
+		} else if (!state.matches(alphabetsSpace)) {
 			LOGGER.error("State cannot contain Numbers or Special Characters");
 			throw new InvalidFlatInputException("State cannot contain Numbers or Special Characters");
 		} else {
 			flag = true;
-			LOGGER.info("Validation Successful");
+			LOGGER.info(validationSuccessful);
 		}
 		LOGGER.info("validateFlatState() has executed");
 		return flag;
@@ -255,15 +254,15 @@ public class FlatServiceImpl implements IFlatService {
 	public static boolean validateFlatCountry(String country) throws InvalidFlatInputException {
 		LOGGER.info("validateFlatCountry() is initiated");
 		boolean flag = false;
-		if (((country.isEmpty()))) {
+		if (country.isEmpty()) {
 			LOGGER.error("Country name cannot be empty");
 			throw new InvalidFlatInputException("Country name cannot be empty");
-		} else if (!country.matches("^[a-zA-Z ]+$")) {
+		} else if (!country.matches(alphabetsSpace)) {
 			LOGGER.error("Country cannot contain Numbers or Special Characters");
 			throw new InvalidFlatInputException("Country cannot contain Numbers or Special Characters");
 		} else {
 			flag = true;
-			LOGGER.info("Validation Successful");
+			LOGGER.info(validationSuccessful);
 		}
 		LOGGER.info("validateFlatCountry() has executed");
 		return flag;
@@ -283,7 +282,7 @@ public class FlatServiceImpl implements IFlatService {
 			throw new InvalidFlatInputException("PinCode cannot contain any Characters");
 		} else {
 			flag = true;
-			LOGGER.info("Validation Successful");
+			LOGGER.info(validationSuccessful);
 		}
 		LOGGER.info("validateFlatPin() has executed");
 		return flag;

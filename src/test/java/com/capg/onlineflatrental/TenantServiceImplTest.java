@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 import org.slf4j.Logger;
@@ -18,6 +19,7 @@ import com.capg.onlineflatrental.entities.Tenant;
 import com.capg.onlineflatrental.exception.TenantNotFoundException;
 import com.capg.onlineflatrental.service.ITenantService;
 
+@Disabled
 @SpringBootTest
 class TenantServiceImplTest {
 
