@@ -26,8 +26,12 @@ import com.capg.onlineflatrental.util.FlatBookingUtils;
 @Service
 public class FlatBookingServiceImpl implements IFlatBookingService {
 
-	final static Logger LOGGER = LoggerFactory.getLogger(FlatBookingServiceImpl.class);
-
+	static final Logger LOGGER = LoggerFactory.getLogger(FlatBookingServiceImpl.class);
+	
+	String noFlat = "No FlatBooking found in given ID";
+	
+	static String validationSuccessful = "Validation Successful";
+	
 	@Autowired
 	private IFlatBookingRepository flatbookingRepo;
 
@@ -44,10 +48,11 @@ public class FlatBookingServiceImpl implements IFlatBookingService {
 		FlatBooking flatbookingEntity;
 		if (flatBooking == null)
 			flatbookingEntity = null;
-		else if (!validateFlatBooking(flatBooking))
-			throw new FlatBookingNotFoundException("No FlatBooking available in given ID");
 		else
+		{
+			validateFlatBooking(flatBooking);
 			flatbookingEntity = flatbookingRepo.save(flatBooking);
+		}
 		LOGGER.info("addFlatBooking() service has executed");
 		return FlatBookingUtils.convertToFlatBookingDto(flatbookingEntity);
 	}
@@ -63,15 +68,14 @@ public class FlatBookingServiceImpl implements IFlatBookingService {
 			throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
 		LOGGER.info("updateFlatBooking() service is initiated");
 		FlatBooking flatbookingEntity;
-		if (flatBooking == null)
-			flatbookingEntity = null;
 		FlatBooking existFlatBooking = flatbookingRepo.findById(flatBooking.getBookingNo()).orElse(null);
 		if (existFlatBooking == null)
-			throw new FlatBookingNotFoundException("No FlatBooking found in given ID");
-		else if (!validateFlatBooking(flatBooking))
-			throw new FlatBookingNotFoundException("No FlatBooking available in given ID");
+			throw new FlatBookingNotFoundException(noFlat);
 		else
+		{
+			validateFlatBooking(flatBooking);
 			flatbookingEntity = flatbookingRepo.save(flatBooking);
+		}
 		LOGGER.info("updateFlatBooking() service has executed");
 		return FlatBookingUtils.convertToFlatBookingDto(flatbookingEntity);
 	}
@@ -87,7 +91,7 @@ public class FlatBookingServiceImpl implements IFlatBookingService {
 		LOGGER.info("deleteFlatBooking() service is initiated");
 		FlatBooking existFlatBooking = flatbookingRepo.findById(id).orElse(null);
 		if (existFlatBooking == null)
-			throw new FlatBookingNotFoundException("No FlatBooking found in given ID");
+			throw new FlatBookingNotFoundException(noFlat);
 		else
 			flatbookingRepo.delete(existFlatBooking);
 		LOGGER.info("deleteFlatBooking() service has executed");
@@ -105,7 +109,7 @@ public class FlatBookingServiceImpl implements IFlatBookingService {
 		LOGGER.info("viewFlatBooking() service is initiated");
 		FlatBooking existFlatBooking = flatbookingRepo.findById(id).orElse(null);
 		if (existFlatBooking == null)
-			throw new FlatBookingNotFoundException("No FlatBooking found in given ID");
+			throw new FlatBookingNotFoundException(noFlat);
 		LOGGER.info("viewFlatBooking() service has executed");
 		return FlatBookingUtils.convertToFlatBookingDto(existFlatBooking);
 	}
@@ -129,21 +133,13 @@ public class FlatBookingServiceImpl implements IFlatBookingService {
 		if (flatBooking == null) {
 			LOGGER.error("Flat Booking details cannot be blank");
 			throw new FlatBookingNotFoundException("Flat Booking details cannot be blank");
-		} else if (!(validateBookingFromDate(flatBooking))) {
-			LOGGER.error("Invalid Flat Booking From Date");
-			throw new FlatBookingNotFoundException("Invalid Flat Booking From Date");
-		} else if (!(validateBookingToDate(flatBooking))) {
-			LOGGER.error("Invalid Flat Booking To Date");
-			throw new FlatBookingNotFoundException("Invalid Flat Booking To Date");
-		} else if (!TenantServiceImpl.validateTenant(flatBooking.getTenant())) {
-			LOGGER.error("Invalid Tenant Details");
-			throw new FlatBookingNotFoundException("Invalid Tenant Details");
-		} else if (!FlatServiceImpl.validateFlat(flatBooking.getFlat())) {
-			LOGGER.error("Invalid Flat Details");
-			throw new FlatBookingNotFoundException("Invalid Flat Details");
 		} else {
+			validateBookingFromDate(flatBooking);
+			validateBookingToDate(flatBooking);
+			TenantServiceImpl.validateTenant(flatBooking.getTenant());
+			FlatServiceImpl.validateFlat(flatBooking.getFlat());
 			flag = true;
-			LOGGER.info("Validation Successful");
+			LOGGER.info(validationSuccessful);
 		}
 		LOGGER.info("validateFlatBooking() has executed");
 		return flag;
@@ -161,7 +157,7 @@ public class FlatBookingServiceImpl implements IFlatBookingService {
 			throw new FlatBookingNotFoundException("Booking_From_Date cannot be after Current_System_Date");
 		} else {
 			flag = true;
-			LOGGER.info("Validation Successful");
+			LOGGER.info(validationSuccessful);
 		}
 		LOGGER.info("validateFlatBookingFromDate() has executed");
 		return flag;
@@ -178,7 +174,7 @@ public class FlatBookingServiceImpl implements IFlatBookingService {
 			throw new FlatBookingNotFoundException("Booking_To_Date cannot be before Booking_From_Date");
 		} else {
 			flag = true;
-			LOGGER.info("Validation Successful");
+			LOGGER.info(validationSuccessful);
 		}
 		LOGGER.info("validateFlatBookingToDate() has executed");
 		return flag;
@@ -186,13 +182,15 @@ public class FlatBookingServiceImpl implements IFlatBookingService {
 
 	public boolean validateFlatBookingId(int id) throws FlatBookingNotFoundException {
 		LOGGER.info("validateFlatBookingId() is initiated");
-		boolean flag = flatbookingRepo.existsById(id);
+		boolean flag = false;
 		String flatbookingNotFound = "flatbooking id not found";
-		if (flag == false) {
+		if (!flatbookingRepo.existsById(id)) {
 			LOGGER.error("flatbooking id not found");
 			throw new FlatBookingNotFoundException(flatbookingNotFound);
-		} else
-			LOGGER.info("Validation Successful");
+		} 
+		else
+			flag = true;
+		LOGGER.info(validationSuccessful);
 		LOGGER.info("validateFlatBookingId() has executed");
 		return flag;
 	}

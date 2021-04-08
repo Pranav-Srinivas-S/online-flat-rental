@@ -7,8 +7,12 @@ import com.capg.onlineflatrental.model.FlatAddressDTO;
 
 public class FlatAddressUtils {
 
+	private FlatAddressUtils() {
+		
+	}
+	
 	public static List<FlatAddressDTO> convertToFlatAddressDtoList(List<FlatAddress> list){
-		List<FlatAddressDTO> dtolist = new ArrayList<FlatAddressDTO>();
+		List<FlatAddressDTO> dtolist = new ArrayList<>();
 		for(FlatAddress flatAddress : list) 
 			dtolist.add(convertToFlatAddressDto(flatAddress));
 		return dtolist;

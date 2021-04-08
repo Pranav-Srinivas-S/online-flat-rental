@@ -6,6 +6,6 @@ import com.capg.onlineflatrental.exception.UserNotFoundException;
 
 public interface ILoginService {
 	
-	public boolean Login(User user) throws LoginNotFoundException, UserNotFoundException;
+	public boolean login(User user) throws LoginNotFoundException, UserNotFoundException;
 
 }

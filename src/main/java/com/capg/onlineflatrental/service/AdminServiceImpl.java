@@ -22,9 +22,11 @@ import com.capg.onlineflatrental.util.AdminUtils;
 @Service
 public class AdminServiceImpl implements IAdminService {
 
-	final static Logger LOGGER = LoggerFactory.getLogger(AdminServiceImpl.class);
+	static final Logger LOGGER = LoggerFactory.getLogger(AdminServiceImpl.class);
 
 	static String adminNotFound = "No Admin found in given ID";
+	
+	static String validationSuccessful = "Validation Successful";
 
 	@Autowired
 	private IAdminRepository adminRepo;
@@ -41,10 +43,11 @@ public class AdminServiceImpl implements IAdminService {
 		Admin adminEntity;
 		if (admin == null)
 			adminEntity = null;
-		else if (!validateAdmin(admin))
-			throw new AdminNotFoundException("Invalid Admin");
 		else
+		{
+			validateAdmin(admin);
 			adminEntity = adminRepo.save(admin);
+		}
 		LOGGER.info("addAdmin() service has executed");
 		return AdminUtils.convertToAdminDto(adminEntity);
 	}
@@ -59,15 +62,14 @@ public class AdminServiceImpl implements IAdminService {
 	public AdminDTO updateAdmin(Admin admin) throws AdminNotFoundException {
 		LOGGER.info("updateAdmin() service is initiated");
 		Admin adminEntity;
-		if (admin == null)
-			adminEntity = null;
 		Admin existAdmin = adminRepo.findById(admin.getAdminId()).orElse(null);
 		if (existAdmin == null)
 			throw new AdminNotFoundException(adminNotFound);
-		else if (!validateAdmin(admin))
-			throw new AdminNotFoundException("Invalid Admin");
 		else
+		{
+			validateAdmin(admin);
 			adminEntity = adminRepo.save(admin);
+		}
 		LOGGER.info("updateAdmin() service has executed");
 		return AdminUtils.convertToAdminDto(adminEntity);
 	}
@@ -113,9 +115,9 @@ public class AdminServiceImpl implements IAdminService {
 	@Override
 	public List<AdminDTO> viewAllAdmin() {
 		LOGGER.info("viewAllAdmin() service is initiated");
-		List<Admin> AdminList = adminRepo.findAll();
+		List<Admin> adminList = adminRepo.findAll();
 		LOGGER.info("viewAllAdmin() service has executed");
-		return AdminUtils.convertToAdminDtoList(AdminList);
+		return AdminUtils.convertToAdminDtoList(adminList);
 	}
 
 	public static boolean validateAdmin(Admin admin) throws AdminNotFoundException {
@@ -123,16 +125,10 @@ public class AdminServiceImpl implements IAdminService {
 		boolean flag = false;
 		if (admin == null) {
 			LOGGER.error("Admin details cannot be blank");
-			throw new AdminNotFoundException("Admin details cannot be blank");}
-//		} else if (AdminServiceImpl.validateId(admin.getAdminId())) {
-//			LOGGER.error("No Admin available in given ID");
-//			throw new AdminNotFoundException("No Admin available in given ID");
-//		} 
-		else if (!validatePassword(admin.getAdminPassword())) {
-			LOGGER.error("Invalid details");
-			throw new AdminNotFoundException("Invalid details");
+			throw new AdminNotFoundException("Admin details cannot be blank");
 		} else {
-			LOGGER.info("Validation Successful");
+			validatePassword(admin.getAdminPassword());
+			LOGGER.info(validationSuccessful);
 			flag = true;
 		}
 		LOGGER.info("validateAdmin() has executed");
@@ -147,7 +143,7 @@ public class AdminServiceImpl implements IAdminService {
 			throw new AdminNotFoundException("Admin id cannot be 0 or negative");
 		} else {
 			flag = true;
-			LOGGER.info("Validation Successful");
+			LOGGER.info(validationSuccessful);
 		}
 		LOGGER.info("validateId() has executed");
 		return flag;
@@ -174,7 +170,7 @@ public class AdminServiceImpl implements IAdminService {
 							+ "Password should contain at least one special character ( @, #, %, &, !, $, etc….)");
 		} else {
 			flag = true;
-			LOGGER.info("Validation Successful");
+			LOGGER.info(validationSuccessful);
 		}
 		LOGGER.info("validatePasswrod() has executed");
 		return flag;

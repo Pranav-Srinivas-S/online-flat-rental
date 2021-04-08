@@ -7,8 +7,12 @@ import com.capg.onlineflatrental.model.FlatDTO;
 
 public class FlatUtils {
 
+	private FlatUtils() {
+		
+	}
+	
 	public static List<FlatDTO> convertToFlatDtoList(List<Flat> list){
-		List<FlatDTO> dtolist = new ArrayList<FlatDTO>();
+		List<FlatDTO> dtolist = new ArrayList<>();
 		for(Flat flat : list) 
 			dtolist.add(convertToFlatDto(flat));
 		return dtolist;

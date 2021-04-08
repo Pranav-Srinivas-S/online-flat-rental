@@ -36,7 +36,7 @@ class LoginServiceImplTest {
 		user.setUserId(240);
 		user.setUserName("SaiBharath");
 		user.setPassword("Sai@2000");
-		assertEquals(true, service.Login(user));
+		assertEquals(true, service.login(user));
 	}
 	
 	@Test
@@ -44,7 +44,7 @@ class LoginServiceImplTest {
 		LOGGER.info("Testing testCheckUser02()");
 		user = null;
 		try {
-		service.Login(user);
+		service.login(user);
 		}
 		catch (LoginNotFoundException exception) {
 			assertEquals("User Details cannot be Empty", exception.getMessage());
@@ -58,7 +58,7 @@ class LoginServiceImplTest {
 		user.setUserName("SaiBharath");
 		user.setPassword("sai2000");
 		try {
-		service.Login(user);
+		service.login(user);
 		}
 		catch (UserNotFoundException exception) {
 			assertEquals("Password does not Match", exception.getMessage());
@@ -72,7 +72,7 @@ class LoginServiceImplTest {
 		user.setUserName("sai");
 		user.setPassword("Sai@2000");
 		try {
-		service.Login(user);
+		service.login(user);
 		}
 		catch (UserNotFoundException exception) {
 			assertEquals("Invalid User Name", exception.getMessage());
@@ -84,5 +84,4 @@ class LoginServiceImplTest {
 		LOGGER.info("Login Testing Terminated");
 	}
 }
-///
 //

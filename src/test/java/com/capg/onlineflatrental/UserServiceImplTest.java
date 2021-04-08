@@ -33,12 +33,12 @@ class UserServiceImplTest {
 		LOGGER.info("User Testing Initiated");
 	}
 
-//	@Test
-//	void testAddUser01() throws UserNotFoundException {
-	// LOGGER.info("Testing testAddUser01()");
-//		User user = new User(1, "Deep", "Sai@2000", "Admin");
-//		assertNotNull(service.addUser(user));
-//	}
+	@Test
+	void testAddUser01() throws UserNotFoundException {
+	 LOGGER.info("Testing testAddUser01()");
+		User user = new User(1, "Deep", "Sai@2000", "Admin");
+		assertNotNull(service.addUser(user));
+	}
 
 	@Test
 	void testAddUser02() throws UserNotFoundException {
@@ -90,12 +90,7 @@ class UserServiceImplTest {
 		try {
 			service.addUser(user);
 		} catch (UserNotFoundException exception) {
-			assertEquals("Format For UserName is Wrong\r\n" + "\r\n" + "Please Enter Again :\r\n"
-					+ "____________________________________________________________\r\n" + "\r\n"
-					+ "Valid Format for UserName:\r\n" + "\r\n"
-					+ "The first character of the username must be an alphabetic character, i.e., either lowercase character\r\n"
-					+ "[a – z] or uppercase character [A – Z].\r\n" + "User Name length should be in range 3 to 40."
-					+ "\r\n", exception.getMessage());
+			assertEquals("User Name length must be in range 3 to 30", exception.getMessage());
 		}
 	}
 
@@ -106,13 +101,7 @@ class UserServiceImplTest {
 		try {
 			service.addUser(user);
 		} catch (UserNotFoundException exception) {
-			assertEquals("Format for password is Wrong\r\n" + "\r\n" + "Please Enter Password Again\r\n" + "\r\n"
-					+ "Password cannot be empty\\r\\n" + "Password must contain at least one digit [0-9].\r\n"
-					+ "Password must contain at least one lowercase Latin character [a-z].\r\n"
-					+ "Password must contain at least one uppercase Latin character [A-Z].\r\n"
-					+ "Password must contain at least one special character like ! @ # & ( ).\r\n"
-					+ "Password must contain a length of at least 8 characters and a maximum of 20 characters." + "",
-					exception.getMessage());
+			assertEquals("Password cannot be empty", exception.getMessage());
 		}
 	}
 
@@ -418,5 +407,5 @@ class UserServiceImplTest {
 	public static void end() {
 		LOGGER.info("User Testing Terminated");
 	}
-//
+
 }

@@ -18,7 +18,7 @@ import com.capg.onlineflatrental.exception.UserNotFoundException;
 @Service
 public class LoginServiceImpl implements ILoginService {
 	
-	final static Logger LOGGER = LoggerFactory.getLogger(LoginServiceImpl.class);
+	static final Logger LOGGER = LoggerFactory.getLogger(LoginServiceImpl.class);
 	
 	@Autowired
 	UserServiceImpl userService;
@@ -36,7 +36,7 @@ public class LoginServiceImpl implements ILoginService {
 	 */
 
 	@Override
-	public boolean Login(User user) throws LoginNotFoundException, UserNotFoundException {
+	public boolean login(User user) throws LoginNotFoundException, UserNotFoundException {
 		LOGGER.info("Login() service is initiated");
 		boolean flag = false;
 		if(user == null)

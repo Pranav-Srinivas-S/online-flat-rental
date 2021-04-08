@@ -124,15 +124,12 @@ public class FlatServiceImpl implements IFlatService {
 	public List<FlatDTO> viewAllFlatByCost(float cost, String availability) throws InvalidFlatInputException,FlatNotFoundException {
 		LOGGER.info("viewAllFlatByCost() service is initiated");
 		List<Flat> flatList=null;
-		if((validateFlatCost(cost)))
-		{
+		validateFlatCost(cost);
+		validateFlatAvailability(availability);
 		flatList = flatRepo.findByCostAndAvailability(cost, availability);
 		LOGGER.info("viewAllFlatByCost() service has executed");
-		}
 		if(flatList==null)
-		{
 			throw new FlatNotFoundException(" No flat available for given cost");
-		}
 		return FlatUtils.convertToFlatDtoList(flatList);
 	}
 
@@ -193,7 +190,7 @@ public class FlatServiceImpl implements IFlatService {
 		LOGGER.info("validateFlatAvailability() has executed");
 		return flag;
 	}
-
+	
 	public static boolean validateFlatHouseNo(int houseNo) throws InvalidFlatInputException {
 		LOGGER.info("validateFlatHouseNo() is initiated");
 		boolean flag = false;

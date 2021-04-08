@@ -10,13 +10,13 @@ import com.capg.onlineflatrental.model.UserDTO;
 import com.capg.onlineflatrental.repository.IUserRepository;
 import com.capg.onlineflatrental.util.UserUtils;
 
-/*************************************************************************************
+/*
  * Author : RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH 
  * Version : 1.0
  * Date : 03-04-2021
  * Description : It is a user service class that provides the services to view user,view all users, validate user,add a user,
  *          	 remove a user, update the user, and update the password.
-*************************************************************************************/
+*/
 
 @Service
 public class UserServiceImpl implements IUserService{
@@ -31,9 +31,10 @@ public class UserServiceImpl implements IUserService{
 			+ "Enter valid UserId";
 	String invalidUserName = "Invalid User Name";
 	String passNotMatch = "Password does not Match";
+	String nameNotMatch = "User Name does not Match";
 	static String done= "Validation Successful";
 	
-	/*************************************************************************************
+	/*
 	 * Method:                          	viewUser
      *Description:                      	To display the user by Id.
 	     *@param id:                        id of the user.
@@ -41,7 +42,7 @@ public class UserServiceImpl implements IUserService{
 		 *@throws UserNotFoundException  -  It is raised due to invalid  UserId 
      *Created By                         -  RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH 
      *Created Date                       -  03-04-2021                           	 
-	 *************************************************************************************/
+	 */
 	
 	@Override
 	public UserDTO viewUser(int id) throws UserNotFoundException {
@@ -53,13 +54,13 @@ public class UserServiceImpl implements IUserService{
 		return UserUtils.convertToUserDto(existUser);
 	}
 	
-	/*************************************************************************************
+	/*
 	 * Method:                          	viewAllUser
      *Description:                      	To display all the users by Id.
 		 *@returns List<UserDTO>         - 	it displays all the user details
      *Created By                         -  RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH 
      *Created Date                       -  03-04-2021                           	 
-	 *************************************************************************************/
+	 */
 	
 	@Override
 	public List<UserDTO> viewAllUser() {
@@ -69,7 +70,7 @@ public class UserServiceImpl implements IUserService{
 		return UserUtils.convertToUserDtoList(userList);
 	}
 	
-	/*************************************************************************************
+	/*
 	 * Method:                          	validateUser
      *Description:                      	To check the user name and password is matching or not.
 	     *@param username:                  user name for validating user.
@@ -78,7 +79,7 @@ public class UserServiceImpl implements IUserService{
 		 *@throws UserNotFoundException  -  It is raised due to mismatch of user details. 
      *Created By                         -  RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH 
      *Created Date                       -  03-04-2021                           	 
-	 *************************************************************************************/
+	 */
 	
 	@Override
 	public boolean validateUser(String userName, String password) throws UserNotFoundException {
@@ -96,7 +97,7 @@ public class UserServiceImpl implements IUserService{
 		
 	}
 	
-	/*************************************************************************************
+	/*
 	 * Method:                          	addUser
      *Description:                      	it is used to add the user details
 	     *@param User                       it is User's reference variable.
@@ -104,7 +105,7 @@ public class UserServiceImpl implements IUserService{
 		 *@throws UserNotFoundException  -  It is raised due to invalid User name format and invalid user password format and if user name already exists 
      *Created By                         -  RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH 
      *Created Date                       -  03-04-2021                           	 
-	 *************************************************************************************/
+	 */
 	
 	@Override
 	public UserDTO addUser(User user) throws UserNotFoundException {
@@ -120,7 +121,7 @@ public class UserServiceImpl implements IUserService{
 		return UserUtils.convertToUserDto(userEntity);
 	}
 	
-	/*************************************************************************************
+	/*
 	 * Method:                          	updateUser
      *Description:                      	To update the user details.
 	     *@param User                       it is User's reference variable.
@@ -128,7 +129,7 @@ public class UserServiceImpl implements IUserService{
 		 *@throws UserNotFoundException  -  It is raised due to mismatch of user details. 
      *Created By                         -  RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH 
      *Created Date                       -  03-04-2021                           	 
-	 *************************************************************************************/
+	 */
 	
 	@Override
 	public UserDTO updateUser(User user) throws UserNotFoundException {
@@ -147,7 +148,7 @@ public class UserServiceImpl implements IUserService{
 		return UserUtils.convertToUserDto(userEntity);
 	}
 	
-	/*************************************************************************************
+	/*
 	 * Method:                          	updatePassword
      *Description:                      	To update the user password details.
 	     *@param User                       it is User's reference variable.
@@ -155,7 +156,7 @@ public class UserServiceImpl implements IUserService{
 		 *@throws UserNotFoundException  -  It is raised due to mismatch of user details. 
      *Created By                         -  RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH 
      *Created Date                       -  03-04-2021                           	 
-	 *************************************************************************************/
+	 */
 	
 	@Override
 	public UserDTO updatePassword(User user, String newpass) throws UserNotFoundException {
@@ -175,7 +176,7 @@ public class UserServiceImpl implements IUserService{
 		return UserUtils.convertToUserDto(userEntity);
 	}
 	
-	/*************************************************************************************
+	/*
 	 * Method:                          	removeUser
      *Description:                      	To remove the user details.
 	     *@param Id                         it will remove users based on id.
@@ -183,7 +184,7 @@ public class UserServiceImpl implements IUserService{
 		 *@throws UserNotFoundException  -  It is raised due to mismatch of user details. 
      *Created By                         -  RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH 
      *Created Date                       -  03-04-2021                           	 
-	 *************************************************************************************/
+	 */
 	
 	@Override
 	public UserDTO removeUser(int id) throws UserNotFoundException {
@@ -204,9 +205,10 @@ public class UserServiceImpl implements IUserService{
 		if(userRepo.existsById(id) == flag) {
 			LOGGER.error(noUserWithId);
 			throw new UserNotFoundException(noUserWithId);}
-		else
+		else {
 			LOGGER.info(done);
 			flag = true;
+		}
 		return flag;
 	}
 	
@@ -222,13 +224,14 @@ public class UserServiceImpl implements IUserService{
 			LOGGER.error(usernameformat);
 			throw new UserNotFoundException(usernameformat);
 			}
-		else if(userName.length()<3 || userName.length()>40) {
-			LOGGER.error(usernameformat);
-			throw new UserNotFoundException(usernameformat);
+		else if(userName.length()<3 || userName.length()>30) {
+			LOGGER.error("User Name length must be in range 3 to 30");
+			throw new UserNotFoundException("User Name length must be in range 3 to 30");
 		}
-		else
+		else {
 			LOGGER.info(done);
 			flag = true;
+		}
 		return flag;
     }	
 	
@@ -237,16 +240,17 @@ public class UserServiceImpl implements IUserService{
 		LOGGER.info("validatePassword() service is initiated");
 		boolean flag = false;
 		if(password == null) {
-			LOGGER.error(passformat);
-			throw new UserNotFoundException(passformat);
+			LOGGER.error("Password cannot be empty");
+			throw new UserNotFoundException("Password cannot be empty");
 		}
 		else if(!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$")) {
 			LOGGER.error(passformat);
 			throw new UserNotFoundException(passformat);
 		}
-		else
+		else {
 			LOGGER.info(done);
 			flag = true;
+		}
 		return flag;
     }
 	
@@ -268,9 +272,10 @@ public class UserServiceImpl implements IUserService{
 			LOGGER.error("User Type can only be Admin or Tenant or Landlord");
 			throw new UserNotFoundException("User Type can only be Admin or Tenant or Landlord");
 		}
-		else
+		else {
 			LOGGER.info(done);
 			flag = true;
+		}
 		return flag;
 	}
 		
@@ -281,12 +286,13 @@ public class UserServiceImpl implements IUserService{
 			LOGGER.error("User details cannot be blank");
 			throw new UserNotFoundException("User details cannot be blank");
 		}
-		else
+		else {
 			LOGGER.info(done);
 			validateUsername(user.getUserName());
 			validatePassword(user.getPassword());
 			validateUserType(user.getUserType());
 			flag = true;
+		}
 		return flag;
 	}
 	
@@ -303,8 +309,8 @@ public class UserServiceImpl implements IUserService{
 			throw new UserNotFoundException(invalidUserName);
 		}
 		else if  (!user.getUserName().equals(userName)) {
-			LOGGER.info(invalidUserName);
-			throw new UserNotFoundException(invalidUserName);
+			LOGGER.info(nameNotMatch);
+			throw new UserNotFoundException(nameNotMatch);
 			}
 		else if (user.getPassword().equals(password))
 			flag = true;
@@ -315,7 +321,7 @@ public class UserServiceImpl implements IUserService{
 		return flag;		
 	}
 	
-	public boolean updatePassword(int id, String userName, String password,String UserType) throws UserNotFoundException {
+	public boolean updatePassword(int id, String userName, String password,String userType) throws UserNotFoundException {
 		LOGGER.info("updatePassword() service is initiated");
 		boolean flag = false;
 		User user = userRepo.findByIdAndName(id, userName);
@@ -327,7 +333,7 @@ public class UserServiceImpl implements IUserService{
 			LOGGER.error(invalidUserName);
 			throw new UserNotFoundException(invalidUserName);
 		}
-		else if (!user.getUserType().equals(UserType)) {
+		else if (!user.getUserType().equals(userType)) {
 			LOGGER.error("Invalid User Type");
 			throw new UserNotFoundException("Invalid User Type");
 		}
@@ -383,4 +389,3 @@ public boolean checkUser(int id, String userName, String password) throws UserNo
 	return flag;
 }
 }
-//

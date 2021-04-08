@@ -7,8 +7,12 @@ import com.capg.onlineflatrental.model.AdminDTO;
 
 public class AdminUtils {
 
+	private AdminUtils() {
+		
+	}
+	
 	public static List<AdminDTO> convertToAdminDtoList(List<Admin> list){
-		List<AdminDTO> dtolist = new ArrayList<AdminDTO>();
+		List<AdminDTO> dtolist = new ArrayList<>();
 		for(Admin admin : list) 
 			dtolist.add(convertToAdminDto(admin));
 		return dtolist;

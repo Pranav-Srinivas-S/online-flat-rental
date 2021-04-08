@@ -7,8 +7,12 @@ import com.capg.onlineflatrental.model.LandlordDTO;
 
 public class LandlordUtils {
 
+	private LandlordUtils() {
+		
+	}
+	
 	public static List<LandlordDTO> convertToLandlordDtoList(List<Landlord> list){
-		List<LandlordDTO> dtolist = new ArrayList<LandlordDTO>();
+		List<LandlordDTO> dtolist = new ArrayList<>();
 		for(Landlord landlord : list) 
 			dtolist.add(convertToLandlordDto(landlord));
 		return dtolist;

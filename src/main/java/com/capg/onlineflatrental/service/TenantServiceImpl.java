@@ -23,12 +23,16 @@ import com.capg.onlineflatrental.util.TenantUtils;
 @Service
 public class TenantServiceImpl implements ITenantService {
 
-	final static Logger LOGGER = LoggerFactory.getLogger(TenantServiceImpl.class);
+	static final Logger LOGGER = LoggerFactory.getLogger(TenantServiceImpl.class);
 
 	@Autowired
 	private ITenantRepository tenantRepo;
 
 	static String tenantNotFound = "No Tenant found in given ID";
+	
+	static String validationSuccessful = "Validation Successful";
+	
+	static String alphabetSpace = "^[a-zA-Z ]+$";
 
 	/*
 	 * Description : This method Adds new Tenant
@@ -134,7 +138,7 @@ public class TenantServiceImpl implements ITenantService {
 			validateTenantState(tenant.getTenantAddress().getState());
 			validateTenantCountry(tenant.getTenantAddress().getCountry());
 			validateTenantPin(tenant.getTenantAddress().getPin());
-			LOGGER.info("Validation Successful");
+			LOGGER.info(validationSuccessful);
 			flag = true;
 		}
 		LOGGER.info("validateTenant() has executed");
@@ -147,7 +151,7 @@ public class TenantServiceImpl implements ITenantService {
 		if (tenantName == null) {
 			LOGGER.error("Tenant name cannot be empty");
 			throw new TenantNotFoundException("Tenant name cannot be empty");
-		} else if (!tenantName.matches("^[a-zA-Z ]+$")) {
+		} else if (!tenantName.matches(alphabetSpace)) {
 			LOGGER.error("Tenant Name cannot contain Numbers or Special Characters");
 			throw new TenantNotFoundException("Tenant Name cannot contain Numbers or Special Characters");
 		} else if (tenantName.length() < 3 || tenantName.length() > 30) {
@@ -155,7 +159,7 @@ public class TenantServiceImpl implements ITenantService {
 			throw new TenantNotFoundException("Tenant Name length should be in range 3 to 30");
 		} else {
 			flag = true;
-			LOGGER.info("Validation Successful");
+			LOGGER.info(validationSuccessful);
 		}
 		LOGGER.info("validateTenantName() has executed");
 		return flag;
@@ -172,7 +176,7 @@ public class TenantServiceImpl implements ITenantService {
 			throw new TenantNotFoundException("Minor Age is not allowed");
 		} else {
 			flag = true;
-			LOGGER.info("Validation Successful");
+			LOGGER.info(validationSuccessful);
 		}
 		LOGGER.info("validateTenantAge() has executed");
 		return flag;
@@ -186,7 +190,7 @@ public class TenantServiceImpl implements ITenantService {
 			throw new TenantNotFoundException("House Number cannot be 0 or negative");
 		} else {
 			flag = true;
-			LOGGER.info("Validation Successful");
+			LOGGER.info(validationSuccessful);
 		}
 		LOGGER.info("validateTenantHouseNo() has executed");
 		return flag;
@@ -203,7 +207,7 @@ public class TenantServiceImpl implements ITenantService {
 			throw new TenantNotFoundException("Street cannot contain Special Characters");
 		} else {
 			flag = true;
-			LOGGER.info("Validation Successful");
+			LOGGER.info(validationSuccessful);
 		}
 		LOGGER.info("validateTenantStreet() has executed");
 		return flag;
@@ -215,12 +219,12 @@ public class TenantServiceImpl implements ITenantService {
 		if (city == null) {
 			LOGGER.error("City cannot be empty");
 			throw new TenantNotFoundException("City cannot be empty");
-		} else if (!city.matches("^[a-zA-Z ]+$")) {
+		} else if (!city.matches(alphabetSpace)) {
 			LOGGER.error("City cannot contain Numbers or Special Characters");
 			throw new TenantNotFoundException("City cannot contain Numbers or Special Characters");
 		} else {
 			flag = true;
-			LOGGER.info("Validation Successful");
+			LOGGER.info(validationSuccessful);
 		}
 		LOGGER.info("validateTenantCity() has executed");
 		return flag;
@@ -232,12 +236,12 @@ public class TenantServiceImpl implements ITenantService {
 		if (state == null) {
 			LOGGER.error("State cannot be empty");
 			throw new TenantNotFoundException("State cannot be empty");
-		} else if (!state.matches("^[a-zA-Z ]+$")) {
+		} else if (!state.matches(alphabetSpace)) {
 			LOGGER.error("State cannot contain Numbers or Special Characters");
 			throw new TenantNotFoundException("State cannot contain Numbers or Special Characters");
 		} else {
 			flag = true;
-			LOGGER.info("Validation Successful");
+			LOGGER.info(validationSuccessful);
 		}
 		LOGGER.info("validateTenantState() has executed");
 		return flag;
@@ -249,12 +253,12 @@ public class TenantServiceImpl implements ITenantService {
 		if (country == null) {
 			LOGGER.error("Country cannot be empty");
 			throw new TenantNotFoundException("Country cannot be empty");
-		} else if (!country.matches("^[a-zA-Z ]+$")) {
+		} else if (!country.matches(alphabetSpace)) {
 			LOGGER.error("Country cannot contain Numbers or Special Characters");
 			throw new TenantNotFoundException("Country cannot contain Numbers or Special Characters");
 		} else {
 			flag = true;
-			LOGGER.info("Validation Successful");
+			LOGGER.info(validationSuccessful);
 		}
 		LOGGER.info("validateTenantCounty() is initiated");
 		return flag;
@@ -274,7 +278,7 @@ public class TenantServiceImpl implements ITenantService {
 			throw new TenantNotFoundException("PinCode cannot contain any Characters");
 		} else {
 			flag = true;
-			LOGGER.info("Validation Successful");
+			LOGGER.info(validationSuccessful);
 		}
 		LOGGER.info("validateTenantPin() is initiated");
 		return flag;
