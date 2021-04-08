@@ -55,5 +55,4 @@ class FlatServiceImplTest {
 	 * @Test void testViewAllFlatByCost() { fail("Not yet implemented"); }
 	 */
 	 
-
 }
