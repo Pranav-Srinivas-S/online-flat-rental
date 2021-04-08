@@ -117,10 +117,18 @@ public class FlatServiceImpl implements IFlatService {
 	}
 
 	@Override
-	public List<FlatDTO> viewAllFlatByCost(float cost, String availability) {
+	public List<FlatDTO> viewAllFlatByCost(float cost, String availability) throws InvalidFlatInputException,FlatNotFoundException {
 		LOGGER.info("viewAllFlatByCost() service is initiated");
-		List<Flat> flatList = flatRepo.findByCostAndAvailability(cost, availability);
+		List<Flat> flatList=null;
+		if((validateFlatCost(cost)))
+		{
+		flatList = flatRepo.findByCostAndAvailability(cost, availability);
 		LOGGER.info("viewAllFlatByCost() service has executed");
+		}
+		if(flatList==null)
+		{
+			throw new FlatNotFoundException(" No flat available for given cost");
+		}
 		return FlatUtils.convertToFlatDtoList(flatList);
 	}
 
@@ -169,7 +177,7 @@ public class FlatServiceImpl implements IFlatService {
 	public static boolean validateFlatAvailability(String availability) throws InvalidFlatInputException {
 		LOGGER.info("validateFlatAvailability() is initiated");
 		boolean flag = false;
-		if ((availability.isBlank()))
+		if (availability.isBlank())
 			throw new InvalidFlatInputException("Availability cannot be empty");
 		if (availability.equals("YES") || availability.equals("Yes") || availability.equals("NO")
 				|| availability.equals("No") || availability.equals("no") || availability.equals("n")
@@ -194,8 +202,8 @@ public class FlatServiceImpl implements IFlatService {
 			flag = true;
 			LOGGER.info("Validation Successful");
 		} else {
-			LOGGER.error("HouseNo name cannot be empty or 0 or a negative number");
-			throw new InvalidFlatInputException("HouseNo name cannot be empty or 0 or a negative number");
+			LOGGER.error("HouseNo  cannot be empty or 0 or a negative number");
+			throw new InvalidFlatInputException("HouseNo cannot be empty or 0 or a negative number");
 		}
 		LOGGER.info("validateFlatHouseNo() has executed");
 		return flag;
