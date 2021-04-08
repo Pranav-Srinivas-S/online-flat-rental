@@ -39,6 +39,18 @@ public class UserController {
 	@Autowired
 	private IUserService userService;
 
+	/************************************************************************************
+	 * Method: addUser 
+	 * Description: It is used to add user into users table
+	 * @param user: user's reference variable.
+	 * @returns user It returns user with details
+	 * @PostMapping: It is used to handle the HTTP POST requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By- RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
+	
 	@PostMapping("/add-user")
 	public ResponseEntity<Object> addUser(@RequestBody User user) throws UserNotFoundException {
 		LOGGER.info("add-user URL is opened");
@@ -51,6 +63,18 @@ public class UserController {
 		return userResponse;
 	}
 
+	/************************************************************************************
+	 * Method: updateUser 
+	 * Description: It is used to update user into users table
+	 * @param user: user's reference variable.
+	 * @returns user It returns user with details
+	 * @PostMapping: It is used to handle the HTTP POST requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By- RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
+	
 	@PutMapping("/update-user")
 	public ResponseEntity<Object> updateUser(@RequestBody User user) throws UserNotFoundException {
 		LOGGER.info("update-user URL is opened");
@@ -63,6 +87,18 @@ public class UserController {
 		return userResponse;
 	}
 
+	/************************************************************************************
+	 * Method: updatePassword 
+	 * Description: It is used to update password into users table
+	 * @param user: user's reference variable, String newpass
+	 * @returns user It returns user with details
+	 * @PostMapping: It is used to handle the HTTP POST requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By- RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
+	
 	@PutMapping("/update-password/{newpass}")
 	public ResponseEntity<Object> updatePassword(@RequestBody User user, @PathVariable String newpass)
 			throws UserNotFoundException {
@@ -79,6 +115,18 @@ public class UserController {
 		LOGGER.info("updatePassword() has executed");
 		return userResponse;
 	}
+	
+	/************************************************************************************
+	 * Method: validateUser 
+	 * Description: It is used to validate user in users table
+	 * @param user: String userName, String password
+	 * @returns user It returns user with details
+	 * @PostMapping: It is used to handle the HTTP POST requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By- RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
 
 	@PatchMapping("/validate-user/{userName}/{password}")
 	public ResponseEntity<String> validateUser(@PathVariable String userName, @PathVariable String password)
@@ -95,6 +143,18 @@ public class UserController {
 		LOGGER.info("validateUser() has executed");
 		return userResponse;
 	}
+	
+	/************************************************************************************
+	 * Method: removeUser 
+	 * Description: It is used to remove user from users table
+	 * @param user: int id
+	 * @returns user It returns user with details
+	 * @PostMapping: It is used to handle the HTTP POST requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By- RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
 
 	@DeleteMapping("/remove-user/{id}")
 	public ResponseEntity<Object> removeUser(@PathVariable int id) throws UserNotFoundException {
@@ -106,6 +166,18 @@ public class UserController {
 		return new ResponseEntity<>(userDTO, HttpStatus.ACCEPTED);
 	}
 
+	/************************************************************************************
+	 * Method: getUserById 
+	 * Description: It is used to view user by id from users table
+	 * @param user: int id
+	 * @returns user It returns user with details
+	 * @PostMapping: It is used to handle the HTTP POST requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By- RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
+	
 	@GetMapping("/view-user/{id}")
 	public ResponseEntity<Object> getUserById(@PathVariable int id) throws UserNotFoundException {
 		LOGGER.info("view-user URL is opened");
@@ -118,6 +190,17 @@ public class UserController {
 		return userResponse;
 	}
 
+	/************************************************************************************
+	 * Method: getAllUsers 
+	 * Description: It is used to view all users in users table
+	 * @returns user It returns user with details
+	 * @PostMapping: It is used to handle the HTTP POST requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By- RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
+	
 	@GetMapping("/view-all-users")
 	public List<UserDTO> getAllUsers() {
 		LOGGER.info("view-all-user URL is opened");
