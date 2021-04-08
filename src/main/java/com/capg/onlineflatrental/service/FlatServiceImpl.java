@@ -177,7 +177,7 @@ public class FlatServiceImpl implements IFlatService {
 	public static boolean validateFlatAvailability(String availability) throws InvalidFlatInputException {
 		LOGGER.info("validateFlatAvailability() is initiated");
 		boolean flag = false;
-		if (availability.isEmpty())
+		if ((availability.isEmpty()))
 			throw new InvalidFlatInputException("Availability cannot be empty");
 		if (availability.equals("YES") || availability.equals("Yes") || availability.equals("NO")
 				|| availability.equals("No") || availability.equals("no") || availability.equals("n")
