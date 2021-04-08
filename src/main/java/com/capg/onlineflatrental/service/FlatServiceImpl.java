@@ -169,7 +169,7 @@ public class FlatServiceImpl implements IFlatService {
 	public static boolean validateFlatAvailability(String availability) throws InvalidFlatInputException {
 		LOGGER.info("validateFlatAvailability() is initiated");
 		boolean flag = false;
-		if ((availability.isBlank()))
+		if ((availability.isEmpty()))
 			throw new InvalidFlatInputException("Availability cannot be empty");
 		if (availability.equals("YES") || availability.equals("Yes") || availability.equals("NO")
 				|| availability.equals("No") || availability.equals("no") || availability.equals("n")
@@ -190,7 +190,7 @@ public class FlatServiceImpl implements IFlatService {
 	public static boolean validateFlatHouseNo(int houseNo) throws InvalidFlatInputException {
 		LOGGER.info("validateFlatHouseNo() is initiated");
 		boolean flag = false;
-		if (!(Long.toString(houseNo).isBlank()) && houseNo > 0) {
+		if (!(Long.toString(houseNo).isEmpty()) && houseNo > 0) {
 			flag = true;
 			LOGGER.info("Validation Successful");
 		} else {
@@ -204,7 +204,7 @@ public class FlatServiceImpl implements IFlatService {
 	public static boolean validateFlatStreet(String street) throws InvalidFlatInputException {
 		LOGGER.info("validateFlatStreet() is initialised");
 		boolean flag = false;
-		if ((street.isBlank())) {
+		if ((street.isEmpty())) {
 			LOGGER.error("Street name cannot be empty");
 			throw new InvalidFlatInputException("Street name cannot be empty");
 		} else if (!street.matches("^[a-zA-Z0-9 ]+$")) {
@@ -221,7 +221,7 @@ public class FlatServiceImpl implements IFlatService {
 	public static boolean validateFlatCity(String city) throws InvalidFlatInputException {
 		LOGGER.info("validateFlatCity() is initialised");
 		boolean flag = false;
-		if ((city.isBlank())) {
+		if ((city.isEmpty())) {
 			LOGGER.error("City name cannot be empty");
 			throw new InvalidFlatInputException("City name cannot be empty");
 		} else if (!city.matches("^[a-zA-Z ]+$")) {
@@ -238,7 +238,7 @@ public class FlatServiceImpl implements IFlatService {
 	public static boolean validateFlatState(String state) throws InvalidFlatInputException {
 		LOGGER.info("validateFlatState() is initialised");
 		boolean flag = false;
-		if ((state.isBlank())) {
+		if ((state.isEmpty())) {
 			LOGGER.error("State name cannot be empty");
 			throw new InvalidFlatInputException("State name cannot be empty");
 		} else if (!state.matches("^[a-zA-Z ]+$")) {
@@ -255,7 +255,7 @@ public class FlatServiceImpl implements IFlatService {
 	public static boolean validateFlatCountry(String country) throws InvalidFlatInputException {
 		LOGGER.info("validateFlatCountry() is initiated");
 		boolean flag = false;
-		if (((country.isBlank()))) {
+		if (((country.isEmpty()))) {
 			LOGGER.error("Country name cannot be empty");
 			throw new InvalidFlatInputException("Country name cannot be empty");
 		} else if (!country.matches("^[a-zA-Z ]+$")) {
