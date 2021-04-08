@@ -1,6 +1,7 @@
 package com.capg.onlineflatrental;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -75,4 +76,10 @@ class LoginServiceImplTest {
 			assertEquals("Invalid User Name", exception.getMessage());
 		}
 	}
+	
+	@AfterAll
+	public static void end() {
+		LOGGER.info("Login Testing Terminated");
+	}
 }
+//
