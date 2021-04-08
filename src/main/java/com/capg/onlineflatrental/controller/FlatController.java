@@ -39,6 +39,17 @@ public class FlatController {
 
 	@Autowired
 	private IFlatService flatService;
+	/************************************************************************************
+	 * Method: addFlat
+	 * Description: It is used to add flat into flat_details table
+	 * @param flat: Flat reference variable.
+	 * @returns flat :It returns flat with details
+	 * @PostMapping: It is used to handle the HTTP POST requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By- AJITHKUMAR A  
+     *Created Date -05-04-2021
+	 * 
+	 ************************************************************************************/
 
 	@PostMapping("/add-flat")
 	public ResponseEntity<Object> addFlat(@RequestBody Flat flat) throws InvalidFlatInputException {
@@ -51,7 +62,17 @@ public class FlatController {
 		LOGGER.info("addFlat() has executed");
 		return flatResponse;
 	}
-
+	/************************************************************************************
+	 * Method: updateFlat
+	 * Description: It is used to update flat into flat_details table
+	 * @param flat: Flat reference variable.
+	 * @returns flat: It returns flat with details
+	 * @PutMapping: It is used to handle the HTTP PUT requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * *Created By-  AJITHKUMAR A 
+     *Created Date -  05-04-2021
+	 * 
+	 ************************************************************************************/
 	@PutMapping("/update-flat")
 	public ResponseEntity<Object> updateFlat(@RequestBody Flat flat)
 			throws FlatNotFoundException, InvalidFlatInputException {
@@ -64,7 +85,17 @@ public class FlatController {
 		LOGGER.info("updateFlat() has executed");
 		return flatResponse;
 	}
-
+	/************************************************************************************
+	 * Method: DeleteFlat
+	 * Description: It is used to Delete Flat into flat_details table
+	 * @param id: Flat reference variable.
+	 * @returns flat: It returns Flat with details
+	 * @DeleteMapping: It is used to handle the HTTP DELETE requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By- AJITHKUMAR A  
+     *Created Date -  05-04-2021
+	 * 
+	 ************************************************************************************/
 	@DeleteMapping("/delete-flat/{id}")
 	public ResponseEntity<Object> deleteFlat(@PathVariable int id) throws FlatNotFoundException {
 		LOGGER.info("delete-flat URL is opened");
@@ -80,7 +111,17 @@ public class FlatController {
 		LOGGER.info("deleteFlat() has executed");
 		return flatResponse;
 	}
-
+	/************************************************************************************
+	 * Method: viewFlat
+	 * Description: It is used to view Flat into flat_details table
+	 * @param flat: flat reference variable.
+	 * @returns flat: It returns flat with details
+	 * @GetMapping: It is used to handle the HTTP GET requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By-  AJITHKUMAR A
+     *Created Date - 05-04-2021  
+	 * 
+	 ************************************************************************************/
 	@GetMapping("/view-flat/{id}")
 	public ResponseEntity<Object> getFlatById(@PathVariable int id) throws FlatNotFoundException {
 		LOGGER.info("view-flat URL is opened");
@@ -96,7 +137,17 @@ public class FlatController {
 		LOGGER.info("getFlatById() has executed");
 		return flatResponse;
 	}
-
+	/************************************************************************************
+	 * Method: viewAllFlats
+	 * Description: It is used to view all Flats details present flat_details table
+	 * @param flat: Flat reference variable.
+	 * @returns flat:It returns flat with details
+	 * @GetMapping: It is used to handle the HTTP GET requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By- AJITHKUMAR A 
+     *Created Date - 05-04-2021  
+	 * 
+	 ************************************************************************************/
 	@GetMapping("/view-all-flats")
 	public List<FlatDTO> getAllFlats() {
 		LOGGER.info("view-all-flat URL is opened");
@@ -104,7 +155,17 @@ public class FlatController {
 		LOGGER.info("getAllFlats() has executed");
 		return flatService.viewAllFlat();
 	}
-
+	/************************************************************************************
+	 * Method: viewFlatbycost
+	 * Description: It is used to view all FlatCost details present flat_details table
+	 * @param flat: Flat reference variable.
+	 * @returns flat:It returns flat with details
+	 * @GetMapping: It is used to handle the HTTP GET requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By- AJITHKUMAR A 
+     *Created Date - 05-04-2021  
+	 * 
+	 ************************************************************************************/
 	@GetMapping("/view-flat-by-cost/{cost},{availability}")
 	public ResponseEntity<Object> getFlatByCost(@PathVariable float cost, @PathVariable String availability)
 			throws FlatNotFoundException, InvalidFlatInputException {

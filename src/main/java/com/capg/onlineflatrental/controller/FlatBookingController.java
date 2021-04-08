@@ -38,6 +38,19 @@ public class FlatBookingController {
 
 	@Autowired
 	private IFlatBookingService flatBookingService;
+	
+	/************************************************************************************
+	 * Method: addFlatBooking
+	 * Description: It is used to add flatBooking into flatbooking_details table
+	 * @param flatbooking: FlatBooking reference variable.
+	 * @returns flatBooking :It returns flatBooking with details
+	 * @PostMapping: It is used to handle the HTTP POST requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By-  SHAIK ABDUL BASHEER 
+     *Created Date -05-04-2021
+	 * 
+	 ************************************************************************************/
+
 
 	@PostMapping("/add-flatBooking")
 	public ResponseEntity<Object> addFlatBooking(@RequestBody FlatBooking flatBooking)
@@ -51,7 +64,17 @@ public class FlatBookingController {
 		LOGGER.info("addFlatBooking() has executed");
 		return flatBookingResponse;
 	}
-
+	/************************************************************************************
+	 * Method: updateFlatBooking
+	 * Description: It is used to update flatBooking into flatbooking_details table
+	 * @param flatbooking: FlatBooking reference variable.
+	 * @returns flatBooking: It returns flatBooking with details
+	 * @PutMapping: It is used to handle the HTTP PUT requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * *Created By-  SHAIK ABDUL BASHEER 
+     *Created Date -  05-04-2021
+	 * 
+	 ************************************************************************************/
 	@PutMapping("/update-flatBooking")
 	public ResponseEntity<Object> updateFlatBooking(@RequestBody FlatBooking flatBooking)
 			throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
@@ -64,7 +87,17 @@ public class FlatBookingController {
 		LOGGER.info("updateFlatBooking() has executed");
 		return flatBookingResponse;
 	}
-
+	/************************************************************************************
+	 * Method: DeleteFlatBooking
+	 * Description: It is used to Delete flatBooking into flatbooking_details table
+	 * @param id: FlatBooking reference variable.
+	 * @returns flatBooking: It returns FlatBooking with details
+	 * @DeleteMapping: It is used to handle the HTTP DELETE requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By-  SHAIK ABDUL BASHEER 
+     *Created Date -  05-04-2021
+	 * 
+	 ************************************************************************************/
 	@DeleteMapping("/delete-flatBooking/{id}")
 	public ResponseEntity<Object> deleteFlatBooking(@PathVariable int id) throws FlatBookingNotFoundException {
 		LOGGER.info("delete-flatBooking URL is opened");
@@ -73,7 +106,17 @@ public class FlatBookingController {
 		LOGGER.info("deleteFlatBooking() has executed");
 		return new ResponseEntity<Object>(flatBookingDTO, HttpStatus.ACCEPTED);
 	}
-
+	/************************************************************************************
+	 * Method: viewFlatBooking
+	 * Description: It is used to view FlatBooking into flatbooking_details table
+	 * @param flatbooking: flatBooking reference variable.
+	 * @returns flatBooking: It returns flatBooking with details
+	 * @GetMapping: It is used to handle the HTTP GET requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By- SHAIK ABDUL BASHEER 
+     *Created Date - 05-04-2021  
+	 * 
+	 ************************************************************************************/
 	@GetMapping("/view-flatBooking/{id}")
 	public ResponseEntity<Object> getFlatBookingById(@PathVariable int id) throws FlatBookingNotFoundException {
 		LOGGER.info("view-flatBooking URL is opened");
@@ -83,6 +126,17 @@ public class FlatBookingController {
 		LOGGER.info("getFlatBookingById() has executed");
 		return new ResponseEntity<Object>(flatBookingDTO, HttpStatus.ACCEPTED);
 	}
+	/************************************************************************************
+	 * Method: viewAllFlatBookings
+	 * Description: It is used to view all FlatBooking details present flatbooking_details table
+	 * @param flatbooking: FlatBooking reference variable.
+	 * @returns flatBooking:It returns flatBooking with details
+	 * @GetMapping: It is used to handle the HTTP GET requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By-  SHAIK ABDUL BASHEER 
+     *Created Date - 05-04-2021  
+	 * 
+	 ************************************************************************************/
 
 	@GetMapping("/view-all-flatBookings")
 	public List<FlatBookingDTO> getAllFlatBooking() {
