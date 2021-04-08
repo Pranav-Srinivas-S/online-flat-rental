@@ -106,193 +106,220 @@ public class FlatBookingServiceImplTest {
 		}
 	}
 	
-//	@Test
-//	void testAddFlatBooking06() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
-//		flatbooking = new FlatBooking(1, "Alpha#$", 24, flatAddress);
-//		try
-//		{
-//			service.addFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("Tenant Name cannot contain Numbers or Special Characters", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testAddFlatBooking07() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
-//		flatbooking = new FlatBooking(1, "Alpha", 10, flatAddress);
-//		try
-//		{
-//			service.addFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("Minor Age is not allowed", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testAddFlatBooking08() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
-//		flatbooking = new FlatBooking(1, "Alpha", 17, flatAddress);
-//		try
-//		{
-//			service.addFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("Minor Age is not allowed", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testAddFlatBooking09() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
-//		flatbooking= new FlatBooking(1, "Alpha", 0, flatAddress);
-//		try
-//		{
-//			service.addFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("Age cannot be 0 or negative", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testAddFlatBooking10() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
-//		flatbooking = new FlatBooking(1, "Alpha", -1, flatAddress);
-//		try
-//		{
-//			service.addFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("Age cannot be 0 or negative", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testAddFlatBooking12() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(0, "street", "city", "state", 600001, "country");
-//		flatbooking = new FlatBooking(1, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.addFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("House Number cannot be 0 or negative", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testAddFlatBooking13() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, null, "city", "state", 600001, "country");
-//		flatbooking = new FlatBooking(1, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.addFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("Street cannot be empty", exception.getMessage());
-//		}
-//	}
-//	
-//	
-//	@Test
-//	void testAddFlatBooking14() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", null, "state", 600001, "country");
-//		flatbooking = new FlatBooking(1, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.addFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("City cannot be empty", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testAddFlatBooking15() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", null, 600001, "country");
-//		flatbooking = new FlatBooking(1, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.addFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("State cannot be empty", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testAddFlatBooking16() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", 0, "country");
-//		flatbooking = new FlatBooking(1, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.addFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("PinCode cannot be 0 or negative", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testAddFlatBooking17() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, null);
-//		flatbooking = new FlatBooking(1, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.addFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("Country cannot be empty", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testAddFlatBooking18() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "Chennai123", "state", 600001, "country");
-//		flatbooking = new FlatBooking(1, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.addFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("City cannot contain Numbers or Special Characters", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testAddFlatBooking19() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "Chennai#$", "state", 600001, "country");
-//		flatbooking = new FlatBooking(1, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.addFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("City cannot contain Numbers or Special Characters", exception.getMessage());
-//		}
-//	}
-//	
+	@Test
+	void testAddFlatBooking06() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "Alpha123@", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.addFlatBooking(flatbooking);
+		}
+		catch(TenantNotFoundException exception)
+		{
+			assertEquals("Tenant Name cannot contain Numbers or Special Characters", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testAddFlatBooking07() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "13", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.addFlatBooking(flatbooking);
+		}
+		catch(TenantNotFoundException exception)
+		{
+			assertEquals("Minor Age is not allowed", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testAddFlatBooking08() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "14", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.addFlatBooking(flatbooking);
+		}
+		catch(TenantNotFoundException exception)
+		{
+			assertEquals("Minor Age is not allowed", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testAddFlatBooking09() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "0", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.addFlatBooking(flatbooking);
+		}
+		catch(TenantNotFoundException exception)
+		{
+			assertEquals("Age cannot be 0 or negative", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testAddFlatBooking10() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "0", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.addFlatBooking(flatbooking);
+		}
+		catch(TenantNotFoundException exception)
+		{
+			assertEquals("Age cannot be 0 or negative", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testAddFlatBooking12() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "0", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.addFlatBooking(flatbooking);
+		}
+		catch(FlatBookingNotFoundException exception)
+		{
+			assertEquals("House Number cannot be 0 or negative", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testAddFlatBooking13() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "0", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.addFlatBooking(flatbooking);
+		}
+		catch(FlatBookingNotFoundException exception)
+		{
+			assertEquals("Street cannot be empty", exception.getMessage());
+		}
+	}
+	
+	
+	@Test
+	void testAddFlatBooking14() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try		{
+			service.addFlatBooking(flatbooking);
+		}
+		catch(FlatBookingNotFoundException exception)
+		{
+			assertEquals("City cannot be empty", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testAddFlatBooking15() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.addFlatBooking(flatbooking);
+		}
+		catch(FlatBookingNotFoundException exception)
+		{
+			assertEquals("State cannot be empty", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testAddFlatBooking16() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "0", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.addFlatBooking(flatbooking);
+		}
+		catch(FlatBookingNotFoundException exception)
+		{
+			assertEquals("PinCode cannot be 0 or negative", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testAddFlatBooking17() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.addFlatBooking(flatbooking);
+		}
+		catch(FlatBookingNotFoundException exception)
+		{
+			assertEquals("Country cannot be empty", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testAddFlatBooking18() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "chennai135", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.addFlatBooking(flatbooking);
+		}
+		catch(FlatBookingNotFoundException exception)
+		{
+			assertEquals("City cannot contain Numbers or Special Characters", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testAddFlatBooking19() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "chennai123$", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.addFlatBooking(flatbooking);
+		}
+		catch(FlatBookingNotFoundException exception)
+		{
+			assertEquals("City cannot contain Numbers or Special Characters", exception.getMessage());
+		}
+	}
+	
 //	@Test
 //	void testAddFlatBooking20() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "Tamil Nadu 123", 600001, "country");
-//		flatbooking = new FlatBooking(1, "Alpha", 40, flatAddress);
+//		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+//		flat = new Flat(1, 1000f, flatAddress, "yes");
+//		tenant = new Tenant(1, "0", 40, flatAddress);
+//		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
 //		try
 //		{
 //			service.addFlatBooking(FlatBooking);
@@ -302,91 +329,103 @@ public class FlatBookingServiceImplTest {
 //			assertEquals("State cannot contain Numbers or Special Characters", exception.getMessage());
 //		}
 //	}
-//	
-//	@Test
-//	void testAddFlatBooking21() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "Tamil_Nadu", 600001, "country");
-//		flatbooking = new FlatBooking(1, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.addFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("State cannot contain Numbers or Special Characters", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testAddFlatBooking22() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "India123");
-//		flatbooking = new FlatBooking(1, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.addFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("Country cannot contain Numbers or Special Characters", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testAddFlatBooking23() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "India#$");
-//		flatbooking = new FlatBooking(1, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.addFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("Country cannot contain Numbers or Special Characters", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testAddFlatBooking26() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", -600001, "country");
-//		flatbooking = new FlatBooking(1, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.addFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("PinCode cannot be 0 or negative", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testAddFlatBooking27() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", 6001, "country");
-//		flatbooking = new FlatBooking(1, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.addFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("PinCode should be length 6", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testAddFlatBooking28() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", 60000001, "country");
-//		flatbooking = new FlatBooking(1, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.addFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("PinCode should be length 6", exception.getMessage());
-//		}
-//	}
-//	
+	
+	@Test
+	void testAddFlatBooking21() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "tamilnadu456", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.addFlatBooking(flatbooking);
+		}
+		catch(FlatBookingNotFoundException exception)
+		{
+			assertEquals("State cannot contain Numbers or Special Characters", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testAddFlatBooking22() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "123#", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.addFlatBooking(flatbooking);
+		}
+		catch(FlatBookingNotFoundException exception)
+		{
+			assertEquals("Country cannot contain Numbers or Special Characters", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testAddFlatBooking23() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "123%", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.addFlatBooking(flatbooking);
+		}
+		catch(FlatBookingNotFoundException exception)
+		{
+			assertEquals("Country cannot contain Numbers or Special Characters", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testAddFlatBooking26() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "0", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.addFlatBooking(flatbooking);
+		}
+		catch(FlatBookingNotFoundException exception)
+		{
+			assertEquals("PinCode cannot be 0 or negative", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testAddFlatBooking27() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "12346789", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.addFlatBooking(flatbooking);
+		}
+		catch(FlatBookingNotFoundException exception)
+		{
+			assertEquals("PinCode should be length 6", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testAddFlatBooking28() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "89654223", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.addFlatBooking(flatbooking);
+		}
+		catch(FlatBookingNotFoundException exception)
+		{
+			assertEquals("PinCode should be length 6", exception.getMessage());
+		}
+	}
+	
 //	@Test
 //	void testUpdateFlatBooking01() throws FlatBookingNotFoundException {
 //		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
@@ -394,273 +433,311 @@ public class FlatBookingServiceImplTest {
 //		assertNotNull(service.updateFlatBooking(flatbooking));
 //	}
 //	
-//	@Test
-//	void testUpdatev02() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
-//		flatbooking = new FlatBooking(1, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.updateFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("No Tenant found in given ID", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testUpdateFlatBooking04() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
-//		flatbooking = new FlatBooking(210, null, 24, flatAddress);
-//		try
-//		{
-//			service.updateFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("Tenant name cannot be empty", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testUpdateFlatBooking05() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
-//		flatbooking = new FlatBooking(210, "al", 24, flatAddress);
-//		try
-//		{
-//			service.updateFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("Tenant Name length should be in range 3 to 30", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testUpdateFlatBooking06() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
-//		flatbooking = new FlatBooking(210, "AlphaAlphaAlphaAlphaAlphaAlphaAlpha", 40, flatAddress);
-//		try
-//		{
-//			service.updateFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("Tenant Name length should be in range 3 to 30", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testUpdateFlatBooking07() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
-//		flatbooking = new FlatBooking(210, "Alpha123", 24, flatAddress);
-//		try
-//		{
-//			service.updateFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("Tenant Name cannot contain Numbers or Special Characters", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testUpdateFlatBooking08() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
-//		flatbooking = new FlatBooking(210, "Alpha#$", 24, flatAddress);
-//		try
-//		{
-//			service.updateFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("Tenant Name cannot contain Numbers or Special Characters", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testUpdateFlatBooking09() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
-//		flatbooking = new FlatBooking(210, "Alpha", 10, flatAddress);
-//		try
-//		{
-//			service.updateFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("Minor Age is not allowed", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testUpdateFlatBooking10() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
-//		flatbooking = new FlatBooking(210, "Alpha", 17, flatAddress);
-//		try
-//		{
-//			service.updateFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("Minor Age is not allowed", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testUpdateFlatBooking11() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
-//		flatbooking = new FlatBooking(210, "Alpha", 0, flatAddress);
-//		try
-//		{
-//			service.updateFlatBooking(flatbooking);
-//		}
-//		catchFlatBookingNotFoundException exception)
-//		{
-//			assertEquals("Age cannot be 0 or negative", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testUpdateFlatBooking12() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
-//		flatbooking = new FlatBooking(210, "Alpha", -1, flatAddress);
-//		try
-//		{
-//			service.updateFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("Age cannot be 0 or negative", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testUpdateFlatBooking14() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(0, "street", "city", "state", 600001, "country");
-//		flatbooking = new FlatBooking(210, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.updateFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("House Number cannot be 0 or negative", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testUpdateFlatBooking15() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, null, "city", "state", 600001, "country");
-//		flatbooking = new FlatBooking(210, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.updateFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("Street cannot be empty", exception.getMessage());
-//		}
-//	}
-//	
-//	
-//	@Test
-//	void testUpdateFlatBooking16() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", null, "state", 600001, "country");
-//		flatbooking = new FlatBooking(210, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.updateFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("City cannot be empty", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testUpdateFlatBooking17() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", null, 600001, "country");
-//		flatbooking = new FlatBooking(210, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.updateFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("State cannot be empty", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testUpdateFlatBooking18() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", 0, "country");
-//		flatbooking = new FlatBooking(210, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.updateTenant(tenant);
-//		}
-//		catch(TenantNotFoundException exception)
-//		{
-//			assertEquals("PinCode cannot be 0 or negative", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testUpdateFlatBooking19() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, null);
-//		flatbooking = new FlatBooking(210, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.updateFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("Country cannot be empty", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testUpdateFlatBooking20() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "Chennai123", "state", 600001, "country");
-//		flatbooking = new FlatBooking(210, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.updateFlatBooking(FlatBooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("City cannot contain Numbers or Special Characters", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testUpdateFlatBooking21() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "Chennai#$", "state", 600001, "country");
-//		flatbooking = new FlatBooking(210, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.updateFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("City cannot contain Numbers or Special Characters", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testUpdateFlatBooking22() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "Tamil Nadu 123", 600001, "country");
-//	    flatbooking = new FlatBooking(210, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.updateFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("State cannot contain Numbers or Special Characters", exception.getMessage());
-//		}
-//	}
-//	
+	@Test
+	void testUpdatev02() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "89654223", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.updateFlatBooking(flatbooking);
+		}
+		catch(TenantNotFoundException exception)
+		{
+			assertEquals("No Tenant found in given ID", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testUpdateFlatBooking04() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "basheer", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.updateFlatBooking(flatbooking);
+		}
+		catch(TenantNotFoundException exception)
+		{
+			assertEquals("Tenant name cannot be empty", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testUpdateFlatBooking05() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "89654223", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.updateFlatBooking(flatbooking);
+		}
+		catch(TenantNotFoundException exception)
+		{
+			assertEquals("Tenant Name length should be in range 3 to 30", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testUpdateFlatBooking06() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "89654223", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.updateFlatBooking(flatbooking);
+		}
+		catch(TenantNotFoundException exception)
+		{
+			assertEquals("Tenant Name length should be in range 3 to 30", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testUpdateFlatBooking07() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "89654223", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.updateFlatBooking(flatbooking);
+		}
+		catch(TenantNotFoundException exception)
+		{
+			assertEquals("Tenant Name cannot contain Numbers or Special Characters", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testUpdateFlatBooking08() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "89654223", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.updateFlatBooking(flatbooking);
+		}
+		catch(TenantNotFoundException exception)
+		{
+			assertEquals("Tenant Name cannot contain Numbers or Special Characters", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testUpdateFlatBooking09() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "89654223", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.updateFlatBooking(flatbooking);
+		}
+		catch(TenantNotFoundException exception)
+		{
+			assertEquals("Minor Age is not allowed", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testUpdateFlatBooking10() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "89654223", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.updateFlatBooking(flatbooking);
+		}
+		catch(TenantNotFoundException exception)
+		{
+			assertEquals("Minor Age is not allowed", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testUpdateFlatBooking11() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "89654223", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.updateFlatBooking(flatbooking);
+		}
+		catch(TenantNotFoundException exception)
+		{
+			assertEquals("Age cannot be 0 or negative", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testUpdateFlatBooking12() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "89654223", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.updateFlatBooking(flatbooking);
+		}
+		catch(TenantNotFoundException exception)
+		{
+			assertEquals("Age cannot be 0 or negative", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testUpdateFlatBooking14() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "89654223", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.updateFlatBooking(flatbooking);
+		}
+		catch(FlatBookingNotFoundException exception)
+		{
+			assertEquals("House Number cannot be 0 or negative", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testUpdateFlatBooking15() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "89654223", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.updateFlatBooking(flatbooking);
+		}
+		catch(FlatBookingNotFoundException exception)
+		{
+			assertEquals("Street cannot be empty", exception.getMessage());
+		}
+	}
+	
+	
+	@Test
+	void testUpdateFlatBooking16() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "89654223", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.updateFlatBooking(flatbooking);
+		}
+		catch(FlatBookingNotFoundException exception)
+		{
+			assertEquals("City cannot be empty", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testUpdateFlatBooking17() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "89654223", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.updateFlatBooking(flatbooking);
+		}
+		catch(FlatBookingNotFoundException exception)
+		{
+			assertEquals("State cannot be empty", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testUpdateFlatBooking18() throws FlatBookingNotFoundException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "89654223", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.updateTenant(tenant);
+		}
+		catch(FlatBookingNotFoundException exception)
+		{
+			assertEquals("PinCode cannot be 0 or negative", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testUpdateFlatBooking19() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "89654223", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.updateFlatBooking(flatbooking);
+		}
+		catch(FlatBookingNotFoundException exception)
+		{
+			assertEquals("Country cannot be empty", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testUpdateFlatBooking20() throws FlatBookingNotFoundException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "89654223", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.updateFlatBooking(FlatBooking);
+		}
+		catch(FlatBookingNotFoundException exception)
+		{
+			assertEquals("City cannot contain Numbers or Special Characters", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testUpdateFlatBooking21() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "89654223", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.updateFlatBooking(flatbooking);
+		}
+		catch(FlatBookingNotFoundException exception)
+		{
+			assertEquals("City cannot contain Numbers or Special Characters", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testUpdateFlatBooking22() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "89654223", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.updateFlatBooking(flatbooking);
+		}
+		catch(FlatBookingNotFoundException exception)
+		{
+			assertEquals("State cannot contain Numbers or Special Characters", exception.getMessage());
+		}
+	}
+	
 //	@Test
 //	void testUpdateFlatBooking23() throws FlatBookingNotFoundException {
 //		flatAddress = new FlatAddress(1, "street", "city", "Tamil_Nadu", 600001, "country");
@@ -675,75 +752,85 @@ public class FlatBookingServiceImplTest {
 //		}
 //	}
 //	
-//	@Test
-//	void testUpdateFlatBooking24() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "India123");
-//		flatbooking =  FlatBooking(210, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.updateFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("Country cannot contain Numbers or Special Characters", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testUpdateFlatBooking25() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "India#$");
-//		flatbooking = new FlatBooking(210, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.updateFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("Country cannot contain Numbers or Special Characters", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testUpdateFlatBooking28() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", -600001, "country");
-//		flatbooking = new FlatBooking(210, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.updateFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("PinCode cannot be 0 or negative", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testUpdateFlatBooking29() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", 6001, "country");
-//		flaatbooking = new FlatBooking(210, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.updateFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("PinCode should be length 6", exception.getMessage());
-//		}
-//	}
-//	
-//	@Test
-//	void testUpdateFlatBooking30() throws FlatBookingNotFoundException {
-//		flatAddress = new FlatAddress(1, "street", "city", "state", 60000001, "country");
-//		flatbooking = new FlatBooking(210, "Alpha", 40, flatAddress);
-//		try
-//		{
-//			service.updateFlatBooking(flatbooking);
-//		}
-//		catch(FlatBookingNotFoundException exception)
-//		{
-//			assertEquals("PinCode should be length 6", exception.getMessage());
-//		}
-//	}
+	@Test
+	void testUpdateFlatBooking24() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "89654223", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.updateFlatBooking(flatbooking);
+		}
+		catch(FlatBookingNotFoundException exception)
+		{
+			assertEquals("Country cannot contain Numbers or Special Characters", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testUpdateFlatBooking25() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "89654223", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.updateFlatBooking(flatbooking);
+		}
+		catch(FlatBookingNotFoundException exception)
+		{
+			assertEquals("Country cannot contain Numbers or Special Characters", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testUpdateFlatBooking28() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "89654223", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.updateFlatBooking(flatbooking);
+		}
+		catch(FlatBookingNotFoundException exception)
+		{
+			assertEquals("PinCode cannot be 0 or negative", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testUpdateFlatBooking29() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "89654223", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.updateFlatBooking(flatbooking);
+		}
+		catch(FlatBookingNotFoundException exception)
+		{
+			assertEquals("PinCode should be length 6", exception.getMessage());
+		}
+	}
+	
+	@Test
+	void testUpdateFlatBooking30() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
+		flatAddress = new FlatAddress(1, "street", "city", "state", 600001, "country");
+		flat = new Flat(1, 1000f, flatAddress, "yes");
+		tenant = new Tenant(1, "89654223", 40, flatAddress);
+		flatbooking = new FlatBooking(1, flat, tenant, LocalDate.parse("2021-04-07"), LocalDate.parse("2022-04-07"));
+		try
+		{
+			service.updateFlatBooking(flatbooking);
+		}
+		catch(FlatBookingNotFoundException exception)
+		{
+			assertEquals("PinCode should be length 6", exception.getMessage());
+		}
+	}
 //	@Test
 //	void testDeleteFlatBooking01() throws FlatBookingNotFoundException {
 //		assertEquals(service.viewFlatBooking(219).getFlatBookingName(), service.deleteFlatBooking(219).getFlatBookingName());
