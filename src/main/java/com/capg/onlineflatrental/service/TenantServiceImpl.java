@@ -200,8 +200,8 @@ public class TenantServiceImpl implements ITenantService {
 			LOGGER.error("Street cannot be empty");
 			throw new TenantNotFoundException("Street cannot be empty");
 		} else if (!street.matches("^[a-zA-Z0-9 ]+$")) {
-			LOGGER.error("Street cannot contain Numbers or Special Characters");
-			throw new TenantNotFoundException("Street cannot contain Numbers or Special Characters");
+			LOGGER.error("Street cannot contain Special Characters");
+			throw new TenantNotFoundException("Street cannot contain Special Characters");
 		} else {
 			flag = true;
 			LOGGER.info("Validation Successful");

@@ -41,8 +41,7 @@ public class TenantController {
 	public ResponseEntity<Object> addTenant(@RequestBody Tenant tenant) throws TenantNotFoundException {
 		LOGGER.info("add-tenant URL is opened");
 		LOGGER.info("addTenant() is initiated");
-		TenantDTO tenantDTO = null;
-		tenantDTO = tenantService.addTenant(tenant);
+		TenantDTO tenantDTO = tenantService.addTenant(tenant);
 		LOGGER.info("addTenant() has executed");
 		return new ResponseEntity<Object>(tenantDTO, HttpStatus.ACCEPTED);
 	}
@@ -51,7 +50,7 @@ public class TenantController {
 	public ResponseEntity<Object> updateTenant(@RequestBody Tenant tenant) throws TenantNotFoundException {
 		LOGGER.info("update-tenant URL is opened");
 		LOGGER.info("updateTenant() is initiated");
-		TenantDTO tenantDTO = null;
+		TenantDTO tenantDTO = tenantService.updateTenant(tenant);
 		LOGGER.info("updateTenant() has executed");
 		return new ResponseEntity<Object>(tenantDTO, HttpStatus.ACCEPTED);
 	}
