@@ -22,12 +22,12 @@ import com.capg.onlineflatrental.exception.AdminNotFoundException;
 import com.capg.onlineflatrental.model.AdminDTO;
 import com.capg.onlineflatrental.service.IAdminService;
 
-/*
+/*************************************************************************************
  * Author : NITHISHA K A
  * Version : 1.0
  * Date : 06-04-2021
  * Description : This is Admin Controller
-*/
+*************************************************************************************/
 
 @RestController
 @RequestMapping("/api/ofr/admin")
@@ -37,7 +37,18 @@ public class AdminController {
 
 	@Autowired
 	private IAdminService adminService;
-
+	
+	/************************************************************************************
+	 * Method: addadmin 
+	 * Description: It is used to add admin into admin_details table
+	 * @param admin: admin's reference variable.
+	 * @returns admin It returns admin with details
+	 * @PostMapping: It is used to handle the HTTP POST requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By-  NITHISHA K A 
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
 	@PostMapping("/add-admin")
 	public ResponseEntity<Object> addAdmin(@RequestBody Admin admin) throws AdminNotFoundException {
 		LOGGER.info("add-admin URL is opened");
@@ -49,6 +60,18 @@ public class AdminController {
 		LOGGER.info("addAdmin() has executed");
 		return adminResponse;
 	}
+	
+	/************************************************************************************
+	 * Method: updateadmin 
+	 * Description: It is used to update admin into admin_details table
+	 * @param admin: admin's reference variable.
+	 * @returns admin It returns admin with details
+	 * @PutMapping: It is used to handle the HTTP PUT requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * *Created By-  NITHISHA K A 
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
 
 	@PutMapping("/update-admin")
 	public ResponseEntity<Object> updateAdmin(@RequestBody Admin admin) throws AdminNotFoundException {
@@ -62,6 +85,18 @@ public class AdminController {
 		return adminResponse;
 	}
 
+	/************************************************************************************
+	 * Method: deleteadmin
+	 * Description: It is used to remove admin into admin_details table
+	 * @param id: admin's reference variable.
+	 * @returns admin It returns admin with details
+	 * @DeleteMapping: It is used to handle the HTTP DELETE requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By-  NITHISHA K A 
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
+	
 	@DeleteMapping("/delete-admin/{adminId}")
 	public ResponseEntity<Object> deleteAdmin(@PathVariable int adminId) throws AdminNotFoundException {
 		LOGGER.info("delete-admin URL is opened");
@@ -77,6 +112,19 @@ public class AdminController {
 		LOGGER.info("deleteAdmin() has executed");
 		return adminResponse;
 	}
+	
+	/************************************************************************************
+	 * Method: viewadmin
+	 * Description: It is used to view admin into admin_details table
+	 * @param admin: admin's reference variable.
+	 * @returns admin It returns admin with details
+	 * @GetMapping: It is used to handle the HTTP GET requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By-  NITHISHA K A 
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
+
 
 	@GetMapping("/view-admin/{adminId}")
 	public ResponseEntity<Object> getAdminById(@PathVariable int adminId) throws AdminNotFoundException {
@@ -93,6 +141,18 @@ public class AdminController {
 		LOGGER.info("getAdminById() has executed");
 		return adminResponse;
 	}
+	
+	/************************************************************************************
+	 * Method: viewAlladmins
+	 * Description: It is used to view all admin details present admin_details table
+	 * @param admin: admin's reference variable.
+	 * @returns admin It returns admin with details
+	 * @GetMapping: It is used to handle the HTTP GET requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By-  NITHISHA K A 
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
 
 	@GetMapping("/view-all-admin")
 	public List<AdminDTO> getAllAdmin() {

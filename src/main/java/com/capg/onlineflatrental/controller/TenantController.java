@@ -60,7 +60,7 @@ public class TenantController {
 	}
 	
 	/************************************************************************************
-	 * Method: upadatetenant 
+	 * Method: updatetenant 
 	 * Description: It is used to update tenant into tenant_details table
 	 * @param tenant: tenant's reference variable.
 	 * @returns tenant It returns tenant with details
