@@ -21,10 +21,16 @@ import com.capg.onlineflatrental.util.UserUtils;
 @Service
 public class UserServiceImpl implements IUserService{
 	
-	final static Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
+	static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 	
 	@Autowired	
 	private IUserRepository userRepo;
+
+	String noUserWithId = "No user found with that Id\r\n"
+			+ "\r\n"
+			+ "Enter valid UserId";
+	String invalidUserName = "Invalid User Name";
+	String passNotMatch = "Password does not Match";
 	
 	/*
 	 * Method:                          	viewUser
@@ -41,9 +47,7 @@ public class UserServiceImpl implements IUserService{
 		LOGGER.info("viewUser() service is initiated");
 		User existUser = userRepo.findById(id).orElse(null);
 		if(existUser == null)
-			throw new UserNotFoundException("No user found with that Id\r\n"
-					+ "\r\n"
-					+ "Enter valid UserId");
+			throw new UserNotFoundException(noUserWithId);
 		LOGGER.info("viewUser() service is executed");
 		return UserUtils.convertToUserDto(existUser);
 	}
@@ -81,11 +85,11 @@ public class UserServiceImpl implements IUserService{
 		boolean flag = false;
 		User user = userRepo.findByUserName(userName);
 		if(user == null)
-			throw new UserNotFoundException("Invalid User Name");
+			throw new UserNotFoundException(invalidUserName);
 		else if (user.getPassword().equals(password))
 			flag = true;
 		else
-			throw new UserNotFoundException("Password does not Match");
+			throw new UserNotFoundException(passNotMatch);
 		LOGGER.info("validateUser() service has executed");
 		return flag;
 		
@@ -109,10 +113,8 @@ public class UserServiceImpl implements IUserService{
 		existUser = userRepo.findByUserName(user.getUserName());
 		if(existUser != null)
 			throw new UserNotFoundException("User Name already exists, Try anouther name");
-		else if(!validateaddUser(user))
-			throw new UserNotFoundException("Invalid User Details");
-		else
-			userEntity = userRepo.save(user);
+		validateaddUser(user);
+		userEntity = userRepo.save(user);
 		LOGGER.info("addUser() service has executed");
 		return UserUtils.convertToUserDto(userEntity);
 	}
@@ -131,17 +133,15 @@ public class UserServiceImpl implements IUserService{
 	public UserDTO updateUser(User user) throws UserNotFoundException {
 		LOGGER.info("updateUser() service is initiated");
 		User userEntity;
-		if(user == null)
-			userEntity = null;
 		User existUser = userRepo.findById(user.getUserId()).orElse(null);
 		if(existUser == null)
 			throw new UserNotFoundException("No user found");
 		else if(!updateUser(user.getUserId(), user.getUserName(), user.getPassword()))
 			throw new UserNotFoundException("User Details Dont Match");
-		else if(!validateUserType(user.getUserType()))
-			throw new UserNotFoundException("User Details Dont Match");
-		else
+		else {
+			validateUserType(user.getUserType());
 			userEntity = userRepo.save(user);
+		}
 		LOGGER.info("updateUser() service has executed");
 		return UserUtils.convertToUserDto(userEntity);
 	}
@@ -160,16 +160,16 @@ public class UserServiceImpl implements IUserService{
 	public UserDTO updatePassword(User user, String newpass) throws UserNotFoundException {
 		LOGGER.info("updatePassword() service is initiated");
 		User userEntity;
-		if(user == null)
-			userEntity = null;
 		User existUser = userRepo.findById(user.getUserId()).orElse(null);
 		if(existUser == null)
 			throw new UserNotFoundException("No user found with given ID");
-		else if(!(updatePassword(user.getUserId(), user.getUserName(), user.getPassword(),user.getUserType()) && validatePassword(newpass)) && validateUserType(user.getUserType()))
+		else if(!(updatePassword(user.getUserId(), user.getUserName(), user.getPassword(),user.getUserType()) && validatePassword(newpass)))
 			throw new UserNotFoundException("User Details Don't Match");
 		else {
+			validateUserType(user.getUserType());
 			user.setPassword(newpass);
-		userEntity = userRepo.save(user);}
+			userEntity = userRepo.save(user);
+		}
 		LOGGER.info("updatePassword() service has executed");
 		return UserUtils.convertToUserDto(userEntity);
 	}
@@ -189,9 +189,7 @@ public class UserServiceImpl implements IUserService{
 		LOGGER.info("removeUser() service is initiated");
 		User existUser = userRepo.findById(id).orElse(null);
 		if(existUser == null)
-			throw new UserNotFoundException("No user found with that Id\r\n"
-					+ "\r\n"
-					+ "Enter valid UserId");
+			throw new UserNotFoundException(noUserWithId);
 		else
 			userRepo.delete(existUser);
 		LOGGER.info("removeUser() service is executed");
@@ -200,11 +198,11 @@ public class UserServiceImpl implements IUserService{
 	
 	public boolean validateUserId(int id) throws UserNotFoundException
 	{
-		boolean flag = userRepo.existsById(id);
-		if(flag == false)
-			throw new UserNotFoundException("No user found with that Id\r\n"
-					+ "\r\n"
-					+ "Enter valid UserId");
+		boolean flag = false;
+		if(userRepo.existsById(id) == flag)
+			throw new UserNotFoundException(noUserWithId);
+		else
+			flag = true;
 		return flag;
 	}
 	
@@ -222,13 +220,13 @@ public class UserServiceImpl implements IUserService{
 		return flag;
     }	
 	
-	public static boolean validatePassword(String Password) throws UserNotFoundException
+	public static boolean validatePassword(String password) throws UserNotFoundException
     {  
 		boolean flag = false;
-		if(Password == null)
-			throw new UserNotFoundException(passwordformat);
-		else if(!Password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$"))
-			throw new UserNotFoundException(passwordformat);
+		if(password == null)
+			throw new UserNotFoundException(passformat);
+		else if(!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$"))
+			throw new UserNotFoundException(passformat);
 		else
 			flag = true;
 		return flag;
@@ -255,10 +253,13 @@ public class UserServiceImpl implements IUserService{
 		boolean flag = false;
 		if(user == null)
 			throw new UserNotFoundException("User details cannot be blank");
-		else if(!(validateUsername(user.getUserName()) && validatePassword(user.getPassword()) && validateUserType(user.getUserType())))
-			throw new UserNotFoundException("Invalid User Details"); 
 		else
+		{
+			validateUsername(user.getUserName());
+			validatePassword(user.getPassword());
+			validateUserType(user.getUserType());
 			flag = true;
+		}
 		return flag;
 	}
 	
@@ -266,15 +267,15 @@ public class UserServiceImpl implements IUserService{
 		boolean flag = false;
 		User user = userRepo.findById(id).orElse(null);
 		if(!validateUserId(id))
-			throw new UserNotFoundException("No User available in given ID");
+			throw new UserNotFoundException(noUserWithId);
 		else if(user == null)
-			throw new UserNotFoundException("Invalid User Name");
-		else if  (!user.getUserName().equals(userName) && user != null)
-		throw new UserNotFoundException("Invalid User Name");
-		else if (user.getPassword().equals(password) && user != null)
+			throw new UserNotFoundException(invalidUserName);
+		else if  (!user.getUserName().equals(userName))
+			throw new UserNotFoundException(invalidUserName);
+		else if (user.getPassword().equals(password))
 			flag = true;
 		else 
-			throw new UserNotFoundException("Password does not Match");
+			throw new UserNotFoundException(passNotMatch);
 		return flag;		
 	}
 	
@@ -282,18 +283,18 @@ public class UserServiceImpl implements IUserService{
 		boolean flag = false;
 		User user = userRepo.findByIdAndName(id, userName);
 		if(!validateUserId(id))
-			throw new UserNotFoundException("No User available in given ID");
+			throw new UserNotFoundException(noUserWithId);
 		else if(user == null)
-			throw new UserNotFoundException("Invalid User Name");
-		else if (!user.getUserType().equals(UserType) && user != null)
+			throw new UserNotFoundException(invalidUserName);
+		else if (!user.getUserType().equals(UserType))
 			throw new UserNotFoundException("Invalid User Type");
-		else if (user.getPassword().equals(password) && user != null)
+		else if (user.getPassword().equals(password))
 			flag = true;
 		else 
-			throw new UserNotFoundException("Password does not Match");
+			throw new UserNotFoundException(passNotMatch);
 		return flag;
 	}
-	static String passwordformat ="Format for password is Wrong\r\n"
+	static String passformat ="Format for password is Wrong\r\n"
 			+ "\r\n"
 			+ "Please Enter Password Again\r\n"
 			+ "\r\n"
@@ -321,13 +322,13 @@ public boolean checkUser(int id, String userName, String password) throws UserNo
 	boolean flag = false;
 	User user = userRepo.findByIdAndName(id, userName);
 	if(!validateUserId(id))
-		throw new UserNotFoundException("No User available in given ID");
+		throw new UserNotFoundException(noUserWithId);
 	else if(user == null)
-		throw new UserNotFoundException("Invalid User Name");
-	if (user.getPassword().equals(password) && user != null)
+		throw new UserNotFoundException(invalidUserName);
+	if (user.getPassword().equals(password))
 		flag = true;
 	else 
-		throw new UserNotFoundException("Password does not Match");
+		throw new UserNotFoundException(passNotMatch);
 	return flag;
 }
 }
