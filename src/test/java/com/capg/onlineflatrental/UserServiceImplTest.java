@@ -16,7 +16,7 @@ import com.capg.onlineflatrental.entities.User;
 import com.capg.onlineflatrental.exception.UserNotFoundException;
 import com.capg.onlineflatrental.service.IUserService;
 
-@Disabled
+
 @SpringBootTest
 class UserServiceImplTest {
 
