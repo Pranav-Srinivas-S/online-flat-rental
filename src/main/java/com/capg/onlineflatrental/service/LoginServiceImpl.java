@@ -52,6 +52,15 @@ public class LoginServiceImpl implements ILoginService {
 	public static final String ALPHABETLOWER = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_";
 	public static final String ALPHABETUPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_";
 	
+	/*
+	 * Method:                          	encryptPassword().
+     *Description:                      	To encrypt given password.
+	     *@param password:                  password to be encrypted.
+		 *@returns encryptedPassword     - 	Encrypted password
+     *Created By                         -  PRANAV SRINIVAS S
+     *Created Date                       -  08-04-2021                           	 
+	 */
+	
 	public static String encryptPassword(String password)
 	{
 		int shiftKey=3, charPosition, keyVal;
@@ -75,6 +84,15 @@ public class LoginServiceImpl implements ILoginService {
         }
         return encryptedPassword;
 	}
+	
+	/*
+	 * Method:                          	decryptPassword().
+     *Description:                      	To decrypt the encrypted password.
+	     *@param password:                  encryptedPassword.
+		 *@returns encryptedPassword     - 	Decrypted password
+     *Created By                         -  PRANAV SRINIVAS S
+     *Created Date                       -  08-04-2021                           	 
+	 */
 	
 	public static String decryptPassword(String encryptedPassword)
 	{
