@@ -37,6 +37,18 @@ public class LandlordController {
 
 	@Autowired
 	private ILandlordService landlordService;
+	
+	/************************************************************************************
+	 * Method: addlandlord 
+	 * Description: It is used to add landlord into landlords table
+	 * @param landlord: landlord's reference variable.
+	 * @returns landlord It returns landlord with details
+	 * @PostMapping: It is used to handle the HTTP POST requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By-NITHISHA K A
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
 
 	@PostMapping("/add-landlord")
 	public ResponseEntity<Object> addLandlord(@RequestBody Landlord landlord)
@@ -51,6 +63,18 @@ public class LandlordController {
 		return landlordResponse;
 	}
 
+	/************************************************************************************
+	 * Method: updatelandlord 
+	 * Description: It is used to update landlord into landlords table
+	 * @param landlord: landlord's reference variable.
+	 * @returns landlord It returns landlord with details
+	 * @PostMapping: It is used to handle the HTTP POST requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By-NITHISHA K A
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
+	
 	@PutMapping("/update-landlord")
 	public ResponseEntity<Object> updateLandlord(@RequestBody Landlord landlord)
 			throws LandlordNotFoundException, InvalidFlatInputException {
@@ -63,6 +87,18 @@ public class LandlordController {
 		LOGGER.info("updateLandlord() has executed");
 		return landlordResponse;
 	}
+	
+	/************************************************************************************
+	 * Method: Deletelandlord 
+	 * Description: It is used to remove landlord from landlords table
+	 * @param landlord: int id
+	 * @returns landlord It returns landlord with details
+	 * @PostMapping: It is used to handle the HTTP POST requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By-NITHISHA K A
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
 
 	@DeleteMapping("/delete-landlord/{id}")
 	public ResponseEntity<Object> deleteLandlord(@PathVariable int id) throws LandlordNotFoundException {
@@ -75,6 +111,18 @@ public class LandlordController {
 		LOGGER.info("deleteLandlord() has executed");
 		return landlordResponse;
 	}
+	
+	/************************************************************************************
+	 * Method: getlandlordById 
+	 * Description: It is used to view landlord by id from landlords table
+	 * @param landlord: int id
+	 * @returns landlord It returns landlord with details
+	 * @PostMapping: It is used to handle the HTTP POST requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By-NITHISHA K A
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
 
 	@GetMapping("/view-landlord/{id}")
 	public ResponseEntity<Object> getLandlordById(@PathVariable int id) throws LandlordNotFoundException {
@@ -88,6 +136,17 @@ public class LandlordController {
 		return landlordResponse;
 	}
 
+	/************************************************************************************
+	 * Method: getAlllandlords 
+	 * Description: It is used to view all landlords in landlords table
+	 * @returns landlord It returns landlord with details
+	 * @PostMapping: It is used to handle the HTTP POST requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By-NITHISHA K A
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
+	
 	@GetMapping("/view-all-landlords")
 	public List<LandlordDTO> getAllLandlords() {
 		LOGGER.info("view-all-landlords URL is opened");

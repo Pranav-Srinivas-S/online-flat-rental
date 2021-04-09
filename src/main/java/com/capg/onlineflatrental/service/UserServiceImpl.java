@@ -10,13 +10,13 @@ import com.capg.onlineflatrental.model.UserDTO;
 import com.capg.onlineflatrental.repository.IUserRepository;
 import com.capg.onlineflatrental.util.UserUtils;
 
-/*
+/*************************************************************************************
  * Author : RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH 
  * Version : 1.0
  * Date : 03-04-2021
  * Description : It is a user service class that provides the services to view user,view all users, validate user,add a user,
  *          	 remove a user, update the user, and update the password.
-*/
+*************************************************************************************/
 
 @Service
 public class UserServiceImpl implements IUserService{
@@ -34,7 +34,7 @@ public class UserServiceImpl implements IUserService{
 	String nameNotMatch = "User Name does not Match";
 	static String done= "Validation Successful";
 	
-	/*
+	/*************************************************************************************
 	 * Method:                          	viewUser
      *Description:                      	To display the user by Id.
 	     *@param id:                        id of the user.
@@ -42,7 +42,7 @@ public class UserServiceImpl implements IUserService{
 		 *@throws UserNotFoundException  -  It is raised due to invalid  UserId 
      *Created By                         -  RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH 
      *Created Date                       -  03-04-2021                           	 
-	 */
+	 *************************************************************************************/
 	
 	@Override
 	public UserDTO viewUser(int id) throws UserNotFoundException {
@@ -54,13 +54,13 @@ public class UserServiceImpl implements IUserService{
 		return UserUtils.convertToUserDto(existUser);
 	}
 	
-	/*
+	/**************************************************************************************
 	 * Method:                          	viewAllUser
      *Description:                      	To display all the users by Id.
 		 *@returns List<UserDTO>         - 	it displays all the user details
      *Created By                         -  RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH 
      *Created Date                       -  03-04-2021                           	 
-	 */
+	 **************************************************************************************/
 	
 	@Override
 	public List<UserDTO> viewAllUser() {
@@ -70,7 +70,7 @@ public class UserServiceImpl implements IUserService{
 		return UserUtils.convertToUserDtoList(userList);
 	}
 	
-	/*
+	/*************************************************************************************
 	 * Method:                          	validateUser
      *Description:                      	To check the user name and password is matching or not.
 	     *@param username:                  user name for validating user.
@@ -79,7 +79,7 @@ public class UserServiceImpl implements IUserService{
 		 *@throws UserNotFoundException  -  It is raised due to mismatch of user details. 
      *Created By                         -  RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH 
      *Created Date                       -  03-04-2021                           	 
-	 */
+	 *************************************************************************************/
 	
 	@Override
 	public boolean validateUser(String userName, String password) throws UserNotFoundException {
@@ -97,7 +97,7 @@ public class UserServiceImpl implements IUserService{
 		
 	}
 	
-	/*
+	/*************************************************************************************
 	 * Method:                          	addUser
      *Description:                      	it is used to add the user details
 	     *@param User                       it is User's reference variable.
@@ -105,7 +105,7 @@ public class UserServiceImpl implements IUserService{
 		 *@throws UserNotFoundException  -  It is raised due to invalid User name format and invalid user password format and if user name already exists 
      *Created By                         -  RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH 
      *Created Date                       -  03-04-2021                           	 
-	 */
+	 *************************************************************************************/
 	
 	@Override
 	public UserDTO addUser(User user) throws UserNotFoundException {
@@ -121,7 +121,7 @@ public class UserServiceImpl implements IUserService{
 		return UserUtils.convertToUserDto(userEntity);
 	}
 	
-	/*
+	/*************************************************************************************
 	 * Method:                          	updateUser
      *Description:                      	To update the user details.
 	     *@param User                       it is User's reference variable.
@@ -129,7 +129,7 @@ public class UserServiceImpl implements IUserService{
 		 *@throws UserNotFoundException  -  It is raised due to mismatch of user details. 
      *Created By                         -  RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH 
      *Created Date                       -  03-04-2021                           	 
-	 */
+	 *************************************************************************************/
 	
 	@Override
 	public UserDTO updateUser(User user) throws UserNotFoundException {
@@ -148,7 +148,7 @@ public class UserServiceImpl implements IUserService{
 		return UserUtils.convertToUserDto(userEntity);
 	}
 	
-	/*
+	/*************************************************************************************
 	 * Method:                          	updatePassword
      *Description:                      	To update the user password details.
 	     *@param User                       it is User's reference variable.
@@ -156,7 +156,7 @@ public class UserServiceImpl implements IUserService{
 		 *@throws UserNotFoundException  -  It is raised due to mismatch of user details. 
      *Created By                         -  RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH 
      *Created Date                       -  03-04-2021                           	 
-	 */
+	 *************************************************************************************/
 	
 	@Override
 	public UserDTO updatePassword(User user, String newpass) throws UserNotFoundException {
@@ -176,7 +176,7 @@ public class UserServiceImpl implements IUserService{
 		return UserUtils.convertToUserDto(userEntity);
 	}
 	
-	/*
+	/*************************************************************************************
 	 * Method:                          	removeUser
      *Description:                      	To remove the user details.
 	     *@param Id                         it will remove users based on id.
@@ -184,7 +184,7 @@ public class UserServiceImpl implements IUserService{
 		 *@throws UserNotFoundException  -  It is raised due to mismatch of user details. 
      *Created By                         -  RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH 
      *Created Date                       -  03-04-2021                           	 
-	 */
+	 *************************************************************************************/
 	
 	@Override
 	public UserDTO removeUser(int id) throws UserNotFoundException {

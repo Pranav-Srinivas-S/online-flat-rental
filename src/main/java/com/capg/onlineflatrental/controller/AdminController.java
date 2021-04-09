@@ -34,6 +34,18 @@ public class AdminController {
 
 	@Autowired
 	private IAdminService adminService;
+	
+	/************************************************************************************
+	 * Method: addadmin 
+	 * Description: It is used to add admin into admins table
+	 * @param admin: admin's reference variable.
+	 * @returns admin It returns admin with details
+	 * @PostMapping: It is used to handle the HTTP POST requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By-NITHISHA K A
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
 
 	@PostMapping("/add-admin")
 	public ResponseEntity<Object> addAdmin(@RequestBody Admin admin) throws AdminNotFoundException {
@@ -46,6 +58,18 @@ public class AdminController {
 		LOGGER.info("addAdmin() has executed");
 		return adminResponse;
 	}
+	
+	/************************************************************************************
+	 * Method: updateadmin 
+	 * Description: It is used to update admin into admins table
+	 * @param admin: admin's reference variable.
+	 * @returns admin It returns admin with details
+	 * @PostMapping: It is used to handle the HTTP POST requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By-NITHISHA K A
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
 
 	@PutMapping("/update-admin")
 	public ResponseEntity<Object> updateAdmin(@RequestBody Admin admin) throws AdminNotFoundException {
@@ -58,6 +82,18 @@ public class AdminController {
 		LOGGER.info("updateAdmin() has executed");
 		return adminResponse;
 	}
+	
+	/************************************************************************************
+	 * Method: Deleteadmin 
+	 * Description: It is used to remove admin from admins table
+	 * @param admin: int id
+	 * @returns admin It returns admin with details
+	 * @PostMapping: It is used to handle the HTTP POST requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By-NITHISHA K A
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
 
 	@DeleteMapping("/delete-admin/{adminId}")
 	public ResponseEntity<Object> deleteAdmin(@PathVariable int adminId) throws AdminNotFoundException {
@@ -70,6 +106,18 @@ public class AdminController {
 		LOGGER.info("deleteAdmin() has executed");
 		return adminResponse;
 	}
+	
+	/************************************************************************************
+	 * Method: getadminById 
+	 * Description: It is used to view admin by id from admins table
+	 * @param admin: int id
+	 * @returns admin It returns admin with details
+	 * @PostMapping: It is used to handle the HTTP POST requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By-NITHISHA K A
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
 
 	@GetMapping("/view-admin/{adminId}")
 	public ResponseEntity<Object> getAdminById(@PathVariable int adminId) throws AdminNotFoundException {
@@ -83,6 +131,18 @@ public class AdminController {
 		return adminResponse;
 	}
 
+	/************************************************************************************
+	 * Method: getAlladmins 
+	 * Description: It is used to view all admins in admins table
+	 * @returns admin It returns admin with details
+	 * @PostMapping: It is used to handle the HTTP POST requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By-NITHISHA K A
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
+	
+	
 	@GetMapping("/view-all-admin")
 	public List<AdminDTO> getAllAdmin() {
 		LOGGER.info("view-add-admin URL is opened");

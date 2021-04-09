@@ -23,12 +23,12 @@ import com.capg.onlineflatrental.model.UserDTO;
 import com.capg.onlineflatrental.service.IUserService;
 import com.capg.onlineflatrental.service.UserServiceImpl;
 
-/*
+/*************************************************************************************
  * Author : RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH
  * Version : 1.0
  * Date : 04-04-2021
  * Description : This is User Controller.
-*/
+*************************************************************************************/
 
 @RestController
 @RequestMapping("/api/ofr/user")
@@ -121,7 +121,7 @@ public class UserController {
 	 * Description: It is used to validate user in users table
 	 * @param user: String userName, String password
 	 * @returns user It returns user with details
-	 * @PostMapping: It is used to handle the HTTP POST requests matched with given URI expression.
+	 * @PatchMapping: It is used to handle the HTTP POST requests matched with given URI expression.
 	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
 	 * Created By- RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH
      *Created Date -  04-04-2021 
