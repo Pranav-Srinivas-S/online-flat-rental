@@ -86,6 +86,7 @@ public class UserServiceImpl implements IUserService{
 		LOGGER.info("validateUser() service is initiated");
 		boolean flag = false;
 		User user = userRepo.findByUserName(userName);
+		password = LoginServiceImpl.encryptPassword(password);
 		if(user == null)
 			throw new UserNotFoundException(invalidUserName);
 		else if (user.getPassword().equals(password))
@@ -116,6 +117,7 @@ public class UserServiceImpl implements IUserService{
 		if(existUser != null)
 			throw new UserNotFoundException("User Name already exists, Try anouther name");
 		validateaddUser(user);
+		user.setPassword(LoginServiceImpl.encryptPassword(user.getPassword()));
 		userEntity = userRepo.save(user);
 		LOGGER.info("addUser() service has executed");
 		return UserUtils.convertToUserDto(userEntity);
@@ -136,6 +138,7 @@ public class UserServiceImpl implements IUserService{
 		LOGGER.info("updateUser() service is initiated");
 		User userEntity;
 		User existUser = userRepo.findById(user.getUserId()).orElse(null);
+		user.setPassword(LoginServiceImpl.encryptPassword(user.getPassword()));
 		if(existUser == null)
 			throw new UserNotFoundException("No user found");
 		else if(!updateUser(user.getUserId(), user.getUserName(), user.getPassword()))
@@ -159,17 +162,18 @@ public class UserServiceImpl implements IUserService{
 	 *************************************************************************************/
 	
 	@Override
-	public UserDTO updatePassword(User user, String newpass) throws UserNotFoundException {
+	public UserDTO updatePassword(User user, String newPass) throws UserNotFoundException {
 		LOGGER.info("updatePassword() service is initiated");
 		User userEntity;
 		User existUser = userRepo.findById(user.getUserId()).orElse(null);
+		String newEncryptPassword = LoginServiceImpl.encryptPassword(newPass);
 		if(existUser == null)
 			throw new UserNotFoundException("No user found with given ID");
-		else if(!(updatePassword(user.getUserId(), user.getUserName(), user.getPassword(),user.getUserType()) && validatePassword(newpass)))
+		else if(!(updatePassword(user.getUserId(), user.getUserName(), LoginServiceImpl.encryptPassword(user.getPassword()), user.getUserType()) && validatePassword(newPass)))
 			throw new UserNotFoundException("User Details Don't Match");
 		else {
 			validateUserType(user.getUserType());
-			user.setPassword(newpass);
+			user.setPassword(newEncryptPassword);
 			userEntity = userRepo.save(user);
 		}
 		LOGGER.info("updatePassword() service has executed");
@@ -365,7 +369,7 @@ public class UserServiceImpl implements IUserService{
 			+ "\r\n"
 			+ "The first character of the username must be an alphabetic character, i.e., either lowercase character\r\n"
 			+ "[a – z] or uppercase character [A – Z].\r\n"
-			+ "User Name length should be in range 3 to 40."
+			+ "User Name length should be in range 3 to 30."
 			+ "\r\n";
 
 
