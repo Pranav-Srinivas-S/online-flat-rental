@@ -33,6 +33,19 @@ public class LoginController {
 
 	@Autowired
 	private ILoginService loginService;
+	
+	/************************************************************************************
+	 * Method: validateLogin
+	 * Description: It is used to validate login details.
+	 * @param user: int login id,String User name, String password
+	 * @returns user It returns login with details
+	 * @PatchMapping: It is used to handle the HTTP PATCH requests matched with given URI expression.
+	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * Created By- RAVURU SATHYA NAGA SIVANANDANA SAI BHARATH
+	 * 			   PRNANAV SRINIVAS S
+     *Created Date -  04-04-2021 
+	 * 
+	 ************************************************************************************/
 
 	@PatchMapping("/validate-login")
 	public ResponseEntity<String> validateLogin(@RequestBody User user)
