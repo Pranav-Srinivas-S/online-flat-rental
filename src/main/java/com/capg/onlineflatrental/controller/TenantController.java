@@ -34,7 +34,6 @@ public class TenantController {
 
 	@Autowired
 	private ITenantService tenantService;
-	
 
 	/************************************************************************************
 	 * Method: addtenant 
@@ -79,6 +78,7 @@ public class TenantController {
 		LOGGER.info("updateTenant() has executed");
 		return new ResponseEntity<Object>(tenantDTO, HttpStatus.ACCEPTED);
 	}
+	
 	/************************************************************************************
 	 * Method: deletetenant
 	 * Description: It is used to remove tenant from tenant table
@@ -133,6 +133,7 @@ public class TenantController {
      *Created Date -  04-04-2021 
 	 * 
 	 ************************************************************************************/
+	
 	@GetMapping("/view-all-tenants")
 	public List<TenantDTO> getAllTenants() {
 		LOGGER.info("view-all-tenants URL is opened");

@@ -41,7 +41,7 @@ public class LoginServiceImpl implements ILoginService {
 		boolean flag = false;
 		if(user == null)
 			throw new LoginNotFoundException("User Details cannot be Empty");
-		else if(!userService.checkUser(user.getUserId(), user.getUserName(), user.getPassword()))
+		else if(!userService.checkUser(user.getUserId(), user.getUserName(), encryptPassword(user.getPassword())))
 			throw new LoginNotFoundException("Invalid UserName or Password");
 		else
 			flag = true;
@@ -49,4 +49,62 @@ public class LoginServiceImpl implements ILoginService {
 		return flag;
 	}
 
+	public static final String ALPHABETLOWER = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_";
+	public static final String ALPHABETUPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_";
+	
+	public static String encryptPassword(String password)
+	{
+		int shiftKey=3, charPosition, keyVal;
+		char replaceVal;
+        String encryptedPassword = "";
+        for (int i = 0; i < password.length(); i++)
+        {
+        	if(Character.isUpperCase(password.charAt(i))) {
+        		charPosition = ALPHABETUPPER.indexOf(password.charAt(i));
+        		keyVal = (shiftKey + charPosition) % 26;
+        		replaceVal = ALPHABETUPPER.charAt(keyVal);
+        		encryptedPassword += replaceVal;
+            }
+        	else {
+        		charPosition = ALPHABETLOWER.indexOf(password.charAt(i));
+                keyVal = (shiftKey + charPosition) % 26;
+                replaceVal = ALPHABETLOWER.charAt(keyVal);
+                encryptedPassword += replaceVal;
+        	}
+        	
+        }
+        return encryptedPassword;
+	}
+	
+	public static String decryptPassword(String encryptedPassword)
+	{
+		int shiftKey=3, charPosition, keyVal;
+		char replaceVal;
+        String password = "";
+        for (int i = 0; i < encryptedPassword.length(); i++)
+        {
+        	if(Character.isUpperCase(password.charAt(i))) {
+        		charPosition = ALPHABETUPPER.indexOf(encryptedPassword.charAt(i));
+        		keyVal = (charPosition - shiftKey) % 26;
+        		if (keyVal < 0)
+        		{
+        			keyVal = ALPHABETUPPER.length() + keyVal;
+        		}
+        		replaceVal = ALPHABETUPPER.charAt(keyVal);
+        		password += replaceVal;
+        	}
+        	else {
+        		charPosition = ALPHABETLOWER.indexOf(encryptedPassword.charAt(i));
+        		keyVal = (charPosition - shiftKey) % 26;
+        		if (keyVal < 0)
+        		{
+        			keyVal = ALPHABETLOWER.length() + keyVal;
+        		}
+        		replaceVal = ALPHABETLOWER.charAt(keyVal);
+        		password += replaceVal;
+        	}
+        }
+        return password;
+	}
+	
 }
