@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 import org.slf4j.Logger;
@@ -19,7 +18,6 @@ import com.capg.onlineflatrental.entities.Tenant;
 import com.capg.onlineflatrental.exception.TenantNotFoundException;
 import com.capg.onlineflatrental.service.ITenantService;
 
-@Disabled
 @SpringBootTest
 class TenantServiceImplTest {
 
@@ -37,13 +35,13 @@ class TenantServiceImplTest {
 		LOGGER.info("Tenant Testing Initiated");
 	}
 
-//	@Test
-//	void testAddTenant01() throws TenantNotFoundException {
-//		LOGGER.info("Testing testAddTenant01()");
-//		FlatAddress flatAddress = new FlatAddress(101, "street", "city", "state", 600001, "country");
-//		Tenant tenant = new Tenant(1, "Alpha", 24, flatAddress);
-//		assertNotNull(service.addTenant(tenant));
-//	}
+	@Test
+	void testAddTenant01() throws TenantNotFoundException {
+		LOGGER.info("Testing testAddTenant01()");
+		FlatAddress flatAddress = new FlatAddress(101, "street", "city", "state", 600001, "country");
+		Tenant tenant = new Tenant(1, "Alpha", 24, flatAddress);
+		assertNotNull(service.addTenant(tenant));
+	}
 
 	@Test
 	void testAddTenant02() throws TenantNotFoundException {
@@ -362,7 +360,7 @@ class TenantServiceImplTest {
 	}
 	
 	@Test
-	void testAddTenant26() throws TenantNotFoundException {
+	void testAddTenant24() throws TenantNotFoundException {
 		LOGGER.info("Testing testAddTenant26()");
 		flatAddress = new FlatAddress(1, "street", "city", "state", -600001, "country");
 		tenant = new Tenant(1, "Alpha", 40, flatAddress);
@@ -377,7 +375,7 @@ class TenantServiceImplTest {
 	}
 	
 	@Test
-	void testAddTenant27() throws TenantNotFoundException {
+	void testAddTenant25() throws TenantNotFoundException {
 		LOGGER.info("Testing testAddTenant27()");
 		flatAddress = new FlatAddress(1, "street", "city", "state", 6001, "country");
 		tenant = new Tenant(1, "Alpha", 40, flatAddress);
@@ -392,7 +390,7 @@ class TenantServiceImplTest {
 	}
 	
 	@Test
-	void testAddTenant28() throws TenantNotFoundException {
+	void testAddTenant26() throws TenantNotFoundException {
 		LOGGER.info("Testing testAddTenant28()");
 		flatAddress = new FlatAddress(1, "street", "city", "state", 60000001, "country");
 		tenant = new Tenant(1, "Alpha", 40, flatAddress);
@@ -746,7 +744,7 @@ class TenantServiceImplTest {
 	}
 	
 	@Test
-	void testUpdateTenant28() throws TenantNotFoundException {
+	void testUpdateTenant26() throws TenantNotFoundException {
 		LOGGER.info("Testing testUpdateTenant28()");
 		flatAddress = new FlatAddress(1, "street", "city", "state", -600001, "country");
 		tenant = new Tenant(210, "Alpha", 40, flatAddress);
@@ -761,7 +759,7 @@ class TenantServiceImplTest {
 	}
 	
 	@Test
-	void testUpdateTenant29() throws TenantNotFoundException {
+	void testUpdateTenant27() throws TenantNotFoundException {
 		LOGGER.info("Testing testUpdateTenant29()");
 		flatAddress = new FlatAddress(1, "street", "city", "state", 6001, "country");
 		tenant = new Tenant(210, "Alpha", 40, flatAddress);
@@ -776,7 +774,7 @@ class TenantServiceImplTest {
 	}
 	
 	@Test
-	void testUpdateTenant30() throws TenantNotFoundException {
+	void testUpdateTenant28() throws TenantNotFoundException {
 		LOGGER.info("Testing testUpdateTenant30()");
 		flatAddress = new FlatAddress(1, "street", "city", "state", 60000001, "country");
 		tenant = new Tenant(210, "Alpha", 40, flatAddress);
@@ -823,7 +821,7 @@ class TenantServiceImplTest {
 	}
 	
 	@Test
-	void testViewTenant() throws TenantNotFoundException {
+	void testViewTenant01() throws TenantNotFoundException {
 		LOGGER.info("Testing testViewTenant01()");
 		assertEquals("Alpha", service.viewTenant(210).getTenantName());
 	}

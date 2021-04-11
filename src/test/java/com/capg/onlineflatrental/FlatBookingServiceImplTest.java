@@ -1,17 +1,20 @@
 package com.capg.onlineflatrental;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import com.capg.onlineflatrental.entities.Flat;
 import com.capg.onlineflatrental.entities.FlatAddress;
 import com.capg.onlineflatrental.entities.FlatBooking;
@@ -22,6 +25,7 @@ import com.capg.onlineflatrental.exception.TenantNotFoundException;
 import com.capg.onlineflatrental.model.FlatBookingDTO;
 import com.capg.onlineflatrental.service.IFlatBookingService;
 
+@Disabled
 @SpringBootTest
 public class FlatBookingServiceImplTest {
 	final static Logger LOGGER = LoggerFactory.getLogger(FlatBookingServiceImplTest.class);
