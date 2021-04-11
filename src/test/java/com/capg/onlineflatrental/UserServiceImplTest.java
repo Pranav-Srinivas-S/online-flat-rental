@@ -33,12 +33,12 @@ class UserServiceImplTest {
 		LOGGER.info("User Testing Initiated");
 	}
 
-	@Test
-	void testAddUser01() throws UserNotFoundException {
-	 LOGGER.info("Testing testAddUser01()");
-		User user = new User(1, "Deep", "Sai@2000", "Admin");
-		assertNotNull(service.addUser(user));
-	}
+//	@Test
+//	void testAddUser01() throws UserNotFoundException {
+//	 LOGGER.info("Testing testAddUser01()");
+//		User user = new User(1, "Deepu", "deepu@2000", "Tenant");
+//		assertNotNull(service.addUser(user));
+//	}
 
 	@Test
 	void testAddUser02() throws UserNotFoundException {
@@ -62,7 +62,7 @@ class UserServiceImplTest {
 					+ "____________________________________________________________\r\n" + "\r\n"
 					+ "Valid Format for UserName:\r\n" + "\r\n"
 					+ "The first character of the username must be an alphabetic character, i.e., either lowercase character\r\n"
-					+ "[a – z] or uppercase character [A – Z].\r\n" + "User Name length should be in range 3 to 40."
+					+ "[a – z] or uppercase character [A – Z].\r\n" + "User Name length should be in range 3 to 30."
 					+ "\r\n", exception.getMessage());
 		}
 	}
@@ -78,7 +78,7 @@ class UserServiceImplTest {
 					+ "____________________________________________________________\r\n" + "\r\n"
 					+ "Valid Format for UserName:\r\n" + "\r\n"
 					+ "The first character of the username must be an alphabetic character, i.e., either lowercase character\r\n"
-					+ "[a – z] or uppercase character [A – Z].\r\n" + "User Name length should be in range 3 to 40."
+					+ "[a – z] or uppercase character [A – Z].\r\n" + "User Name length should be in range 3 to 30."
 					+ "\r\n", exception.getMessage());
 		}
 	}
@@ -240,17 +240,17 @@ class UserServiceImplTest {
 		}
 	}
 
-	@Test
-	void testUpdateUser01() throws UserNotFoundException {
-		LOGGER.info("Testing testUpdateUser01()");
-		user = new User(50, "SaiBharath", "Sai@200000", "landlord");
-		assertNotNull(service.updateUser(user));
-	}
+//	@Test
+//	void testUpdateUser01() throws UserNotFoundException {
+//		LOGGER.info("Testing testUpdateUser01()");
+//		user = new User(142, "Bharath", "Bharath@1234", "landlord");
+//		assertNotNull(service.updateUser(user));
+//	}
 
 	@Test
 	void testUpdateUser02() throws UserNotFoundException {
 		LOGGER.info("Testing testUpdateUser02()");
-		user = new User(510, "SaiBharath", "Sai@20000", "landlord");
+		user = new User(5100, "SaiBharath", "Bharath@1234", "landlord");
 		try {
 			service.updateUser(user);
 		} catch (UserNotFoundException exception) {
@@ -261,18 +261,18 @@ class UserServiceImplTest {
 	@Test
 	void testUpdateUser03() throws UserNotFoundException {
 		LOGGER.info("Testing testUpdateUser03()");
-		user = new User(50, "SaigggBharath", "Sai@20000", "landlord");
+		user = new User(141, "SaigggBharath", "Manu@1999", "landlord");
 		try {
 			service.updateUser(user);
 		} catch (UserNotFoundException exception) {
-			assertEquals("Invalid User Name", exception.getMessage());
+			assertEquals("User Name does not Match", exception.getMessage());
 		}
 	}
 
 	@Test
 	void testUpdateUser04() throws UserNotFoundException {
 		LOGGER.info("Testing testUpdateUser04()");
-		user = new User(50, "SaiBharath", "Sai@200000", "user");
+		user = new User(141, "Manu", "Manu@1999", "user");
 		try {
 			service.updateUser(user);
 		} catch (UserNotFoundException exception) {
@@ -283,7 +283,7 @@ class UserServiceImplTest {
 	@Test
 	void testUpdateUser05() throws UserNotFoundException {
 		LOGGER.info("Testing testUpdateUser05()");
-		user = new User(50, "SaiBharath", "Sai@200000", "@#$");
+		user = new User(141, "Manu", "Manu@1999", "@#$");
 		try {
 			service.updateUser(user);
 		} catch (UserNotFoundException exception) {
@@ -305,7 +305,7 @@ class UserServiceImplTest {
 	@Test
 	void testUpdatePassword02() throws UserNotFoundException {
 		LOGGER.info("Testing testUpdatePassword02()");
-		user = new User(50, "SailklkBharath", "Sai@20000", "landlord");
+		user = new User(141, "SailklkBharath", "Manu@1999", "landlord");
 		try {
 			service.updatePassword(user, "Sai@200000");
 		} catch (UserNotFoundException exception) {
@@ -316,7 +316,7 @@ class UserServiceImplTest {
 	@Test
 	void testUpdatePassword03() throws UserNotFoundException {
 		LOGGER.info("Testing testUpdatePassword03()");
-		user = new User(80, "Sathya", "SathyaLOLOLJ", "Admin");
+		user = new User(141, "Manu", "Dkkkk@2000", "landlord");
 		try {
 			service.updatePassword(user, "Sai@200000");
 		} catch (UserNotFoundException exception) {
@@ -327,7 +327,7 @@ class UserServiceImplTest {
 	@Test
 	void testUpdatePassword04() throws UserNotFoundException {
 		LOGGER.info("Testing testUpdatePassword04()");
-		user = new User(80, "Sathya", "Sai@200000", "landlord");
+		user = new User(141, "Manu", "Manu@2000", "Admin");
 		try {
 			service.updatePassword(user, "Sai@200000");
 		} catch (UserNotFoundException exception) {
@@ -338,14 +338,14 @@ class UserServiceImplTest {
 	@Test
 	void testValidateUser01() throws UserNotFoundException {
 		LOGGER.info("Testing testValidateUser01()");
-		assertEquals(true, service.validateUser("Manu", "Sai@200000"));
+		assertEquals(true, service.validateUser("Sathya", "Sai@2000"));
 	}
 
 	@Test
 	void testValidateUser02() throws UserNotFoundException {
 		LOGGER.info("Testing testValidateUser02()");
 		try {
-			service.validateUser("Manu", "Sai@2000");
+			service.validateUser("Sathya", "Sai@20000");
 		} catch (UserNotFoundException exception) {
 			assertEquals("Password does not Match", exception.getMessage());
 		}
@@ -364,7 +364,7 @@ class UserServiceImplTest {
 	@Test
 	void testViewUser01() throws UserNotFoundException {
 		LOGGER.info("Testing testViewUser01()");
-		assertEquals("SaiBharath", service.viewUser(50).getUserName());
+		assertEquals("Sathya", service.viewUser(140).getUserName());
 	}
 
 	@Test
