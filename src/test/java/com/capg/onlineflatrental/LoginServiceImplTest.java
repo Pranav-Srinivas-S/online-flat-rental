@@ -1,20 +1,20 @@
 package com.capg.onlineflatrental;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import com.capg.onlineflatrental.entities.User;
 import com.capg.onlineflatrental.exception.LoginNotFoundException;
 import com.capg.onlineflatrental.exception.UserNotFoundException;
 import com.capg.onlineflatrental.service.ILoginService;
 
-@Disabled
 @SpringBootTest
 class LoginServiceImplTest {
 
@@ -33,8 +33,8 @@ class LoginServiceImplTest {
 	@Test
 	void testCheckUser01() throws LoginNotFoundException, UserNotFoundException {
 		LOGGER.info("Testing testCheckUser01()");
-		user.setUserId(240);
-		user.setUserName("SaiBharath");
+		user.setUserId(394);
+		user.setUserName("Sathya");
 		user.setPassword("Sai@2000");
 		assertEquals(true, service.login(user));
 	}
@@ -54,8 +54,8 @@ class LoginServiceImplTest {
 	@Test
 	void testCheckUser03() throws LoginNotFoundException, UserNotFoundException {
 		LOGGER.info("Testing testCheckUser03()");
-		user.setUserId(240);
-		user.setUserName("SaiBharath");
+		user.setUserId(395);
+		user.setUserName("Manu");
 		user.setPassword("sai2000");
 		try {
 		service.login(user);
@@ -68,7 +68,7 @@ class LoginServiceImplTest {
 	@Test
 	void testCheckUser04() throws LoginNotFoundException, UserNotFoundException {
 		LOGGER.info("Testing testCheckUser04()");
-		user.setUserId(240);
+		user.setUserId(394);
 		user.setUserName("sai");
 		user.setPassword("Sai@2000");
 		try {

@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +21,6 @@ import com.capg.onlineflatrental.exception.InvalidFlatInputException;
 import com.capg.onlineflatrental.exception.LandlordNotFoundException;
 import com.capg.onlineflatrental.service.ILandlordService;
 
-@Disabled
 @SpringBootTest
 class LandlordServiceImplTest {
 
@@ -164,7 +162,7 @@ class LandlordServiceImplTest {
 			flatAddress = new FlatAddress(1, "street", "city", "state", 600013, "country");
 
 			flatList.add(new Flat(1, 1000f, flatAddress, "Y"));
-			landlord = new Landlord(49, "Name", 24, flatList);
+			landlord = new Landlord(245, "Name", 24, flatList);
 			assertNotNull(service.updateLandlord(landlord));
 		}
 
@@ -186,7 +184,7 @@ class LandlordServiceImplTest {
 			flatAddress = new FlatAddress(1, "street", "city", "state", 600013, "country");
 
 			flatList.add(new Flat(1, 1000f, flatAddress, "Y"));
-			landlord = new Landlord(12, null, 25, flatList);
+			landlord = new Landlord(245, null, 25, flatList);
 			try {
 				service.updateLandlord(landlord);
 			} catch (LandlordNotFoundException exception) {
@@ -199,7 +197,7 @@ class LandlordServiceImplTest {
 			flatAddress = new FlatAddress(1, "street", "city", "state", 600013, "country");
 
 			flatList.add(new Flat(1, 1000f, flatAddress, "Y"));
-			landlord = new Landlord(21, "na", 26, flatList);
+			landlord = new Landlord(245, "na", 26, flatList);
 			try {
 				service.updateLandlord(landlord);
 			} catch (LandlordNotFoundException exception) {
@@ -213,7 +211,7 @@ class LandlordServiceImplTest {
 
 			flatList.add(new Flat(24, 1000f, flatAddress, "Y"));
 
-			landlord = new Landlord(30, "namenamenamenamenamenamenamenamename", 40, flatList);
+			landlord = new Landlord(245, "namenamenamenamenamenamenamenamename", 40, flatList);
 			try {
 				service.updateLandlord(landlord);
 			} catch (LandlordNotFoundException exception) {
@@ -227,7 +225,7 @@ class LandlordServiceImplTest {
 
 			flatList.add(new Flat(1, 1000f, flatAddress, "Y"));
 
-			landlord = new Landlord(12, "Name123", 24, flatList);
+			landlord = new Landlord(245, "Name123", 24, flatList);
 			try {
 				service.updateLandlord(landlord);
 			} catch (LandlordNotFoundException exception) {
@@ -241,7 +239,7 @@ class LandlordServiceImplTest {
 
 			flatList.add(new Flat(1, 1000f, flatAddress, "Y"));
 
-			landlord = new Landlord(27, "Name#$", 25, flatList);
+			landlord = new Landlord(245, "Name#$", 25, flatList);
 			try {
 				service.updateLandlord(landlord);
 			} catch (LandlordNotFoundException exception) {
@@ -254,7 +252,7 @@ class LandlordServiceImplTest {
 			flatAddress = new FlatAddress(1, "street", "city", "state", 600013, "country");
 
 			flatList.add(new Flat(1, 1000f, flatAddress, "Y"));
-			landlord = new Landlord(15, "Name", 17, flatList);
+			landlord = new Landlord(245, "Name", 17, flatList);
 			try {
 				service.updateLandlord(landlord);
 			} catch (LandlordNotFoundException exception) {
@@ -268,7 +266,7 @@ class LandlordServiceImplTest {
 
 			flatList.add(new Flat(1, 1000f, flatAddress, "Y"));
 
-			landlord = new Landlord(18, "Name", 0, flatList);
+			landlord = new Landlord(245, "Name", 0, flatList);
 			try {
 				service.updateLandlord(landlord);
 			} catch (LandlordNotFoundException exception) {
@@ -282,7 +280,7 @@ class LandlordServiceImplTest {
 
 			flatList.add(new Flat(1, 1000f, flatAddress, "Y"));
 
-			landlord = new Landlord(18, "Name", -1, flatList);
+			landlord = new Landlord(245, "Name", -1, flatList);
 			try {
 				service.updateLandlord(landlord);
 			} catch (LandlordNotFoundException exception) {
@@ -292,7 +290,7 @@ class LandlordServiceImplTest {
 
 //		@Test
 //		void testDeleteLandlord20() throws LandlordNotFoundException {
-//			assertEquals(service.viewLandlord(35).getLandlordName(), service.deleteLandlord(35).getLandlordName());
+//			assertNotNull(service.viewLandlord(251).getLandlordName());
 //		}
 
 		@Test
@@ -301,7 +299,7 @@ class LandlordServiceImplTest {
 			try {
 				service.deleteLandlord(109);
 			} catch (LandlordNotFoundException exception) {
-				assertEquals("No Landlord found in the given Id", exception.getMessage());
+				assertEquals("No Landlord found in given ID", exception.getMessage());
 			}
 		}
 
@@ -311,13 +309,13 @@ class LandlordServiceImplTest {
 			try {
 				service.deleteLandlord(114);
 			} catch (LandlordNotFoundException exception) {
-				assertEquals("No Landlord found in the given Id", exception.getMessage());
+				assertEquals("No Landlord found in given ID", exception.getMessage());
 			}
 		}
 
 		@Test
 		void testViewLandlord23() throws LandlordNotFoundException {
-			assertEquals("Name", service.viewLandlord(12).getLandlordName());
+			assertEquals("Name", service.viewLandlord(245).getLandlordName());
 		}
 
 		@Test
@@ -325,7 +323,7 @@ class LandlordServiceImplTest {
 			try {
 				service.viewLandlord(12);
 			} catch (LandlordNotFoundException exception) {
-				assertEquals("No landlord found with that Id\r\n" + "\r\n" + "Enter valid UserId", exception.getMessage());
+				assertEquals("No Landlord found in given ID", exception.getMessage());
 			}
 		}
 
@@ -338,7 +336,7 @@ class LandlordServiceImplTest {
 		
 	@AfterAll
 	public static void end() {
-		LOGGER.info("LandlordO Testing Terminated");
+		LOGGER.info("Landlord Testing Terminated");
 	}
 
 }
