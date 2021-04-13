@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 import org.slf4j.Logger;
@@ -18,7 +17,6 @@ import com.capg.onlineflatrental.entities.User;
 import com.capg.onlineflatrental.exception.UserNotFoundException;
 import com.capg.onlineflatrental.service.IUserService;
 
-@Disabled
 @SpringBootTest
 class UserServiceImplTest {
 
@@ -37,7 +35,7 @@ class UserServiceImplTest {
 //	@Test
 //	void testAddUser01() throws UserNotFoundException {
 //	 LOGGER.info("Testing testAddUser01()");
-//		User user = new User(1, "Deepu", "deepu@2000", "Tenant");
+//		User user = new User(1, "Deepan", "Deepu@2000", "Tenant");
 //		assertNotNull(service.addUser(user));
 //	}
 
@@ -244,7 +242,7 @@ class UserServiceImplTest {
 //	@Test
 //	void testUpdateUser01() throws UserNotFoundException {
 //		LOGGER.info("Testing testUpdateUser01()");
-//		user = new User(142, "Bharath", "Bharath@1234", "landlord");
+//		user = new User(396, "Bharath", "Bharath@1234", "landlord");
 //		assertNotNull(service.updateUser(user));
 //	}
 
@@ -262,7 +260,7 @@ class UserServiceImplTest {
 	@Test
 	void testUpdateUser03() throws UserNotFoundException {
 		LOGGER.info("Testing testUpdateUser03()");
-		user = new User(141, "SaigggBharath", "Manu@1999", "landlord");
+		user = new User(395, "SaigggBharath", "Manu@1999", "landlord");
 		try {
 			service.updateUser(user);
 		} catch (UserNotFoundException exception) {
@@ -273,7 +271,7 @@ class UserServiceImplTest {
 	@Test
 	void testUpdateUser04() throws UserNotFoundException {
 		LOGGER.info("Testing testUpdateUser04()");
-		user = new User(141, "Manu", "Manu@1999", "user");
+		user = new User(395, "Manu", "Manu@1999", "user");
 		try {
 			service.updateUser(user);
 		} catch (UserNotFoundException exception) {
@@ -284,7 +282,7 @@ class UserServiceImplTest {
 	@Test
 	void testUpdateUser05() throws UserNotFoundException {
 		LOGGER.info("Testing testUpdateUser05()");
-		user = new User(141, "Manu", "Manu@1999", "@#$");
+		user = new User(395, "Manu", "Manu@1999", "@#$");
 		try {
 			service.updateUser(user);
 		} catch (UserNotFoundException exception) {
@@ -306,7 +304,7 @@ class UserServiceImplTest {
 	@Test
 	void testUpdatePassword02() throws UserNotFoundException {
 		LOGGER.info("Testing testUpdatePassword02()");
-		user = new User(141, "SailklkBharath", "Manu@1999", "landlord");
+		user = new User(395, "SailklkBharath", "Manu@1999", "landlord");
 		try {
 			service.updatePassword(user, "Sai@200000");
 		} catch (UserNotFoundException exception) {
@@ -317,7 +315,7 @@ class UserServiceImplTest {
 	@Test
 	void testUpdatePassword03() throws UserNotFoundException {
 		LOGGER.info("Testing testUpdatePassword03()");
-		user = new User(141, "Manu", "Dkkkk@2000", "landlord");
+		user = new User(395, "Manu", "Dkkkk@2000", "landlord");
 		try {
 			service.updatePassword(user, "Sai@200000");
 		} catch (UserNotFoundException exception) {
@@ -328,11 +326,27 @@ class UserServiceImplTest {
 	@Test
 	void testUpdatePassword04() throws UserNotFoundException {
 		LOGGER.info("Testing testUpdatePassword04()");
-		user = new User(141, "Manu", "Manu@2000", "Admin");
+		user = new User(395, "Manu", "Manu@2000", "Admin");
 		try {
 			service.updatePassword(user, "Sai@200000");
 		} catch (UserNotFoundException exception) {
 			assertEquals("Invalid User Type", exception.getMessage());
+		}
+	}
+
+//	@Test
+//	void testRemoveUser01() throws UserNotFoundException {
+//		LOGGER.info("Testing testRemoveTenant01()");
+//		assertEquals(service.viewUser(494).getUserName(), service.removeUser(494).getUserName());
+//	}
+
+	@Test
+	void testRemoveUser02() throws UserNotFoundException {
+		LOGGER.info("Testing testRemove02()");
+		try {
+			service.removeUser(1000);
+		} catch (UserNotFoundException exception) {
+			assertEquals("No user found with that Id\r\n" + "\r\n" + "Enter valid UserId", exception.getMessage());
 		}
 	}
 
@@ -365,7 +379,7 @@ class UserServiceImplTest {
 	@Test
 	void testViewUser01() throws UserNotFoundException {
 		LOGGER.info("Testing testViewUser01()");
-		assertEquals("Sathya", service.viewUser(140).getUserName());
+		assertEquals("Sathya", service.viewUser(394).getUserName());
 	}
 
 	@Test
@@ -382,7 +396,7 @@ class UserServiceImplTest {
 	void testViewUser03() throws UserNotFoundException {
 		LOGGER.info("Testing testViewUser03()");
 		try {
-			service.viewUser(1);
+			service.viewUser(5000);
 		} catch (UserNotFoundException exception) {
 			assertEquals("No user found with that Id\r\n" + "\r\n" + "Enter valid UserId", exception.getMessage());
 		}

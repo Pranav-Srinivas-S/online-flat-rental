@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 import org.slf4j.Logger;
@@ -19,7 +18,6 @@ import com.capg.onlineflatrental.exception.AdminNotFoundException;
 import com.capg.onlineflatrental.exception.UserNotFoundException;
 import com.capg.onlineflatrental.service.IAdminService;
 
-@Disabled
 @SpringBootTest
 class AdminServiceImplTest {
 	
@@ -173,17 +171,17 @@ class AdminServiceImplTest {
 		}
 	}
 
-	@Test
-	void testUpdateAdmin01() throws AdminNotFoundException {
-		LOGGER.info("Testing testUpdateAdmin01()");
-		admin = new Admin(90, "SaiBharath@2000");
-		assertNotNull(service.updateAdmin(admin));
-	}
+//	@Test
+//	void testUpdateAdmin01() throws AdminNotFoundException {
+//		LOGGER.info("Testing testUpdateAdmin01()");
+//		admin = new Admin(384, "SaiBharath@2000");
+//		assertNotNull(service.updateAdmin(admin));
+//	}
 
 	@Test
 	void testUpdateAdmin02() throws AdminNotFoundException {
 		LOGGER.info("Testing testUpdateAdmin02()");
-		admin = new Admin(90, null);
+		admin = new Admin(384, null);
 		try {
 			service.updateAdmin(admin);
 		} catch (AdminNotFoundException exception) {
@@ -194,7 +192,7 @@ class AdminServiceImplTest {
 	@Test
 	void testUpdateAdmin03() throws AdminNotFoundException {
 		LOGGER.info("Testing testUpdateAdmin03()");
-		admin = new Admin(90, " ");
+		admin = new Admin(384, "123");
 		try {
 			service.updateAdmin(admin);
 		} catch (AdminNotFoundException exception) {
@@ -214,7 +212,7 @@ class AdminServiceImplTest {
 	@Test
 	void testUpdateAdmin04() throws AdminNotFoundException {
 		LOGGER.info("Testing testUpdateAdmin04()");
-		admin = new Admin(90, "Sathya ");
+		admin = new Admin(384, "Sathya ");
 		try {
 			service.updateAdmin(admin);
 		} catch (AdminNotFoundException exception) {
@@ -234,7 +232,7 @@ class AdminServiceImplTest {
 	@Test
 	void testUpdateAdmin05() throws AdminNotFoundException {
 		LOGGER.info("Testing testUpdateAdmin05()");
-		admin = new Admin(90, "sr");
+		admin = new Admin(384, "sr");
 		try {
 			service.updateAdmin(admin);
 		} catch (AdminNotFoundException exception) {
@@ -254,7 +252,7 @@ class AdminServiceImplTest {
 	@Test
 	void testUpdateAdmin06() throws AdminNotFoundException {
 		LOGGER.info("Testing testUpdateAdmin06()");
-		admin = new Admin(90, "SAI");
+		admin = new Admin(384, "SAI");
 		try {
 			service.updateAdmin(admin);
 		} catch (AdminNotFoundException exception) {
@@ -274,7 +272,7 @@ class AdminServiceImplTest {
 	@Test
 	void testUpdateAdmin07() throws AdminNotFoundException {
 		LOGGER.info("Testing testUpdateAdmin07()");
-		admin = new Admin(90, "sai");
+		admin = new Admin(384, "sai");
 		try {
 			service.updateAdmin(admin);
 		} catch (AdminNotFoundException exception) {
@@ -294,7 +292,7 @@ class AdminServiceImplTest {
 	@Test
 	void testUpdateAdmin08() throws AdminNotFoundException {
 		LOGGER.info("Testing testUpdateAdmin08()");
-		admin = new Admin(90, "Sai2000");
+		admin = new Admin(384, "Sai2000");
 		try {
 			service.updateAdmin(admin);
 		} catch (AdminNotFoundException exception) {
@@ -314,7 +312,7 @@ class AdminServiceImplTest {
 	@Test
 	void testViewAdmin() throws AdminNotFoundException {
 		LOGGER.info("Testing testViewAdmin01()");
-		assertEquals("Sai@2000", service.viewAdmin(91).getAdminPassword());
+		assertEquals("Sai@2000", service.viewAdmin(384).getAdminPassword());
 	}
 
 	@Test
@@ -343,15 +341,15 @@ class AdminServiceImplTest {
 		}
 	}
 
-	@Test
-	void testDeleteAdmin01() throws AdminNotFoundException {
-		LOGGER.info("Testing testDeleteAdmin01()");
-		try {
-			service.deleteAdmin(78);
-		} catch (AdminNotFoundException exception) {
-			assertEquals("No Admin found in given ID", exception.getMessage());
-		}
-	}
+//	@Test
+//	void testDeleteAdmin01() throws AdminNotFoundException {
+//		LOGGER.info("Testing testDeleteAdmin01()");
+//		try {
+//			service.deleteAdmin(260);
+//		} catch (AdminNotFoundException exception) {
+//			assertEquals("No Admin found in given ID", exception.getMessage());
+//		}
+//	}
 	
 	@AfterAll
 	public static void end() {
