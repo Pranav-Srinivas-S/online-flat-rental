@@ -19,10 +19,10 @@ public class FlatBooking {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "BOOKING_NUMBER")
 	private int	bookingNo;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "flatId")
 	private Flat flat;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "tenantId")
 	private Tenant tenant;
 	@Column(name = "BOOKING_FROM_DATE")
