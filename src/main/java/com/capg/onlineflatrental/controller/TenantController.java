@@ -39,7 +39,7 @@ public class TenantController {
 	 * Method: addtenant 
 	 * Description: It is used to add tenant into tenant_details table
 	 * @param tenant: Tenant Object
-	 * @returns tenant It returns TenantDTO Object with details
+	 * @returns tenant It returns ResponseEntity with TenantDTO Object.
 	 * @PostMapping: It is used to handle the HTTP POST requests matched with given URI expression.
 	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
 	 * @exception: TenantNotFoundException

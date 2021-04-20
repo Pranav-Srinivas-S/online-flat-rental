@@ -12,7 +12,6 @@ import com.capg.onlineflatrental.entities.Landlord;
 import com.capg.onlineflatrental.exception.InvalidFlatInputException;
 import com.capg.onlineflatrental.exception.LandlordNotFoundException;
 import com.capg.onlineflatrental.model.LandlordDTO;
-import com.capg.onlineflatrental.repository.IFlatRepository;
 import com.capg.onlineflatrental.repository.ILandlordRepository;
 import com.capg.onlineflatrental.util.LandlordUtils;
 
@@ -30,9 +29,6 @@ public class LandlordServiceImpl implements ILandlordService {
 
 	@Autowired
 	private ILandlordRepository landlordRepo;
-	
-	@Autowired
-	private IFlatRepository flatRepo;
 
 	static String landlordNotFound = "No Landlord found in given ID";
 	

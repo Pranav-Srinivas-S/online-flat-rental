@@ -170,8 +170,8 @@ public class FlatBookingServiceImplTest {
 	void testUpdate01() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
 		LOGGER.info("Testing testUpdateFlatBooking01()");
 		flatAddress = new FlatAddress(1, "jasmin", "chennai", "tamilnadu", 600062, "india");
-		flat = new Flat(6, 1000, flatAddress, "yes");
-		tenant = new Tenant(100, "basheer", 45, flatAddress);
+		flat = new Flat(488, 1000, flatAddress, "yes");
+		tenant = new Tenant(382, "basheer", 45, flatAddress);
 		flatbooking = new FlatBooking(347, flat, tenant, LocalDate.parse("2021-02-04"), LocalDate.parse("2021-02-06"));
 		try {
 			service.updateFlatBooking(flatbooking);
