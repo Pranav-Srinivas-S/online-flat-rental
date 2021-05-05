@@ -10,18 +10,18 @@ public class FlatDTO {
 	private int flatId;
 	private float flatCost;
 	private FlatAddress flatAddress;
-	private String flatAvailabilty;
+	private String flatAvailability;
 	
 	public FlatDTO() {
 		super();
 	}
 
-	public FlatDTO(int flatId, float flatCost, FlatAddress flatAddress, String flatAvailabilty) {
+	public FlatDTO(int flatId, float flatCost, FlatAddress flatAddress, String flatAvailability) {
 		super();
 		this.flatId = flatId;
 		this.flatCost = flatCost;
 		this.flatAddress = flatAddress;
-		this.flatAvailabilty = flatAvailabilty;
+		this.flatAvailability = flatAvailability;
 	}
 
 	public int getFlatId() {
@@ -48,18 +48,18 @@ public class FlatDTO {
 		this.flatAddress = flatAddress;
 	}
 
-	public String getFlatAvailabilty() {
-		return flatAvailabilty;
+	public String getFlatAvailability() {
+		return flatAvailability;
 	}
 
-	public void setFlatAvailabilty(String flatAvailabilty) {
-		this.flatAvailabilty = flatAvailabilty;
+	public void setFlatAvailability(String flatAvailability) {
+		this.flatAvailability = flatAvailability;
 	}
 
 	@Override
 	public String toString() {
 		return "Flat [flatId=" + flatId + ", flatCost=" + flatCost + ", flatAddress=" + flatAddress
-				+ ", flatAvailabilty=" + flatAvailabilty + "]";
+				+ ", flatAvailability=" + flatAvailability + "]";
 	}
 	
 }
