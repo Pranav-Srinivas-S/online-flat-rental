@@ -29,10 +29,10 @@ import com.capg.onlineflatrental.service.ILandlordService;
  * Date : 04-04-2021
  * Description : This is Landlord Controller
 */
-
 @RestController
-@RequestMapping("/api/ofr/landlord")
+@RequestMapping("/api/ofr")
 @CrossOrigin(origins="http://localhost:3000")
+
 public class LandlordController {
 
 	static final Logger LOGGER = LoggerFactory.getLogger(LandlordController.class);
@@ -82,6 +82,7 @@ public class LandlordController {
 			throws LandlordNotFoundException, InvalidFlatInputException {
 		LOGGER.info("update-landlord URL is opened");
 		LOGGER.info("updateLandlord() is initiated");
+		System.out.println(landlord);
 		LandlordDTO landlordDTO = null;
 		ResponseEntity<Object> landlordResponse = null;
 		landlordDTO = landlordService.updateLandlord(landlord);

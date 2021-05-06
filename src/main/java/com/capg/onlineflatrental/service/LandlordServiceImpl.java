@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.capg.onlineflatrental.entities.Flat;
 import com.capg.onlineflatrental.entities.Landlord;
 import com.capg.onlineflatrental.exception.InvalidFlatInputException;
 import com.capg.onlineflatrental.exception.LandlordNotFoundException;
@@ -61,13 +60,13 @@ public class LandlordServiceImpl implements ILandlordService {
 		LOGGER.info("updateLandlord() service is initiated");
 		Landlord landlordEntity;
 		Landlord existLandlord = landlordRepo.findById(landlord.getLandlordId()).orElse(null);
-		if (existLandlord == null)
-			throw new LandlordNotFoundException(landlordNotFound);
-		else
-		{
-			validateLandlord(landlord);
+//		if (existLandlord == null)
+//			throw new LandlordNotFoundException(landlordNotFound);
+//		else
+//		{
+//			validateLandlord(landlord);
 			landlordEntity = landlordRepo.save(landlord);
-		}
+		
 		LOGGER.info("updateLandlord() service has executed");
 		return LandlordUtils.convertToLandlordDto(landlordEntity);
 	}
@@ -130,7 +129,7 @@ public class LandlordServiceImpl implements ILandlordService {
 		else {
 			validateLandlordAge(landlord.getLandlordAge());
 			validateLandlordName(landlord.getLandlordName());
-			validateLandlordFlat(landlord.getFlatList());
+			FlatServiceImpl.validateFlat(landlord.getFlatList());
 			flag = true;
 			LOGGER.info(validationSuccessful);
 		}
@@ -138,23 +137,7 @@ public class LandlordServiceImpl implements ILandlordService {
 		return flag;
 	}
 
-	public static boolean validateLandlordFlat(List<Flat> flatList)
-			throws LandlordNotFoundException, InvalidFlatInputException {
-		LOGGER.info("validateLandlordFlat() is initiated");
-		boolean flag = false;
-		for (Flat flat : flatList) {
-			if (!FlatServiceImpl.validateFlat(flat)) {
-				LOGGER.error("Invalid Flat Details");
-				throw new LandlordNotFoundException("Invalid Flat Details");
-			} else {
-				flag = true;
-				LOGGER.info(validationSuccessful);
-			}
-		}
-		LOGGER.info("validateLandlordFlat() has executed");
-		return flag;
-	}
-
+	
 	public static boolean validateLandlordName(String landlordName) throws LandlordNotFoundException {
 		LOGGER.info("validateLandlordName() is initiated");
 		boolean flag = false;
