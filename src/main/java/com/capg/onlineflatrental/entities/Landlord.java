@@ -1,7 +1,5 @@
 package com.capg.onlineflatrental.entities;
 
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -26,15 +24,14 @@ public class Landlord {
 	private String landlordName;
 	@Column(name = "LANDLORD_AGE")
 	private int  landlordAge;
-	@OneToMany(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "landlord")
-	private List<Flat> flatList;
+	@OneToOne(cascade = CascadeType.PERSIST)
+	private Flat flatList;
 	
 	public Landlord() {
 		super();
 	}
 
-	public Landlord(int landlordId, String landlordName, int landlordAge, List<Flat> flatList) {
+	public Landlord(int landlordId, String landlordName, int landlordAge, Flat flatList) {
 		super();
 		this.landlordId = landlordId;
 		this.landlordName = landlordName;
@@ -66,11 +63,11 @@ public class Landlord {
 		this.landlordAge = landlordAge;
 	}
 
-	public List<Flat> getFlatList() {
+	public Flat getFlatList() {
 		return flatList;
 	}
 
-	public void setFlatList(List<Flat> flatList) {
+	public void setFlatList(Flat flatList) {
 		this.flatList = flatList;
 	}
 

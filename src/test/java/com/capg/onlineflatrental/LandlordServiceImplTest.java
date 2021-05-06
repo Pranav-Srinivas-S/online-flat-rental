@@ -3,9 +3,6 @@ package com.capg.onlineflatrental;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -30,7 +27,7 @@ class LandlordServiceImplTest {
 	ILandlordService service;
 
 	Landlord landlord = null;
-	List<Flat> flatList = new ArrayList<Flat>();
+	Flat flatList = null;
 	FlatAddress flatAddress = null;
 
 	@BeforeAll
@@ -43,7 +40,7 @@ class LandlordServiceImplTest {
 		void testAddLandlord01() throws LandlordNotFoundException, InvalidFlatInputException {
 			flatAddress = new FlatAddress(1, "street", "city", "state", 600013, "country");
 
-			flatList.add(new Flat(488, 1000f, flatAddress, "Y"));
+			flatList=new Flat(488, 1000f, flatAddress, "Y");
 			landlord = new Landlord(1, "Name", 24, flatList);
 			assertNotNull(service.addLandlord(landlord));
 		}
@@ -52,7 +49,7 @@ class LandlordServiceImplTest {
 		void testAddLandlord02() throws LandlordNotFoundException, InvalidFlatInputException {
 			flatAddress = new FlatAddress(1, "street", "city", "state", 600013, "country");
 
-			flatList.add(new Flat(1, 1000f, flatAddress, "Y"));
+			flatList=new Flat(488, 1000f, flatAddress, "Y");
 			landlord = new Landlord(2, null, 25, flatList);
 			try {
 				service.addLandlord(landlord);
@@ -65,7 +62,7 @@ class LandlordServiceImplTest {
 		void testAddLandlord03() throws LandlordNotFoundException, InvalidFlatInputException {
 			flatAddress = new FlatAddress(1, "street", "city", "state", 600013, "country");
 
-			flatList.add(new Flat(1, 1000f, flatAddress, "Y"));
+			flatList=new Flat(488, 1000f, flatAddress, "Y");
 			landlord = new Landlord(3, "ni", 26, flatList);
 			try {
 				service.addLandlord(landlord);
@@ -78,8 +75,7 @@ class LandlordServiceImplTest {
 		void testAddLandlord04() throws LandlordNotFoundException, InvalidFlatInputException {
 			flatAddress = new FlatAddress(1, "street", "city", "state", 600013, "country");
 
-			flatList.add(new Flat(1, 1000f, flatAddress, "Y"));
-
+			flatList=new Flat(488, 1000f, flatAddress, "Y");
 			landlord = new Landlord(4, "namenamenamenamenamenamenamenamenamename", 40, flatList);
 			try {
 				service.addLandlord(landlord);
@@ -92,8 +88,7 @@ class LandlordServiceImplTest {
 		void testAddLandlord05() throws LandlordNotFoundException, InvalidFlatInputException {
 			flatAddress = new FlatAddress(1, "street", "city", "state", 600013, "country");
 
-			flatList.add(new Flat(1, 1000f, flatAddress, "Y"));
-
+			flatList=new Flat(488, 1000f, flatAddress, "Y");
 			landlord = new Landlord(5, "Name123", 24, flatList);
 			try {
 				service.addLandlord(landlord);
@@ -106,8 +101,7 @@ class LandlordServiceImplTest {
 		void testAddLandlord06() throws LandlordNotFoundException, InvalidFlatInputException {
 			flatAddress = new FlatAddress(1, "street", "city", "state", 600013, "country");
 
-			flatList.add(new Flat(1, 1000f, flatAddress, "Y"));
-
+			flatList=new Flat(488, 1000f, flatAddress, "Y");
 			landlord = new Landlord(6, "Name#$", 25, flatList);
 			try {
 				service.addLandlord(landlord);
@@ -120,8 +114,7 @@ class LandlordServiceImplTest {
 		void testAddLandlord07() throws LandlordNotFoundException, InvalidFlatInputException {
 			flatAddress = new FlatAddress(1, "street", "city", "state", 600013, "country");
 
-			flatList.add(new Flat(1, 1000f, flatAddress, "Y"));
-			landlord = new Landlord(7, "Name", 17, flatList);
+			flatList=new Flat(488, 1000f, flatAddress, "Y");
 			try {
 				service.addLandlord(landlord);
 			} catch (LandlordNotFoundException exception) {
@@ -133,7 +126,7 @@ class LandlordServiceImplTest {
 		void testAddLandlord08() throws LandlordNotFoundException, InvalidFlatInputException {
 			flatAddress = new FlatAddress(1, "street", "city", "state", 600013, "country");
 
-			flatList.add(new Flat(1, 1000f, flatAddress, "Y"));
+			flatList=new Flat(488, 1000f, flatAddress, "Y");
 
 			landlord = new Landlord(8, "Name", 0, flatList);
 			try {
@@ -147,7 +140,7 @@ class LandlordServiceImplTest {
 		void testAddLandlord09() throws LandlordNotFoundException, InvalidFlatInputException {
 			flatAddress = new FlatAddress(1, "street", "city", "state", 600013, "country");
 
-			flatList.add(new Flat(1, 1000f, flatAddress, "Y"));
+			flatList=new Flat(488, 1000f, flatAddress, "Y");
 
 			landlord = new Landlord(9, "Name", -1, flatList);
 			try {
@@ -161,7 +154,7 @@ class LandlordServiceImplTest {
 		void testUpdateLandlord10() throws LandlordNotFoundException, InvalidFlatInputException {
 			flatAddress = new FlatAddress(1, "street", "city", "state", 600013, "country");
 
-			flatList.add(new Flat(491, 1000f, flatAddress, "Y"));
+			flatList=new Flat(488, 1000f, flatAddress, "Y");
 			landlord = new Landlord(245, "Name", 24, flatList);
 			assertNotNull(service.updateLandlord(landlord));
 		}
@@ -170,7 +163,7 @@ class LandlordServiceImplTest {
 		void testUpdateLandlord11() throws LandlordNotFoundException, InvalidFlatInputException {
 			flatAddress = new FlatAddress(1, "street", "city", "state", 600013, "country");
 
-			flatList.add(new Flat(1, 1000f, flatAddress, "Y"));
+			flatList=new Flat(488, 1000f, flatAddress, "Y");
 			landlord = new Landlord(6, "Name", 24, flatList);
 			try {
 				service.updateLandlord(landlord);
@@ -183,7 +176,7 @@ class LandlordServiceImplTest {
 		void testUpdateLandlord12() throws LandlordNotFoundException, InvalidFlatInputException {
 			flatAddress = new FlatAddress(1, "street", "city", "state", 600013, "country");
 
-			flatList.add(new Flat(1, 1000f, flatAddress, "Y"));
+			flatList=new Flat(488, 1000f, flatAddress, "Y");
 			landlord = new Landlord(245, null, 25, flatList);
 			try {
 				service.updateLandlord(landlord);
@@ -196,7 +189,7 @@ class LandlordServiceImplTest {
 		void testUpdateLandlord13() throws LandlordNotFoundException, InvalidFlatInputException {
 			flatAddress = new FlatAddress(1, "street", "city", "state", 600013, "country");
 
-			flatList.add(new Flat(1, 1000f, flatAddress, "Y"));
+			flatList=new Flat(488, 1000f, flatAddress, "Y");
 			landlord = new Landlord(245, "na", 26, flatList);
 			try {
 				service.updateLandlord(landlord);
@@ -209,7 +202,7 @@ class LandlordServiceImplTest {
 		void testUpdateLandlord14() throws LandlordNotFoundException, InvalidFlatInputException {
 			flatAddress = new FlatAddress(1, "street", "city", "state", 600013, "country");
 
-			flatList.add(new Flat(24, 1000f, flatAddress, "Y"));
+			flatList=new Flat(488, 1000f, flatAddress, "Y");
 
 			landlord = new Landlord(245, "namenamenamenamenamenamenamenamename", 40, flatList);
 			try {
@@ -223,8 +216,7 @@ class LandlordServiceImplTest {
 		void testUpdateLandlord15() throws LandlordNotFoundException, InvalidFlatInputException {
 			flatAddress = new FlatAddress(1, "street", "city", "state", 600013, "country");
 
-			flatList.add(new Flat(1, 1000f, flatAddress, "Y"));
-
+			flatList=new Flat(488, 1000f, flatAddress, "Y");
 			landlord = new Landlord(245, "Name123", 24, flatList);
 			try {
 				service.updateLandlord(landlord);
@@ -237,7 +229,7 @@ class LandlordServiceImplTest {
 		void testUpdateLandlord16() throws LandlordNotFoundException, InvalidFlatInputException {
 			flatAddress = new FlatAddress(1, "street", "city", "state", 600013, "country");
 
-			flatList.add(new Flat(1, 1000f, flatAddress, "Y"));
+			flatList=new Flat(488, 1000f, flatAddress, "Y");
 
 			landlord = new Landlord(245, "Name#$", 25, flatList);
 			try {
@@ -251,7 +243,7 @@ class LandlordServiceImplTest {
 		void testUpdateLandlord17() throws LandlordNotFoundException, InvalidFlatInputException {
 			flatAddress = new FlatAddress(1, "street", "city", "state", 600013, "country");
 
-			flatList.add(new Flat(1, 1000f, flatAddress, "Y"));
+			flatList=new Flat(488, 1000f, flatAddress, "Y");
 			landlord = new Landlord(245, "Name", 17, flatList);
 			try {
 				service.updateLandlord(landlord);
@@ -264,8 +256,7 @@ class LandlordServiceImplTest {
 		void testUpdateLandlord18() throws LandlordNotFoundException, InvalidFlatInputException {
 			flatAddress = new FlatAddress(1, "street", "city", "state", 600013, "country");
 
-			flatList.add(new Flat(1, 1000f, flatAddress, "Y"));
-
+			flatList=new Flat(488, 1000f, flatAddress, "Y");
 			landlord = new Landlord(245, "Name", 0, flatList);
 			try {
 				service.updateLandlord(landlord);
@@ -278,8 +269,7 @@ class LandlordServiceImplTest {
 		void testUpdateLandlord19() throws LandlordNotFoundException, InvalidFlatInputException {
 			flatAddress = new FlatAddress(1, "street", "city", "state", 600013, "country");
 
-			flatList.add(new Flat(1, 1000f, flatAddress, "Y"));
-
+			flatList=new Flat(488, 1000f, flatAddress, "Y");
 			landlord = new Landlord(245, "Name", -1, flatList);
 			try {
 				service.updateLandlord(landlord);

@@ -12,13 +12,13 @@ public class LandlordDTO {
 	private int landlordId;
 	private String landlordName;
 	private int  landlordAge;
-	private List<Flat> flatList;
+	private Flat flatList;
 	
 	public LandlordDTO() {
 		super();
 	}
 
-	public LandlordDTO(int landlordId, String landlordName, int landlordAge, List<Flat> flatList) {
+	public LandlordDTO(int landlordId, String landlordName, int landlordAge, Flat flatList) {
 		super();
 		this.landlordId = landlordId;
 		this.landlordName = landlordName;
@@ -50,11 +50,11 @@ public class LandlordDTO {
 		this.landlordAge = landlordAge;
 	}
 
-	public List<Flat> getFlatList() {
+	public Flat getFlatList() {
 		return flatList;
 	}
 
-	public void setFlatList(List<Flat> flatList) {
+	public void setFlatList(Flat flatList) {
 		this.flatList = flatList;
 	}
 
