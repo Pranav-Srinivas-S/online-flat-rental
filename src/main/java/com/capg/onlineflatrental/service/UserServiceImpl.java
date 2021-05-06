@@ -208,7 +208,8 @@ public class UserServiceImpl implements IUserService{
 		boolean flag = false;
 		if(userRepo.existsById(id) == flag) {
 			LOGGER.error(noUserWithId);
-			throw new UserNotFoundException(noUserWithId);}
+			//throw new UserNotFoundException(noUserWithId);}
+			flag=false;}
 		else {
 			LOGGER.info(done);
 			flag = true;
@@ -378,18 +379,18 @@ public boolean checkUser(int id, String userName, String password) throws UserNo
 	User user = userRepo.findByIdAndName(id, userName);
 	if(!validateUserId(id)) {
 		LOGGER.error(noUserWithId);
-		throw new UserNotFoundException(noUserWithId);
+		//throw new UserNotFoundException(noUserWithId);
 		}
 	else if(user == null) {
 		LOGGER.error(invalidUserName);
-		throw new UserNotFoundException(invalidUserName);
+		//throw new UserNotFoundException(invalidUserName);
 	}
-	if (user.getPassword().equals(password))
+	else if (user.getPassword().equals(password))
 		flag = true;
 	else {
 		LOGGER.error(passNotMatch);
-		throw new UserNotFoundException(passNotMatch);
+		//throw new UserNotFoundException(passNotMatch);
 	}
 	return flag;
-}
+	}
 }

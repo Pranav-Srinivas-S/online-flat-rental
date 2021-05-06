@@ -13,11 +13,12 @@ import com.capg.onlineflatrental.repository.ITenantRepository;
 import com.capg.onlineflatrental.util.TenantUtils;
 
 /*
- * Author : PRNANAV SRINIVAS S
+ * Author : PRANAV SRINIVAS S
  * Version : 1.0
  * Date : 03-04-2021
  * Description : This is Tenant Service Layer that provides services to Add New User, Update Existing User, Delete Existing User,
  *  			 View Existing User and View All Existing Users
+ * 
 */
 
 @Service
@@ -119,7 +120,7 @@ public class TenantServiceImpl implements ITenantService {
 	public List<TenantDTO> viewAllTenant() {
 		LOGGER.info("viewAllTenant() service is initiated");
 		List<Tenant> tenantList = tenantRepo.findAll();
-		LOGGER.info("viewaaTenant() service has executed");
+		LOGGER.info("viewAllTenant() service has executed");
 		return TenantUtils.convertToTenantDtoList(tenantList);
 	}
 

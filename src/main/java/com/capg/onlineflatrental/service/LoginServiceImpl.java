@@ -40,9 +40,11 @@ public class LoginServiceImpl implements ILoginService {
 		LOGGER.info("Login() service is initiated");
 		boolean flag = false;
 		if(user == null)
-			throw new LoginNotFoundException("User Details cannot be Empty");
+			//throw new LoginNotFoundException("User Details cannot be Empty");
+			flag = false;
 		else if(!userService.checkUser(user.getUserId(), user.getUserName(), encryptPassword(user.getPassword())))
-			throw new LoginNotFoundException("Invalid UserName or Password");
+			//throw new LoginNotFoundException("Invalid UserName or Password");
+			flag = false;
 		else
 			flag = true;
 		LOGGER.info("Login() service is executed");
