@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,14 +28,14 @@ import com.capg.onlineflatrental.service.ITenantService;
 */
 
 @RestController
-@RequestMapping("/api/ofr/tenant")
+@RequestMapping("/api/ofr")
+@CrossOrigin(origins="http://localhost:3000")
 public class TenantController {
 
 	final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private ITenantService tenantService;
-
 	/************************************************************************************
 	 * Method: addtenant 
 	 * Description: It is used to add tenant into tenant_details table
@@ -52,6 +53,7 @@ public class TenantController {
 	public ResponseEntity<Object> addTenant(@RequestBody Tenant tenant) throws TenantNotFoundException {
 		LOGGER.info("add-tenant URL is opened");
 		LOGGER.info("addTenant() is initiated");
+		System.out.println("tenant :"+tenant);
 		TenantDTO tenantDTO = tenantService.addTenant(tenant);
 		LOGGER.info("addTenant() has executed");
 		return new ResponseEntity<Object>(tenantDTO, HttpStatus.ACCEPTED);
