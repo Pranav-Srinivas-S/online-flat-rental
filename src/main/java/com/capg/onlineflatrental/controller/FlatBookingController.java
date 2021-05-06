@@ -33,7 +33,7 @@ import com.capg.onlineflatrental.service.IFlatBookingService;
 
 @CrossOrigin(origins="http://localhost:3000")
 @RestController
-@RequestMapping("/api/ofr/flatbooking")
+@RequestMapping("/api/ofr")
 public class FlatBookingController {
 
 	static final Logger LOGGER = LoggerFactory.getLogger(FlatBooking.class);
@@ -59,6 +59,7 @@ public class FlatBookingController {
 			throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
 		LOGGER.info("add-flatBooking URL is opened");
 		LOGGER.info("addFlatBooking() is initiated");
+		System.out.println(flatBooking);
 		FlatBookingDTO flatBookingDTO = null;
 		ResponseEntity<Object> flatBookingResponse = null;
 		flatBookingDTO = flatBookingService.addFlatBooking(flatBooking);
@@ -66,6 +67,7 @@ public class FlatBookingController {
 		LOGGER.info("addFlatBooking() has executed");
 		return flatBookingResponse;
 	}
+	
 	/************************************************************************************
 	 * Method: updateFlatBooking
 	 * Description: It is used to update flatBooking into flatbooking_details table

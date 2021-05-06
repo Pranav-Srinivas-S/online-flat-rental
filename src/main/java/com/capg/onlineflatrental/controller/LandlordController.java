@@ -31,7 +31,7 @@ import com.capg.onlineflatrental.service.ILandlordService;
 */
 
 @RestController
-@RequestMapping("/api/ofr/landlord")
+@RequestMapping("/api/ofr")
 @CrossOrigin(origins="http://localhost:3000")
 public class LandlordController {
 

@@ -29,7 +29,7 @@ import com.capg.onlineflatrental.service.IAdminService;
 
 @CrossOrigin(origins="http://localhost:3000")
 @RestController
-@RequestMapping("/api/ofr/admin")
+@RequestMapping("/api/ofr")
 public class AdminController {
 
 	static final Logger LOGGER = LoggerFactory.getLogger(AdminController.class);
