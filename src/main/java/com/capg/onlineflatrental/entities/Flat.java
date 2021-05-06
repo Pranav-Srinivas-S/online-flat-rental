@@ -34,12 +34,12 @@ public class Flat {
 		super();
 	}
 
-	public Flat(int flatId, float flatCost, FlatAddress flatAddress, String flatAvailabilty) {
+	public Flat(int flatId, float flatCost, FlatAddress flatAddress, String flatAvailability) {
 		super();
 		this.flatId = flatId;
 		this.flatCost = flatCost;
 		this.flatAddress = flatAddress;
-		this.flatAvailability = flatAvailabilty;
+		this.flatAvailability = flatAvailability;
 	}
 
 	public int getFlatId() {
@@ -66,18 +66,18 @@ public class Flat {
 		this.flatAddress = flatAddress;
 	}
 
-	public String getFlatAvailabilty() {
+	public String getFlatAvailability() {
 		return flatAvailability;
 	}
 
-	public void setFlatAvailabilty(String flatAvailabilty) {
-		this.flatAvailability = flatAvailabilty;
+	public void setFlatAvailability(String flatAvailability) {
+		this.flatAvailability = flatAvailability;
 	}
 
 	@Override
 	public String toString() {
 		return "Flat [flatId=" + flatId + ", flatCost=" + flatCost + ", flatAddress=" + flatAddress
-				+ ", flatAvailabilty=" + flatAvailability + "]";
+				+ ", flatAvailability=" + flatAvailability + "]";
 	}
 	
 }

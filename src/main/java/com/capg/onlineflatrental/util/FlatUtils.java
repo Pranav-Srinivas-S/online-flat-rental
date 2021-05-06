@@ -23,7 +23,7 @@ public class FlatUtils {
 		flat.setFlatId(dto.getFlatId());
 		flat.setFlatCost(dto.getFlatCost());
 		flat.setFlatAddress(dto.getFlatAddress());
-		flat.setFlatAvailabilty(dto.getFlatAvailabilty());
+		flat.setFlatAvailability(dto.getFlatAvailability());
 		return flat;
 	}		
 	
@@ -32,7 +32,7 @@ public class FlatUtils {
 		dto.setFlatId(flat.getFlatId());
 		dto.setFlatCost(flat.getFlatCost());
 		dto.setFlatAddress(flat.getFlatAddress());
-		dto.setFlatAvailabilty(flat.getFlatAvailabilty());
+		dto.setFlatAvailability(flat.getFlatAvailability());
 		return dto;
 	}
 	

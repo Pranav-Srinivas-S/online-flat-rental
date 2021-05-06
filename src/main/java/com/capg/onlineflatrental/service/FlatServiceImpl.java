@@ -23,7 +23,7 @@ import com.capg.onlineflatrental.util.FlatUtils;
 public class FlatServiceImpl implements IFlatService {
 
 	static final Logger LOGGER = LoggerFactory.getLogger(FlatServiceImpl.class);
-	
+
 	String flatIdNotAvailable = "Flat with given id was not found";
 	static String validationSuccessful = "Validation Successful";
 	static String alphabetsSpace = "^[a-zA-Z ]+$";
@@ -32,10 +32,8 @@ public class FlatServiceImpl implements IFlatService {
 	private IFlatRepository flatRepo;
 
 	/*
-	 * Description : This method Adds new Flat 
-	 * Input Param : Flat Object 
-	 * Return Value : FlatDTO Object 
-	 * Exception : InvalidFlatInputException
+	 * Description : This method Adds new Flat Input Param : Flat Object Return
+	 * Value : FlatDTO Object Exception : InvalidFlatInputException
 	 */
 	@Override
 	public FlatDTO addFlat(Flat flat) throws InvalidFlatInputException {
@@ -43,20 +41,18 @@ public class FlatServiceImpl implements IFlatService {
 		Flat flatEntity;
 		if (flat == null)
 			flatEntity = null;
-		else
-		{
+		else {
 			validateFlat(flat);
 			flatEntity = flatRepo.save(flat);
 		}
 		LOGGER.info("addFlat() service has executed");
 		return FlatUtils.convertToFlatDto(flatEntity);
-	} 
+	}
 
 	/*
-	 * Description : This method Updates existing Flat
-	 * Input Param : Flat Object 
-	 * Return Value : FlatDTO Object 
-	 * Exception : FlatBookingNotFoundException, InvalidFlatInputException
+	 * Description : This method Updates existing Flat Input Param : Flat Object
+	 * Return Value : FlatDTO Object Exception : FlatBookingNotFoundException,
+	 * InvalidFlatInputException
 	 */
 	@Override
 	public FlatDTO updateFlat(Flat flat) throws FlatNotFoundException, InvalidFlatInputException {
@@ -65,8 +61,7 @@ public class FlatServiceImpl implements IFlatService {
 		Flat existFlat = flatRepo.findById(flat.getFlatId()).orElse(null);
 		if (existFlat == null)
 			throw new FlatNotFoundException(flatIdNotAvailable);
-		else
-		{
+		else {
 			validateFlat(flat);
 			flatEntity = flatRepo.save(flat);
 		}
@@ -75,10 +70,8 @@ public class FlatServiceImpl implements IFlatService {
 	}
 
 	/*
-	 * Description : This method Deleted existing Flat
-	 * Input Param : int 
-	 * Return Value : FlatDTO Object 
-	 * Exception : FlatBookingNotFoundException
+	 * Description : This method Deleted existing Flat Input Param : int Return
+	 * Value : FlatDTO Object Exception : FlatBookingNotFoundException
 	 */
 	@Override
 	public FlatDTO deleteFlat(int id) throws FlatNotFoundException {
@@ -93,10 +86,8 @@ public class FlatServiceImpl implements IFlatService {
 	}
 
 	/*
-	 * Description : This method Shaows existing Flat by ID
-	 * Input Param : int
-	 * Return Value : FlatDTO Object 
-	 * Exception : FlatBookingNotFoundException
+	 * Description : This method Shaows existing Flat by ID Input Param : int Return
+	 * Value : FlatDTO Object Exception : FlatBookingNotFoundException
 	 */
 	@Override
 	public FlatDTO viewFlat(int id) throws FlatNotFoundException {
@@ -109,8 +100,8 @@ public class FlatServiceImpl implements IFlatService {
 	}
 
 	/*
-	 * Description : This method Shows all existing Flats
-	 * Return Value : List<FlatDTO> Object 
+	 * Description : This method Shows all existing Flats Return Value :
+	 * List<FlatDTO> Object
 	 */
 	@Override
 	public List<FlatDTO> viewAllFlat() {
@@ -121,15 +112,17 @@ public class FlatServiceImpl implements IFlatService {
 	}
 
 	@Override
-	public List<FlatDTO> viewAllFlatByCost(float cost, String availability) throws InvalidFlatInputException,FlatNotFoundException {
+	public List<FlatDTO> viewAllFlatByCost(float cost, String availability)
+			throws InvalidFlatInputException, FlatNotFoundException {
 		LOGGER.info("viewAllFlatByCost() service is initiated");
-		List<Flat> flatList=null;
-		validateFlatCost(cost);
-		validateFlatAvailability(availability);
-		flatList = flatRepo.findByCostAndAvailability(cost, availability);
-		LOGGER.info("viewAllFlatByCost() service has executed");
-		if(flatList==null)
+		List<Flat> flatList = null;
+		if (validateFlatCost(cost) && validateFlatAvailability(availability)) {
+			flatList = flatRepo.findByCostAndAvailability(cost, availability);
+			LOGGER.info("viewAllFlatByCost() service has executed");
+		
+		if (flatList == null)
 			throw new FlatNotFoundException(" No flat available for given cost");
+		}
 		return FlatUtils.convertToFlatDtoList(flatList);
 	}
 
@@ -139,8 +132,7 @@ public class FlatServiceImpl implements IFlatService {
 		if (flat == null) {
 			LOGGER.error("Flat details cannot be blank");
 			throw new InvalidFlatInputException("Flat details cannot be blank");
-		}
-		else {
+		} else {
 			validateFlatHouseNo(flat.getFlatAddress().getHouseNo());
 			validateFlatStreet(flat.getFlatAddress().getStreet());
 			validateFlatCity(flat.getFlatAddress().getCity());
@@ -148,7 +140,7 @@ public class FlatServiceImpl implements IFlatService {
 			validateFlatCountry(flat.getFlatAddress().getCountry());
 			validateFlatPin(flat.getFlatAddress().getPin());
 			validateFlatCost(flat.getFlatCost());
-			validateFlatAvailability(flat.getFlatAvailabilty());
+			validateFlatAvailability(flat.getFlatAvailability());
 			flag = true;
 			LOGGER.info(validationSuccessful);
 		}
@@ -173,7 +165,7 @@ public class FlatServiceImpl implements IFlatService {
 	public static boolean validateFlatAvailability(String availability) throws InvalidFlatInputException {
 		LOGGER.info("validateFlatAvailability() is initiated");
 		boolean flag = false;
-		if ((availability.isEmpty()))
+		if ((availability.isBlank()))
 			throw new InvalidFlatInputException("Availability cannot be empty");
 		if (availability.equals("YES") || availability.equals("Yes") || availability.equals("NO")
 				|| availability.equals("No") || availability.equals("no") || availability.equals("n")
@@ -190,7 +182,7 @@ public class FlatServiceImpl implements IFlatService {
 		LOGGER.info("validateFlatAvailability() has executed");
 		return flag;
 	}
-	
+
 	public static boolean validateFlatHouseNo(int houseNo) throws InvalidFlatInputException {
 		LOGGER.info("validateFlatHouseNo() is initiated");
 		boolean flag = false;
@@ -292,5 +284,5 @@ public class FlatServiceImpl implements IFlatService {
 		LOGGER.info("validateFlatPin() has executed");
 		return flag;
 	}
- 
+
 }
