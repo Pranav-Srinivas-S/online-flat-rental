@@ -26,7 +26,7 @@ public class Landlord {
 	private String landlordName;
 	@Column(name = "LANDLORD_AGE")
 	private int  landlordAge;
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "landlord")
 	private List<Flat> flatList;
 	

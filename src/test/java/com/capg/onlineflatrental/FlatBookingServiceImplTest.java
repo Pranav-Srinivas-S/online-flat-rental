@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 import org.slf4j.Logger;
@@ -25,7 +24,6 @@ import com.capg.onlineflatrental.exception.TenantNotFoundException;
 import com.capg.onlineflatrental.model.FlatBookingDTO;
 import com.capg.onlineflatrental.service.IFlatBookingService;
 
-@Disabled
 @SpringBootTest
 public class FlatBookingServiceImplTest {
 	final static Logger LOGGER = LoggerFactory.getLogger(FlatBookingServiceImplTest.class);
@@ -172,9 +170,9 @@ public class FlatBookingServiceImplTest {
 	void testUpdate01() throws FlatBookingNotFoundException, TenantNotFoundException, InvalidFlatInputException {
 		LOGGER.info("Testing testUpdateFlatBooking01()");
 		flatAddress = new FlatAddress(1, "jasmin", "chennai", "tamilnadu", 600062, "india");
-		flat = new Flat(6, 1000, flatAddress, "yes");
-		tenant = new Tenant(100, "basheer", 45, flatAddress);
-		flatbooking = new FlatBooking(2, flat, tenant, LocalDate.parse("2021-02-04"), LocalDate.parse("2021-02-06"));
+		flat = new Flat(488, 1000, flatAddress, "yes");
+		tenant = new Tenant(382, "basheer", 45, flatAddress);
+		flatbooking = new FlatBooking(347, flat, tenant, LocalDate.parse("2021-02-04"), LocalDate.parse("2021-02-06"));
 		try {
 			service.updateFlatBooking(flatbooking);
 		} catch (TenantNotFoundException exception) {
@@ -189,7 +187,7 @@ public class FlatBookingServiceImplTest {
 		flatAddress = new FlatAddress(1, "jasmin", "chennai", "tamilnadu", 600062, "india");
 		flat = new Flat(6, 1000, flatAddress, "yes");
 		tenant = new Tenant(6, "@", 45, flatAddress);
-		flatbooking = new FlatBooking(2, flat, tenant, LocalDate.parse("2021-02-04"), LocalDate.parse("2021-02-06"));
+		flatbooking = new FlatBooking(347, flat, tenant, LocalDate.parse("2021-02-04"), LocalDate.parse("2021-02-06"));
 		try {
 			service.updateFlatBooking(flatbooking);
 		} catch (TenantNotFoundException exception) {
@@ -204,7 +202,7 @@ public class FlatBookingServiceImplTest {
 		flatAddress = new FlatAddress(1, "jasmin", "chennai", "tamilnadu", 600062, "india");
 		flat = new Flat(6, 1000, flatAddress, "yes");
 		tenant = new Tenant(8, "ba", 45, flatAddress);
-		flatbooking = new FlatBooking(2, flat, tenant, LocalDate.parse("2021-02-04"), LocalDate.parse("2021-02-06"));
+		flatbooking = new FlatBooking(347, flat, tenant, LocalDate.parse("2021-02-04"), LocalDate.parse("2021-02-06"));
 		try {
 			service.updateFlatBooking(flatbooking);
 		} catch (TenantNotFoundException exception) {
@@ -219,7 +217,7 @@ public class FlatBookingServiceImplTest {
 		flatAddress = new FlatAddress(1, "jasmin", "chennai", "tamilnadu", 600062, "india");
 		flat = new Flat(6, 1000, flatAddress, "yes");
 		tenant = new Tenant(8, "basheer", 5, flatAddress);
-		flatbooking = new FlatBooking(2, flat, tenant, LocalDate.parse("2021-02-04"), LocalDate.parse("2021-02-06"));
+		flatbooking = new FlatBooking(347, flat, tenant, LocalDate.parse("2021-02-04"), LocalDate.parse("2021-02-06"));
 		try {
 			service.updateFlatBooking(flatbooking);
 		} catch (TenantNotFoundException exception) {
@@ -234,7 +232,7 @@ public class FlatBookingServiceImplTest {
 		flatAddress = new FlatAddress(1, "jasmin", "chennai", "tamilnadu", 600062, "india");
 		flat = new Flat(6, 1000, flatAddress, "yes");
 		tenant = new Tenant(8, "basheer", 0, flatAddress);
-		flatbooking = new FlatBooking(2, flat, tenant, LocalDate.parse("2021-02-04"), LocalDate.parse("2021-02-06"));
+		flatbooking = new FlatBooking(347, flat, tenant, LocalDate.parse("2021-02-04"), LocalDate.parse("2021-02-06"));
 		try {
 			service.updateFlatBooking(flatbooking);
 		} catch (TenantNotFoundException exception) {
@@ -249,7 +247,7 @@ public class FlatBookingServiceImplTest {
 		flatAddress = new FlatAddress(1, "jasmin", "chennai", "tamilnadu", 600062, "india");
 		flat = new Flat(6, 1000, flatAddress, "yes");
 		tenant = new Tenant(8, "basheer", -1, flatAddress);
-		flatbooking = new FlatBooking(2, flat, tenant, LocalDate.parse("2021-02-04"), LocalDate.parse("2021-02-06"));
+		flatbooking = new FlatBooking(347, flat, tenant, LocalDate.parse("2021-02-04"), LocalDate.parse("2021-02-06"));
 		try {
 			service.updateFlatBooking(flatbooking);
 		} catch (TenantNotFoundException exception) {

@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,23 +28,23 @@ import com.capg.onlineflatrental.service.ITenantService;
 */
 
 @RestController
-@RequestMapping("/api/ofr/tenant")
+@RequestMapping("/api/ofr")
+@CrossOrigin(origins="http://localhost:3000")
 public class TenantController {
 
 	final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private ITenantService tenantService;
-
 	/************************************************************************************
 	 * Method: addtenant 
 	 * Description: It is used to add tenant into tenant_details table
 	 * @param tenant: Tenant Object
-	 * @returns tenant It returns TenantDTO Object with details
+	 * @returns tenant It returns ResponseEntity with TenantDTO Object.
 	 * @PostMapping: It is used to handle the HTTP POST requests matched with given URI expression.
 	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
 	 * @exception: TenantNotFoundException
-	 * Created By- PRNANAV SRINIVAS S
+	 * Created By- PRANAV SRINIVAS S
      *Created Date -  04-04-2021 
 	 * 
 	 ************************************************************************************/
@@ -52,6 +53,7 @@ public class TenantController {
 	public ResponseEntity<Object> addTenant(@RequestBody Tenant tenant) throws TenantNotFoundException {
 		LOGGER.info("add-tenant URL is opened");
 		LOGGER.info("addTenant() is initiated");
+		System.out.println("tenant :"+tenant);
 		TenantDTO tenantDTO = tenantService.addTenant(tenant);
 		LOGGER.info("addTenant() has executed");
 		return new ResponseEntity<Object>(tenantDTO, HttpStatus.ACCEPTED);
@@ -65,7 +67,7 @@ public class TenantController {
 	 * @PutMapping: It is used to handle the HTTP PUT requests matched with given URI expression.
 	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
 	 * @exception: TenantNotFoundException
-	 * *Created By- PRNANAV SRINIVAS S
+	 * *Created By- PRANAV SRINIVAS S
      *Created Date -  04-04-2021 
 	 * 
 	 ************************************************************************************/
@@ -85,9 +87,9 @@ public class TenantController {
 	 * @param id: int id
 	 * @returns tenant It returns TenantDTO Object with details
 	 * @DeleteMapping: It is used to handle the HTTP DELETE requests matched with given URI expression.
-	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * @PathVariable: int id
 	 * @exception: TenantNotFoundException
-	 * Created By- PRNANAV SRINIVAS S
+	 * Created By- PRANAV SRINIVAS S
      *Created Date -  04-04-2021 
 	 * 
 	 ************************************************************************************/
@@ -107,9 +109,9 @@ public class TenantController {
 	 * @param tenant: int id
 	 * @returns tenant It returns TenantDTO Object with details
 	 * @GetMapping: It is used to handle the HTTP GET requests matched with given URI expression.
-	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
+	 * @PathVariable: int id
 	 * @exception: TenantNotFoundException
-	 * Created By- PRNANAV SRINIVAS S
+	 * Created By- PRANAV SRINIVAS S
      *Created Date -  04-04-2021 
 	 * 
 	 ************************************************************************************/
@@ -128,8 +130,7 @@ public class TenantController {
 	 * Description: It is used to view all tenant details present in tenant table
 	 * @returns tenant It returns all List<TenantDTO> Object with details
 	 * @GetMapping: It is used to handle the HTTP GET requests matched with given URI expression.
-	 * @RequestBody: It used to bind the HTTP request/response body with a domain object in method parameter or return type.
-	 * Created By- PRNANAV SRINIVAS S
+	 * Created By- PRANAV SRINIVAS S
      *Created Date -  04-04-2021 
 	 * 
 	 ************************************************************************************/
@@ -138,7 +139,7 @@ public class TenantController {
 	public List<TenantDTO> getAllTenants() {
 		LOGGER.info("view-all-tenants URL is opened");
 		LOGGER.info("getAllTenant() is initiated");
-		LOGGER.info("getAllTenant() is initiated");
+		LOGGER.info("getAllTenant() has executed");
 		return tenantService.viewAllTenant();
 	}
 

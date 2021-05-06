@@ -43,7 +43,7 @@ public class LandlordServiceImpl implements ILandlordService {
 	@Override
 	public LandlordDTO addLandlord(Landlord landlord) throws LandlordNotFoundException, InvalidFlatInputException {
 		LOGGER.info("addLandlord() service is initiated");
-		Landlord landlordEntity;
+		Landlord landlordEntity = null;
 		validateLandlord(landlord);
 		landlordEntity = landlordRepo.save(landlord);
 		LOGGER.info("addLandlord() service has executed");

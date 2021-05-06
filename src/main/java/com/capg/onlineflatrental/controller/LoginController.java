@@ -5,11 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.capg.onlineflatrental.entities.User;
 import com.capg.onlineflatrental.exception.LoginNotFoundException;
 import com.capg.onlineflatrental.exception.UserNotFoundException;
@@ -23,8 +23,9 @@ import com.capg.onlineflatrental.service.ILoginService;
  * Description : This is Login Controller
 */
 
+@CrossOrigin(origins="http://localhost:3000")
 @RestController
-@RequestMapping("/api/ofr/login")
+@RequestMapping("/api/ofr")
 public class LoginController {
 	
 	static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
@@ -54,7 +55,8 @@ public class LoginController {
 		LOGGER.info("validateLogin() is initiated");
 		ResponseEntity<String> loginResponse;
 		if (!loginService.login(user))
-			throw new LoginNotFoundException("Login id  and Password Does not match");
+			//throw new LoginNotFoundException("Login id  and Password Does not match");
+			loginResponse = new ResponseEntity<>("Login Failed", HttpStatus.ACCEPTED);
 		else
 			loginResponse = new ResponseEntity<>("Login Successful!", HttpStatus.ACCEPTED);
 		LOGGER.info("validateLogin() has executed");
