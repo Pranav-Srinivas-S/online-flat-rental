@@ -43,6 +43,17 @@ public class FlatAddress {
 		this.pin = pin;
 		this.country = country;
 	}
+	
+	public FlatAddress(int id, int houseNo, String street, String city, String state, long pin, String country) {
+		super();
+		this.id = id;
+		this.houseNo = houseNo;
+		this.street = street;
+		this.city = city;
+		this.state = state;
+		this.pin = pin;
+		this.country = country;
+	}
 
 	public int getHouseNo() {
 		return houseNo;

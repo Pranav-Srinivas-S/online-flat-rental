@@ -106,6 +106,8 @@ public class UserController {
 			throws UserNotFoundException {
 		LOGGER.info("update-password URL is opened");
 		LOGGER.info("updatePassword() is initiated");
+		System.out.println(newpass);
+		System.out.println(user);
 		UserDTO userDTO = null;
 		ResponseEntity<Object> userResponse = null;
 		if (UserServiceImpl.validateUserType(user.getUserType())) {
