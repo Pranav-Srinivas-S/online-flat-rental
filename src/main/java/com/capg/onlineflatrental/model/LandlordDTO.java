@@ -1,7 +1,5 @@
 package com.capg.onlineflatrental.model;
 
-import java.util.List;
-
 import org.springframework.stereotype.Component;
 
 import com.capg.onlineflatrental.entities.Flat;
