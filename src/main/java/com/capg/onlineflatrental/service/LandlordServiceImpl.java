@@ -60,13 +60,13 @@ public class LandlordServiceImpl implements ILandlordService {
 		LOGGER.info("updateLandlord() service is initiated");
 		Landlord landlordEntity;
 		Landlord existLandlord = landlordRepo.findById(landlord.getLandlordId()).orElse(null);
-//		if (existLandlord == null)
-//			throw new LandlordNotFoundException(landlordNotFound);
-//		else
-//		{
-//			validateLandlord(landlord);
+		if (existLandlord == null)
+			throw new LandlordNotFoundException(landlordNotFound);
+		else
+		{
+			validateLandlord(landlord);
 			landlordEntity = landlordRepo.save(landlord);
-		
+		}
 		LOGGER.info("updateLandlord() service has executed");
 		return LandlordUtils.convertToLandlordDto(landlordEntity);
 	}
